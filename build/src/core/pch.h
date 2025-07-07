@@ -50,12 +50,37 @@ typedef int BOOL;
 #  define FALSE 0
 #endif
 
+#ifndef _WIN32
+// Define our own types for non-Windows platforms
 typedef unsigned int UINT32;
 typedef unsigned short UINT16;
 typedef unsigned char UINT8;
 typedef int INT32;
 typedef short INT16;
 typedef char INT8;
+#else
+// On Windows, use the standard Windows types
+#include <basetsd.h>
+// Map Windows types to our naming convention if needed
+#ifndef UINT32
+typedef DWORD UINT32;
+#endif
+#ifndef UINT16
+typedef WORD UINT16;
+#endif
+#ifndef UINT8
+typedef BYTE UINT8;
+#endif
+#ifndef INT32
+typedef LONG INT32;
+#endif
+#ifndef INT16
+typedef SHORT INT16;
+#endif
+#ifndef INT8
+typedef CHAR INT8;
+#endif
+#endif
 
 #ifdef _WIN64
 typedef __int64 INTPTR;
