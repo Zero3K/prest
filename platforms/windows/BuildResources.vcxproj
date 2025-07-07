@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -51,59 +51,69 @@
     <ConfigurationType>Utility</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='vTune|Win32'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='vTune|x64'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='PGO|Win32'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='PGO|x64'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Instrumented|Win32'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Instrumented|x64'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -332,30 +342,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="packaging\scripts\buildresources.pl">
+    <CustomBuild Include="$(SolutionDir)..\..\build\scripts\build-resources.js">
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">perl "%(FullPath)" "$(SolutionDir) " "$(OutDir) " "$(ConfigurationName) " "$(VCInstallDir) " "$(Platform) "</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">perl "%(FullPath)" "$(SolutionDir) " "$(OutDir) " "$(ConfigurationName) " "$(VCInstallDir) " "$(Platform) "</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Resources</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Resources</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">node "%(FullPath)" "$(SolutionDir) " "$(OutDir) " "$(ConfigurationName) " "$(VCInstallDir) " "$(Platform) "</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">node "%(FullPath)" "$(SolutionDir) " "$(OutDir) " "$(ConfigurationName) " "$(VCInstallDir) " "$(Platform) "</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Resources (Node.js)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Resources (Node.js)</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)\defaults\dialog_dummy.ini</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\defaults\dialog_dummy.ini</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">perl "%(FullPath)" "$(SolutionDir) " "$(OutDir) " "$(ConfigurationName) " "$(VCInstallDir) " "$(Platform) "</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">perl "%(FullPath)" "$(SolutionDir) " "$(OutDir) " "$(ConfigurationName) " "$(VCInstallDir) " "$(Platform) "</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='vTune|Win32'">perl "%(FullPath)" "$(SolutionDir) " "$(OutDir) " "$(ConfigurationName) " "$(VCInstallDir) " "$(Platform) "</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='vTune|x64'">perl "%(FullPath)" "$(SolutionDir) " "$(OutDir) " "$(ConfigurationName) " "$(VCInstallDir) " "$(Platform) "</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='PGO|Win32'">perl "%(FullPath)" "$(SolutionDir) " "$(OutDir) " "$(ConfigurationName) " "$(VCInstallDir) " "$(Platform) "</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='PGO|x64'">perl "%(FullPath)" "$(SolutionDir) " "$(OutDir) " "$(ConfigurationName) " "$(VCInstallDir) " "$(Platform) "</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Instrumented|Win32'">perl "%(FullPath)" "$(SolutionDir) " "$(OutDir) " "$(ConfigurationName) " "$(VCInstallDir) " "$(Platform) "</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Instrumented|x64'">perl "%(FullPath)" "$(SolutionDir) " "$(OutDir) " "$(ConfigurationName) " "$(VCInstallDir) " "$(Platform) "</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Resources</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Resources</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='vTune|Win32'">Building Resources</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='vTune|x64'">Building Resources</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='PGO|Win32'">Building Resources</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='PGO|x64'">Building Resources</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Instrumented|Win32'">Building Resources</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Instrumented|x64'">Building Resources</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">node "%(FullPath)" "$(SolutionDir) " "$(OutDir) " "$(ConfigurationName) " "$(VCInstallDir) " "$(Platform) "</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">node "%(FullPath)" "$(SolutionDir) " "$(OutDir) " "$(ConfigurationName) " "$(VCInstallDir) " "$(Platform) "</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='vTune|Win32'">node "%(FullPath)" "$(SolutionDir) " "$(OutDir) " "$(ConfigurationName) " "$(VCInstallDir) " "$(Platform) "</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='vTune|x64'">node "%(FullPath)" "$(SolutionDir) " "$(OutDir) " "$(ConfigurationName) " "$(VCInstallDir) " "$(Platform) "</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='PGO|Win32'">node "%(FullPath)" "$(SolutionDir) " "$(OutDir) " "$(ConfigurationName) " "$(VCInstallDir) " "$(Platform) "</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='PGO|x64'">node "%(FullPath)" "$(SolutionDir) " "$(OutDir) " "$(ConfigurationName) " "$(VCInstallDir) " "$(Platform) "</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Instrumented|Win32'">node "%(FullPath)" "$(SolutionDir) " "$(OutDir) " "$(ConfigurationName) " "$(VCInstallDir) " "$(Platform) "</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Instrumented|x64'">node "%(FullPath)" "$(SolutionDir) " "$(OutDir) " "$(ConfigurationName) " "$(VCInstallDir) " "$(Platform) "</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Resources (Node.js)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Resources (Node.js)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='vTune|Win32'">Building Resources (Node.js)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='vTune|x64'">Building Resources (Node.js)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='PGO|Win32'">Building Resources (Node.js)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='PGO|x64'">Building Resources (Node.js)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Instrumented|Win32'">Building Resources (Node.js)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Instrumented|x64'">Building Resources (Node.js)</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)\defaults\dialog_dummy.ini</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\defaults\dialog_dummy.ini</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='vTune|Win32'">$(OutDir)\defaults\dialog_dummy.ini</Outputs>

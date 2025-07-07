@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  
+  <!-- Node.js Build Integration for Presto -->
+  
+  <PropertyGroup>
+    <!-- Default Node.js path - can be overridden -->
+    <NodeJsPath Condition="'$(NodeJsPath)'==''">node</NodeJsPath>
+    
+    <!-- Build script paths -->
+    <PrestoRootDir>$(MSBuildThisFileDirectory)..\..</PrestoRootDir>
+    <PrestoBuildScriptsDir>$(PrestoRootDir)\build\scripts</PrestoBuildScriptsDir>
+    
+    <!-- Check if we're in a Visual Studio build -->
+    <IsVisualStudioBuild Condition="'$(BuildingInsideVisualStudio)'=='true'">true</IsVisualStudioBuild>
+  </PropertyGroup>
+
+  <!-- Verify Node.js is available -->
+  <Target Name="VerifyNodeJs" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <NodeJsVersion>unknown</NodeJsVersion>
+    </PropertyGroup>
+    
+    <Exec Command="$(NodeJsPath) --version" 
+          ContinueOnError="true" 
+          ConsoleToMSBuild="true"
+          Condition="'$(IsVisualStudioBuild)'=='true'">
+      <Output TaskParameter="ConsoleOutput" PropertyName="NodeJsVersionOutput" />
+      <Output TaskParameter="ExitCode" PropertyName="NodeJsExitCode" />
+    </Exec>
+    
+    <PropertyGroup Condition="'$(NodeJsExitCode)'=='0'">
+      <NodeJsVersion>$(NodeJsVersionOutput)</NodeJsVersion>
+    </PropertyGroup>
+    
+    <Message Text="Node.js version: $(NodeJsVersion)" 
+             Importance="normal" 
+             Condition="'$(NodeJsExitCode)'=='0' AND '$(IsVisualStudioBuild)'=='true'" />
+    
+    <Error Text="Node.js is required for building Presto. Please install Node.js 14.0 or higher and ensure it's in your PATH. Visit https://nodejs.org/ to download Node.js."
+           Condition="'$(NodeJsExitCode)'!='0' AND '$(IsVisualStudioBuild)'=='true'" />
+  </Target>
+
+  <!-- Verify npm dependencies are installed -->
+  <Target Name="VerifyNpmDependencies" DependsOnTargets="VerifyNodeJs" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <PackageJsonPath>$(PrestoRootDir)\package.json</PackageJsonPath>
+      <NodeModulesPath>$(PrestoRootDir)\node_modules</NodeModulesPath>
+    </PropertyGroup>
+    
+    <Message Text="Checking npm dependencies..." 
+             Importance="normal" 
+             Condition="'$(IsVisualStudioBuild)'=='true'" />
+    
+    <Warning Text="Node.js dependencies may not be installed. Run 'npm install' in the project root if you encounter build errors."
+             Condition="'$(IsVisualStudioBuild)'=='true' AND !Exists('$(NodeModulesPath)')" />
+  </Target>
+
+  <!-- Custom build task for generating ECMAScript files -->
+  <Target Name="GenerateECMAScriptFiles" 
+          BeforeTargets="ClCompile" 
+          Condition="'$(Configuration)'!='' AND '$(Platform)'!=''">
+    
+    <PropertyGroup>
+      <ECMAScriptBuildScript>$(PrestoBuildScriptsDir)\build-ecmascript.js</ECMAScriptBuildScript>
+    </PropertyGroup>
+    
+    <Message Text="Generating ECMAScript engine files..." 
+             Importance="normal" />
+    
+    <Exec Command="$(NodeJsPath) &quot;$(ECMAScriptBuildScript)&quot;" 
+          WorkingDirectory="$(PrestoRootDir)"
+          Condition="Exists('$(ECMAScriptBuildScript)')" />
+  </Target>
+
+  <!-- Helper targets for standalone builds -->
+  <Target Name="InstallNpmDependencies">
+    <Message Text="Installing npm dependencies..." />
+    <Exec Command="npm install" 
+          WorkingDirectory="$(PrestoRootDir)" />
+  </Target>
+
+  <Target Name="RunPrestoTests">
+    <Message Text="Running Presto test suite..." />
+    <Exec Command="npm test" 
+          WorkingDirectory="$(PrestoRootDir)" />
+  </Target>
+
+  <Target Name="CleanNodeModules">
+    <Message Text="Cleaning Node.js dependencies..." />
+    <RemoveDir Directories="$(PrestoRootDir)\node_modules" 
+               Condition="Exists('$(PrestoRootDir)\node_modules')" />
+  </Target>
+
+  <!-- Information target -->
+  <Target Name="ShowPrestoInfo">
+    <Message Text="=== Presto Build System Information ===" />
+    <Message Text="Root Directory: $(PrestoRootDir)" />
+    <Message Text="Build Scripts: $(PrestoBuildScriptsDir)" />
+    <Message Text="Node.js Path: $(NodeJsPath)" />
+    <Message Text="Configuration: $(Configuration)" />
+    <Message Text="Platform: $(Platform)" />
+    <Message Text="Visual Studio Build: $(IsVisualStudioBuild)" />
+    <Message Text="=======================================" />
+  </Target>
+
+</Project>

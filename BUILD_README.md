@@ -20,6 +20,28 @@ npm run build
 npm test
 ```
 
+## Visual Studio 2019 Support
+
+✅ **NEW**: Full Visual Studio 2019 support without external dependencies!
+
+For Windows developers using Visual Studio 2019:
+
+1. **Install Node.js 14+** (only external requirement)
+2. **Open** `platforms/windows/Opera_vs2019.sln`
+3. **Build** using Visual Studio's Build menu
+
+See [VS2019_BUILD_README.md](VS2019_BUILD_README.md) for detailed Visual Studio 2019 instructions.
+
+### What's Eliminated for Visual Studio 2019
+
+| Before | After |
+|--------|-------|
+| ❌ Python 2.7 | ✅ Node.js only |
+| ❌ Perl | ✅ Node.js only |
+| ❌ Pike | ✅ Node.js only |
+| ❌ 7-zip | ✅ Node.js archiver |
+| ❌ vsyasm | ✅ Not required |
+
 ## Build Commands
 
 ### Main Build Command
