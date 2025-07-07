@@ -46,6 +46,7 @@
     <ProjectGuid>{49067E0F-D55E-4D76-AFD4-C229B256EE8A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Opera</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props"/>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

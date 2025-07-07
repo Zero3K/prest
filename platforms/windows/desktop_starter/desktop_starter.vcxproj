@@ -266,7 +266,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>DESKTOP_STARTER;MSWIN;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS;WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\..\..;..\..\..\modules\libopeay</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\build\src;..\..\..;..\..\..\modules\libopeay</AdditionalIncludeDirectories>
       <ExceptionHandling>false</ExceptionHandling>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
@@ -294,7 +294,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>DESKTOP_STARTER;MSWIN;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS;WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\..\..;..\..\..\modules\libopeay</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\build\src;..\..\..;..\..\..\modules\libopeay</AdditionalIncludeDirectories>
       <ExceptionHandling>false</ExceptionHandling>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
@@ -323,7 +323,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>DESKTOP_STARTER;MSWIN;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\..\..;..\..\..\modules\libopeay</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\build\src;..\..\..;..\..\..\modules\libopeay</AdditionalIncludeDirectories>
       <ExceptionHandling>false</ExceptionHandling>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
@@ -358,7 +358,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>DESKTOP_STARTER;MSWIN;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\..\..;..\..\..\modules\libopeay</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\build\src;..\..\..;..\..\..\modules\libopeay</AdditionalIncludeDirectories>
       <ExceptionHandling>false</ExceptionHandling>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
@@ -392,7 +392,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>DESKTOP_STARTER;MSWIN;OPERA_SUITE_STARTER;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\..\..;..\..\..\modules\libopeay</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\build\src;..\..\..;..\..\..\modules\libopeay</AdditionalIncludeDirectories>
       <ExceptionHandling>false</ExceptionHandling>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
@@ -427,7 +427,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>DESKTOP_STARTER;MSWIN;OPERA_SUITE_STARTER;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\..\..;..\..\..\modules\libopeay</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\build\src;..\..\..;..\..\..\modules\libopeay</AdditionalIncludeDirectories>
       <ExceptionHandling>false</ExceptionHandling>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
@@ -461,7 +461,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>DESKTOP_STARTER;MSWIN;OPERA_SUITE_STARTER;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\..\..;..\..\..\modules\libopeay</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\build\src;..\..\..;..\..\..\modules\libopeay</AdditionalIncludeDirectories>
       <ExceptionHandling>false</ExceptionHandling>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
@@ -496,7 +496,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>DESKTOP_STARTER;MSWIN;OPERA_SUITE_STARTER;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\..\..;..\..\..\modules\libopeay</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\build\src;..\..\..;..\..\..\modules\libopeay</AdditionalIncludeDirectories>
       <ExceptionHandling>false</ExceptionHandling>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
@@ -530,7 +530,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>DESKTOP_STARTER;MSWIN;OPERA_SUITE_STARTER;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\..\..;..\..\..\modules\libopeay</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\build\src;..\..\..;..\..\..\modules\libopeay</AdditionalIncludeDirectories>
       <ExceptionHandling>false</ExceptionHandling>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
@@ -569,7 +569,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>DESKTOP_STARTER;MSWIN;OPERA_SUITE_STARTER;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\..\..;..\..\..\modules\libopeay</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\build\src;..\..\..;..\..\..\modules\libopeay</AdditionalIncludeDirectories>
       <ExceptionHandling>false</ExceptionHandling>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
