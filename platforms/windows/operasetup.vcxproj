@@ -204,20 +204,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="..\..\modules\hardcore\scripts\operasetup.py">
+    <CustomBuild Include="..\..\build\scripts\operasetup.js">
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"%(FullPath)" -DMSWIN=1 -DFEATURE_SELFTEST=NO -DSYSTEM_64BIT=NO --platform_product_config=platforms/windows/config.h --makelang_db=data/strings/english.db --makelang_db=adjunct/quick/english_local.db --makelang_opt=-E --mainline_configuration=current -I"$(ProjectDir)..\.." --generate_pch</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"%(FullPath)" -DMSWIN=1 -DFEATURE_SELFTEST=YES -DSYSTEM_64BIT=NO --platform_product_config=platforms/windows/config.h --makelang_db=data/strings/english.db --makelang_db=adjunct/quick/english_local.db --makelang_opt=-E --mainline_configuration=current -I"$(ProjectDir)..\.." --generate_pch</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug no selftests|Win32'">"%(FullPath)" -DMSWIN=1 -DFEATURE_SELFTEST=NO -DSYSTEM_64BIT=NO --platform_product_config=platforms/windows/config.h --makelang_db=data/strings/english.db --makelang_db=adjunct/quick/english_local.db --makelang_opt=-E --mainline_configuration=current -I"$(ProjectDir)..\.." --generate_pch</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"%(FullPath)" -DMSWIN=1 -DFEATURE_SELFTEST=NO -DSYSTEM_64BIT=YES --platform_product_config=platforms/windows/config.h --makelang_db=data/strings/english.db --makelang_db=adjunct/quick/english_local.db --makelang_opt=-E  --mainline_configuration=current -I"$(ProjectDir)..\.." --generate_pch</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"%(FullPath)" -DMSWIN=1 -DFEATURE_SELFTEST=YES -DSYSTEM_64BIT=YES --platform_product_config=platforms/windows/config.h --makelang_db=data/strings/english.db --makelang_db=adjunct/quick/english_local.db --makelang_opt=-E  --mainline_configuration=current -I"$(ProjectDir)..\.." --generate_pch</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug no selftests|x64'">"%(FullPath)" -DMSWIN=1 -DFEATURE_SELFTEST=NO -DSYSTEM_64BIT=YES --platform_product_config=platforms/windows/config.h --makelang_db=data/strings/english.db --makelang_db=adjunct/quick/english_local.db --makelang_opt=-E  --mainline_configuration=current -I"$(ProjectDir)..\.." --generate_pch</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Running Opera Setup Script</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Running Opera Setup Script</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug no selftests|Win32'">Running Opera Setup Script</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Running Opera Setup Script</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Running Opera Setup Script</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug no selftests|x64'">Running Opera Setup Script</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">node "%(FullPath)" -DMSWIN=1 -DFEATURE_SELFTEST=NO -DSYSTEM_64BIT=NO --platform_product_config=platforms/windows/config.h --makelang_db=data/strings/english.db --makelang_db=adjunct/quick/english_local.db --makelang_opt=-E --mainline_configuration=current -I"$(ProjectDir)..\.." --generate_pch</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">node "%(FullPath)" -DMSWIN=1 -DFEATURE_SELFTEST=YES -DSYSTEM_64BIT=NO --platform_product_config=platforms/windows/config.h --makelang_db=data/strings/english.db --makelang_db=adjunct/quick/english_local.db --makelang_opt=-E --mainline_configuration=current -I"$(ProjectDir)..\.." --generate_pch</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug no selftests|Win32'">node "%(FullPath)" -DMSWIN=1 -DFEATURE_SELFTEST=NO -DSYSTEM_64BIT=NO --platform_product_config=platforms/windows/config.h --makelang_db=data/strings/english.db --makelang_db=adjunct/quick/english_local.db --makelang_opt=-E --mainline_configuration=current -I"$(ProjectDir)..\.." --generate_pch</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">node "%(FullPath)" -DMSWIN=1 -DFEATURE_SELFTEST=NO -DSYSTEM_64BIT=YES --platform_product_config=platforms/windows/config.h --makelang_db=data/strings/english.db --makelang_db=adjunct/quick/english_local.db --makelang_opt=-E  --mainline_configuration=current -I"$(ProjectDir)..\.." --generate_pch</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">node "%(FullPath)" -DMSWIN=1 -DFEATURE_SELFTEST=YES -DSYSTEM_64BIT=YES --platform_product_config=platforms/windows/config.h --makelang_db=data/strings/english.db --makelang_db=adjunct/quick/english_local.db --makelang_opt=-E  --mainline_configuration=current -I"$(ProjectDir)..\.." --generate_pch</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug no selftests|x64'">node "%(FullPath)" -DMSWIN=1 -DFEATURE_SELFTEST=NO -DSYSTEM_64BIT=YES --platform_product_config=platforms/windows/config.h --makelang_db=data/strings/english.db --makelang_db=adjunct/quick/english_local.db --makelang_opt=-E  --mainline_configuration=current -I"$(ProjectDir)..\.." --generate_pch</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Running Opera Setup Script (Node.js)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Running Opera Setup Script (Node.js)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug no selftests|Win32'">Running Opera Setup Script (Node.js)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Running Opera Setup Script (Node.js)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Running Opera Setup Script (Node.js)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug no selftests|x64'">Running Opera Setup Script (Node.js)</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">operasetup.dep;$(ProjectDir)..\..\modules\hardcore\base\operasetup.h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">operasetup.dep;$(ProjectDir)..\..\modules\hardcore\base\operasetup.h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug no selftests|Win32'">operasetup.dep;$(ProjectDir)..\..\modules\hardcore\base\operasetup.h</Outputs>
@@ -227,20 +227,20 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="..\..\adjunct\desktop_util\search\generate_hardcoded_searches.py">
+    <CustomBuild Include="..\..\build\scripts\generate_hardcoded_searches.js">
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"%(FullPath)"</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"%(FullPath)"</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug no selftests|Win32'">"%(FullPath)"</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"%(FullPath)"</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"%(FullPath)"</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug no selftests|x64'">"%(FullPath)"</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Generate hardcoded search providers</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Generate hardcoded search providers</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug no selftests|Win32'">Generate hardcoded search providers</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generate hardcoded search providers</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generate hardcoded search providers</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug no selftests|x64'">Generate hardcoded search providers</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">node "%(FullPath)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">node "%(FullPath)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug no selftests|Win32'">node "%(FullPath)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">node "%(FullPath)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">node "%(FullPath)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug no selftests|x64'">node "%(FullPath)"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Generate hardcoded search providers (Node.js)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Generate hardcoded search providers (Node.js)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug no selftests|Win32'">Generate hardcoded search providers (Node.js)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generate hardcoded search providers (Node.js)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generate hardcoded search providers (Node.js)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug no selftests|x64'">Generate hardcoded search providers (Node.js)</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)..\..\adjunct\desktop_util\search\hardcoded_searches.inl</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)..\..\adjunct\desktop_util\search\hardcoded_searches.inl</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug no selftests|Win32'">$(ProjectDir)..\..\adjunct\desktop_util\search\hardcoded_searches.inl</Outputs>

@@ -30,17 +30,25 @@ This document provides instructions for building the Presto rendering engine usi
 ### Eliminated Dependencies
 
 This build system **no longer requires**:
-- ❌ Python 2.7
-- ❌ Perl
-- ❌ Pike programming language
-- ❌ 7-zip
-- ❌ vsyasm
+- ❌ **Python 2.7** (completely removed)
+- ❌ **Perl** (completely removed)
+- ❌ **Pike programming language** (completely removed)
+- ❌ **7-zip** (completely removed)
+- ❌ **vsyasm** (completely removed)
 
 ### What You Need
 
 ✅ **Visual Studio 2019** with C++ workload  
 ✅ **Node.js 14+** (for build scripts)  
 ✅ **Windows 10 SDK**  
+
+### Python Scripts Converted to Node.js
+
+| Original Python Script | New Node.js Script | Purpose |
+|------------------------|---------------------|---------|
+| `modules/hardcore/scripts/operasetup.py` | `build/scripts/operasetup.js` | Main build system setup |
+| `adjunct/desktop_util/search/generate_hardcoded_searches.py` | `build/scripts/generate_hardcoded_searches.js` | Hardcoded search generator |
+| `platforms/windows/vcxproj_update.py` | `build/scripts/vcxproj-update.js` | Project file updater |
 
 ## Build Configurations
 

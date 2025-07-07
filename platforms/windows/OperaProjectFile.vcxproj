@@ -106,12 +106,12 @@ echo.</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="vcxproj_update.py">
+    <CustomBuild Include="..\..\build\scripts\vcxproj-update.js">
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Jumbo|Win32'">"%(FullPath)"</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Plain|Win32'">"%(FullPath)" --no_jumbo</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Jumbo|Win32'">Updating Project File</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Plain|Win32'">Updating Project File</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Jumbo|Win32'">node "%(FullPath)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Plain|Win32'">node "%(FullPath)" --no_jumbo</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Jumbo|Win32'">Updating Project File (Node.js)</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Plain|Win32'">Updating Project File (Node.js)</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Jumbo|Win32'">dummy.dep</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Plain|Win32'">dummy.dep</Outputs>
     </CustomBuild>
