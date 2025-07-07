@@ -4,7 +4,7 @@
  *
  * Table of instruction names.
  *
- * @author modules/ecmascript/carakan/src/scripts/es_instructionhandlers.cpp.py
+ * @author build/scripts/es_instructionhandlers_cpp.js
  */
 
 #include "core/pch.h"
@@ -23,7 +23,7 @@ ViolateFunctionPointer(IH_FUNCTION_PTR(ptr))
 
 void ES_SetupFunctionHandlers()
 {
-    void **ihs = g_ecma_instruction_handlers = OP_NEWA_L(void *, 122);
+    void **ihs = g_ecma_instruction_handlers = OP_NEWA_L(void *, 120);
 
     ihs[ESI_LOAD_STRING] = ViolateFunctionPointer(&ES_Execution_Context::IH_LOAD_STRING);
     ihs[ESI_LOAD_DOUBLE] = ViolateFunctionPointer(&ES_Execution_Context::IH_LOAD_DOUBLE);

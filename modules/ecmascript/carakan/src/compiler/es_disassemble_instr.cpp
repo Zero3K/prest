@@ -4,7 +4,7 @@
  *
  * Disassembler: generated per-instruction code.
  *
- * @author modules/ecmascript/carakan/src/scripts/es_disassembler_instr.cpp.py
+ * @author build/scripts/es_disassemble_instr_cpp.js
  */
 
 #include "core/pch.h"

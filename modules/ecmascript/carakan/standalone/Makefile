@@ -329,7 +329,7 @@ endif
 # OPPSEUDOTHREAD_OBJS=$(OPPSEUDOTHREAD_SRC:%.cpp=obj/$(OUTPUT)/%.o)
 # GENCV_OBJS=$(GENCV_SRC:%.cpp=obj/$(OUTPUT)/%.o)
 
-PYTHON ?= python
+# PYTHON no longer needed - using Node.js instead
 
 SVN ?= http://svn.oslo.osa
 
@@ -468,28 +468,28 @@ $(patsubst %.o,%.d,$(OBJ_STANDALONE_C)): obj/$(OUTPUT)/%.d: %.c
 $(patsubst %.o,%.d,$(OBJ_JSSHELL)): obj/$(OUTPUT)/%.d: %.cpp
 	@rm -f $@
 
-INSTRUCTIONS = $(ROOT)/modules/ecmascript/carakan/src/scripts/instructions.py $(ROOT)/modules/ecmascript/carakan/src/compiler/es_instructions.txt
+INSTRUCTIONS = $(ROOT)/build/scripts/instructions.js $(ROOT)/modules/ecmascript/carakan/src/compiler/es_instructions.txt
 GENERATED_HEADERS = $(ROOT)/modules/ecmascript/carakan/src/vm/es_instruction.h \
                     $(ROOT)/modules/ecmascript/carakan/src/compiler/es_instruction_data.h \
                     $(ROOT)/modules/ecmascript/carakan/src/util/es_instruction_string.h
 
-$(ROOT)/modules/ecmascript/carakan/src/vm/es_instruction.h: $(ROOT)/modules/ecmascript/carakan/src/scripts/es_instruction.h.py $(INSTRUCTIONS)
-	$(PYTHON) $(ROOT)/modules/ecmascript/carakan/src/scripts/es_instruction.h.py > $(ROOT)/modules/ecmascript/carakan/src/vm/es_instruction.h
+$(ROOT)/modules/ecmascript/carakan/src/vm/es_instruction.h: $(ROOT)/build/scripts/es_instruction_h.js $(INSTRUCTIONS)
+	node $(ROOT)/build/scripts/es_instruction_h.js > $(ROOT)/modules/ecmascript/carakan/src/vm/es_instruction.h
 
-$(ROOT)/modules/ecmascript/carakan/src/vm/es_instructionhandlers.cpp: $(ROOT)/modules/ecmascript/carakan/src/scripts/es_instructionhandlers.cpp.py $(INSTRUCTIONS)
-	$(PYTHON) $(ROOT)/modules/ecmascript/carakan/src/scripts/es_instructionhandlers.cpp.py > $(ROOT)/modules/ecmascript/carakan/src/vm/es_instructionhandlers.cpp
+$(ROOT)/modules/ecmascript/carakan/src/vm/es_instructionhandlers.cpp: $(ROOT)/build/scripts/es_instructionhandlers_cpp.js $(INSTRUCTIONS)
+	node $(ROOT)/build/scripts/es_instructionhandlers_cpp.js > $(ROOT)/modules/ecmascript/carakan/src/vm/es_instructionhandlers.cpp
 
-$(ROOT)/modules/ecmascript/carakan/src/util/es_instruction_string.h: $(ROOT)/modules/ecmascript/carakan/src/scripts/es_instruction_string.h.py $(INSTRUCTIONS)
-	$(PYTHON) $(ROOT)/modules/ecmascript/carakan/src/scripts/es_instruction_string.h.py > $(ROOT)/modules/ecmascript/carakan/src/util/es_instruction_string.h
+$(ROOT)/modules/ecmascript/carakan/src/util/es_instruction_string.h: $(ROOT)/build/scripts/es_instruction_string_h.js $(INSTRUCTIONS)
+	node $(ROOT)/build/scripts/es_instruction_string_h.js > $(ROOT)/modules/ecmascript/carakan/src/util/es_instruction_string.h
 
-$(ROOT)/modules/ecmascript/carakan/src/compiler/es_instruction_data.h: $(ROOT)/modules/ecmascript/carakan/src/scripts/es_instruction_data.h.py $(INSTRUCTIONS)
-	$(PYTHON) $(ROOT)/modules/ecmascript/carakan/src/scripts/es_instruction_data.h.py > $(ROOT)/modules/ecmascript/carakan/src/compiler/es_instruction_data.h
+$(ROOT)/modules/ecmascript/carakan/src/compiler/es_instruction_data.h: $(ROOT)/build/scripts/es_instruction_data_h.js $(INSTRUCTIONS)
+	node $(ROOT)/build/scripts/es_instruction_data_h.js > $(ROOT)/modules/ecmascript/carakan/src/compiler/es_instruction_data.h
 
-$(ROOT)/modules/ecmascript/carakan/src/compiler/es_process_instr.cpp: $(ROOT)/modules/ecmascript/carakan/src/scripts/es_process_instr.cpp.py $(INSTRUCTIONS)
-	$(PYTHON) $(ROOT)/modules/ecmascript/carakan/src/scripts/es_process_instr.cpp.py > $(ROOT)/modules/ecmascript/carakan/src/compiler/es_process_instr.cpp
+$(ROOT)/modules/ecmascript/carakan/src/compiler/es_process_instr.cpp: $(ROOT)/build/scripts/es_process_instr_cpp.js $(INSTRUCTIONS)
+	node $(ROOT)/build/scripts/es_process_instr_cpp.js > $(ROOT)/modules/ecmascript/carakan/src/compiler/es_process_instr.cpp
 
-$(ROOT)/modules/ecmascript/carakan/src/compiler/es_disassemble_instr.cpp: $(ROOT)/modules/ecmascript/carakan/src/scripts/es_disassemble_instr.cpp.py $(INSTRUCTIONS)
-	$(PYTHON) $(ROOT)/modules/ecmascript/carakan/src/scripts/es_disassemble_instr.cpp.py > $(ROOT)/modules/ecmascript/carakan/src/compiler/es_disassemble_instr.cpp
+$(ROOT)/modules/ecmascript/carakan/src/compiler/es_disassemble_instr.cpp: $(ROOT)/build/scripts/es_disassemble_instr_cpp.js $(INSTRUCTIONS)
+	node $(ROOT)/build/scripts/es_disassemble_instr_cpp.js > $(ROOT)/modules/ecmascript/carakan/src/compiler/es_disassemble_instr.cpp
 
 clean:
 	rm -rf obj

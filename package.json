@@ -1,0 +1,29 @@
+{
+  "name": "prest",
+  "version": "12.15.0",
+  "description": "Presto Web rendering engine: Opera 12.15",
+  "main": "index.js",
+  "scripts": {
+    "build": "node build/scripts/build.js",
+    "build:ecmascript": "node build/scripts/build-ecmascript.js",
+    "build:resources": "node build/scripts/build-resources.js",
+    "build:selftests": "node build/scripts/build-selftests.js",
+    "test": "npm run build && npm run test:ecmascript",
+    "test:ecmascript": "node build/scripts/test-ecmascript.js"
+  },
+  "dependencies": {
+    "archiver": "^5.3.1",
+    "extract-zip": "^2.0.1",
+    "fs-extra": "^10.1.0",
+    "glob": "^8.1.0",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.44.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "author": "Opera Software",
+  "license": "UNLICENSED"
+}

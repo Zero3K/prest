@@ -4,7 +4,7 @@
  *
  * Optimizer: generated per-instruction code.
  *
- * @author modules/ecmascript/carakan/src/scripts/es_process_instr.cpp.py
+ * @author build/scripts/es_process_instr_cpp.js
  */
 
 #include "core/pch.h"

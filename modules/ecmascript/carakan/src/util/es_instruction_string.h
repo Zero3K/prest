@@ -4,7 +4,7 @@
  *
  * Table of instruction names.
  *
- * @author modules/ecmascript/carakan/src/scripts/es_instruction_string.h.py
+ * @author build/scripts/es_instruction_string_h.js
  */
 
 #ifndef ES_INSTRUCTION_STRING_H
