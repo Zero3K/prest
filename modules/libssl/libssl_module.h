@@ -19,6 +19,10 @@
 #error "For security reasons FEATURE_CLEAR_PASSWORDS *MUST* be YES when libssl with libopeay is used"
 #endif
 #endif
+
+#if defined(_SSL_USE_TLSCLIENT_)
+// TLSClient specific requirements can be added here if needed
+#endif
 #include "modules/url/tools/arrays_decl.h"
 #include "modules/libssl/base/sslenum2.h"
 #include "modules/url/url_id.h"
@@ -70,6 +74,10 @@ public:
 	unsigned int m_feed_count;
 #endif
 #endif
+#endif
+#if defined(_SSL_USE_TLSCLIENT_)
+	// TLSClient specific data structures can be added here
+	// For now, TLSClient doesn't require global state like OpenSSL
 #endif
 	DECLARE_MODULE_CONST_ARRAY(SSL_Cipher_and_NID, SSL_Cipher_map);
 	DECLARE_MODULE_CONST_ARRAY(SSL_Digest_and_NID, SSL_Digest_map);

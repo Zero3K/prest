@@ -9,3 +9,5 @@ src/openssl_impl/OpenSSLCertificate.cpp
 src/openssl_impl/OpenSSLLibrary.cpp
 src/openssl_impl/OpenSSLSocket.cpp
 src/openssl_impl/OpSSLSocket.cpp
+src/tlsclient_impl/ExternalSSLLibrary.cpp
+src/tlsclient_impl/TLSClientLibrary.cpp

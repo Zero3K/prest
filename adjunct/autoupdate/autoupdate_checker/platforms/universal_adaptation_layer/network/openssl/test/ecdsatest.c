@@ -1,1 +1,0 @@
-Link: ../crypto/ecdsa/ecdsatest.c

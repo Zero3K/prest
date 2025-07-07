@@ -9,6 +9,21 @@ TWEAK_LIBSSL_USE_OPENSSL_CRYPTO				yngve
 	Category	: setting
 	Define		: _SSL_USE_OPENSSL_
 	Depends on	: FEATURE_NATIVE_SSL
+	Conflicts with	: LIBSSL_USE_TLSCLIENT_CRYPTO
+	Enabled for : none
+	Disabled for: desktop, tv, minimal, smartphone, mini
+
+TWEAK_LIBSSL_USE_TLSCLIENT_CRYPTO			zero3k
+
+	Activates the TLSClient module as the provider of libssl crypto functionality
+	This replaces OpenSSL with TLSClient for TLS 1.2/1.3 support
+
+	Recommended: YES , for platforms with TLSClient SSL stack
+
+	Category	: setting
+	Define		: _SSL_USE_TLSCLIENT_
+	Depends on	: FEATURE_NATIVE_SSL
+	Conflicts with	: _SSL_USE_OPENSSL_
 	Enabled for : desktop, tv, minimal, smartphone, mini
 	Disabled for: none
 

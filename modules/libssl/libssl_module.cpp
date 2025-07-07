@@ -72,6 +72,9 @@ LibsslModule::LibsslModule()
 #endif
 #endif
 #endif
+#if defined(_SSL_USE_TLSCLIENT_)
+	// TLSClient specific initialization
+#endif
 #if defined EXTERNAL_DIGEST_API
 	, m_ext_digest_method_counter(EXTERNAL_DIGEST_ID_START)
 	, m_ext_digest_algorithm_counter(SSL_HASH_MAX_NUM)

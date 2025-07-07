@@ -1,0 +1,17 @@
+TWEAK_TLSCLIENT_ENABLE_TLS13			zero3k
+
+	Enable TLS 1.3 support in TLSClient
+	
+	Category	: setting
+	Define		: TLSCLIENT_ENABLE_TLS13
+	Enabled for : desktop, tv, minimal, smartphone, mini
+	Disabled for: none
+
+TWEAK_TLSCLIENT_ENABLE_TLS12			zero3k
+
+	Enable TLS 1.2 support in TLSClient
+	
+	Category	: setting
+	Define		: TLSCLIENT_ENABLE_TLS12
+	Enabled for : desktop, tv, minimal, smartphone, mini
+	Disabled for: none

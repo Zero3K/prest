@@ -10,14 +10,16 @@
  * @file tlsclient_wrapper.cpp
  *
  * C API wrapper for TLSClient implementation to interface with Opera's SSL code.
+ * This is a portable version that doesn't depend on Windows-specific headers.
  *
  */
 
 #include "core/pch.h"
 #include "modules/tlsclient/tlsclient.h"
 
-// Include the original TLSClient implementation
-#include "modules/tlsclient/tlsclient.cpp"
+// Platform-independent includes
+#include <string.h>
+#include <stdlib.h>
 
 // Error codes mapping
 #define TLS_ERROR_NONE 0
@@ -29,9 +31,10 @@
 
 // TLS context structure wrapper
 struct TLSContext {
-    struct TLSContext* tls_ctx;  // Points to actual TLSClient context
+    void* internal_ctx;  // Points to actual TLSClient context
     int error_code;
     char error_string[256];
+    int is_connected;
 };
 
 // Certificate structure wrapper
@@ -45,15 +48,16 @@ extern "C" {
 
 TLSContext* tls_create_context(int is_server)
 {
-    TLSContext* ctx = new TLSContext();
+    TLSContext* ctx = (TLSContext*)malloc(sizeof(TLSContext));
     if (!ctx)
-        return nullptr;
+        return NULL;
     
     memset(ctx, 0, sizeof(TLSContext));
     
     // For now, just initialize basic structure
     // The actual TLSClient connection will be established in tls_connect
     ctx->error_code = TLS_ERROR_NONE;
+    ctx->is_connected = 0;
     
     return ctx;
 }
@@ -61,7 +65,7 @@ TLSContext* tls_create_context(int is_server)
 void tls_destroy_context(TLSContext* context)
 {
     if (context) {
-        delete context;
+        free(context);
     }
 }
 
@@ -78,6 +82,7 @@ int tls_connect(TLSContext* context, const char* hostname)
     // TLSClient implementation will be integrated here
     // For now, return success to allow basic testing
     context->error_code = TLS_ERROR_NONE;
+    context->is_connected = 1;
     return 1;
 }
 
@@ -103,6 +108,12 @@ int tls_write(TLSContext* context, const void* data, int len)
         return -1;
     }
     
+    if (!context->is_connected) {
+        context->error_code = TLS_ERROR_SSL;
+        strcpy(context->error_string, "Not connected");
+        return -1;
+    }
+    
     // TLSClient write implementation will go here
     // For now, simulate successful write
     context->error_code = TLS_ERROR_NONE;
@@ -116,6 +127,12 @@ int tls_read(TLSContext* context, void* data, int len)
             context->error_code = TLS_ERROR_SSL;
             strcpy(context->error_string, "Invalid parameters");
         }
+        return -1;
+    }
+    
+    if (!context->is_connected) {
+        context->error_code = TLS_ERROR_SSL;
+        strcpy(context->error_string, "Not connected");
         return -1;
     }
     
@@ -133,6 +150,7 @@ int tls_shutdown(TLSContext* context)
     
     // TLSClient shutdown implementation
     context->error_code = TLS_ERROR_NONE;
+    context->is_connected = 0;
     return 1;
 }
 
@@ -179,21 +197,21 @@ int tls_set_certificate(TLSContext* context, const char* cert_file, const char* 
 TLSCertificate* tls_get_peer_certificate(TLSContext* context)
 {
     if (!context) {
-        return nullptr;
+        return NULL;
     }
     
     // TLSClient certificate retrieval implementation
     // For now, return null as certificate verification is not implemented
-    return nullptr;
+    return NULL;
 }
 
 void tls_free_certificate(TLSCertificate* cert)
 {
     if (cert) {
         if (cert->data) {
-            delete[] cert->data;
+            free(cert->data);
         }
-        delete cert;
+        free(cert);
     }
 }
 
