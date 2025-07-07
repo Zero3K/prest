@@ -1,0 +1,22 @@
+# [pch=1;system_includes=0;jumbo=protobuf_scope_jumbo.cpp]
+src/generated/g_scope_resource_manager_interface.cpp
+src/generated/g_scope_core_interface.cpp
+src/generated/g_scope_overlay_interface.cpp
+src/generated/g_scope_service_interface.cpp
+src/generated/g_scope_cookie_manager_interface.cpp
+src/generated/g_scope_document_manager_interface.cpp
+src/generated/g_scope_profiler_interface.cpp
+src/generated/g_scope_widget_manager_interface.cpp
+src/generated/g_scope_http_logger_interface.cpp
+src/generated/g_scope_test_service_interface.cpp
+src/generated/g_scope_exec_interface.cpp
+src/generated/g_scope_ecmascript_debugger_interface.cpp
+src/generated/g_scope_window_manager_interface.cpp
+src/generated/g_scope_console_logger_interface.cpp
+src/generated/g_urlplayer_command_interface.cpp
+src/generated/g_scope_ecmascript_interface.cpp
+src/generated/g_scope_prefs_interface.cpp
+src/generated/g_scope_protocol_service_interface.cpp
+src/generated/g_scope_i18n_interface.cpp
+src/generated/g_scope_selftest_interface.cpp
+src/generated/g_scope_manager.cpp

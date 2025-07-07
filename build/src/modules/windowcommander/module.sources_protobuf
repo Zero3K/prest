@@ -1,0 +1,4 @@
+# [pch=1;system_includes=0;jumbo=protobuf_windowcommander_jumbo.cpp]
+src/generated/g_proto_windowcommander_messages.cpp # [component=framework]
+src/generated/g_proto_descriptor_windowcommander_messages.cpp # [component=framework]
+src/generated/g_message_windowcommander_messages.cpp # [component=framework]

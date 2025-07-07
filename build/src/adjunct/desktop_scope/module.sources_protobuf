@@ -1,0 +1,4 @@
+# [pch=1;system_includes=0;jumbo=protobuf_desktop_scope_jumbo.cpp]
+src/generated/g_scope_desktop_window_manager_interface.cpp
+src/generated/g_scope_system_input_interface.cpp
+src/generated/g_scope_desktop_utils_interface.cpp

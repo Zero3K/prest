@@ -1,0 +1,9 @@
+platforms/quix/toolkits/gtk3/GtkColorChooser.cpp
+platforms/quix/toolkits/gtk3/GtkFileChooser.cpp
+platforms/quix/toolkits/gtk3/GtkPorting.cpp
+platforms/quix/toolkits/gtk3/GtkPrinterIntegration.cpp
+platforms/quix/toolkits/gtk3/GtkSkinElement.cpp
+platforms/quix/toolkits/gtk3/GtkToolkitLibrary.cpp
+platforms/quix/toolkits/gtk3/GtkToolkitUiSettings.cpp
+platforms/quix/toolkits/gtk3/GtkUtils.cpp
+platforms/quix/toolkits/gtk3/GtkWidgetPainter.cpp

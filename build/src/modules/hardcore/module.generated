@@ -1,0 +1,11 @@
+hardcore_jumbo.cpp
+setup/plain/sources/sources.all
+setup/plain/sources/sources.pch_system_includes
+setup/plain/sources/sources.pch_jumbo
+setup/plain/sources/sources.nocph
+setup/plain/sources/sources.pch
+setup/jumbo/sources/sources.nocph
+setup/jumbo/sources/sources.pch_jumbo
+setup/jumbo/sources/sources.all
+setup/jumbo/sources/sources.pch_system_includes
+setup/jumbo/sources/sources.pch

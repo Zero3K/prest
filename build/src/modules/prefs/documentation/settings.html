@@ -1,0 +1,1449 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en" dir="ltr">
+<head>
+ <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
+ <title>Opera preferences</title>
+ <link rev="made" href="mailto:peter@opera.com">
+ <link rel="stylesheet" href="../../coredoc/coredoc.css" type="text/css" media="all">
+ <link rel="contents" href="../../coredoc/index.html" type="text/html" title="Core API">
+ <style type="text/css">
+  tr.section th { padding-left: 2em; }
+  .tweak { color: navy; font-weight: bold; }
+  tr:nth-child(odd) td { background: #ffe; }
+  tr:nth-child(even) td { background: #ffc; }
+  ul#tocUl { list-style: none; padding-left: 0; }
+ </style>
+ <script type="text/javascript" src="../../coredoc/createtoc.js"></script>
+</head>
+
+<body>
+ <h1>Opera preferences</h1>
+ <p id="toc">
+  <!-- To regenerate: make -C ../prefsmanager/collections
+	   or run modules/prefs/extract-documentation.pl -->
+  Settings <span class="tweak">marked like this</span> are controlled by
+  the tweaks system, and may vary between builds.
+ </p>
+ <h2 id="prefscollectiondatabase">prefscollectiondatabase</h2>
+ <table>
+  <tr class="head"><th>Setting<th>Type<th>Default value<th>Name<th>Description
+  <tr class='section'><th colspan=5>[Persistent Storage]
+  <tr><td>Databases Access Handling<td>integer<td>PS_&shy;Policy::&shy;KAccessAllow<td>Databases&shy;Access&shy;Handling<td>Tells if Web SQL Databases are enabled for a specific origin. 0 no, 1 allow
+  <tr><td>Domain Quota Exceeded Handling For Databases<td>integer<td>PS_&shy;Policy::&shy;KQuotaAskUser<td>Database&shy;Storage&shy;Quota&shy;Exceeded&shy;Handling<td>What to do when the quota for Web SQL Databases is exceeded
+  <tr><td>Domain Quota Exceeded Handling For Widget Preferences<td>integer<td>PS_&shy;Policy::&shy;KQuotaDeny<td>Widget&shy;Prefs&shy;Quota&shy;Exceeded&shy;Handling<td>What to do when the quota for widget.preferences is exceeded
+  <tr><td>Domain Quota Exceeded Handling For localStorage<td>integer<td>PS_&shy;Policy::&shy;KQuotaAskUser<td>Local&shy;Storage&shy;Quota&shy;Exceeded&shy;Handling<td>What to do when the quota for local storage is exceeded
+  <tr><td>Domain Quota For Databases<td>integer<td>DATABASE_&shy;INTERNAL_&shy;QUOTA_&shy;PER_&shy;ORIGIN<td>Database&shy;Storage&shy;Quota<td>Quota for Web SQL Databases data in kilobytes
+  <tr><td>Domain Quota For Widget Preferences<td>integer<td>OPSTORAGE_&shy;LOCAL_&shy;ORIGIN_&shy;QUOTA<td>Widget&shy;Prefs&shy;Quota<td>Quota for widget.preferences data per origin in kilobytes
+  <tr><td>Domain Quota For localStorage<td>integer<td>OPSTORAGE_&shy;LOCAL_&shy;ORIGIN_&shy;QUOTA<td>Local&shy;Storage&shy;Quota<td>Quota for local storage data in kilobytes
+  <tr><td>Global Quota For Databases<td>integer<td>DATABASE_&shy;INTERNAL_&shy;GLOBAL_&shy;QUOTA<td>Database&shy;Storage&shy;Global&shy;Quota<td>Global quota for all Web SQL Databases data in kilobytes
+  <tr><td>Global Quota For Widget Preferences<td>integer<td>OPSTORAGE_&shy;LOCAL_&shy;GLOBAL_&shy;QUOTA<td>Widget&shy;Prefs&shy;Global&shy;Quota<td>Global quota for all widget.preferences data in kilobytes
+  <tr><td>Global Quota For localStorage<td>integer<td>OPSTORAGE_&shy;LOCAL_&shy;GLOBAL_&shy;QUOTA<td>Local&shy;Storage&shy;Global&shy;Quota<td>Global quota for all local storage data in kilobytes
+  <tr><td>SQL Query Execution Timeout<td>integer<td>DATABASE_&shy;INTERNAL_&shy;QUERY_&shy;EXECUTION_&shy;TIMEOUT<td>Database&shy;Storage&shy;Query&shy;Execution&shy;Timeout<td>Execution timeout for Web SQL Database queries in milliseconds
+  <tr><td>User JS Storage Quota<td>integer<td>0<td>User&shy;JSScript&shy;Storage&shy;Quota<td>Quota in kilobytes available for user script storage. Set to 0 to prevent any use.
+ </table>
+ <h2 id="pc_files">pc_files</h2>
+ <table>
+  <tr class="head"><th>Setting<th>Type<th>Default value<th>Name<th>Description
+  <tr class='section'><th colspan=5>[BitTorrent]
+  <tr><td>Log File<td>file<td>{OPFILE_&shy;HOME_&shy;FOLDER}/bittorrent.log<td>BTLogfile<td>Log file for BitTorrent
+  <tr class='section'><th colspan=5>[MailBox]
+  <tr><td>AddressFile<td>file<td>{OPFILE_&shy;HOME_&shy;FOLDER}/contacts.adr<td>Contact&shy;List&shy;File<td>Name of contacts file
+  <tr><td>MusicFile<td>file<td>{OPFILE_&shy;HOME_&shy;FOLDER}/music.adr<td>Music&shy;List&shy;File<td>Name of music player file
+  <tr><td>NotesFile<td>file<td>{OPFILE_&shy;HOME_&shy;FOLDER}/notes.adr<td>Note&shy;List&shy;File<td>Name of notes file
+  <tr class='section'><th colspan=5>[Mail]
+  <tr><td>Mail Root Directory<td>directory<td><td>OPFILE_MAIL_FOLDER<td>Mail root directory
+  <tr><td>Mail Style File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/mail.css<td>Style&shy;Mail&shy;File<td>Style for runtime generated mail pages
+  <tr class='section'><th colspan=5>[Network]
+  <tr><td>Plugin Ignore File<td>file<td class="tweak">{OPFILE_&shy;INI_&shy;FOLDER}/"plugin-ignore.ini"<td>Plugin&shy;Ignore&shy;File<td>File with filenames of plugins to be ignored
+  <tr><td>URL Filter File<td>file<td class="tweak">{OPFILE_&shy;USERPREFS_&shy;FOLDER}/"urlfilter.ini"<td>Url&shy;Filter&shy;File<td>Filter rules in exclude and include list
+  <tr class='section'><th colspan=5>[Proxy]
+  <tr><td>Opera Turbo Config File<td>file<td>{OPFILE_&shy;INI_&shy;FOLDER}/turbosettings.xml<td>Web&shy;Turbo&shy;Config&shy;File<td>Configuration file for Opera Turbo
+  <tr class='section'><th colspan=5>[Saved Settings]
+  <tr><td>Open Dir<td>directory<td><td>OPFILE_OPEN_FOLDER<td>File-Open directory
+  <tr><td>Save Dir<td>directory<td><td>OPFILE_SAVE_FOLDER<td>File-Save directory
+  <tr class='section'><th colspan=5>[User Prefs]
+  <tr><td>About Style File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/about.css<td>Style&shy;About&shy;File<td>Style for runtime generated about page
+  <tr><td>Automatic Window Storage File<td>file<td>{OPFILE_&shy;SESSION_&shy;FOLDER}/autopera.win<td>Autosave&shy;Windows&shy;Storage&shy;File<td>Name of file for automatic window storage
+  <tr><td>Bookmarks File<td>file<td class="tweak">{OPFILE_&shy;HOME_&shy;FOLDER}/"bookmarks.ini"<td>Bookmarks&shy;File<td>Name of bookmarks file
+  <tr><td>Bookmarks Style File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/bookmarks.css<td>Style&shy;Bookmarks&shy;File<td>Style for runtime generated bookmarks page
+  <tr><td>Browser CSS File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/browser.css<td>Browser&shy;CSSFile<td>Name of browser default style sheet
+  <tr><td>Button Directory<td>directory<td><td>OPFILE_BUTTON_FOLDER<td>Skin directory
+  <tr><td>Button Set<td>file<td>{OPFILE_&shy;DEFAULT_&shy;SKIN_&shy;FOLDER}/DEFAULT_&shy;SKIN_&shy;FILE<td>Button&shy;Set<td>Name of file holding skin setup
+  <tr><td>CPU Style File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/cpu.css<td>Style&shy;CPUFile<td>Style for runtime generated CPU page
+  <tr><td>Cache Directory4<td>directory<td><td>OPFILE_CACHE_FOLDER<td>Cache directory
+  <tr><td>Cache Style File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/cache.css<td>Style&shy;Cache&shy;File<td>Style for runtime generated cache content page
+  <tr><td>Certificate Info CSS File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/certinfo.css<td>Style&shy;Certificate&shy;Info&shy;Panel&shy;File<td>Style for runtime generated certificate info panel content
+  <tr><td>Config Style File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/config.css<td>Style&shy;Config&shy;File<td>Style for runtime generated config page
+  <tr><td>Console Error Log<td>file<td>{OPFILE_&shy;HOME_&shy;FOLDER}/error.log<td>Console&shy;Error&shy;Log&shy;Name<td>Name of file to which to log console messages
+  <tr><td>Content Block CSS File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/contentblock.css<td>Content&shy;Block&shy;CSSFile<td>css file used in content block edit mode
+  <tr><td>Cookies Directory<td>directory<td><td>OPFILE_COOKIE_FOLDER<td>Cookies (write) directory
+  <tr><td>Debug Style File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/debug.css<td>Style&shy;Debug&shy;File<td>Style for runtime generated opera:debug page
+  <tr><td>Device Settings Directory<td>directory<td><td>OPFILE_DEVICE_SETTINGS_FOLDER<td>Directory containing device specific configuration files
+  <tr><td>Device Settings File<td>file<td>{OPFILE_&shy;DEVICE_&shy;SETTINGS_&shy;FOLDER}/device.ini<td>Device&shy;Settings&shy;File<td>File containing device specific settings
+  <tr><td>Dialog Configuration<td>file<td>{OPFILE_&shy;HOME_&shy;FOLDER}/dialog.ini<td>Dialog&shy;Config<td>File defining dialog layout
+  <tr><td>Dir Style File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/dir.css<td>Style&shy;Dir&shy;File<td>Style for runtime generated directory listing
+  <tr><td>Direct History File<td>file<td class="tweak">{OPFILE_&shy;HOME_&shy;FOLDER}/"typed_&shy;history.xml"<td>Direct&shy;History&shy;File<td>Name of file for direct URL entry history
+  <tr><td>Download Directory<td>directory<td><td>OPFILE_DOWNLOAD_FOLDER<td>Download directory
+  <tr><td>Downloaded Overrides File<td>file<td class="tweak">{OPFILE_&shy;HOME_&shy;FOLDER}/"override_&shy;downloaded.ini"<td>Downloaded&shy;Overrides&shy;File<td>File storing downloaded host overrides
+  <tr><td>Drives Style File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/drives.css<td>Style&shy;Drives&shy;File<td>Style for runtime generated drives listing
+  <tr><td>Error Style File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/error.css<td>Style&shy;Error&shy;File<td>Style for runtime generated error page
+  <tr><td>Fast Forward Configuration<td>file<td>{OPFILE_&shy;HOME_&shy;FOLDER}/fastforward.ini<td>Fast&shy;Forward&shy;File<td>File defining fast forward keywords
+  <tr><td>GPU Style File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/gpu.css<td>Style&shy;GPUFile<td>Style for runtime generated GPU page
+  <tr><td>Global History File<td>file<td class="tweak">{OPFILE_&shy;HOME_&shy;FOLDER}/"global.dat"<td>Global&shy;History&shy;File<td>Name of file for global URL history
+  <tr><td>Handlers Data File<td>file<td>{OPFILE_&shy;USERPREFS_&shy;FOLDER}/handlers.ini<td>Handlers&shy;Data&shy;File<td>File containing data of the protocol handlers/viewers
+  <tr><td>Handlers Ignore File<td>file<td>{OPFILE_&shy;HANDLERS_&shy;FOLDER}/handlers-ignore.ini<td>Handlers&shy;Ignore&shy;File<td>File containing a white list of the protocols a handler can be registered for
+  <tr><td>History Style File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/history.css<td>Style&shy;History&shy;File<td>Style for runtime generated history content page
+  <tr><td>Hot List File Ver2<td>file<td class="tweak">{OPFILE_&shy;HOME_&shy;FOLDER}/"opera6.adr"<td>Hot&shy;List&shy;File<td>Name of bookmarks file
+  <tr><td>IM Style File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/im.css<td>Style&shy;IMFile<td>Style for runtime generated instant messenger
+  <tr><td>Image Style File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/image.css<td>Style&shy;Image&shy;File<td>Style for runtime generated image page
+  <tr><td>Info CSS File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/info.css<td>Style&shy;Info&shy;Panel&shy;File<td>Style for runtime generated info panel content
+  <tr><td>Keyboard Configuration<td>file<td>{OPFILE_&shy;KEYBOARDSETUP_&shy;FOLDER}/standard_&shy;keyboard.ini<td>Keyboard&shy;Config<td>File defining OpInputActions
+  <tr><td>Language File<td>file<td>unknown<td>Language&shy;File<td>Name of language file
+  <tr><td>Language Files Directory<td>directory<td><td>OPFILE_LANGUAGE_FOLDER<td>Opera language directory. This is the default location to look for language files etc. Note that the current language file may well reside somewhere else.
+  <tr><td>Local CSS File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/user.css<td>Local&shy;CSSFile<td>Name of user's style sheet
+  <tr><td>Local CSS Files Directory<td>directory<td><td>OPFILE_USERPREFSSTYLE_FOLDER<td>User style sheets directory
+  <tr><td>MIME Style File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/mime.css<td>Style&shy;MIMEFile<td>Style for runtime generated mime content
+  <tr><td>MathML CSS File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/mathml.css<td>Math&shy;MLCSSFile<td>Name of MathML style sheet
+  <tr><td>Media Style File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/media.css<td>Style&shy;Media&shy;File<td>Style for runtime generated media page
+  <tr><td>Menu Configuration<td>file<td>{OPFILE_&shy;MENUSETUP_&shy;FOLDER}/standard_&shy;menu.ini<td>Menu&shy;Config<td>File defining menu layout
+  <tr><td>Message Style File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/message.css<td>Style&shy;Message&shy;File<td>Style for runtime generated message pages
+  <tr><td>Mouse Configuration<td>file<td>{OPFILE_&shy;MOUSESETUP_&shy;FOLDER}/standard_&shy;mouse.ini<td>Mouse&shy;Config<td>File defining OpInputActions
+  <tr><td>Opera Directory<td>directory<td><td>OPFILE_HOME_FOLDER<td>Opera home (write) directory
+  <tr><td>Opera Local Directory<td>directory<td><td>OPFILE_LOCAL_HOME_FOLDER<td>Opera home (write) directory that is not part of the roaming profile
+  <tr><td>Opera Selftest Style File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/selftest.css<td>Style&shy;Selftest&shy;File<td>Style for runtime generated opera:selftest test page
+  <tr><td>Opera Widgets/Unite Style File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/widgets.css<td>Style&shy;Widgets&shy;File<td>Style for runtime generated opera:widgets and opera:unite admin page
+  <tr><td>Operator Cache Directory4<td>directory<td><td>OPFILE_OCACHE_FOLDER<td>Operator cache directory
+  <tr><td>Overrides File<td>file<td class="tweak">{OPFILE_&shy;HOME_&shy;FOLDER}/"override.ini"<td>Overrides&shy;File<td>File storing host overrides
+  <tr><td>Persona File<td>file<td>{OPFILE_&shy;DEFAULT_&shy;SKIN_&shy;FOLDER}/<td>Persona&shy;File<td>Name of file holding persona skin setup
+  <tr><td>Plugins Style File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/plugins.css<td>Style&shy;Plugins&shy;File<td>Style for runtime generated plugins page
+  <tr><td>Private Mode Style File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/private.css<td>Style&shy;Private&shy;Mode&shy;File<td>Style for runtime generated opera:private page
+  <tr><td>Skin Directory<td>directory<td><td>OPFILE_SKIN_FOLDER<td>Skin directory
+  <tr><td>Speed Dial File<td>file<td>{OPFILE_&shy;USERPREFS_&shy;FOLDER}/speeddial.ini<td>Speed&shy;Dial&shy;File<td>Speed Dial configuration file
+  <tr><td>Speed Dial Style File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/speeddial.css<td>Style&shy;Speed&shy;Dial&shy;File<td>Style for speed dial page
+  <tr><td>Temporary Download Directory<td>directory<td><td>OPFILE_TEMPDOWNLOAD_FOLDER<td>Temporary Download directory
+  <tr><td>Toolbar Configuration<td>file<td>{OPFILE_&shy;TOOLBARSETUP_&shy;FOLDER}/standard_&shy;toolbar.ini<td>Toolbar&shy;Config<td>File defining toolbar layout
+  <tr><td>User Style Info File<td>file<td>{OPFILE_&shy;HOME_&shy;FOLDER}/userstyle.ini<td>User&shy;Style&shy;Ini&shy;File<td>Name of userstyle.ini file
+  <tr><td>Videobackend File<td>file<td>{OPFILE_&shy;VIDEO_&shy;FOLDER}/videobackend.so<td>Videobackend&shy;File<td>Shared library for rendering audio/video element
+  <tr><td>Visited Pages Search Style<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/search.css<td>Style&shy;Search&shy;File<td>Style for visited pages search
+  <tr><td>WML CSS File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/wml.css<td>WMLCSSFile<td>Style for WML pages
+  <tr><td>Wand Storage File<td>file<td>{OPFILE_&shy;SECURE_&shy;FOLDER}/wand.dat<td>Wand&shy;File<td>Wand storage file name
+  <tr><td>Warning Page CSS File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/warning.css<td>Style&shy;Warning&shy;File<td>Style for anti-phishing filter warning message
+  <tr><td>WebStorage Style File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/webstorage.css<td>Style&shy;Web&shy;Storage&shy;File<td>Style for runtime generated opera:webstorage admin page
+  <tr><td>Webfeeds HTML Template File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/webfeeds.html<td>Template&shy;Web&shy;Feeds&shy;Display<td>HTML template for runtime generated webfeed pages
+  <tr><td>Webfeeds Style File<td>file<td>{OPFILE_&shy;STYLE_&shy;FOLDER}/webfeed.css<td>Style&shy;Web&shy;Feeds&shy;Display<td>Style for runtime generated webfeed pages
+  <tr><td>Windows Storage File<td>file<td class="tweak">{OPFILE_&shy;SESSION_&shy;FOLDER}/"opera.win"<td>Windows&shy;Storage&shy;File<td>Name of file to store window settings in
+  <tr class='section'><th colspan=5>[Web Server]
+  <tr><td>Directory<td>directory<td><td>OPFILE_WEBSERVER_FOLDER<td>Absolute path for web server's directory
+  <tr><td>Resource Configuration<td>file<td>{OPFILE_&shy;HOME_&shy;FOLDER}/webserver.ini<td>Webserver&shy;Resource&shy;Configuration<td>Path for separate configuration file
+  <tr><td>Trusted Repositories File<td>file<td>{OPFILE_&shy;USERPREFS_&shy;FOLDER}/trusted_&shy;repositories.ini<td>Trusted&shy;Repositories&shy;File<td>Trusted repositories
+  <tr class='section'><th colspan=5>[Widgets]
+  <tr><td>Widgets File<td>file<td>{OPFILE_&shy;HOME_&shy;FOLDER}/widgets.adr<td>Gadget&shy;List&shy;File<td>Name of gadgets file
+ </table>
+ <h2 id="pc_network">pc_network</h2>
+ <table>
+  <tr class="head"><th>Setting<th>Type<th>Default value<th>Name<th>Description
+  <tr class='section'><th colspan=5>[BitTorrent]
+  <tr><td>Bandwidth Restriction Mode<td>integer<td>1<td>BTBandwidth&shy;Restriction&shy;Mode<td>Which method to use when restricting bandwidth use. 1 = automatic, 2 = fixed rates
+  <tr><td>Enable<td>boolean<td>true (1)<td>Enable&shy;Bit&shy;Torrent<td>Enable BitTorrent support
+  <tr><td>Listen Port<td>integer<td class="tweak">18768<td>BTListen&shy;Port<td>Port for incoming bittorrent connections
+  <tr><td>Max Download Rate<td>integer<td>0<td>BTMax&shy;Download&shy;Rate<td>Maximum bandwidth in KB/s to use for downloads
+  <tr><td>Max Upload Rate<td>integer<td>0<td>BTMax&shy;Upload&shy;Rate<td>Maximum bandwidth in KB/s to use for uploads
+  <tr><td>Warning Dialog<td>boolean<td>true (1)<td>BTWarning&shy;Dialog<td>Display warning dialog for BitTorrent downloads
+  <tr class='section'><th colspan=5>[Cache]
+  <tr><td>Always Check Never-Expiring GET queries<td>boolean<td class="tweak">true (1)<td>Always&shy;Check&shy;Never&shy;Expire&shy;Get&shy;Queries<td>Check normal GET URLs if they have "?" in the URL and no expiration date from server
+  <tr><td>Always Check Redirect<td>boolean<td class="tweak">true (1)<td>Always&shy;Check&shy;Redirect&shy;Changed<td>Check redirection for cache
+  <tr><td>Always Check Redirect Images<td>boolean<td class="tweak">true (1)<td>Always&shy;Check&shy;Redirect&shy;Changed&shy;Images<td>Check redirection for images
+  <tr><td>Always Reload HTTPS In History<td>boolean<td class="tweak">false (0)<td>Always&shy;Reload&shy;HTTPSIn&shy;History<td>Always Reload HTTPS In History
+  <tr><td>Cache HTTPS After Sessions<td>boolean<td>true (1)<td>Cache&shy;HTTPSAfter&shy;Sessions<td>Keep HTTPS pages in cache
+  <tr><td>Check Expiry History<td>integer<td>CHECK_&shy;EXPIRY_&shy;NEVER<td>Check&shy;Expiry&shy;History<td>How to check expiry when walking in history
+  <tr><td>Check Expiry Load<td>integer<td>CHECK_&shy;EXPIRY_&shy;NORMAL<td>Check&shy;Expiry&shy;Load<td>How to check expiry when loading pages
+  <tr><td>File Writer Cache Size<td>integer<td>0x40000<td>File&shy;Writer&shy;Cache&shy;Size<td>The size (in bytes) of the file writer memory cache
+  <tr><td>File Writer Thread Priority<td>integer<td>0<td>File&shy;Writer&shy;Thread&shy;Priority<td>The priority to set the file writer thread to (platform dependent interpretation)
+  <tr><td>Set File Writer Thread Priority<td>boolean<td>false (0)<td>Set&shy;File&shy;Writer&shy;Thread&shy;Priority<td>Whether to set the priority of the file writer thread
+  <tr class='section'><th colspan=5>[Disk Cache]
+  <tr><td>Buffer Size<td>integer<td class="tweak">1024<td>Disk&shy;Cache&shy;Buffer&shy;Size<td>Size of disk cache buffer (kbytes)
+  <tr><td>Cache Docs<td>boolean<td class="tweak">true (1)<td>Cache&shy;Docs<td>Whether to cache documents on disk
+  <tr><td>Cache Figs<td>boolean<td class="tweak">true (1)<td>Cache&shy;Figs<td>Whether to cache images on disk
+  <tr><td>Cache HTTPS<td>boolean<td>false (0)<td>Cache&shy;HTTPS<td>Whether to cache HTTPS data on disk
+  <tr><td>Cache Other<td>boolean<td class="tweak">true (1)<td>Cache&shy;Other<td>Whether to cache other stuff on disk
+  <tr><td>Docs Modification<td>integer<td>TIME<td>Check&shy;Doc&shy;Modification<td>When to check if documents are modified
+  <tr><td>Documents Expiry<td>integer<td class="tweak">300<td>Doc&shy;Expiry<td>Expiry time of documents in seconds
+  <tr><td>Empty On Exit<td>boolean<td>false (0)<td>Empty&shy;Cache&shy;On&shy;Exit<td>Whether to empty cache when leaving
+  <tr><td>Enabled<td>boolean<td class="tweak">true (1)<td>Cache&shy;To&shy;Disk<td>Whether to cache to disk
+  <tr><td>Figs Modification<td>integer<td>TIME<td>Check&shy;Fig&shy;Modification<td>When to check if images are modified
+  <tr><td>Images Expiry<td>integer<td class="tweak">18000<td>Figs&shy;Expiry<td>Expiry time of images in seconds
+  <tr><td>Media Cache Size<td>integer<td class="tweak">100000<td>Media&shy;Cache&shy;Size<td>Size of media disk cache (kbytes)
+  <tr><td>Multimedia Stream Always<td>boolean<td class="tweak">false (0)<td>Multimedia&shy;Stream&shy;Always<td>Always stream Multimedia content (audio/video tag), wasting bandwidth but saving disk space
+  <tr><td>Multimedia Stream Size<td>integer<td class="tweak">1024<td>Multimedia&shy;Stream&shy;Size<td>Size, in KB, of the file used when streaming with the Multimedia Cache
+  <tr><td>Multimedia Stream in RAM<td>boolean<td class="tweak">false (0)<td>Multimedia&shy;Stream&shy;RAM<td>When streaming, do it in RAM
+  <tr><td>Other Expiry<td>integer<td class="tweak">18000<td>Other&shy;Expiry<td>Expiry time of other objects in seconds
+  <tr><td>Other Modification<td>integer<td>TIME<td>Check&shy;Other&shy;Modification<td>When to check if other objects are modified
+  <tr><td>Size<td>integer<td class="tweak">2000<td>Disk&shy;Cache&shy;Size<td>Size of disk cache (kbytes)
+  <tr class='section'><th colspan=5>[ISP]
+  <tr><td>Id<td>string<td>""<td>Isp&shy;User&shy;Agent&shy;Id<td>ISP id for User-Agent string
+  <tr class='section'><th colspan=5>[Link]
+  <tr><td>Expiry<td>integer<td>10<td>Followed&shy;Link&shy;Expire&shy;Days<td>Expiry time for followed links (day part)
+  <tr><td>Expiry (Hours)<td>integer<td>10<td>Followed&shy;Link&shy;Expire&shy;Hours<td>Expiry time for followed links (hour part)
+  <tr class='section'><th colspan=5>[Network]
+  <tr><td>Allow Cross Network Navigation<td>boolean<td>false (0)<td>Allow&shy;Cross&shy;Network&shy;Navigation<td>Allow navigation between hosts of different network types
+  <tr><td>Allow Pre Authentication<td>boolean<td>true (1)<td>Allow&shy;Pre&shy;Send&shy;Authentication<td>Store HTTP authentication?
+  <tr><td>Block IDNA Invalid Domains<td>boolean<td>false (0)<td>Block&shy;IDNAInvalid&shy;Domains<td>Block IDNA Invalid Domains
+  <tr><td>ByteMobile GUID<td>string<td>""<td>Bytemobile&shy;GUID<td>Unique identifier code for Bytemobile
+  <tr><td>Check Local HostName<td>boolean<td class="tweak">false (0)<td>Check&shy;Host&shy;On&shy;Local&shy;Network<td>Check local network URLs?
+  <tr><td>DNS Prefetching<td>boolean<td>true (1)<td>DNSPrefetching<td>Enables DNS prefetching when hovering and parsing links
+  <tr><td>Enable Content Blocker<td>boolean<td>true (1)<td>Enable&shy;Content&shy;Blocker<td>Enable the content blocker
+  <tr><td>Enable Cookies DNS Check<td>boolean<td>false (0)<td>Enable&shy;Cookies&shy;DNSCheck<td>Enable support for checking for the cookie monster bug with a DNS/HEAD request
+  <tr><td>Enable Cookies V2<td>boolean<td>false (0)<td>Enable&shy;Cookies&shy;V2<td>Enable support for Cookies version 2, RFC 2965
+  <tr><td>Enable Do Not Track Header<td>boolean<td>false (0)<td>Do&shy;Not&shy;Track<td>Enables the Do-Not-Track HTTP header (DNT), to express your preference that third party websites (e.g. ad networks) not track your identity between websites
+  <tr><td>Enable HostName Expansion<td>boolean<td class="tweak">false (0)<td>Check&shy;Permuted&shy;Host&shy;Names<td>Use auto-completion of URLs?
+  <tr><td>Enable HostName Web Lookup<td>boolean<td>false (0)<td>Enable&shy;Host&shy;Name&shy;Web&shy;Lookup<td>Perform Web search for entered host name?
+  <tr><td>Enable NTLM<td>boolean<td>true (1)<td>Enable&shy;NTLM<td>Enable NTLM and Negotiate authentication methods.
+  <tr><td>HTTP Accept<td>string<td>""<td>Accept&shy;Types<td>Data for HTTP header "Accept"
+  <tr><td>HTTP Accept Language<td>string<td>""<td>Accept&shy;Language<td>Data for HTTP header "Accept-Language"
+  <tr><td>HTTP Idle Timeout<td>integer<td class="tweak">0<td>HTTPIdle&shy;Timeout<td>Timeout for idle HTTP (seconds)
+  <tr><td>HTTP Response Timeout<td>integer<td class="tweak">0<td>HTTPResponse&shy;Timeout<td>Timeout for HTTP responses (seconds)
+  <tr><td>Hold On Filling Pipelines<td>boolean<td>false (0)<td>Hold&shy;On&shy;Filling&shy;Pipelines<td>Hold On Filling Pipelines
+  <tr><td>HostName Expansion Postfix<td>string<td>""<td>Host&shy;Name&shy;Expansion&shy;Postfix<td>What to append to URLs
+  <tr><td>HostName Expansion Prefix<td>string<td class="tweak">"www"<td>Host&shy;Name&shy;Expansion&shy;Prefix<td>What to prepend to URLs
+  <tr><td>HostName Web Lookup Address<td>string<td>""<td>Host&shy;Name&shy;Web&shy;Lookup&shy;Address<td>Search engine address to use for Web lookup of entered hostname.
+  <tr><td>IDNA White List<td>string<td>":no:jp:de:se:kr:tw:cn:at:dk:ch:li:museum:hu:"<td>Idna&shy;White&shy;List<td>IDNA white list for display of Unicode
+  <tr><td>IP Address Seconds To Live<td>integer<td>600<td>IPAddress&shy;Seconds&shy;To&shy;Live<td>Time in seconds during which an IP address is pinned in memory after a successful resolve. A value equal or lower than 0 means forever.
+  <tr><td>Permitted Ports<td>string<td>""<td>Permitted&shy;Ports<td>Comma-separated list of additional permitted ports
+  <tr><td>Prefer IPv6<td>boolean<td>false (0)<td>Prefer&shy;IPv6<td>Prefer IPv6 if available
+  <tr><td>Spdy Always For SSL<td>integer<td>0<td>Spdy&shy;Always&shy;For&shy;SSL<td>Forces Opera to always use SPDY for SSL, even if not negotiated with NPN; 0 = disabled, 1 = spdy/2, 2 = spdy/3
+  <tr><td>Spdy Initial Window Size<td>integer<td>65536<td>Spdy&shy;Initial&shy;Window&shy;Size<td>Initial window size used in the flow control
+  <tr><td>Spdy Ping<td>boolean<td class="tweak">true (1)<td>Spdy&shy;Ping&shy;Enabled<td>Enables Opera to initiate PINGs
+  <tr><td>Spdy Ping Timeout<td>integer<td>30<td>Spdy&shy;Ping&shy;Timeout<td>Timeout for PING response (in seconds)
+  <tr><td>Spdy Settings Persistence<td>boolean<td>true (1)<td>Spdy&shy;Settings&shy;Persistence<td>Enables Opera to persist SPDY settings when requested by server side
+  <tr><td>Spdy Settings Persistence Timeout<td>integer<td>864000<td>Spdy&shy;Settings&shy;Persistence&shy;Timeout<td>Time after unsused persisted settings are removed from the storage (in seconds)
+  <tr><td>Spdy Without SSL<td>integer<td>0<td>Spdy&shy;Without&shy;SSL<td>Forces Opera to use SPDY instead of HTTP; 0 = disabled, 1 = spdy/2, 2 = spdy/3
+  <tr><td>Test Longbatch<td>boolean<td>false (0)<td>Test&shy;Longbatch<td>Enable the "long batch" test engine
+  <tr><td>Test Longbatch URL<td>string<td>"http://testsuites.oslo.osa/core/selftest/libssl/longbatch/all-ssl-urls.txt"<td>Longbatch&shy;URL<td>Which URL to load the long batch test configuration from
+  <tr><td>Time Of Last Root Certificate Update Check<td>integer<td>0<td>Time&shy;Of&shy;Last&shy;Cert&shy;Update&shy;Check<td>This setting holds the time of the last call home to Opera to check for updated Root Certificates
+  <tr><td>Track Password Cookie Usage<td>boolean<td>false (0)<td>Tag&shy;Urls&shy;Using&shy;Password&shy;Related&shy;Cookies<td>Tag any Urls that may have been accessed with a cookie that may contain a password (directly or indirectly)
+  <tr><td>UTF8 Escape URLs<td>boolean<td>true (1)<td>Use&shy;UTF8Urls<td>UTF-8 escape non-ASCII URLs
+  <tr><td>Use Absolute FTP Path<td>boolean<td>false (0)<td>Use&shy;Absolute&shy;FTPPath<td>Absolute or relative FTP paths
+  <tr><td>Use Spdy2<td>boolean<td>true (1)<td>Use&shy;Spdy2<td>Enables Opera to use SPDY2 protocol
+  <tr><td>Use Spdy3<td>boolean<td>true (1)<td>Use&shy;Spdy3<td>Enables Opera to use SPDY3 protocol
+  <tr class='section'><th colspan=5>[OEM]
+  <tr><td>Never Flush Cache Expiration Time Days<td>integer<td>30<td>Never&shy;Flush&shy;Expiration&shy;Time&shy;Days<td>Number of days to keep a never flush item
+  <tr><td>Never Flush Trusted Servers<td>string<td class="tweak">"help.opera.com;sitecheck.opera.com;certs.opera.com"<td>Never&shy;Flush&shy;Trusted&shy;Servers<td>Which servers to trust for the Never Flush cache management functionality
+  <tr><td>Operator Cache Size<td>integer<td class="tweak">2000<td>Operator&shy;Disk&shy;Cache&shy;Size<td>Size of operator disk cache (kbytes)
+  <tr><td>Out Of Coverage File Name<td>string<td>""<td>Out&shy;Of&shy;Coverage&shy;File&shy;Name<td>Name of substitute file name to use if unit is out of coverage
+  <tr class='section'><th colspan=5>[Performance]
+  <tr><td>Enable Pipelining<td>boolean<td>true (1)<td>Enable&shy;Pipelining<td>Enable HTTP Pipelining
+  <tr><td>Extra Idle Connections<td>boolean<td class="tweak">false (0)<td>Use&shy;Extra&shy;Idle&shy;Connections<td>Open extra idle connections to current server.
+  <tr><td>Max Connections Server<td>integer<td class="tweak">8<td>Max&shy;Connections&shy;Server<td>Maximum simultaneous connections per server
+  <tr><td>Max Connections Total<td>integer<td class="tweak">32<td>Max&shy;Connections&shy;Total<td>Maximum simultaneous connections total
+  <tr><td>Max Persistent Connections Server<td>integer<td class="tweak">6<td>Max&shy;Persistent&shy;Connections&shy;Server<td>Maximum simultaneous persistent connections per server
+  <tr><td>Network Buffer Size<td>integer<td class="tweak">8<td>Network&shy;Buffer&shy;Size<td>Size of network buffer, in kilobytes
+  <tr><td>No Connection Keepalive<td>boolean<td class="tweak">false (0)<td>No&shy;Connection&shy;Keep&shy;Alive<td>Allow persistent connections to servers for HTTP, FTP and news?
+  <tr><td>Non-Compliant Server 100 Continue<td>boolean<td>false (0)<td>Use100Continue<td>Use 100-continue override for non-compliant host
+  <tr><td>Open Idle Connections On Close<td>boolean<td class="tweak">false (0)<td>Open&shy;Idle&shy;Connection&shy;On&shy;Close<td>Open an idle connection to current server when a connection used for sending requests closes.
+  <tr><td>Synchronous DNS Lookup<td>boolean<td class="tweak">false (0)<td>Sync&shy;DNSLookup<td>Use synchronous DNS lookup
+  <tr class='section'><th colspan=5>[Proxy]
+  <tr><td>Automatic Proxy Configuration URL<td>string<td>""<td>Automatic&shy;Proxy&shy;Config&shy;URL<td>URL of automatic proxy config file
+  <tr><td>ByteMobile Image Resize<td>boolean<td>false (0)<td>Embedded&shy;Image&shy;Resize<td>ByteMobile image resize enabled.
+  <tr><td>ByteMobile Optimization<td>boolean<td>false (0)<td>Bytemobile&shy;Optimization&shy;Enabled<td>ByteMobile optimization enabled
+  <tr><td>ByteMobile Optimization Level<td>integer<td>0<td>Embedded&shy;Optimization&shy;Level<td>ByteMobile optimization level.
+  <tr><td>ByteMobile Prediction<td>boolean<td>true (1)<td>Embedded&shy;Prediction<td>ByteMobile prediction enabled.
+  <tr><td>Enable HTTP 1.1 for proxy<td>boolean<td class="tweak">true (1)<td>Enable&shy;HTTP11For&shy;Proxy<td>Permit HTTP 1.1 when connecting to proxy
+  <tr><td>Enable Proxy<td>boolean<td>true (1)<td>Enable&shy;Proxy<td>Enable proxy or not
+  <tr><td>Enable start with HTTP 1.1 for proxy<td>boolean<td>true (1)<td>Enable&shy;Start&shy;With&shy;HTTP11For&shy;Proxy<td>Permit HTTP 1.1 on first request when connecting to proxy
+  <tr><td>FTP server<td>string<td>""<td>FTPProxy<td>Proxy host:port for FTP
+  <tr><td>Gopher server<td>string<td>""<td>Gopher&shy;Proxy<td>Proxy host:port for Gopher
+  <tr><td>HTTP server<td>string<td>""<td>HTTPProxy<td>Proxy host:port for HTTP
+  <tr><td>HTTPS server<td>string<td>""<td>HTTPSProxy<td>Proxy host:port for HTTPS
+  <tr><td>No Proxy Servers<td>string<td>""<td>No&shy;Proxy&shy;Servers<td>Servers not to use proxy for
+  <tr><td>No Proxy Servers Check<td>boolean<td>true (1)<td>Has&shy;No&shy;Proxy&shy;Servers<td>Should the proxy exclusion list beused?
+  <tr><td>Opera Turbo bypass URLs<td>string<td>""<td>Web&shy;Turbo&shy;Bypass&shy;URLs<td>A list of URLs for which OperaTurbo should not be used.
+  <tr><td>SOCKS password<td>string<td>""<td>SOCKSPass<td>password for SOCKS basic authentication
+  <tr><td>SOCKS server<td>string<td>""<td>SOCKSProxy<td>Proxy host:port for SOCKS
+  <tr><td>SOCKS username<td>string<td>""<td>SOCKSUser<td>username for SOCKS basic authentication
+  <tr><td>Use Automatic Proxy Configuration<td>boolean<td>false (0)<td>Automatic&shy;Proxy&shy;Config<td>Should automatic proxy configuration be used?
+  <tr><td>Use ByteMobile Optimizing Proxy<td>boolean<td>true (1)<td>Embedded&shy;Bytemobile<td>Should ByteMobile proxy configuration be used?
+  <tr><td>Use FTP<td>boolean<td>false (0)<td>Use&shy;FTPProxy<td>Enable FTP proxy
+  <tr><td>Use GOPHER<td>boolean<td>false (0)<td>Use&shy;Gopher&shy;Proxy<td>Enable gopher proxy
+  <tr><td>Use HTTP<td>boolean<td>false (0)<td>Use&shy;HTTPProxy<td>Enable HTTP proxy
+  <tr><td>Use HTTPS<td>boolean<td>false (0)<td>Use&shy;HTTPSProxy<td>Enable HTTPS proxy
+  <tr><td>Use Opera Turbo<td>integer<td class="tweak">FALSE<td>Use&shy;Web&shy;Turbo<td>Enable Opera Turbo
+  <tr><td>Use Proxy On Local Names Check<td>boolean<td class="tweak">false (0)<td>Has&shy;Use&shy;Proxy&shy;Local&shy;Names<td>Should proxy be used on local servers?
+  <tr><td>Use Remote SOCKS DNS Lookups<td>boolean<td>false (0)<td>Remote&shy;Socks&shy;DNS<td>Let SOCKS proxy handle DNS lookups
+  <tr><td>Use SOCKS<td>boolean<td>false (0)<td>Use&shy;SOCKSProxy<td>Enable SOCKS proxy
+  <tr><td>Use SPDY for HTTP proxy<td>integer<td>0<td>Use&shy;Spdy&shy;For&shy;HTTPProxy<td>Enable SPDY for HTTP proxy; 0 = disabled, 1 = spdy/2, 2 = spdy/3
+  <tr><td>Use SPDY for Turbo<td>boolean<td>false (0)<td>Use&shy;Spdy&shy;For&shy;Turbo<td>Enable SPDY for Turbo
+  <tr><td>Use WAIS<td>boolean<td>false (0)<td>Use&shy;WAISProxy<td>Enable WAIS proxy
+  <tr><td>WAIS server<td>string<td>""<td>WAISProxy<td>Proxy host:port for WAIS
+  <tr class='section'><th colspan=5>[Security Prefs]
+  <tr><td>Certificate revocation lists for ssl<td>boolean<td class="tweak">true (1)<td>Use&shy;CRLValidation&shy;For&shy;SSL<td>Enable online revocation of certificates for ssl connections
+  <tr><td>Crypto Method Overrides<td>integer<td class="tweak">0<td>Crypto&shy;Method&shy;Override<td>"Bitflags for overriding handling of specific crypto methods"
+  <tr><td>Enable SSL v2<td>boolean<td>false (0)<td>Enable&shy;SSL2_X<td>Enable SSL 2 support
+  <tr><td>Enable SSL v3<td>boolean<td>true (1)<td>Enable&shy;SSL3_0<td>Enable SSL 3.0 support
+  <tr><td>Enable TLS v1.0<td>boolean<td>true (1)<td>Enable&shy;SSL3_1<td>Enable TLS 1.0 support
+  <tr><td>Enable TLS v1.1<td>boolean<td>false (0)<td>Enable&shy;TLS1_1<td>Enable TLS 1.1 support
+  <tr><td>Enable TLS v1.2<td>boolean<td>false (0)<td>Enable&shy;TLS1_2<td>Enable TLS 1.2 support
+  <tr><td>Master password check code<td>string<td>""<td>Master&shy;Password&shy;Check&shy;Code&shy;And&shy;Salt<td>Master password check codes for external ssl. Used to check that you type in correct password, without storing the actual password.
+  <tr><td>Minimum Security Level<td>integer<td>0<td>Minimum&shy;Security&shy;Level<td>Minimum SSL security level allowed
+  <tr><td>OCSP Validate Certificates<td>boolean<td>true (1)<td>Use&shy;OCSPValidation<td>Enable online certificate validation
+  <tr><td>Password Lifetime<td>integer<td>5<td>Security&shy;Password&shy;Life&shy;Time<td>Time to keep security password in mem (minutes)
+  <tr><td>SSL False Start Support<td>boolean<td class="tweak">false (0)<td>Use&shy;SSLFalse&shy;Start<td>Enable false start for faster tls/ssl handshakes.
+  <tr><td>Strict EV Mode<td>boolean<td>false (0)<td>Strict&shy;EVMode<td>Enable the strict Extended Validastion mode that does not permit the EV indicator to be displayed for EV documents that include non-EV content
+  <tr><td>Strict Transport Security support<td>boolean<td class="tweak">true (1)<td>Use&shy;Strict&shy;Transport&shy;Security<td>If supported by server, only access the server using HTTPS.
+  <tr><td>Use Paranoid Mailpassword<td>boolean<td>false (0)<td>Use&shy;Paranoid&shy;Mailpassword<td>Use master password for Wand/e-mail
+  <tr><td>Warn About Imported CA Certificates<td>boolean<td class="tweak">false (0)<td>Warn&shy;About&shy;Imported&shy;CACertificates<td>Enable warnings about imported CA certificates
+  <tr class='section'><th colspan=5>[SmartCards]
+  <tr><td>Automatically Select Single Certificate<td>boolean<td>true (1)<td>Automatically&shy;Use&shy;Single&shy;Available&shy;Smartcard<td>Undocumented
+  <tr><td>Session Timeout Minutes<td>integer<td>5<td>Smart&shy;Card&shy;Time&shy;Out&shy;Minutes<td>Undocumented
+  <tr><td>Strict Management Level<td>integer<td>1<td>Strict&shy;Smart&shy;Card&shy;Security&shy;Level<td>Undocumented
+  <tr><td>Warn If No Card In Reader<td>boolean<td>false (0)<td>Warn&shy;If&shy;No&shy;Smart&shy;Card&shy;In&shy;Reader<td>Undocumented
+  <tr class='section'><th colspan=5>[System]
+  <tr><td>Force CD<td>boolean<td>false (0)<td>Force&shy;CD<td>Only allow CD operation
+  <tr class='section'><th colspan=5>[User Agent]
+  <tr><td>Spoof UserAgent ID<td>integer<td>UA_&shy;Opera<td>UABase&shy;Id<td>Browser identification string
+  <tr class='section'><th colspan=5>[User Prefs]
+  <tr><td>Accept Cookies Session Only<td>boolean<td>false (0)<td>Accept&shy;Cookies&shy;Session&shy;Only<td>Do not keep cookies after exiting Opera
+  <tr><td>Ask For Cookie Confirmation<td>boolean<td>false (0)<td>Display&shy;Received&shy;Cookies<td>Display incoming cookies
+  <tr><td>Automatic RAM Cache<td>boolean<td class="tweak">false (0)<td>Automatic&shy;Ram&shy;Cache<td>Calculate size of RAM cache from total RAM
+  <tr><td>Client Pull<td>boolean<td class="tweak">true (1)<td>Enable&shy;Client&shy;Pull<td>Enable redirection by HTTP header
+  <tr><td>Client Refresh<td>boolean<td class="tweak">true (1)<td>Enable&shy;Client&shy;Refresh<td>Enable refresh by META tag
+  <tr><td>Client Refresh To Same Location<td>boolean<td class="tweak">true (1)<td>Client&shy;Refresh&shy;To&shy;Same<td>Allow multiple refreshes by META tag to the same location
+  <tr><td>Cookie Path Error Mode<td>integer<td>2<td>Cookie&shy;Path&shy;Err&shy;Mode<td>Avoid displaying error dialogs for cookie paths
+  <tr><td>Disabled Cookie State<td>integer<td>COOKIE_&shy;ALL<td>Disabled&shy;Cookie&shy;State<td>Cookiestate setting when last enabled (used by UI)
+  <tr><td>Enable Cookies<td>integer<td>COOKIE_&shy;ALL<td>Cookies&shy;Enabled<td>Enable cookie support
+  <tr><td>Enable Referrer<td>boolean<td>true (1)<td>Referrer&shy;Enabled<td>Enable Referer:
+  <tr><td>Enable Trust Rating<td>boolean<td class="tweak">true (1)<td>Enable&shy;Trust&shy;Rating<td>Enable anti-phising by trust rating each visited web-site
+  <tr><td>Help URL<td>string<td>"http://help.opera.com/help/"<td>Help&shy;Url<td>URL to help files
+  <tr><td>Max Visited Pages Index Size<td>integer<td>-1<td>VSMax&shy;Index&shy;Size<td>Maximum size of the index for visited pages search, 0 means that the index is disabled
+  <tr><td>Maximum Total Cookies<td>integer<td>300<td>Max&shy;Total&shy;Cookies<td>Maximum number of cookies
+  <tr><td>No Local File<td>boolean<td>false (0)<td>No&shy;Local&shy;File<td>Disable browsing of local files
+  <tr><td>Offline Mode<td>boolean<td>false (0)<td>Offline&shy;Mode<td>Flag for offline mode
+  <tr><td>RIM MDS Browser Mode<td>boolean<td>false (0)<td>RIMMDSBrowser&shy;Mode<td>Enable RIM MDS browser mode
+  <tr><td>Set-Cookie No IP Address Policy<td>integer<td>2<td>Dont&shy;Show&shy;Cookie&shy;No&shy;IPAddress&shy;Err<td>Handling missing IP address when trying to set cookie (0=refuse with error, 1=refuse silently, 2=accept for server)
+  <tr><td>Show Cookie Domain Errors<td>boolean<td>false (0)<td>Show&shy;Cookie&shy;Domain&shy;Err<td>No cookie domain errors
+  <tr><td>Synchronous decode<td>boolean<td class="tweak">false (0)<td>Decode&shy;All<td>Decode images until cache is full.
+  <tr><td>Trust Server Types<td>boolean<td class="tweak">true (1)<td>Trust&shy;Server&shy;Types<td>Trust server's Content-Types
+  <tr><td>UA Mode<td>integer<td>0<td>UAMode<td>UA string extension, used with Identify as on UI
+  <tr><td>Use Smiley Images<td>boolean<td>true (1)<td>Use&shy;Smiley&shy;Images<td>Enable smileys
+  <tr><td>Warn Insecure Form<td>boolean<td class="tweak">true (1)<td>Warn&shy;Insecure&shy;Form&shy;Submit<td>Warn when form is submitted in clear text
+ </table>
+ <h2 id="pc_unix">pc_unix</h2>
+ <table>
+  <tr class="head"><th>Setting<th>Type<th>Default value<th>Name<th>Description
+  <tr class='section'><th colspan=5>[File Selector]
+  <tr><td>Dialog Toolkit<td>integer<td>0<td>File&shy;Selector&shy;Toolkit<td>File dialog toolkit
+  <tr><td>Show Details<td>boolean<td>false (0)<td>File&shy;Selector&shy;Show&shy;Details<td>Show file details in Qt file selector dialogue
+  <tr><td>Show Hidden Files<td>boolean<td>false (0)<td>File&shy;Selector&shy;Show&shy;Hidden&shy;Files<td>Show hidden files in Qt file selector dialogue
+  <tr class='section'><th colspan=5>[Fonts]
+  <tr><td>Prefer Fontconfig Settings<td>boolean<td>false (0)<td>Prefer&shy;Fontconfig&shy;Settings<td>Prefer font render settings obtained from fontconfig over those obtained from the UI toolkit
+  <tr class='section'><th colspan=5>[State]
+  <tr><td>Reading Plugins<td>boolean<td>false (0)<td>Reading&shy;Plugins<td>Reading plugins?
+  <tr class='section'><th colspan=5>[User Prefs]
+  <tr><td>Append Extension To Filename<td>boolean<td>true (1)<td>Append&shy;Extension&shy;To&shy;Filename<td>Append default extension to file name if none was given in file name dialog
+  <tr><td>Custom Colors<td>string<td>""<td>Custom&shy;Colors<td>Custom colors for color selector dialog
+  <tr><td>Draw Anti Aliased Fonts<td>boolean<td>true (1)<td>Draw&shy;Anti&shy;Aliased&shy;Fonts<td>Antialiasing of core X fonts
+  <tr><td>Enable Edit Triple Click<td>boolean<td>true (1)<td>Enable&shy;Edit&shy;Triple&shy;Click<td>Handling of double clicks in edit fields
+  <tr><td>Force DPI<td>integer<td>0<td>Force&shy;DPI<td>Force screen DPI for fonts (0=disable)
+  <tr><td>Has Restored Extensions<td>integer<td>0<td>Has&shy;Restored&shy;Extenstions<td>Has restored incorrect MIME types data (7.21)
+  <tr><td>Has Restored MIME Flag<td>integer<td>0<td>Has&shy;Restored&shy;MIMEFlag<td>Has updated trust server types settings (7.21)
+  <tr><td>Has Shown KDE Shortcut Message<td>integer<td>0<td>Has&shy;Shown&shy;KDEShortcut&shy;Message<td>Has warned about KDE shortcut key conflicts
+  <tr><td>Has Shown Plugin Error<td>boolean<td>false (0)<td>Has&shy;Shown&shy;Plugin&shy;Error<td>Has shown plug-in loading error dialogue
+  <tr><td>Hide Mouse Cursor<td>boolean<td>false (0)<td>Hide&shy;Mouse&shy;Cursor<td>Hide mouse pointer, typically for kiosk setups with no mouse
+  <tr><td>Localhost In DnD<td>boolean<td>false (0)<td>Localhost&shy;In&shy;Dn&shy;D<td>Use file://localhost/ instead of file:/ for drag and drop
+  <tr><td>Map Meta Button To Alt Button<td>boolean<td>false (0)<td>Map&shy;Meta&shy;Button&shy;To&shy;Alt&shy;Button<td>Make META button behave as ALT button
+  <tr><td>NewWinSize<td>string<td>"-1,-1"<td>New&shy;Win&shy;Size<td>Size for new windows
+  <tr><td>Open Dialog Under Mouse<td>boolean<td>false (0)<td>Open&shy;Dialog&shy;Under&shy;Mouse<td>Open file dialog at mouse pointer
+  <tr><td>Panning mode<td>integer<td>0<td>Panning&shy;Mode<td>Activate horizontal panning for mid-click
+  <tr><td>Show Window Border<td>integer<td>0<td>Show&shy;Window&shy;Border<td>Set the window border visibility. 0: default (depends on skin type), 1: on, 2: off
+  <tr><td>Window Menu Max Item Width<td>integer<td>40<td>Window&shy;Menu&shy;Max&shy;Item&shy;Width<td>Max width of items in Window menu
+  <tr><td>Window Placement By Opera<td>boolean<td>true (1)<td>Window&shy;Placement&shy;By&shy;Opera<td>Override window manager's window placement
+  <tr class='section'><th colspan=5>[Workspace]
+  <tr><td>Button Style<td>integer<td>0<td>Work&shy;Space&shy;Button&shy;Style<td>MDI window decoration style
+  <tr><td>Button Type<td>integer<td>MDI_&shy;BUTTON_&shy;ALL<td>Workspace&shy;Button&shy;Type<td>MDI window buttons to display
+  <tr><td>Window Border Width<td>integer<td>1<td>Workspace&shy;Window&shy;Border&shy;Width<td>Width of MDI window border
+ </table>
+ <h2 id="pc_fontcolor">pc_fontcolor</h2>
+ <table>
+  <tr class="head"><th>Setting<th>Type<th>Default value<th>Name<th>Description
+  <tr class='section'><th colspan=5>[Colors]
+  <tr><td>Background<td>color<td><em>Unknown</em><td>OP_SYSTEM_COLOR_DOCUMENT_BACKGROUND<td>Paper of document
+  <tr><td>Color.Form.Button<td>color<td><em>Unknown</em><td>OP_SYSTEM_COLOR_BUTTON<td>The face of a button
+  <tr><td>Color.Form.Input<td>color<td><em>Unknown</em><td>OP_SYSTEM_COLOR_TEXT_INPUT<td>Textcolor in single-line textfields
+  <tr><td>Color.Form.Text<td>color<td><em>Unknown</em><td>OP_SYSTEM_COLOR_TEXT<td>Textcolor in most textfields
+  <tr><td>Color.H1<td>color<td><em>Unknown</em><td>OP_SYSTEM_COLOR_DOCUMENT_HEADER1<td>First level header
+  <tr><td>Color.H2<td>color<td><em>Unknown</em><td>OP_SYSTEM_COLOR_DOCUMENT_HEADER2<td>Second level header
+  <tr><td>Color.H3<td>color<td><em>Unknown</em><td>OP_SYSTEM_COLOR_DOCUMENT_HEADER3<td>Third level header
+  <tr><td>Color.H4<td>color<td><em>Unknown</em><td>OP_SYSTEM_COLOR_DOCUMENT_HEADER4<td>Fourth level header
+  <tr><td>Color.H5<td>color<td><em>Unknown</em><td>OP_SYSTEM_COLOR_DOCUMENT_HEADER5<td>Fifth level header
+  <tr><td>Color.H6<td>color<td><em>Unknown</em><td>OP_SYSTEM_COLOR_DOCUMENT_HEADER6<td>Sixth level header
+  <tr><td>Color.Normal<td>color<td><em>Unknown</em><td>OP_SYSTEM_COLOR_DOCUMENT_NORMAL<td>Normal document text
+  <tr><td>Color.PRE<td>color<td><em>Unknown</em><td>OP_SYSTEM_COLOR_DOCUMENT_PRE<td>Preformatted document text
+  <tr><td>Edit Background<td>color<td><em>Unknown</em><td>OP_SYSTEM_COLOR_BACKGROUND<td>Background in most textfields
+  <tr><td>Highlighted Background<td>color<td><em>Unknown</em><td>OP_SYSTEM_COLOR_BACKGROUND_HIGHLIGHTED<td>Background of text that is highlighted (after a search for instance)
+  <tr><td>Highlighted Background Unfocused<td>color<td><em>Unknown</em><td>OP_SYSTEM_COLOR_BACKGROUND_HIGHLIGHTED_NOFOCUS<td>Background of text that is highlighted has no focus
+  <tr><td>Highlighted Text<td>color<td><em>Unknown</em><td>OP_SYSTEM_COLOR_TEXT_HIGHLIGHTED<td><em>Undocumented!</em>
+  <tr><td>Highlighted Text Unfocused<td>color<td><em>Unknown</em><td>OP_SYSTEM_COLOR_TEXT_HIGHLIGHTED_NOFOCUS<td><em>Undocumented!</em>
+  <tr><td>Link<td>color<td><em>Unknown</em><td>OP_SYSTEM_COLOR_LINK<td>Links
+  <tr><td>Selected Background<td>color<td><em>Unknown</em><td>OP_SYSTEM_COLOR_BACKGROUND_SELECTED<td>Background where there is selected text
+  <tr><td>Selected Background Unfocused<td>color<td><em>Unknown</em><td>OP_SYSTEM_COLOR_BACKGROUND_SELECTED_NOFOCUS<td>Background where there is selected text when the widget has no focus
+  <tr><td>Selected Text<td>color<td><em>Unknown</em><td>OP_SYSTEM_COLOR_TEXT_SELECTED<td><em>Undocumented!</em>
+  <tr><td>Selected Text Unfocused<td>color<td><em>Unknown</em><td>OP_SYSTEM_COLOR_TEXT_SELECTED_NOFOCUS<td><em>Undocumented!</em>
+  <tr><td>Skin<td>color<td><em>Unknown</em><td>OP_SYSTEM_COLOR_SKIN<td>the "color" of the system's color scheme
+  <tr><td>Tooltip Background<td>color<td><em>Unknown</em><td>OP_SYSTEM_COLOR_TOOLTIP_BACKGROUND<td>Tooltip background color
+  <tr><td>Tooltip Text<td>color<td><em>Unknown</em><td>OP_SYSTEM_COLOR_TOOLTIP_TEXT<td>Tooltip foreground color
+  <tr><td>Visited link<td>color<td><em>Unknown</em><td>OP_SYSTEM_COLOR_VISITED_LINK<td>Visited links
+  <tr><td>Workspace<td>color<td><em>Unknown</em><td>OP_SYSTEM_COLOR_WORKSPACE<td>Workspace background
+  <tr class='section'><th colspan=5>[Fonts]
+  <tr><td>Dialog<td>font<td><em>Unknown</em><td>OP_SYSTEM_FONT_UI_DIALOG<td>Dialogs
+  <tr><td>Email<td>font<td><em>Unknown</em><td>OP_SYSTEM_FONT_EMAIL_DISPLAY<td>Main e-mail display font
+  <tr><td>EmailCompose<td>font<td><em>Unknown</em><td>OP_SYSTEM_FONT_EMAIL_COMPOSE<td>Compose font
+  <tr><td>Form.Button<td>font<td><em>Unknown</em><td>OP_SYSTEM_FONT_FORM_BUTTON<td>The face of a button
+  <tr><td>Form.Input<td>font<td><em>Unknown</em><td>OP_SYSTEM_FONT_FORM_TEXT_INPUT<td>Textcolor in single-line textfields
+  <tr><td>Form.Text<td>font<td><em>Unknown</em><td>OP_SYSTEM_FONT_FORM_TEXT<td>Textcolor in most textfields
+  <tr><td>H1<td>font<td><em>Unknown</em><td>OP_SYSTEM_FONT_DOCUMENT_HEADER1<td>First level header
+  <tr><td>H2<td>font<td><em>Unknown</em><td>OP_SYSTEM_FONT_DOCUMENT_HEADER2<td>Second level header
+  <tr><td>H3<td>font<td><em>Unknown</em><td>OP_SYSTEM_FONT_DOCUMENT_HEADER3<td>Third level header
+  <tr><td>H4<td>font<td><em>Unknown</em><td>OP_SYSTEM_FONT_DOCUMENT_HEADER4<td>Fourth level header
+  <tr><td>H5<td>font<td><em>Unknown</em><td>OP_SYSTEM_FONT_DOCUMENT_HEADER5<td>Fifth level header
+  <tr><td>H6<td>font<td><em>Unknown</em><td>OP_SYSTEM_FONT_DOCUMENT_HEADER6<td>Sixth level header
+  <tr><td>HTMLCompose<td>font<td><em>Unknown</em><td>OP_SYSTEM_FONT_HTML_COMPOSE<td>HTML Compose font
+  <tr><td>Menu<td>font<td><em>Unknown</em><td>OP_SYSTEM_FONT_UI_MENU<td>Popup menu and menu bar font
+  <tr><td>Normal<td>font<td><em>Unknown</em><td>OP_SYSTEM_FONT_DOCUMENT_NORMAL<td>Normal document text
+  <tr><td>PRE<td>font<td><em>Unknown</em><td>OP_SYSTEM_FONT_DOCUMENT_PRE<td>Preformatted document text
+  <tr><td>Panel<td>font<td><em>Unknown</em><td>OP_SYSTEM_FONT_UI_PANEL<td>Hotlist panels
+  <tr><td>Titles<td>font<td><em>Unknown</em><td>OP_SYSTEM_FONT_UI_HEADER<td>UI Font that is nice when large (eg 24 px)
+  <tr><td>Toolbar<td>font<td><em>Unknown</em><td>OP_SYSTEM_FONT_UI_TOOLBAR<td>Toolbar buttons and labels
+  <tr><td>Tooltip<td>font<td><em>Unknown</em><td>OP_SYSTEM_FONT_UI_TOOLTIP<td>Tooltips
+  <tr class='section'><th colspan=5>[Interface Colors]
+  <tr><td>Background<td>color<td>OP_&shy;RGB(0xFF,0xFF,0xFF)<td>Background<td>Background color
+  <tr><td>Background Disabled<td>color<td>OP_&shy;RGB(0xDB,0xD7,0xD4)<td>Background&shy;Disabled<td>Disabled background color
+  <tr><td>Background Highlighted<td>color<td>OP_&shy;RGB(0x23,0xDC,0x23)<td>Background&shy;Highlighted<td>Highlighted background color
+  <tr><td>Background Highlighted NoFocus<td>color<td>OP_&shy;RGB(0xFF,0xFF,0x00)<td>Background&shy;Highlighted&shy;No&shy;Focus<td>Unfocused highlighted background color
+  <tr><td>Background Selected<td>color<td>OP_&shy;RGB(0x30,0x69,0xC4)<td>Background&shy;Selected<td>Selected background color
+  <tr><td>Background Selected NoFocus<td>color<td>OP_&shy;RGB(0xC7,0xC7,0xC7)<td>Background&shy;Selected&shy;No&shy;Focus<td>Unfocused selected background color
+  <tr><td>Button<td>color<td>OP_&shy;RGB(0xDB,0xD7,0xD4)<td>Button<td>Button color
+  <tr><td>Button Dark<td>color<td>OP_&shy;RGB(0x9E,0x96,0x90)<td>Button&shy;Dark<td>Dark button color
+  <tr><td>Button Light<td>color<td>OP_&shy;RGB(0xFF,0xFF,0xFF)<td>Button&shy;Light<td>Light button color
+  <tr><td>Button Text<td>color<td>OP_&shy;RGB(0x00,0x00,0x00)<td>Button&shy;Text<td>Button text color
+  <tr><td>Button Very Dark<td>color<td>OP_&shy;RGB(0x2E,0x26,0x20)<td>Button&shy;Very&shy;Dark<td>Very dark button color
+  <tr><td>Disabled UI Font<td>color<td>OP_&shy;RGB(0x9A,0x93,0x8E)<td>Disabled&shy;UIFont<td>Disabled UI font color
+  <tr><td>Link<td>color<td>OP_&shy;RGB(0x00,0x00,0xCC)<td>Link<td>Link color
+  <tr><td>Scrollbar Background<td>color<td>OP_&shy;RGB(0xBA,0xB3,0xAE)<td>Scrollbar&shy;Background<td>Scrollbar background color
+  <tr><td>Skin<td>color<td>OP_&shy;RGB(0xDB,0xD7,0xD4)<td>Skin<td>Skin color
+  <tr><td>Text<td>color<td>OP_&shy;RGB(0x00,0x00,0x00)<td>Text<td>Text Color
+  <tr><td>Text Disabled<td>color<td>OP_&shy;RGB(0x9A,0x93,0x8E)<td>Text&shy;Disabled<td>Disabled text color
+  <tr><td>Text Highlighted<td>color<td>OP_&shy;RGB(0xFF,0xFF,0xFF)<td>Text&shy;Highlighted<td>Highlighted text color
+  <tr><td>Text Highlighted NoFocus<td>color<td>OP_&shy;RGB(0x00,0x00,0x00)<td>Text&shy;Highlighted&shy;No&shy;Focus<td>Unfocused highlighted text color
+  <tr><td>Text Selected<td>color<td>OP_&shy;RGB(0xFF,0xFF,0xFF)<td>Text&shy;Selected<td>Selected text color
+  <tr><td>Text Selected NoFocus<td>color<td>OP_&shy;RGB(0x00,0x00,0x00)<td>Text&shy;Selected&shy;No&shy;Focus<td>Unfocused selected text color
+  <tr><td>Tooltip Background<td>color<td>OP_&shy;RGB(0xFF,0xFF,0xFF)<td>Tooltip&shy;Background<td>Tooltip background color
+  <tr><td>Tooltip Text<td>color<td>OP_&shy;RGB(0x00,0x00,0x00)<td>Tooltip&shy;Text<td>Tooltip text color
+  <tr><td>UI Background<td>color<td>OP_&shy;RGB(0xDB,0xD7,0xD4)<td>UIBackground<td>UI background color
+  <tr><td>UI Button Hover<td>color<td>OP_&shy;RGB(0x00,0x00,0x00)<td>UIButton&shy;Hover<td>UI button hover color
+  <tr><td>UI Font<td>color<td>OP_&shy;RGB(0x00,0x00,0x00)<td>UIFont<td>UI font color
+  <tr><td>UI Menu<td>color<td>OP_&shy;RGB(0x00,0x00,0x00)<td>UIMenu<td>UI menu color
+  <tr><td>Visited Link<td>color<td>OP_&shy;RGB(0x80,0x00,0x80)<td>Visited&shy;Link<td>Visited link color
+  <tr><td>Workspace<td>color<td>OP_&shy;RGB(0xA0,0xA0,0xA0)<td>Workspace<td>Workspace background color
+  <tr class='section'><th colspan=5>[Preferred fonts monospace]
+  <tr><td>&lt;unicode block number&gt;<td>string<td>font name<td>monosection<td>International font override, monospace font
+  <tr class='section'><th colspan=5>[Preferred fonts]
+  <tr><td>&lt;unicode block number&gt;<td>string<td>font name<td>propsection<td>International font override, proportional font
+ </table>
+ <h2 id="pc_opera_account">pc_opera_account</h2>
+ <table>
+  <tr class="head"><th>Setting<th>Type<th>Default value<th>Name<th>Description
+  <tr class='section'><th colspan=5>[Opera Account]
+  <tr><td>Computer ID<td>string<td>""<td>Computer&shy;ID<td>Unique computer id
+  <tr><td>OAuth Consumer Key<td>string<td>OAUTH_&shy;OPERA_&shy;ACCOUNT_&shy;CONSUMER_&shy;KEY_&shy;DEFAULT<td>OAuth&shy;Opera&shy;Account&shy;Consumer&shy;Key<td>Non secret oauth consumer key for Opera Account login.
+  <tr><td>OAuth Consumer Secret<td>string<td>OAUTH_&shy;OPERA_&shy;ACCOUNT_&shy;CONSUMER_&shy;SECRET_&shy;DEFAULT<td>OAuth&shy;Opera&shy;Account&shy;Consumer&shy;Secret<td>Non secret oauth consumer secret for Opera Account login.
+  <tr><td>OAuth access token URI<td>string<td>OAUTH_&shy;OPERA_&shy;ACCOUNT_&shy;ACCESS_&shy;TOKEN_&shy;URI_&shy;DEFAULT<td>OAuth&shy;Opera&shy;Account&shy;Access&shy;Token&shy;URI<td>URI for downloading the Oauth token.
+  <tr><td>Opera Account Used<td>boolean<td>false (0)<td>Opera&shy;Account&shy;Used<td>Indicates whether the Opera account has been used
+  <tr><td>Save Password<td>boolean<td>true (1)<td>Save&shy;Password<td>Save password for opera account
+  <tr><td>Server Address<td>string<td class="tweak">"https://auth.opera.com/xml"<td>Server&shy;Address<td>Server Address
+  <tr><td>Username<td>string<td>""<td>Username<td>Username for the currently logged on my.opera user
+ </table>
+ <h2 id="pc_js">pc_js</h2>
+ <table>
+  <tr class="head"><th>Setting<th>Type<th>Default value<th>Name<th>Description
+  <tr class='section'><th colspan=5>[Extensions]
+  <tr><td>Delayed Script Execution<td>boolean<td class="tweak">false (0)<td>Delayed&shy;Script&shy;Execution<td>Enable delayed script execution
+  <tr><td>EcmaScriptFPMode<td>string<td>"sse2"<td>FPMode<td>Controls which floating point instruction is used in JIT code
+  <tr><td>EcmaScriptHardcoreGCMode<td>boolean<td>false (0)<td>Hardcore&shy;GCMode<td>Enables hardcore GC mode
+  <tr><td>EcmaScriptJIT<td>boolean<td class="tweak">true (1)<td>JIT<td>Enables machine code generation for ECMAScript
+  <tr><td>OpShell Proxy IP<td>string<td>"127.0.0.1"<td>Op&shy;Shell&shy;Proxy&shy;IP<td>OBSOLETE - replaced by API_PRF_TOOLS_PROXY - IP address of the OpShell proxy server
+  <tr><td>OpShell Proxy Port<td>integer<td>7000<td>Op&shy;Shell&shy;Proxy&shy;Port<td>OBSOLETE - replaced by API_PRF_TOOLS_PROXY - Port number of the OpShell proxy server
+  <tr><td>Remote Script Debugger<td>integer<td>REMOTE_&shy;SCRIPT_&shy;DEBUGGER_&shy;OFF<td>Ecma&shy;Script&shy;Remote&shy;Debugger<td>OBSOLETE - replaced by API_PRF_TOOLS_PROXY - Enable the remote script debugger
+  <tr><td>Remote Script Debugger IP<td>string<td>"127.0.0.1"<td>Ecma&shy;Script&shy;Remote&shy;Debugger&shy;IP<td>OBSOLETE - replaced by API_PRF_TOOLS_PROXY - Host the remote script debugger connects to in active mode
+  <tr><td>Remote Script Debugger Port<td>integer<td>9999<td>Ecma&shy;Script&shy;Remote&shy;Debugger&shy;Port<td>OBSOLETE - replaced by API_PRF_TOOLS_PROXY - TCP port number for the remote script debugger
+  <tr><td>Script Debugger<td>boolean<td>false (0)<td>Ecma&shy;Script&shy;Debugger<td>OBSOLETE - replaced by API_PRF_TOOLS_SCRIPT_DEBUG - Enable the script debugger
+  <tr><td>Scripting<td>boolean<td>true (1)<td>Ecma&shy;Script&shy;Enabled<td>Enable scripts
+  <tr><td>Shader Validation<td>boolean<td class="tweak">true (1)<td>Shader&shy;Validation<td>Enables validation of WebGL shader source
+  <tr><td>Speculative Parser<td>boolean<td>true (1)<td>Speculative&shy;Parser<td>Enable speculative HTML parser
+  <tr class='section'><th colspan=5>[Orientation]
+  <tr><td>Enable Orientation and Motion sensors<td>boolean<td>true (1)<td>Enable&shy;Orientation<td>Enable or disable orientation and motion events
+  <tr class='section'><th colspan=5>[Special]
+  <tr><td>JavaScript AppCodeName<td>string<td>"Mozilla"<td>ES_App&shy;Code&shy;Name<td>appCodeName to return
+  <tr><td>JavaScript AppName<td>string<td>"Netscape"<td>ES_NSApp&shy;Name<td>appName to return when identifying as Mozilla
+  <tr><td>JavaScript HWA DOM Object Access<td>string<td>"bugs.opera.com"<td>JS_HWAAccess<td>Secure server allowed access to the window.opera.hwa DOM object. Normally the Opera Bugwizard.
+  <tr><td>JavaScript IE AppName<td>string<td>"Microsoft Internet Explorer"<td>ES_IEApp&shy;Name<td>appName to return when identifying as MSIE
+  <tr><td>JavaScript Opera AppName<td>string<td>"Opera"<td>ES_Opera&shy;App&shy;Name<td>appName to return when identifying as Opera
+  <tr class='section'><th colspan=5>[User Prefs]
+  <tr><td>Always Load User JavaScript<td>boolean<td>false (0)<td>User&shy;JSAlways&shy;Load<td>User Javascript is always loaded
+  <tr><td>Browser JavaScript<td>integer<td>1<td>Browser&shy;JSSetting<td>When to load browser JavaScript (0=never, 1=download but don't load, 2=download when changed and use)
+  <tr><td>Browser JavaScript Server Timestamp<td>integer<td>0<td>Browser&shy;JSServer&shy;Time&shy;Stamp<td>Identifies the browser.js which currently available at the server. This value is different from BrowserJSTimeStamp if a browser.js update is available on the server, but the update was not yet downloaded and installed.
+  <tr><td>Browser JavaScript Timestamp<td>integer<td>0<td>Browser&shy;JSTime&shy;Stamp<td>Identifies the browser.js currently used, used when checking for updates
+  <tr><td>Camera access permission<td>integer<td>MAYBE<td>Allow&shy;Camera<td>Determines whether websites are allowed to access camera
+  <tr><td>Chromeless DOM Fullscreen<td>boolean<td>true (1)<td>Chromeless&shy;DOMFullscreen<td>Allows the DOM Fullscreen API to hide the browser chrome. Else the broser chrome is kept but content is still resized to fit the whole viewport.
+  <tr><td>Disallowed Web Handlers<td>string<td>""<td>Disallowed&shy;Web&shy;Handlers<td>Determines protocols/mime types web handlers are not allowed to be registered for
+  <tr><td>Geolocation site state<td>integer<td>MAYBE<td>Allow&shy;Geolocation<td>Determines whether websites are allowed to retrieve the current geolocation
+  <tr><td>Ignore Unrequested Popups<td>boolean<td class="tweak">true (1)<td>Ignore&shy;Unrequested&shy;Popups<td>Disallow unrequested window creation
+  <tr><td>Let Site Access Clipboard<td>boolean<td>false (0)<td>Let&shy;Site&shy;Access&shy;Clipboard<td>Determines whether pages have access to the clipboard
+  <tr><td>Max Web Workers Per Session<td>integer<td class="tweak">1024<td>Max&shy;Workers&shy;Per&shy;Session<td>The maximum number of Web Worker instances to allow per browser session
+  <tr><td>Max Web Workers Per Window<td>integer<td class="tweak">256<td>Max&shy;Workers&shy;Per&shy;Window<td>The maximum number of Web Worker instances to allow per scripting environment
+  <tr><td>Script Spoof<td>integer<td>UA_&shy;NotOverridden<td>Script&shy;Spoof<td>Special User Agent Id used only in scripts
+  <tr><td>Target Destination<td>integer<td>POPUP_&shy;WIN_&shy;NEW<td>Target&shy;Destination<td>Open window in background, or ignore it
+  <tr><td>User JavaScript<td>boolean<td>false (0)<td>User&shy;JSEnabled<td>User Javascript is enabled
+  <tr><td>User JavaScript File<td>string<td>""<td>User&shy;JSFiles<td>Name of user javascript files
+  <tr><td>User JavaScript on HTTPS<td>boolean<td>false (0)<td>User&shy;JSEnabled&shy;HTTPS<td>User Javascript is enabled also on HTTPS pages
+ </table>
+ <h2 id="pc_app">pc_app</h2>
+ <table>
+  <tr class="head"><th>Setting<th>Type<th>Default value<th>Name<th>Description
+  <tr class='section'><th colspan=5>[App Info]
+  <tr><td>App ID<td>string<td>0<td>App&shy;Id<td>Application ID
+  <tr><td>App State<td>integer<td>0<td>App&shy;State<td>Application state
+  <tr class='section'><th colspan=5>[Extensions]
+  <tr><td>Plugin Script Access<td>boolean<td>true (1)<td>Plugin&shy;Script&shy;Access<td>When disabled, the extra parameter AllowScriptAccess=SameDomain is added to Flash Player, if not already present
+  <tr><td>PluginResponseTimeout<td>integer<td>20<td>Plugin&shy;Response&shy;Timeout<td>Time to wait for response from plug-in (Unix)
+  <tr><td>PluginStartTimeout<td>integer<td>45<td>Plugin&shy;Start&shy;Timeout<td>Time to wait for start of plug-in (Unix)
+  <tr class='section'><th colspan=5>[File Types Extension]
+  <tr><td>&lt;mime/type&gt;<td>string<td>destfolder,flags<td>m_viewerextensionsection<td>Additional data on how to handle file type
+  <tr class='section'><th colspan=5>[File Types Section Info]
+  <tr><td>Version<td>integer<td>1<td>Viewer&shy;Version<td>Version number for viewer list
+  <tr class='section'><th colspan=5>[File Types]
+  <tr><td>&lt;mime/type&gt;<td>string<td>action,app,plugin,pluginname,ext,|fileopenext<td>m_viewersection<td>How to handle file type
+  <tr class='section'><th colspan=5>[HbbTV]
+  <tr><td>Initialize HbbTV modules<td>boolean<td>true (1)<td>Hbb&shy;TVInitialize<td>Enables AIT and DSM-CC modules initialization at startup
+  <tr class='section'><th colspan=5>[Mail]
+  <tr><td>ExtAppParamSpaceSubst<td>boolean<td>false (0)<td>Ext&shy;App&shy;Param&shy;Space&shy;Subst<td>Replace undefined parameters with space
+  <tr><td>External Application<td>string<td>""<td>External&shy;Mail&shy;Client<td>Program to run mailto links
+  <tr class='section'><th colspan=5>[News]
+  <tr><td>External Application<td>string<td>""<td>External&shy;News&shy;Client<td>Program to run news links
+  <tr class='section'><th colspan=5>[User Prefs]
+  <tr><td>Disabled Plugins<td>string<td>""<td>Disabled&shy;Plugins<td>List of the plug-in paths that user manually disabled
+  <tr><td>Plugin Path<td>string<td>""<td>Plugin&shy;Path<td>Search path for plug-ins
+  <tr><td>Plugin Sync Timeout<td>integer<td>NS4P_&shy;SYNC_&shy;TIMEOUT<td>Plugin&shy;Sync&shy;Timeout<td>Timeout in seconds for synchronous communication with the plugin host process (zero means wait forever)
+  <tr><td>Run Email In Terminal<td>boolean<td>false (0)<td>Run&shy;Email&shy;In&shy;Terminal<td>Start terminal emulator to run e-mail client
+  <tr><td>Run News In Terminal<td>boolean<td>false (0)<td>Run&shy;News&shy;In&shy;Terminal<td>Start terminal emulator to run news client
+  <tr><td>Run Source Viewer In Terminal<td>boolean<td>false (0)<td>Run&shy;Source&shy;Viewer&shy;In&shy;Terminal<td>Start terminal emulator to run source viewer
+  <tr><td>Source Viewer<td>string<td>""<td>Source&shy;Viewer<td>Program that views source
+ </table>
+ <h2 id="pc_doc">pc_doc</h2>
+ <table>
+  <tr class="head"><th>Setting<th>Type<th>Default value<th>Name<th>Description
+  <tr class='section'><th colspan=5>[Handheld]
+  <tr><td>External Image<td>boolean<td>true (1)<td>External&shy;Image<td>Allow external images in handheld mode
+  <tr class='section'><th colspan=5>[Multimedia]
+  <tr><td>Allow Autoplay<td>boolean<td class="tweak">true (1)<td>Allow&shy;Autoplay<td>Allow media to autoplay
+  <tr><td>Always load favicon<td>integer<td class="tweak">0<td>Always&shy;Load&shy;Fav&shy;Icon<td>Load shortcut icons automatically
+  <tr><td>Show Animation<td>boolean<td class="tweak">true (1)<td>Show&shy;Animation<td>Enable animations
+  <tr class='section'><th colspan=5>[Performance]
+  <tr><td>Draw Images Instantly<td>boolean<td class="tweak">false (0)<td>Turbo&shy;Mode<td>Draw images instantly
+  <tr><td>Prefetch Web Fonts<td>integer<td class="tweak">0<td>Prefetch&shy;Web&shy;Fonts<td>Number of web fonts that may be prefetched. A non-zero value enables speculative prefetching of web fonts referred to by style sheets. When enabled pages using web fonts will generally be able to show content with the correct fonts earlier. However, there is a chance that style sheets refer to fonts that are never used, in which case unused fonts will get downloaded and load time increase.
+  <tr><td>Reflow Delay Load<td>integer<td class="tweak">200<td>Reflow&shy;Delay&shy;Load<td>Determines how often, in milliseconds, we aim to reflow the document while loading.  Lower value means more "incremental" rendering, but slows loading down since we'll spend more time in total reflowing.  If the value is zero, there will be no delay, which is not recommended for anyone. The appropriate value for this tweak depends largely on platform performance, and so is difficult to estimate accurately based on profile only.  Testing and tuning "on device" while performing "average browsing" is typically very useful.
+  <tr><td>Reflow Delay Script<td>integer<td class="tweak">500<td>Reflow&shy;Delay&shy;Script<td>Determines how often, in milliseconds, we aim to reflow the document while executing a script (usually the reflow would then be caused by the script.)  Lower value means more "incremental" rendering, but slows down script execution since we'll spend more time in total reflowing.  If the value is zero, there will be no delay.
+  <tr><td>Wait For Styles<td>integer<td class="tweak">100<td>Wait&shy;For&shy;Styles<td>Determines how long we will hold the layout waiting for styles. This is to avoid drawing something unstyled (ugly)that will be replaced by something styled very soon. Setting this to 0 means that we won't wait for styles and instead show anything as fast as possible.
+  <tr><td>Wait For Web Fonts<td>integer<td class="tweak">100<td>Wait&shy;For&shy;Web&shy;Fonts<td>Determines how long we will suppress displaying web font text while waiting for the web font to load. This is to avoid drawing text with a fall back font that will later be replaced by a web font (FOUT). Setting this to 0 means that we will immediately display web font text using the fall back font. A non-zero value means that we won't display web font text until either the font is loaded or the time out expires and the fall back font is applied.
+  <tr class='section'><th colspan=5>[System]
+  <tr><td>DisableTextSelect<td>boolean<td>false (0)<td>Disable&shy;Text&shy;Select<td>Disable text selection
+  <tr class='section'><th colspan=5>[Trusted Protocols Section Info]
+  <tr><td>Version<td>integer<td>0<td>Trusted&shy;Protocols&shy;Version<td>Version number for handlers list
+  <tr class='section'><th colspan=5>[Trusted Protocols]
+  <tr><td>&lt;protocol&gt;<td>string<td>usedefault,openinterminal,path<td>n/a<td>Handler for trusted external protocol
+  <tr class='section'><th colspan=5>[User Prefs]
+  <tr><td>Allow Autofocus Form Element<td>boolean<td class="tweak">true (1)<td>Allow&shy;Autofocus&shy;Form&shy;Element<td>Allow autofocus of form upon loading webpage, both via javascript focus() and html attribute autofocus. Turning this off will forbid any autofocusing except moving focus only between input text fields.
+  <tr><td>Allow File XMLHttpRequest<td>boolean<td>false (0)<td>Allow&shy;File&shy;XMLHttp&shy;Request<td>Allow XMLHttpRequest between files which is something that is normally blocked for security reasons. Turning this on will allow web developers to test web applications stored on disk.
+  <tr><td>Allow Scripts To Navigate In History<td>boolean<td>true (1)<td>Allow&shy;Script&shy;To&shy;Navigate&shy;In&shy;History<td>Enables or disables scripts to navigate in DOM history
+  <tr><td>Always Reload Interrupted Images<td>boolean<td>false (0)<td>Always&shy;Reload&shy;Interrupted&shy;Images<td>Restart download of interrupted images when activating a document
+  <tr><td>CompatMode Override<td>integer<td>CSS_&shy;COMPAT_&shy;MODE_&shy;AUTO<td>Compat&shy;Mode&shy;Override<td>Override CSS compat mode found by DOCTYPE sniffing
+  <tr><td>Display Link Title<td>boolean<td>true (1)<td>Display&shy;Link&shy;Title<td>Dislay title of links
+  <tr><td>Enable Spatial Navigation<td>boolean<td>true (1)<td>Enable&shy;Spatial&shy;Navigation<td>Set to false to disable spatial navigation
+  <tr><td>Enable WebSockets<td>boolean<td>true (1)<td>Enable&shy;Web&shy;Sockets<td>Enables or disables scripts to use WebSockets.
+  <tr><td>Entities In Forms<td>boolean<td>true (1)<td>Use&shy;Entities&shy;In&shy;Forms<td>Enable entities for unconvertible characters in forms data
+  <tr><td>History Navigation Mode<td>integer<td>1<td>History&shy;Navigation&shy;Mode<td>1 = automatic, 2 = compatible, 3 = fast
+  <tr><td>Ignore Target<td>boolean<td class="tweak">false (0)<td>Ignore&shy;Target<td>Disallow window creation
+  <tr><td>Last Used Auto Window Timeout<td>integer<td class="tweak">60<td>Last&shy;Used&shy;Auto&shy;Window&shy;Reload&shy;Timeout<td>Last used value for automatic document reload (seconds)
+  <tr><td>Max Bytes Form Get<td>integer<td>5000<td>Maximum&shy;Bytes&shy;Form&shy;Get<td>Maximum bytes to submit with GET in a form
+  <tr><td>Max Bytes Form Post<td>integer<td class="tweak">80000<td>Maximum&shy;Bytes&shy;Form&shy;Post<td>Maximum bytes to submit with POST in a form
+  <tr><td>Max Bytes Input Password<td>integer<td>128<td>Maximum&shy;Bytes&shy;Input&shy;Password<td>Maximum bytes of content for a password field
+  <tr><td>Max Bytes Input Text<td>integer<td>256<td>Maximum&shy;Bytes&shy;Input&shy;Text<td>Maximum bytes of content for an input field
+  <tr><td>New Window<td>boolean<td>false (0)<td>New&shy;Window<td>Do not reuse existing page
+  <tr><td>Page Content Search results In Addressfield Dropdown<td>boolean<td>true (1)<td>Page&shy;Content&shy;Search<td>Turns on/off web pages content indexing. Based on that indexed content results in Addressfield drop down might be presented, while typing.
+  <tr><td>Rendering mode<td>integer<td class="tweak">LAYOUT_&shy;NORMAL<td>Rendering&shy;Mode<td>Start in SSR/MSR/desktop mode.
+  <tr><td>Save As Text Line Length<td>integer<td>80<td>Txt&shy;Chars&shy;Per&shy;Line<td>Characters per line when saving as text
+  <tr><td>Save With Images Use Subfolder<td>boolean<td>true (1)<td>Save&shy;Use&shy;Subfolder<td>Save with images should store images in a subfolder
+  <tr><td>Search Type<td>string<td>"7A8CADE6677811DDBA4B5E9D55D89593"<td>Default&shy;Search&shy;Type<td>Default search engine
+  <tr><td>Show Images<td>integer<td>FIGS_&shy;ON<td>Show&shy;Image&shy;State<td>1 = no images, 2 = show cached, 3 = all images
+  <tr><td>Show Page Controls<td>boolean<td>true (1)<td>Show&shy;Page&shy;Controls<td>Allow the page control widget to be displayed (for paged documents)
+  <tr><td>Show ScrollBars<td>boolean<td class="tweak">true (1)<td>Show&shy;Scrollbars<td>Show scroll bars
+  <tr><td>Show Window Size<td>boolean<td>false (0)<td>Show&shy;Win&shy;Size<td>Show window size
+  <tr><td>Single Window Browsing<td>boolean<td>false (0)<td>Single&shy;Window&shy;Browsing<td>Use the current window instead of creating new ones for popups.
+  <tr><td>Speeddial Thumbnail Request Header<td>boolean<td>true (1)<td>Thumbnail&shy;Request&shy;Header<td>Sends an additional HTTP header along with a thumbnail request
+  <tr><td>Suppress External Embeds<td>boolean<td>true (1)<td>Suppress&shy;External&shy;Embeds<td>Suppress loading of external inline elements
+  <tr><td>Thumbnail Aspect Ratio X<td>integer<td>16<td>Thumbnail&shy;Aspect&shy;Ratio&shy;X<td>This value, along with the Y value, determines the aspect ratio of the Speed Dial thumbnails.
+  <tr><td>Thumbnail Aspect Ratio Y<td>integer<td>10<td>Thumbnail&shy;Aspect&shy;Ratio&shy;Y<td>This value, along with the X value, determines the aspect ratio of the Speed Dial thumbnails.
+  <tr><td>Thumbnail Icon Min Height<td>integer<td>114<td>Thumbnail&shy;Icon&shy;Min&shy;H<td>Thumbnail icon min height
+  <tr><td>Thumbnail Icon Min Width<td>integer<td>114<td>Thumbnail&shy;Icon&shy;Min&shy;W<td>Thumbnail icon min width
+  <tr><td>Thumbnail Logo Pos Max X<td>integer<td>1200<td>Thumbnail&shy;Logo&shy;Pos&shy;Max&shy;X<td>Thumbnail logo pos max X
+  <tr><td>Thumbnail Logo Pos Max Y<td>integer<td>300<td>Thumbnail&shy;Logo&shy;Pos&shy;Max&shy;Y<td>Thumbnail logo pos max Y
+  <tr><td>Thumbnail Logo Score Banner<td>integer<td>90<td>Thumbnail&shy;Logo&shy;Score&shy;Banner<td>Thumbnail logo scoring banner
+  <tr><td>Thumbnail Logo Score Logo ALT<td>integer<td>70<td>Thumbnail&shy;Logo&shy;Score&shy;Logo&shy;ALT<td>Thumbnail logo scoring logo ALT
+  <tr><td>Thumbnail Logo Score Logo URL<td>integer<td>75<td>Thumbnail&shy;Logo&shy;Score&shy;Logo&shy;URL<td>Thumbnail logo scoring logo URL
+  <tr><td>Thumbnail Logo Score Site ALT<td>integer<td>35<td>Thumbnail&shy;Logo&shy;Score&shy;Site&shy;ALT<td>Thumbnail logo scoring site ALT
+  <tr><td>Thumbnail Logo Score Site Link<td>integer<td>20<td>Thumbnail&shy;Logo&shy;Score&shy;Site&shy;Link<td>Thumbnail logo scoring site link
+  <tr><td>Thumbnail Logo Score Site URL<td>integer<td>20<td>Thumbnail&shy;Logo&shy;Score&shy;Site&shy;URL<td>Thumbnail logo scoring site URL
+  <tr><td>Thumbnail Logo Score Threshold<td>integer<td>75<td>Thumbnail&shy;Logo&shy;Score&shy;Threshold<td>Thumbnail logo scoring threshold used when looking for page logo for speeddial thumbnail.
+  <tr><td>Thumbnail Logo Score X<td>integer<td>20<td>Thumbnail&shy;Logo&shy;Score&shy;X<td>Thumbnail logo scoring X
+  <tr><td>Thumbnail Logo Score Y<td>integer<td>35<td>Thumbnail&shy;Logo&shy;Score&shy;Y<td>Thumbnail logo scoring Y
+  <tr><td>Thumbnail Logo Size Max X<td>integer<td>800<td>Thumbnail&shy;Logo&shy;Size&shy;Max&shy;X<td>Thumbnail logo size max X
+  <tr><td>Thumbnail Logo Size Max Y<td>integer<td>199<td>Thumbnail&shy;Logo&shy;Size&shy;Max&shy;Y<td>Thumbnail logo size max y
+  <tr><td>Thumbnail Logo Size Min X<td>integer<td>20<td>Thumbnail&shy;Logo&shy;Size&shy;Min&shy;X<td>Thumbnail logo size min X
+  <tr><td>Thumbnail Logo Size Min Y<td>integer<td>15<td>Thumbnail&shy;Logo&shy;Size&shy;Min&shy;Y<td>Thumbnail logo size min y
+  <tr><td>Time Update Interval<td>integer<td>200<td>Media&shy;Playback&shy;Time&shy;Update&shy;Interval<td>Define the interval between timeupdate events in milliseconds
+  <tr><td>XML Load External Entities<td>boolean<td>false (0)<td>XMLLoad&shy;External&shy;Entities<td>Load external doctype subset and other referenced external entities.
+ </table>
+ <h2 id="pc_webserver">pc_webserver</h2>
+ <table>
+  <tr class="head"><th>Setting<th>Type<th>Default value<th>Name<th>Description
+  <tr class='section'><th colspan=5>[Web Server]
+  <tr><td>Backlog<td>integer<td>WEB_&shy;RDV_&shy;BACKLOG<td>Webserver&shy;Backlog<td>See "backlog" in the listen(2) manpage
+  <tr><td>Device<td>string<td>""<td>Webserver&shy;Device<td>Device name identifying the device where the embedded webserver is running
+  <tr><td>Enable<td>boolean<td class="tweak">false (0)<td>Webserver&shy;Enable<td>If false, the web server is completely disabled
+  <tr><td>Listen To All Networks<td>boolean<td class="tweak">false (0)<td>Webserver&shy;Listen&shy;To&shy;All&shy;Networks<td>If false only requests originating from localhost are accepted
+  <tr><td>Max Upload Rate (kBps)<td>integer<td>0<td>Webserver&shy;Upload&shy;Rate<td>Max upload rate in kBps
+  <tr><td>Port<td>integer<td>WEB_&shy;PARM_&shy;DEFAULT_&shy;PORT<td>Webserver&shy;Port<td>Port on which to serve HTTP requests
+  <tr><td>Proxy Host<td>string<td>WEB_&shy;RDV_&shy;PROXY_&shy;HOST<td>Webserver&shy;Proxy&shy;Host<td>Host running the Alien proxy
+  <tr><td>Proxy Port<td>integer<td>16680<td>Webserver&shy;Proxy&shy;Port<td>Port on which the Alien proxy listens
+  <tr><td>Service Discovery Enabled<td>boolean<td>true (1)<td>Service&shy;Discovery&shy;Enabled<td>Setting this to TRUE allows the webserver to start using service discovery
+  <tr><td>Service Discovery Server<td>string<td>"https://asd.opera.com/1.0/register"<td>Service&shy;Discovery&shy;Server<td>Host running the service discovery
+  <tr><td>Shared Secret<td>string<td>""<td>Webserver&shy;Hashed&shy;Password<td>Hashed password for authenticating the embedded webserver
+  <tr><td>UPnP Enabled<td>boolean<td>true (1)<td>UPn&shy;PEnabled<td>Setting this to TRUE allows the webserver to start using UPnP port forwarding
+  <tr><td>UPnP Service Discovery Enabled<td>boolean<td>true (1)<td>UPn&shy;PService&shy;Discovery&shy;Enabled<td>Setting this to TRUE allows the webserver to start using UPnP service discovery
+  <tr><td>Use Opera Account<td>boolean<td class="tweak">false (0)<td>Use&shy;Opera&shy;Account<td>Setting this to FALSE allow the webserver to start without logging onto an Opera Account, and access will be set to Local only
+  <tr><td>User<td>string<td>""<td>Webserver&shy;User<td>User name identifying the user for the embedded webserver
+  <tr><td>Webserver Always On<td>boolean<td>true (1)<td>Webserver&shy;Always&shy;On<td>Force webserver to start automatically when Opera is launched
+  <tr><td>Webserver Used<td>boolean<td>false (0)<td>Webserver&shy;Used<td>If set, user has used Webserver
+  <tr><td>robots.txt Enabled<td>boolean<td>true (1)<td>Robots&shy;Txt&shy;Enabled<td>Setting this to TRUE will add a robots.txt file to your Unite website
+ </table>
+ <h2 id="pc_sync">pc_sync</h2>
+ <table>
+  <tr class="head"><th>Setting<th>Type<th>Default value<th>Name<th>Description
+  <tr class='section'><th colspan=5>[Opera Sync Server]
+  <tr><td>Complete Sync<td>boolean<td>false (0)<td>Complete&shy;Sync<td>If set, a complete sync is done on next sync
+  <tr><td>Log Traffic<td>boolean<td>false (0)<td>Sync&shy;Log&shy;Traffic<td>If set, will make the sync module log incoming and outgoing data
+  <tr><td>Server Address<td>string<td class="tweak">"https://link-server.opera.com/pull"<td>Server&shy;Address<td>Address of the link server to synchronize with
+  <tr class='section'><th colspan=5>[Opera Sync]
+  <tr><td>Last Cached Access<td>integer<td>0<td>Last&shy;Cached&shy;Access<td>Time for last signups
+  <tr><td>Last Cached Access Num<td>integer<td>0<td>Last&shy;Cached&shy;Access&shy;Num<td>Number of signups on day represented by "Time for last signups"
+  <tr><td>Sync Bookmarks<td>boolean<td>true (1)<td>Sync&shy;Bookmarks<td>If set, bookmarks will be synchronized
+  <tr><td>Sync Client State<td>string<td>"0"<td>Sync&shy;Client&shy;State<td>Opera Link (sync) sync state, generated by the server
+  <tr><td>Sync Client State Bookmarks<td>string<td>"0"<td>Sync&shy;Client&shy;State&shy;Bookmarks<td>Opera Link (sync) sync state, generated by the server, and saved for Bookmarks
+  <tr><td>Sync Client State Extensions<td>string<td>"0"<td>Sync&shy;Client&shy;State&shy;Extensions<td>Opera Link (sync) sync state, generated by the server, and saved for Extensions
+  <tr><td>Sync Client State Notes<td>string<td>"0"<td>Sync&shy;Client&shy;State&shy;Notes<td>Opera Link (sync) sync state, generated by the server, and saved for Notes
+  <tr><td>Sync Client State Password Manager<td>string<td>"0"<td>Sync&shy;Client&shy;State&shy;Password&shy;Manager<td>Opera Link (sync) sync state, generated by the server, and saved for password manager
+  <tr><td>Sync Client State Searches<td>string<td>"0"<td>Sync&shy;Client&shy;State&shy;Searches<td>Opera Link (sync) sync state, generated by the server, and saved for Searches
+  <tr><td>Sync Client State Speed Dial<td>string<td>"0"<td>Sync&shy;Client&shy;State&shy;Speeddial<td>Opera Link (sync) sync state, generated by the server, and saved for Speed dials
+  <tr><td>Sync Client State Speed Dial 2<td>string<td>"0"<td>Sync&shy;Client&shy;State&shy;Speeddial2<td>Opera Link (sync) sync state, generated by the server, and saved for Speed Dial 2
+  <tr><td>Sync Client State Typed History<td>string<td>"0"<td>Sync&shy;Client&shy;State&shy;Typed&shy;History<td>Opera Link (sync) sync state, generated by the server, and saved for Typed History
+  <tr><td>Sync Client State URL Filter<td>string<td>"0"<td>Sync&shy;Client&shy;State&shy;URLFilter<td>Opera Link (sync) sync state, generated by the server, and saved for URL Filter
+  <tr><td>Sync Data Provider<td>string<td>DEFAULT_&shy;SYNC_&shy;PROVIDER<td>Sync&shy;Data&shy;Provider<td>Which data provider to use
+  <tr><td>Sync Enabled<td>boolean<td>false (0)<td>Sync&shy;Enabled<td>If set, Opera Link is enabled otherwise it's disabled
+  <tr><td>Sync Extensions<td>boolean<td>true (1)<td>Sync&shy;Extensions<td>If set, installed extensions will be synchronized
+  <tr><td>Sync Feeds<td>boolean<td>true (1)<td>Sync&shy;Feeds<td>If set, feeds will be synchronized
+  <tr><td>Sync Last Used<td>integer<td>0<td>Sync&shy;Last&shy;Used<td>Last time Link was used. This is the number of seconds since epoch.
+  <tr><td>Sync Notes<td>boolean<td>true (1)<td>Sync&shy;Notes<td>If set, bookmarks on personalbar will be synchronized
+  <tr><td>Sync Password Manager<td>boolean<td>false (0)<td>Sync&shy;Password&shy;Manager<td>If set, passwords will be synchronized
+  <tr><td>Sync Personalbar<td>boolean<td>true (1)<td>Sync&shy;Personalbar<td>If set, bookmarks on personalbar will be synchronized
+  <tr><td>Sync Searches<td>boolean<td>true (1)<td>Sync&shy;Searches<td>If set, search engines will be synchronized
+  <tr><td>Sync Speed Dial<td>boolean<td>true (1)<td>Sync&shy;Speeddial<td>If set, speeddials will be synchronized
+  <tr><td>Sync Typed History<td>boolean<td>true (1)<td>Sync&shy;Typed&shy;History<td>If set, typed history will be synchronized
+  <tr><td>Sync URL Filter<td>boolean<td>true (1)<td>Sync&shy;URLFilter<td>If set, URL filters will be synchronized
+  <tr><td>Sync Used<td>boolean<td>false (0)<td>Sync&shy;Used<td>If set, user has used Link
+ </table>
+ <h2 id="pc_geoloc">pc_geoloc</h2>
+ <table>
+  <tr class="head"><th>Setting<th>Type<th>Default value<th>Name<th>Description
+  <tr class='section'><th colspan=5>[Geolocation]
+  <tr><td>Enable geolocation<td>boolean<td>true (1)<td>Enable&shy;Geolocation<td>Enable or disable geolocation
+  <tr><td>Google2011 Location Provider Access Token<td>string<td>""<td>Google2011Location&shy;Provider&shy;Access&shy;Token<td>Access token used for location provider
+  <tr><td>Location Provider URL<td>string<td>"https://maps.googleapis.com/maps/api/browserlocation/json"<td>Location&shy;Provider&shy;Url<td>URL for the provider of position data based on wifi access points, cell phone info, etc.
+  <tr><td>Send location request only on change<td>boolean<td>true (1)<td>Send&shy;Location&shy;Request&shy;Only&shy;On&shy;Change<td>Only send location request if some of the data providers (wifi, cell, etc) actually changed.
+ </table>
+ <h2 id="pc_tools">pc_tools</h2>
+ <table>
+  <tr class="head"><th>Setting<th>Type<th>Default value<th>Name<th>Description
+  <tr class='section'><th colspan=5>[Developer Tools]
+  <tr><td>Developer Tools URL<td>string<td>"https://dragonfly.opera.com/app/"<td>Dev&shy;Tools&shy;Url<td>The URL to the web application to be loaded into the Developer Tools window.
+  <tr><td>Enable Script Debugging<td>boolean<td>false (0)<td>Script&shy;Debugging<td>Include debugging information when compiling scripts, and try to attach to external debugger.
+  <tr><td>Proxy Auto Connect<td>boolean<td>false (0)<td>Proxy&shy;Auto&shy;Connect<td>Scope should connect to the proxy automatically on Opera startup.
+  <tr><td>Proxy Host<td>string<td>"127.0.0.1"<td>Proxy&shy;Host<td>Address of machine running the proxy process for scope.
+  <tr><td>Proxy Port<td>integer<td>7001<td>Proxy&shy;Port<td>Port number for the proxy process for scope.
+  <tr><td>UPnP webserver port<td>integer<td>WEB_&shy;PARM_&shy;DEFAULT_&shy;PORT + 1<td>UPn&shy;PWebserver&shy;Port<td>Port for webserver serving UPnP discovery requests
+ </table>
+ <h2 id="pc_jil">pc_jil</h2>
+ <table>
+  <tr class="head"><th>Setting<th>Type<th>Default value<th>Name<th>Description
+  <tr class='section'><th colspan=5>[JIL API]
+  <tr><td>JIL Network Resources Host Name<td>string<td class="tweak">""<td>Jil&shy;Network&shy;Resources&shy;Host&shy;Name<td>Host name for JIL Common Gateway Services server used by JILNetworkRequestHandler
+  <tr><td>Widget Engine Name<td>string<td class="tweak">"Opera Widgets"<td>Device&shy;Widget&shy;Engine&shy;Name<td>String returned by Widget.Device.widgetEngineName
+  <tr><td>Widget Engine Provider<td>string<td class="tweak">"Opera"<td>Device&shy;Widget&shy;Engine&shy;Provider<td>String returned by Widget.Device.widgetEngineProvider
+  <tr><td>Widget Engine Version<td>string<td class="tweak">"10.0"<td>Device&shy;Widget&shy;Engine&shy;Version<td>String returned by Widget.Device.widgetEngineVersion
+  <tr><td>exportAsVCard Destination Directory<td>string<td>""<td>Export&shy;As&shy;VCard&shy;Destination&shy;Directory<td>Directory in which vCard files created by Widget.PIM.exportAsVCard should be saved
+ </table>
+ <h2 id="pc_parsing">pc_parsing</h2>
+ <table>
+  <tr class="head"><th>Setting<th>Type<th>Default value<th>Name<th>Description
+  <tr class='section'><th colspan=5>[User Prefs]
+  <tr><td>Show HTML Parsing Errors<td>boolean<td>false (0)<td>Show&shy;HTMLParsing&shy;Errors<td>Report HTML parse errors to the error console
+ </table>
+ <h2 id="pc_print">pc_print</h2>
+ <table>
+  <tr class="head"><th>Setting<th>Type<th>Default value<th>Name<th>Description
+  <tr class='section'><th colspan=5>[Printer]
+  <tr><td>Bottom Margin<td>integer<td class="tweak">100<td>Margin&shy;Bottom<td>Bottom print margin
+  <tr><td>Default Frames Print Type<td>integer<td>PRINT_&shy;ALL_&shy;FRAMES<td>Default&shy;Frames&shy;Print&shy;Type<td>How to print frames
+  <tr><td>FileName<td>string<td>""<td>Printer&shy;File&shy;Name<td>Print to file filename
+  <tr><td>Fit To Width Print<td>boolean<td>true (1)<td>Fit&shy;To&shy;Width&shy;Print<td>Enable MSR for printing
+  <tr><td>Left Margin<td>integer<td class="tweak">50<td>Margin&shy;Left<td>Left print margin
+  <tr><td>Print Background<td>boolean<td class="tweak">true (1)<td>Print&shy;Background<td>Also print backgrounds
+  <tr><td>Print Job Type<td>integer<td>PRINT_&shy;ALL_&shy;PAGES<td>Print&shy;Job&shy;Type<td>Type of print job
+  <tr><td>Print Left Footer String<td>string<td>"&u"<td>Print&shy;Left&shy;Footer&shy;String<td>Lower left print footer string
+  <tr><td>Print Left Header String<td>string<td>"&w"<td>Print&shy;Left&shy;Header&shy;String<td>Upper left print header string
+  <tr><td>Print Right Footer String<td>string<td>"&d &t"<td>Print&shy;Right&shy;Footer&shy;String<td>Lower right print footer string
+  <tr><td>Print Right Header String<td>string<td>"&p"<td>Print&shy;Right&shy;Header&shy;String<td>Upper right print header string
+  <tr><td>Print To File DPI<td>integer<td>100<td>Print&shy;To&shy;File&shy;DPI<td>DPI of the virtual printer
+  <tr><td>Print To File Height<td>integer<td>1169<td>Print&shy;To&shy;File&shy;Height<td>Height of the virtual paper in 1/100 of inch
+  <tr><td>Print To File Width<td>integer<td>827<td>Print&shy;To&shy;File&shy;Width<td>Width of the virtual paper in 1/100 of inch
+  <tr><td>PrintToFile<td>boolean<td>false (0)<td>Printer&shy;To&shy;File<td>Enable print to file
+  <tr><td>PrinterName<td>string<td>""<td>Printer&shy;Printer&shy;Name<td>Printer name to use
+  <tr><td>Right Margin<td>integer<td class="tweak">50<td>Margin&shy;Right<td>Right print margin
+  <tr><td>Scale<td>integer<td class="tweak">80<td>Printer&shy;Scale<td>Zoom level for printout (percent)
+  <tr><td>Show Printer Header<td>boolean<td class="tweak">true (1)<td>Show&shy;Print&shy;Header<td>Create headers in printouts
+  <tr><td>Top Margin<td>integer<td class="tweak">100<td>Margin&shy;Top<td>Top print margin
+ </table>
+ <h2 id="pc_display">pc_display</h2>
+ <table>
+  <tr class="head"><th>Setting<th>Type<th>Default value<th>Name<th>Description
+  <tr class='section'><th colspan=5>[Author Display Mode]
+  <tr><td>Author CSS<td>boolean<td>true (1)<td>DM_Author&shy;CSS<td>Use author's CSS in Document Mode
+  <tr><td>Author Font and Colors<td>boolean<td>true (1)<td>DM_Author&shy;Fonts<td>Use author's fonts in Document Mode
+  <tr><td>User CSS<td>boolean<td>true (1)<td>DM_User&shy;CSS<td>Use user's CSS in Document Mode
+  <tr><td>User Font and Colors<td>boolean<td>false (0)<td>DM_User&shy;Fonts<td>Use user's fonts in Document Mode
+  <tr><td>User Link Settings<td>boolean<td>true (1)<td>DM_User&shy;Links<td>Use user's links in Document Mode
+  <tr class='section'><th colspan=5>[CSS Generic Font Family]
+  <tr><td>Cursive<td>string<td>""<td>CSSFamily&shy;Cursive<td>Face name for CSS family "cursive"
+  <tr><td>Fantasy<td>string<td>""<td>CSSFamily&shy;Fantasy<td>Face name for CSS family "fantasy"
+  <tr><td>Monospace<td>string<td>""<td>CSSFamily&shy;Monospace<td>Face name for CSS family "monospace"
+  <tr><td>Sans-Serif<td>string<td>""<td>CSSFamily&shy;Sansserif<td>Face name for CSS family "sans-serif"
+  <tr><td>Serif<td>string<td>""<td>CSSFamily&shy;Serif<td>Face name for CSS family "serif"
+  <tr class='section'><th colspan=5>[Extensions]
+  <tr><td>Enable Canvas<td>boolean<td>true (1)<td>Canvas&shy;Enabled<td>Enable Canvas support
+  <tr><td>Enable Flash<td>boolean<td>true (1)<td>Flash&shy;Enabled<td>Enable Flash plug-in
+  <tr><td>Frames<td>boolean<td>true (1)<td>Frames&shy;Enabled<td>Enable frames
+  <tr><td>Frames Show Active<td>boolean<td class="tweak">false (0)<td>Show&shy;Active&shy;Frame<td>Show the active frame always
+  <tr><td>IFrames<td>boolean<td>true (1)<td>IFrames&shy;Enabled<td>Enable iframes
+  <tr><td>Plugins<td>boolean<td>true (1)<td>Plugins&shy;Enabled<td>Enable plugins
+  <tr class='section'><th colspan=5>[Link]
+  <tr><td>Color<td>boolean<td>true (1)<td>Link&shy;Has&shy;Color<td>Link appearance: Does link show in different color?
+  <tr><td>Frame<td>boolean<td>false (0)<td>Link&shy;Has&shy;Frame<td>Link appearance: Does link have frame?
+  <tr><td>StrikeThrough<td>boolean<td>false (0)<td>Link&shy;Has&shy;Strike&shy;Through<td>Link appearance: Are links strike-throughed?
+  <tr><td>Underline<td>boolean<td class="tweak">true (1)<td>Link&shy;Has&shy;Underline<td>Link appearance: Are links underlined?
+  <tr class='section'><th colspan=5>[Multimedia]
+  <tr><td>Interpolate Images<td>boolean<td class="tweak">false (0)<td>Interpolate&shy;Images<td>Enable smooth zooming of images
+  <tr><td>Use Embedded ICC Profiles<td>boolean<td class="tweak">false (0)<td>Images&shy;Use&shy;ICC<td>Use any Embedded ICC Profile when rendering images
+  <tr class='section'><th colspan=5>[RM1]
+  <tr><td>aif<td>integer<td>0<td>RM1_Avoid&shy;Interlace&shy;Flicker<td>Avoid interlace flicker for SSR
+  <tr><td>ape<td>integer<td>1<td>RM1_Absolutely&shy;Positioned&shy;Elements<td>Absolutely positioned elements for SSR
+  <tr><td>asi<td>integer<td>0<td>RM1_Allow&shy;Scrollbars&shy;In&shy;IFrame<td>Allow scrollbar in iframes for SSR
+  <tr><td>awb<td>integer<td>1<td>RM1_Allow&shy;Aggressive&shy;Word&shy;Breaking<td>Allow aggressive word breaking for SSR
+  <tr><td>fla<td>integer<td class="tweak">13<td>RM1_Large<td>Font size in pixels for large for SSR
+  <tr><td>fme<td>integer<td class="tweak">11<td>RM1_Medium<td>Font size in pixels for medium for SSR
+  <tr><td>fsm<td>integer<td class="tweak">9<td>RM1_Small<td>Font size in pixels for small for SSR
+  <tr><td>fxf<td>integer<td class="tweak">0<td>RM1_Flexible&shy;Fonts<td>Flexible fonts mode for SSR
+  <tr><td>fxl<td>integer<td class="tweak">15<td>RM1_XLarge<td>Font size in pixels for x-large for SSR
+  <tr><td>fxx<td>integer<td class="tweak">17<td>RM1_XXLarge<td>Font size in pixels for xx-large for SSR
+  <tr><td>ibs<td>integer<td>0<td>RM1_Show&shy;Background&shy;Images<td>Show background images for SSR
+  <tr><td>ida<td>integer<td>0<td>RM1_Download&shy;Images&shy;Asap<td>Download images ASAP for SSR
+  <tr><td>ifl<td>integer<td>0<td>RM1_Float<td>Enable float for SSR
+  <tr><td>ifs<td>integer<td>1<td>RM1_Flexible&shy;Image&shy;Sizes<td>Flexible replaced content sizes mode for SSR
+  <tr><td>imw<td>integer<td class="tweak">0<td>RM1_Minimum&shy;Image&shy;Width<td>Minimum image width in percent for SSR
+  <tr><td>irl<td>integer<td class="tweak">1<td>RM1_Remove&shy;Large&shy;Images<td>Remove large images for SSR
+  <tr><td>iro<td>integer<td>1<td>RM1_Remove&shy;Ornamental&shy;Images<td>Remove ornamental images for SSR
+  <tr><td>isi<td>integer<td class="tweak">1<td>RM1_Show&shy;Images<td>Show image mode for SSR
+  <tr><td>iua<td>integer<td>1<td>RM1_Use&shy;Alt&shy;For&shy;Certain&shy;Images<td>Use alternative text for certain images for SSR
+  <tr><td>map<td>integer<td>1<td>RM1_Absolute&shy;Positioning<td>Absolute positioning for SSR
+  <tr><td>mas<td>integer<td>0<td>RM1_Allow&shy;Horizontal&shy;Scrollbar<td>Allow horizontal scrollbar for SSR
+  <tr><td>mcs<td>integer<td class="tweak">200<td>RM1_Crossover&shy;Size<td>Crossover size in pixels for SSR
+  <tr><td>mds<td>integer<td>0<td>RM1_Download&shy;And&shy;Apply&shy;Document&shy;Style&shy;Sheets<td>Download and apply document style sheets mode for SSR
+  <tr><td>mfp<td>integer<td>1<td>RM1_Frames&shy;Policy<td>Frames policy mode for SSR
+  <tr><td>mrm<td>integer<td>1<td>RM1_Respond&shy;To&shy;Media&shy;Type<td>Media type to respond to for SSR
+  <tr><td>msh<td>integer<td>1<td>RM1_Media&shy;Style&shy;Handling<td>Media style handling for SSR
+  <tr><td>mst<td>integer<td>1<td>RM1_Apply&shy;Mode&shy;Specific&shy;Tricks<td>Apply mode specific tricks for SSR
+  <tr><td>mvd<td>integer<td>2<td>RM1_Honor&shy;Hidden<td>Honour visibility:hidden and display:none for SSR
+  <tr><td>rfu<td>integer<td>2<td>RM1_Show&shy;IFrames<td>Show iframes for SSR
+  <tr><td>shb<td>integer<td>1<td>RM1_Highlight&shy;Blocks<td>Highlight blocks for SSR
+  <tr><td>tcc<td>integer<td>70<td>RM1_Minimum&shy;Text&shy;Color&shy;Contrast<td>Minimum text color contrast (0-255) for SSR
+  <tr><td>tcd<td>integer<td>OP_&shy;RGB(0,0,0)<td>RM1_Text&shy;Color&shy;Dark<td>Dark text color (24-bit RGB value) for SSR
+  <tr><td>tcl<td>integer<td>OP_&shy;RGB(255,255,255)<td>RM1_Text&shy;Color&shy;Light<td>Light text color (24-bit RGB value) for SSR
+  <tr><td>tcn<td>integer<td>1<td>RM1_Convert&shy;Nbsp&shy;Into&shy;Normal&shy;Space<td>Convert nbsp into normal space for SSR
+  <tr><td>tcs<td>integer<td>2<td>RM1_Column&shy;Stretch<td>Column stretch mode for SSR
+  <tr><td>tfc<td>integer<td>1<td>RM1_Flexible&shy;Columns<td>Enable Flexible columns for SSR
+  <tr><td>thn<td>integer<td>0<td>RM1_Honor&shy;Nowrap<td>Honour nowrap for SSR
+  <tr><td>tir<td>integer<td>0<td>RM1_Ignore&shy;Rowspan&shy;When&shy;Restructuring<td>Ignore rowspan when restructuring the table for SSR
+  <tr><td>tsh<td>integer<td>1<td>RM1_Split&shy;Hide&shy;Long&shy;Words<td>Split or hide long words for SSR
+  <tr><td>ttm<td>integer<td class="tweak">0<td>RM1_Table&shy;Magic<td>Enable content magic for SSR
+  <tr><td>ttt<td>integer<td>1<td>RM1_Table&shy;Strategy<td>Table strategy for SSR
+  <tr class='section'><th colspan=5>[RM2]
+  <tr><td>aif<td>integer<td>0<td>RM2_Avoid&shy;Interlace&shy;Flicker<td>Avoid interlace flicker for CSSR
+  <tr><td>ape<td>integer<td>1<td>RM2_Absolutely&shy;Positioned&shy;Elements<td>Absolutely positioned elements for CSSR
+  <tr><td>asi<td>integer<td>0<td>RM2_Allow&shy;Scrollbars&shy;In&shy;IFrame<td>Allow scrollbar in iframes for CSSR
+  <tr><td>awb<td>integer<td>1<td>RM2_Allow&shy;Aggressive&shy;Word&shy;Breaking<td>Allow aggressive word breaking for CSSR
+  <tr><td>fla<td>integer<td class="tweak">13<td>RM2_Large<td>Font size in pixels for large for CSSR
+  <tr><td>fme<td>integer<td class="tweak">11<td>RM2_Medium<td>Font size in pixels for medium for CSSR
+  <tr><td>fsm<td>integer<td class="tweak">9<td>RM2_Small<td>Font size in pixels for small for CSSR
+  <tr><td>fxf<td>integer<td class="tweak">0<td>RM2_Flexible&shy;Fonts<td>Flexible fonts mode for CSSR
+  <tr><td>fxl<td>integer<td class="tweak">15<td>RM2_XLarge<td>Font size in pixels for x-large for CSSR
+  <tr><td>fxx<td>integer<td class="tweak">17<td>RM2_XXLarge<td>Font size in pixels for xx-large for CSSR
+  <tr><td>ibs<td>integer<td>0<td>RM2_Show&shy;Background&shy;Images<td>Show background images for CSSR
+  <tr><td>ida<td>integer<td>0<td>RM2_Download&shy;Images&shy;Asap<td>Download images ASAP for CSSR
+  <tr><td>ifl<td>integer<td>1<td>RM2_Float<td>Enable float for CSSR
+  <tr><td>ifs<td>integer<td>1<td>RM2_Flexible&shy;Image&shy;Sizes<td>Flexible replaced content sizes mode for CSSR
+  <tr><td>imw<td>integer<td class="tweak">0<td>RM2_Minimum&shy;Image&shy;Width<td>Minimum image width in percent for CSSR
+  <tr><td>irl<td>integer<td class="tweak">1<td>RM2_Remove&shy;Large&shy;Images<td>Remove large images for CSSR
+  <tr><td>iro<td>integer<td>2<td>RM2_Remove&shy;Ornamental&shy;Images<td>Remove ornamental images for CSSR
+  <tr><td>isi<td>integer<td class="tweak">2<td>RM2_Show&shy;Images<td>Show image mode for CSSR
+  <tr><td>iua<td>integer<td>0<td>RM2_Use&shy;Alt&shy;For&shy;Certain&shy;Images<td>Use alternative text for certain images for CSSR
+  <tr><td>map<td>integer<td>1<td>RM2_Absolute&shy;Positioning<td>Absolute positioning for CSSR
+  <tr><td>mas<td>integer<td>0<td>RM2_Allow&shy;Horizontal&shy;Scrollbar<td>Allow horizontal scrollbar for CSSR
+  <tr><td>mcs<td>integer<td class="tweak">250<td>RM2_Crossover&shy;Size<td>Crossover size in pixels for CSSR
+  <tr><td>mds<td>integer<td>1<td>RM2_Download&shy;And&shy;Apply&shy;Document&shy;Style&shy;Sheets<td>Download and apply document style sheets mode for CSSR
+  <tr><td>mfp<td>integer<td>1<td>RM2_Frames&shy;Policy<td>Frames policy mode for CSSR
+  <tr><td>mrm<td>integer<td>1<td>RM2_Respond&shy;To&shy;Media&shy;Type<td>Media type to respond to for CSSR
+  <tr><td>msh<td>integer<td>1<td>RM2_Media&shy;Style&shy;Handling<td>Media style handling for CSSR
+  <tr><td>mst<td>integer<td>2<td>RM2_Apply&shy;Mode&shy;Specific&shy;Tricks<td>Apply mode specific tricks for CSSR
+  <tr><td>mvd<td>integer<td>2<td>RM2_Honor&shy;Hidden<td>Honour visibility:hidden and display:none for CSSR
+  <tr><td>rfu<td>integer<td>2<td>RM2_Show&shy;IFrames<td>Show iframes for CSSR
+  <tr><td>shb<td>integer<td>0<td>RM2_Highlight&shy;Blocks<td>Highlight blocks for CSSR
+  <tr><td>tcc<td>integer<td>70<td>RM2_Minimum&shy;Text&shy;Color&shy;Contrast<td>Minimum text color contrast (0-255) for CSSR
+  <tr><td>tcd<td>integer<td>OP_&shy;RGB(0,0,0)<td>RM2_Text&shy;Color&shy;Dark<td>Dark text color (24-bit RGB value) for CSSR
+  <tr><td>tcl<td>integer<td>OP_&shy;RGB(255,255,255)<td>RM2_Text&shy;Color&shy;Light<td>Light text color (24-bit RGB value) for CSSR
+  <tr><td>tcn<td>integer<td>1<td>RM2_Convert&shy;Nbsp&shy;Into&shy;Normal&shy;Space<td>Convert nbsp into normal space for CSSR
+  <tr><td>tcs<td>integer<td>2<td>RM2_Column&shy;Stretch<td>Column stretch mode for CSSR
+  <tr><td>tfc<td>integer<td>1<td>RM2_Flexible&shy;Columns<td>Enable Flexible columns for CSSR
+  <tr><td>thn<td>integer<td>0<td>RM2_Honor&shy;Nowrap<td>Honour nowrap for CSSR
+  <tr><td>tir<td>integer<td>0<td>RM2_Ignore&shy;Rowspan&shy;When&shy;Restructuring<td>Ignore rowspan when restructuring the table for CSSR
+  <tr><td>tsh<td>integer<td>1<td>RM2_Split&shy;Hide&shy;Long&shy;Words<td>Split or hide long words for CSSR
+  <tr><td>ttm<td>integer<td class="tweak">0<td>RM2_Table&shy;Magic<td>Enable content magic for CSSR
+  <tr><td>ttt<td>integer<td>1<td>RM2_Table&shy;Strategy<td>Table strategy for CSSR
+  <tr class='section'><th colspan=5>[RM3]
+  <tr><td>aif<td>integer<td>0<td>RM3_Avoid&shy;Interlace&shy;Flicker<td>Avoid interlace flicker for AMSR
+  <tr><td>ape<td>integer<td>2<td>RM3_Absolutely&shy;Positioned&shy;Elements<td>Absolutely positioned elements for AMSR
+  <tr><td>asi<td>integer<td>1<td>RM3_Allow&shy;Scrollbars&shy;In&shy;IFrame<td>Allow scrollbar in iframes for AMSR
+  <tr><td>awb<td>integer<td>1<td>RM3_Allow&shy;Aggressive&shy;Word&shy;Breaking<td>Allow aggressive word breaking for AMSR
+  <tr><td>fla<td>integer<td class="tweak">13<td>RM3_Large<td>Font size in pixels for large for AMSR
+  <tr><td>fme<td>integer<td class="tweak">11<td>RM3_Medium<td>Font size in pixels for medium for AMSR
+  <tr><td>fsm<td>integer<td class="tweak">9<td>RM3_Small<td>Font size in pixels for small for AMSR
+  <tr><td>fxf<td>integer<td class="tweak">1<td>RM3_Flexible&shy;Fonts<td>Flexible fonts mode for AMSR
+  <tr><td>fxl<td>integer<td class="tweak">15<td>RM3_XLarge<td>Font size in pixels for x-large for AMSR
+  <tr><td>fxx<td>integer<td class="tweak">17<td>RM3_XXLarge<td>Font size in pixels for xx-large for AMSR
+  <tr><td>ibs<td>integer<td>1<td>RM3_Show&shy;Background&shy;Images<td>Show background images for AMSR
+  <tr><td>ida<td>integer<td>1<td>RM3_Download&shy;Images&shy;Asap<td>Download images ASAP for AMSR
+  <tr><td>ifl<td>integer<td>1<td>RM3_Float<td>Enable float for AMSR
+  <tr><td>ifs<td>integer<td>2<td>RM3_Flexible&shy;Image&shy;Sizes<td>Flexible replaced content sizes mode for AMSR
+  <tr><td>imw<td>integer<td class="tweak">30<td>RM3_Minimum&shy;Image&shy;Width<td>Minimum image width in percent for AMSR
+  <tr><td>irl<td>integer<td class="tweak">1<td>RM3_Remove&shy;Large&shy;Images<td>Remove large images for AMSR
+  <tr><td>iro<td>integer<td>0<td>RM3_Remove&shy;Ornamental&shy;Images<td>Remove ornamental images for AMSR
+  <tr><td>isi<td>integer<td class="tweak">2<td>RM3_Show&shy;Images<td>Show image mode for AMSR
+  <tr><td>iua<td>integer<td>0<td>RM3_Use&shy;Alt&shy;For&shy;Certain&shy;Images<td>Use alternative text for certain images for AMSR
+  <tr><td>map<td>integer<td>2<td>RM3_Absolute&shy;Positioning<td>Absolute positioning for AMSR
+  <tr><td>mas<td>integer<td>0<td>RM3_Allow&shy;Horizontal&shy;Scrollbar<td>Allow horizontal scrollbar for AMSR
+  <tr><td>mcs<td>integer<td class="tweak">500<td>RM3_Crossover&shy;Size<td>Crossover size in pixels for AMSR
+  <tr><td>mds<td>integer<td>2<td>RM3_Download&shy;And&shy;Apply&shy;Document&shy;Style&shy;Sheets<td>Download and apply document style sheets mode for AMSR
+  <tr><td>mfp<td>integer<td>2<td>RM3_Frames&shy;Policy<td>Frames policy mode for AMSR
+  <tr><td>mrm<td>integer<td>0<td>RM3_Respond&shy;To&shy;Media&shy;Type<td>Media type to respond to for AMSR
+  <tr><td>msh<td>integer<td>0<td>RM3_Media&shy;Style&shy;Handling<td>Media style handling for AMSR
+  <tr><td>mst<td>integer<td>3<td>RM3_Apply&shy;Mode&shy;Specific&shy;Tricks<td>Apply mode specific tricks for AMSR
+  <tr><td>mvd<td>integer<td>0<td>RM3_Honor&shy;Hidden<td>Honour visibility:hidden and display:none for AMSR
+  <tr><td>rfu<td>integer<td>3<td>RM3_Show&shy;IFrames<td>Show iframes for AMSR
+  <tr><td>shb<td>integer<td>0<td>RM3_Highlight&shy;Blocks<td>Highlight blocks for AMSR
+  <tr><td>tcc<td>integer<td>70<td>RM3_Minimum&shy;Text&shy;Color&shy;Contrast<td>Minimum text color contrast (0-255) for AMSR
+  <tr><td>tcd<td>integer<td>OP_&shy;RGB(0,0,0)<td>RM3_Text&shy;Color&shy;Dark<td>Dark text color (24-bit RGB value) for AMSR
+  <tr><td>tcl<td>integer<td>OP_&shy;RGB(255,255,255)<td>RM3_Text&shy;Color&shy;Light<td>Light text color (24-bit RGB value) for AMSR
+  <tr><td>tcn<td>integer<td>1<td>RM3_Convert&shy;Nbsp&shy;Into&shy;Normal&shy;Space<td>Convert nbsp into normal space for AMSR
+  <tr><td>tcs<td>integer<td>0<td>RM3_Column&shy;Stretch<td>Column stretch mode for AMSR
+  <tr><td>tfc<td>integer<td>1<td>RM3_Flexible&shy;Columns<td>Enable Flexible columns for AMSR
+  <tr><td>thn<td>integer<td>1<td>RM3_Honor&shy;Nowrap<td>Honour nowrap for AMSR
+  <tr><td>tir<td>integer<td>0<td>RM3_Ignore&shy;Rowspan&shy;When&shy;Restructuring<td>Ignore rowspan when restructuring the table for AMSR
+  <tr><td>tsh<td>integer<td>1<td>RM3_Split&shy;Hide&shy;Long&shy;Words<td>Split or hide long words for AMSR
+  <tr><td>ttm<td>integer<td class="tweak">0<td>RM3_Table&shy;Magic<td>Enable content magic for AMSR
+  <tr><td>ttt<td>integer<td>2<td>RM3_Table&shy;Strategy<td>Table strategy for AMSR
+  <tr class='section'><th colspan=5>[RM4]
+  <tr><td>aif<td>integer<td>0<td>RM4_Avoid&shy;Interlace&shy;Flicker<td>Avoid interlace flicker for MSR
+  <tr><td>ape<td>integer<td>2<td>RM4_Absolutely&shy;Positioned&shy;Elements<td>Absolutely positioned elements for MSR
+  <tr><td>asi<td>integer<td>1<td>RM4_Allow&shy;Scrollbars&shy;In&shy;IFrame<td>Allow scrollbar in iframes for MSR
+  <tr><td>awb<td>integer<td>1<td>RM4_Allow&shy;Aggressive&shy;Word&shy;Breaking<td>Allow aggressive word breaking for MSR
+  <tr><td>fla<td>integer<td class="tweak">13<td>RM4_Large<td>Font size in pixels for large for MSR
+  <tr><td>fme<td>integer<td class="tweak">11<td>RM4_Medium<td>Font size in pixels for medium for MSR
+  <tr><td>fsm<td>integer<td class="tweak">9<td>RM4_Small<td>Font size in pixels for small for MSR
+  <tr><td>fxf<td>integer<td class="tweak">2<td>RM4_Flexible&shy;Fonts<td>Flexible fonts mode for MSR
+  <tr><td>fxl<td>integer<td class="tweak">15<td>RM4_XLarge<td>Font size in pixels for x-large for MSR
+  <tr><td>fxx<td>integer<td class="tweak">17<td>RM4_XXLarge<td>Font size in pixels for xx-large for MSR
+  <tr><td>ibs<td>integer<td>2<td>RM4_Show&shy;Background&shy;Images<td>Show background images for MSR
+  <tr><td>ida<td>integer<td>1<td>RM4_Download&shy;Images&shy;Asap<td>Download images ASAP for MSR
+  <tr><td>ifl<td>integer<td>1<td>RM4_Float<td>Enable float for MSR
+  <tr><td>ifs<td>integer<td>2<td>RM4_Flexible&shy;Image&shy;Sizes<td>Flexible replaced content sizes mode for MSR
+  <tr><td>imw<td>integer<td class="tweak">0<td>RM4_Minimum&shy;Image&shy;Width<td>Minimum image width in percent for MSR
+  <tr><td>irl<td>integer<td class="tweak">0<td>RM4_Remove&shy;Large&shy;Images<td>Remove large images for MSR
+  <tr><td>iro<td>integer<td>0<td>RM4_Remove&shy;Ornamental&shy;Images<td>Remove ornamental images for MSR
+  <tr><td>isi<td>integer<td class="tweak">2<td>RM4_Show&shy;Images<td>Show image mode for MSR
+  <tr><td>iua<td>integer<td>0<td>RM4_Use&shy;Alt&shy;For&shy;Certain&shy;Images<td>Use alternative text for certain images for MSR
+  <tr><td>map<td>integer<td>2<td>RM4_Absolute&shy;Positioning<td>Absolute positioning for MSR
+  <tr><td>mas<td>integer<td>1<td>RM4_Allow&shy;Horizontal&shy;Scrollbar<td>Allow horizontal scrollbar for MSR
+  <tr><td>mcs<td>integer<td class="tweak">800<td>RM4_Crossover&shy;Size<td>Crossover size in pixels for MSR
+  <tr><td>mds<td>integer<td>2<td>RM4_Download&shy;And&shy;Apply&shy;Document&shy;Style&shy;Sheets<td>Download and apply document style sheets mode for MSR
+  <tr><td>mfp<td>integer<td>2<td>RM4_Frames&shy;Policy<td>Frames policy mode for MSR
+  <tr><td>mrm<td>integer<td>0<td>RM4_Respond&shy;To&shy;Media&shy;Type<td>Media type to respond to for MSR
+  <tr><td>msh<td>integer<td>0<td>RM4_Media&shy;Style&shy;Handling<td>Media style handling for MSR
+  <tr><td>mst<td>integer<td>4<td>RM4_Apply&shy;Mode&shy;Specific&shy;Tricks<td>Apply mode specific tricks for MSR
+  <tr><td>mvd<td>integer<td>0<td>RM4_Honor&shy;Hidden<td>Honour visibility:hidden and display:none for MSR
+  <tr><td>rfu<td>integer<td>3<td>RM4_Show&shy;IFrames<td>Show iframes for MSR
+  <tr><td>shb<td>integer<td>0<td>RM4_Highlight&shy;Blocks<td>Highlight blocks for MSR
+  <tr><td>tcc<td>integer<td>70<td>RM4_Minimum&shy;Text&shy;Color&shy;Contrast<td>Minimum text color contrast (0-255) for MSR
+  <tr><td>tcd<td>integer<td>OP_&shy;RGB(0,0,0)<td>RM4_Text&shy;Color&shy;Dark<td>Dark text color (24-bit RGB value) for MSR
+  <tr><td>tcl<td>integer<td>OP_&shy;RGB(255,255,255)<td>RM4_Text&shy;Color&shy;Light<td>Light text color (24-bit RGB value) for MSR
+  <tr><td>tcn<td>integer<td>0<td>RM4_Convert&shy;Nbsp&shy;Into&shy;Normal&shy;Space<td>Convert nbsp into normal space for MSR
+  <tr><td>tcs<td>integer<td>0<td>RM4_Column&shy;Stretch<td>Column stretch mode for MSR
+  <tr><td>tfc<td>integer<td>0<td>RM4_Flexible&shy;Columns<td>Enable Flexible columns for MSR
+  <tr><td>thn<td>integer<td>1<td>RM4_Honor&shy;Nowrap<td>Honour nowrap for MSR
+  <tr><td>tir<td>integer<td>0<td>RM4_Ignore&shy;Rowspan&shy;When&shy;Restructuring<td>Ignore rowspan when restructuring the table for MSR
+  <tr><td>tsh<td>integer<td>1<td>RM4_Split&shy;Hide&shy;Long&shy;Words<td>Split or hide long words for MSR
+  <tr><td>ttm<td>integer<td class="tweak">0<td>RM4_Table&shy;Magic<td>Enable content magic for MSR
+  <tr><td>ttt<td>integer<td>2<td>RM4_Table&shy;Strategy<td>Table strategy for MSR
+  <tr class='section'><th colspan=5>[RM5]
+  <tr><td>aif<td>integer<td>1<td>RM5_Avoid&shy;Interlace&shy;Flicker<td>Avoid interlace flicker for TVR
+  <tr><td>ape<td>integer<td>2<td>RM5_Absolutely&shy;Positioned&shy;Elements<td>Absolutely positioned elements for TVR
+  <tr><td>asi<td>integer<td>1<td>RM5_Allow&shy;Scrollbars&shy;In&shy;IFrame<td>Allow scrollbar in iframes for TVR
+  <tr><td>awb<td>integer<td>1<td>RM5_Allow&shy;Aggressive&shy;Word&shy;Breaking<td>Allow aggressive word breaking for TVR
+  <tr><td>fla<td>integer<td class="tweak">21<td>RM5_Large<td>Font size in pixels for large for TVR
+  <tr><td>fme<td>integer<td class="tweak">18<td>RM5_Medium<td>Font size in pixels for medium for TVR
+  <tr><td>fsm<td>integer<td class="tweak">18<td>RM5_Small<td>Font size in pixels for small for TVR
+  <tr><td>fxf<td>integer<td class="tweak">2<td>RM5_Flexible&shy;Fonts<td>Flexible fonts mode for TVR
+  <tr><td>fxl<td>integer<td class="tweak">24<td>RM5_XLarge<td>Font size in pixels for x-large for TVR
+  <tr><td>fxx<td>integer<td class="tweak">32<td>RM5_XXLarge<td>Font size in pixels for xx-large for TVR
+  <tr><td>ibs<td>integer<td>1<td>RM5_Show&shy;Background&shy;Images<td>Show background images for TVR
+  <tr><td>ida<td>integer<td>1<td>RM5_Download&shy;Images&shy;Asap<td>Download images ASAP for TVR
+  <tr><td>ifl<td>integer<td>1<td>RM5_Float<td>Enable float for TVR
+  <tr><td>ifs<td>integer<td>2<td>RM5_Flexible&shy;Image&shy;Sizes<td>Flexible replaced content sizes mode for TVR
+  <tr><td>imw<td>integer<td class="tweak">20<td>RM5_Minimum&shy;Image&shy;Width<td>Minimum image width in percent for TVR
+  <tr><td>irl<td>integer<td class="tweak">0<td>RM5_Remove&shy;Large&shy;Images<td>Remove large images for TVR
+  <tr><td>iro<td>integer<td>0<td>RM5_Remove&shy;Ornamental&shy;Images<td>Remove ornamental images for TVR
+  <tr><td>isi<td>integer<td class="tweak">2<td>RM5_Show&shy;Images<td>Show image mode for TVR
+  <tr><td>iua<td>integer<td>0<td>RM5_Use&shy;Alt&shy;For&shy;Certain&shy;Images<td>Use alternative text for certain images for TVR
+  <tr><td>map<td>integer<td>2<td>RM5_Absolute&shy;Positioning<td>Absolute positioning for TVR
+  <tr><td>mas<td>integer<td>0<td>RM5_Allow&shy;Horizontal&shy;Scrollbar<td>Allow horizontal scrollbar for TVR
+  <tr><td>mcs<td>integer<td>0<td>RM5_Crossover&shy;Size<td>Crossover size in pixels for TVR
+  <tr><td>mds<td>integer<td>2<td>RM5_Download&shy;And&shy;Apply&shy;Document&shy;Style&shy;Sheets<td>Download and apply document style sheets mode for TVR
+  <tr><td>mfp<td>integer<td>2<td>RM5_Frames&shy;Policy<td>Frames policy mode for TVR
+  <tr><td>mrm<td>integer<td>2<td>RM5_Respond&shy;To&shy;Media&shy;Type<td>Media type to respond to for TVR
+  <tr><td>msh<td>integer<td>0<td>RM5_Media&shy;Style&shy;Handling<td>Media style handling for TVR
+  <tr><td>mst<td>integer<td>5<td>RM5_Apply&shy;Mode&shy;Specific&shy;Tricks<td>Apply mode specific tricks for TVR
+  <tr><td>mvd<td>integer<td>0<td>RM5_Honor&shy;Hidden<td>Honour visibility:hidden and display:none for TVR
+  <tr><td>rfu<td>integer<td>3<td>RM5_Show&shy;IFrames<td>Show iframes for TVR
+  <tr><td>shb<td>integer<td>0<td>RM5_Highlight&shy;Blocks<td>Highlight blocks for TVR
+  <tr><td>tcc<td>integer<td>60<td>RM5_Minimum&shy;Text&shy;Color&shy;Contrast<td>Minimum text color contrast (0-255) for TVR
+  <tr><td>tcd<td>integer<td>OP_&shy;RGB(0,0,0)<td>RM5_Text&shy;Color&shy;Dark<td>Dark text color (24-bit RGB value) for TVR
+  <tr><td>tcl<td>integer<td>OP_&shy;RGB(240,240,240)<td>RM5_Text&shy;Color&shy;Light<td>Light text color (24-bit RGB value) for TVR
+  <tr><td>tcn<td>integer<td>1<td>RM5_Convert&shy;Nbsp&shy;Into&shy;Normal&shy;Space<td>Convert nbsp into normal space for TVR
+  <tr><td>tcs<td>integer<td>0<td>RM5_Column&shy;Stretch<td>Column stretch mode for TVR
+  <tr><td>tfc<td>integer<td>1<td>RM5_Flexible&shy;Columns<td>Enable Flexible columns for TVR
+  <tr><td>thn<td>integer<td>1<td>RM5_Honor&shy;Nowrap<td>Honour nowrap for TVR
+  <tr><td>tir<td>integer<td>0<td>RM5_Ignore&shy;Rowspan&shy;When&shy;Restructuring<td>Ignore rowspan when restructuring the table for TVR
+  <tr><td>tsh<td>integer<td>1<td>RM5_Split&shy;Hide&shy;Long&shy;Words<td>Split or hide long words for TVR
+  <tr><td>ttm<td>integer<td class="tweak">0<td>RM5_Table&shy;Magic<td>Enable content magic for TVR
+  <tr><td>ttt<td>integer<td>2<td>RM5_Table&shy;Strategy<td>Table strategy for TVR
+  <tr class='section'><th colspan=5>[SVG]
+  <tr><td>Rendering Quality<td>integer<td class="tweak">25<td>SVGRendering&shy;Quality<td>Smoothness of curves in SVG
+  <tr><td>Target Framerate<td>integer<td class="tweak">29<td>SVGTarget&shy;Frame&shy;Rate<td>The target framerate in SVG
+  <tr class='section'><th colspan=5>[User Display Mode]
+  <tr><td>Author CSS<td>boolean<td>false (0)<td>UM_Author&shy;CSS<td>Use author's CSS in User Mode
+  <tr><td>Author Font and Colors<td>boolean<td>false (0)<td>UM_Author&shy;Fonts<td>Use author's fonts in User Mode
+  <tr><td>User CSS<td>boolean<td>true (1)<td>UM_User&shy;CSS<td>Use user's CSS in User Mode
+  <tr><td>User Font and Colors<td>boolean<td>true (1)<td>UM_User&shy;Fonts<td>Use user's fonts in User Mode
+  <tr><td>User Link Settings<td>boolean<td>true (1)<td>UM_User&shy;Links<td>Use user's links in User Mode
+  <tr class='section'><th colspan=5>[User Prefs]
+  <tr><td>Allow script to change status<td>boolean<td>true (1)<td>Allow&shy;Script&shy;To&shy;Change&shy;Status<td>Allow script to update status field
+  <tr><td>Allow script to hide address<td>boolean<td class="tweak">false (0)<td>Allow&shy;Script&shy;To&shy;Hide&shy;URL<td>Allowed script to hide URL field in popups
+  <tr><td>Allow script to lower window<td>boolean<td>false (0)<td>Allow&shy;Script&shy;To&shy;Lower&shy;Window<td>Allow script to bring document window to background
+  <tr><td>Allow script to move window<td>boolean<td>true (1)<td>Allow&shy;Script&shy;To&shy;Move&shy;Window<td>Allow script to move document window
+  <tr><td>Allow script to raise window<td>boolean<td>false (0)<td>Allow&shy;Script&shy;To&shy;Raise&shy;Window<td>Allow script to bring document window to front
+  <tr><td>Allow script to receive right clicks<td>boolean<td>true (1)<td>Allow&shy;Script&shy;To&shy;Receive&shy;Right&shy;Clicks<td>Allow script to capture right mouse button
+  <tr><td>Allow script to resize window<td>boolean<td>true (1)<td>Allow&shy;Script&shy;To&shy;Resize&shy;Window<td>Allow script to resize document window
+  <tr><td>Alt Image Border<td>boolean<td>true (1)<td>Alt&shy;Image&shy;Border&shy;Enabled<td>Enables border for image ALT texts.
+  <tr><td>Auto Dropdown<td>boolean<td>true (1)<td>Auto&shy;Drop&shy;Down<td>Drop-down auto completion
+  <tr><td>Automatic Select Menu<td>boolean<td class="tweak">true (1)<td>Automatic&shy;Select&shy;Menu<td>Open the hotclick menu automatically after double click
+  <tr><td>Automatically reparse XHTML with parsing errors as HTML<td>boolean<td class="tweak">false (0)<td>Reparse&shy;Failed&shy;XHTML<td>If parsing errors occured during parsing XHTML, automatically reparse document as HTML
+  <tr><td>Avoid Flicker<td>boolean<td>true (1)<td>Smooth&shy;Display<td>Avoid flicker (double buffering)
+  <tr><td>Default Line Height Cyrillic<td>integer<td>-1<td>Default&shy;Line&shy;Height&shy;Cyrillic<td>Line height to use for pages encoded with a Cyrillic encoding, when line height is not explicitly specified. Values >= 0 represent the line height in relation to the font height in permille, e.g 1200 for 1.2. Use -1 for default line height.
+  <tr><td>Default Line Height General<td>integer<td>-1<td>Default&shy;Line&shy;Height&shy;General<td>Line height to use for pages not covered by the following preferences, when line height is not explicitly specified. Values >= 0 represent the line height in relation to the font height in permille, e.g 1200 for 1.2. Use -1 for default line height.
+  <tr><td>Default Line Height Japanese<td>integer<td>1200<td>Default&shy;Line&shy;Height&shy;Japanese<td>Line height to use for pages encoded with a Japanese encoding, when line height is not explicitly specified. Values >= 0 represent the line height in relation to the font height in permille, e.g 1200 for 1.2. Use -1 for default line height.
+  <tr><td>Default Line Height Korean<td>integer<td>-1<td>Default&shy;Line&shy;Height&shy;Korean<td>Line height to use for pages encoded with a Korean encoding, when line height is not explicitly specified. Values >= 0 represent the line height in relation to the font height in permille, e.g 1200 for 1.2. Use -1 for default line height.
+  <tr><td>Default Line Height Simplified Chinese<td>integer<td>1200<td>Default&shy;Line&shy;Height&shy;Simplified&shy;Chinese<td>Line height to use for pages encoded with a simplified Chinese encoding, when line height is not explicitly specified. Values >= 0 represent the line height in relation to the font height in permille, e.g 1200 for 1.2. Use -1 for default line height.
+  <tr><td>Default Line Height Traditional Chinese<td>integer<td>1200<td>Default&shy;Line&shy;Height&shy;Traditional&shy;Chinese<td>Line height to use for pages encoded with a traditional Chinese encoding, when line height is not explicitly specified. Values >= 0 represent the line height in relation to the font height in permille, e.g 1200 for 1.2. Use -1 for default line height.
+  <tr><td>Disable Highlight Upon Outline<td>boolean<td class="tweak">false (0)<td>Disable&shy;Highlight&shy;Upon&shy;Outline<td>When TRUE, a navigated element won't be highlighted if it has an invisible outline that is explicitly set in some style sheet. Invisible outline means 'outline:none' or an outline that has zero width.
+  <tr><td>Document Mode<td>integer<td>CSS_&shy;FULL<td>Document&shy;Mode<td>CSS usage settings
+  <tr><td>Enable On Demand Plugin<td>boolean<td>false (0)<td>Enable&shy;On&shy;Demand&shy;Plugin<td>Enable not loading plugins until activated by the user
+  <tr><td>Enable On Demand Plugin Placeholder<td>boolean<td class="tweak">true (1)<td>Enable&shy;On&shy;Demand&shy;Plugin&shy;Placeholder<td>Enable displaying an image as placeholder for on demand plugins
+  <tr><td>Enable Scrollbar Colors<td>boolean<td class="tweak">false (0)<td>Enable&shy;Scrollbar&shy;Colors<td>Enable IE CSS extension for colors on scrollbars
+  <tr><td>Enable Styling On Forms<td>boolean<td class="tweak">true (1)<td>Enable&shy;Styling&shy;On&shy;Forms<td>Enable CSS on forms.
+  <tr><td>Enable Webfonts<td>boolean<td class="tweak">true (1)<td>Enable&shy;Webfonts<td>Enable downloadable fonts
+  <tr><td>Fallback HTML Encoding<td>string<td>""<td>Default&shy;Encoding<td>Global default HTML encoding
+  <tr><td>First Update Delay<td>integer<td class="tweak">15000<td>First&shy;Update&shy;Delay<td>Time in milliseconds from the server response that we are prepared to with until we see anything painted. The higher, the likelier we do only a single good paint. The lower, the less yout have to wait to see something, but the more likely the first paint only has unusable contents. In general it's best to keep this high and instead work with "First Styled Update Delay" which is a slightly shorter timer.
+  <tr><td>FlexRoot Max Width<td>integer<td class="tweak">0<td>Flex&shy;Root&shy;Max&shy;Width<td>Max-width of flex-root (0 means disable flex-root)
+  <tr><td>FlexRoot Min Width<td>integer<td>0<td>Flex&shy;Root&shy;Min&shy;Width<td>Min-width of flex-root (Ignored if FlexRootMaxWidth is 0. FlexRootMinWidth=0 means use viewport width)
+  <tr><td>Force Encoding<td>string<td>""<td>Force&shy;Encoding<td>Global overridden encoding
+  <tr><td>Format Unstyled XML<td>boolean<td>true (1)<td>Format&shy;Unstyled&shy;XML<td>Enables pretty printing of unstyled XML
+  <tr><td>Initial Yield Reflow Time<td>integer<td>0<td>Initial&shy;Yield&shy;Reflow&shy;Time<td>Try to keep reflow time less than this value before returning to the message loop. Value 0 means yield off
+  <tr><td>Left-handed UI<td>boolean<td>false (0)<td>Left&shy;Handed&shy;UI<td>Position UI elements for southpaws. Intended for use on tablet/pen-input devices.
+  <tr><td>Limit Paragraph Width<td>boolean<td class="tweak">false (0)<td>Limit&shy;Paragraph&shy;Width<td>MSR-light, limit the width of a line to the size of the window
+  <tr><td>Max Marquee Loops<td>integer<td class="tweak">-1<td>Maximum&shy;Marquee&shy;Loops<td>Maximum number of loops for marquees (-1 for infinite)
+  <tr><td>Max bytes textarea<td>integer<td>10000<td>Maximum&shy;Bytes&shy;Textarea<td>Maximum bytes of content for a textarea
+  <tr><td>Maximum Font Size<td>integer<td>10000<td>Max&shy;Font&shy;Size<td>Maximum font size
+  <tr><td>Minimum Font Size<td>integer<td class="tweak">0<td>Min&shy;Font&shy;Size<td>Minimum font size
+  <tr><td>Password Character Placeholder<td>string<td>WIDGETS_&shy;PASSWORD_&shy;CHAR<td>Password&shy;Character&shy;Placeholder<td>The UNICODE character to use as a placeholder for password fields. Only the first character will be used.
+  <tr><td>RTL Flips UI<td>boolean<td>true (1)<td>RTLFlips&shy;UI<td>Move scrollbars and other UI elements to the opposite side when displaying right-to-left content.
+  <tr><td>SSR Max Width<td>integer<td>240<td>SSRMax&shy;Width<td>Max width in SSR/CSSR, effectively the column width
+  <tr><td>Save Password Protected Pages<td>boolean<td>true (1)<td>Save&shy;Password&shy;Protected&shy;Pages<td>Allow saving password protected pages to .win files
+  <tr><td>Scale<td>integer<td>100<td>Scale<td>Zoom factor (percent)
+  <tr><td>Scroll Is Pan<td>boolean<td class="tweak">false (0)<td>Scroll&shy;Is&shy;Pan<td>Enable "grab and scroll" mode
+  <tr><td>Show IME Password<td>boolean<td>true (1)<td>Show&shy;IMEPassword<td>Make the last character visible for short time.
+  <tr><td>Smooth Scrolling<td>boolean<td class="tweak">false (0)<td>Smooth&shy;Scrolling<td>Enable smooth scrolling
+  <tr><td>Styled First Update Timeout<td>integer<td class="tweak">8000<td>Styled&shy;First&shy;Update&shy;Timeout<td>Time in milliseconds from the server response that we will delay a paint to make sure that the first paint has enough content to look good and meaningful. This timer will only be used if we have all known stylesheet data. Otherwise we will wait until "First Update Delay" has been reached. For this to be meaningful it has to be set to a value lower than "First Update Delay" to be meaningful.
+  <tr><td>Update Delay<td>integer<td class="tweak">200<td>Update&shy;Delay<td>Delay in milliseconds between paints during page load. A value of 200 (ms) means we'll limit painting to 5 fps while the page is still loading. A high number here means faster page loads. A low number means high fps during page load but slower page loads.
+  <tr><td>Yield Reflow Time Increase Rate<td>integer<td>10<td>Yield&shy;Reflow&shy;Time&shy;Increase&shy;Rate<td>How fast should the maximum reflow time increase if we cant manage inside that time.
+  <tr class='section'><th colspan=5>[Visited Link]
+  <tr><td>Color<td>boolean<td>true (1)<td>Visited&shy;Link&shy;Has&shy;Color<td>Visited link appearance: Does link show in different color?
+  <tr><td>StrikeThrough<td>boolean<td>false (0)<td>Visited&shy;Link&shy;Has&shy;Strike&shy;Through<td>Visited link appearance: Are links strike-throughed?
+  <tr><td>Underline<td>boolean<td class="tweak">true (1)<td>Visited&shy;Link&shy;Has&shy;Underline<td>Visited link appearance: Are links underlined?
+  <tr><td>Visited Links State<td>integer<td>2<td>Visited&shy;Links&shy;State<td>Preference to handle the usage of :visited pseudo class. 0 - disable, 1 - same domain only, 2 - enable
+ </table>
+ <h2 id="pc_core">pc_core</h2>
+ <table>
+  <tr class="head"><th>Setting<th>Type<th>Default value<th>Name<th>Description
+  <tr class='section'><th colspan=5>[Cache]
+  <tr><td>Application Cache Quota<td>integer<td>DEFAULT_&shy;APPLICATION_&shy;CACHE_&shy;DISK_&shy;QUOTA<td>Default&shy;Application&shy;Cache&shy;Quota<td>Default maximum size for offline application caches in kbytes
+  <tr><td>Cache Docs<td>boolean<td class="tweak">true (1)<td>Ram&shy;Cache&shy;Docs<td>Enable caching of documents in memory
+  <tr><td>Cache Figs<td>boolean<td class="tweak">true (1)<td>Ram&shy;Cache&shy;Figs<td>Enable caching of images in memory
+  <tr><td>Document<td>integer<td class="tweak">500<td>Document&shy;Cache&shy;Size<td>Size of document RAM cache in kbytes
+  <tr><td>Figure<td>integer<td class="tweak">400<td>Image&shy;RAMCache&shy;Size<td>Size of image RAM cache in kbytes
+  <tr><td>SVG Cache Size<td>integer<td class="tweak">40960<td>SVGRAMCache&shy;Size<td>Size of svg image RAM cache in kbytes
+  <tr class='section'><th colspan=5>[Install]
+  <tr><td>Preference URL<td>string<td>"http://xml.opera.com/spoof/"<td>Preference&shy;Server<td>URL of Operas customized preference server
+  <tr class='section'><th colspan=5>[Link]
+  <tr><td>Always Expand Nearby Elements<td>boolean<td>false (0)<td>Always&shy;Expand&shy;Links<td>Always expand nearby elements, even if user clicks directly inside an element and there are no nearby elements
+  <tr><td>Detect Nearby Elements<td>boolean<td>false (0)<td>Detect&shy;Nearby&shy;Elements<td>Detect nearby anchor and form elements within a radius specified by NearbyElementsRadius
+  <tr><td>Expanded Minimum Size<td>integer<td>30<td>Expanded&shy;Minimum&shy;Size<td>Expanded elements window minimum size. Elements will be drawn scaled or positioned centered inside if they are not big enough.
+  <tr><td>Nearby Elements Radius<td>integer<td>22<td>Nearby&shy;Elements&shy;Radius<td>Radius (in points (1/72 inch)) within which to look for nearby anchor and form elements. NearbyElementsRadius must be enabled for this to have any effect. The default of 22pt is about 7.6mm, which is allegedly Microsoft's definition of finger size.
+  <tr class='section'><th colspan=5>[Performance]
+  <tr><td>Lag Threshold For Animation Throttling<td>integer<td>50<td>Lag&shy;Threshold&shy;For&shy;Animation&shy;Throttling<td>The average lag (in ms) of messages in dispatcher's queue that should be considered as throttling trigger. This value is a threshold used to determine whether the throttling of animated content is needed or not.
+  <tr><td>Switch Animation Throttling Interval<td>integer<td>2000<td>Switch&shy;Animation&shy;Throttling&shy;Interval<td>The minimal interval (in ms) that should be kept between enabling/disabling the throttling of animated content. This value is used used to not switch the throttling to often.
+  <tr class='section'><th colspan=5>[Personal Info]
+  <tr><td>Address<td>string<td>""<td>Address<td>Address for form autocomplete
+  <tr><td>City<td>string<td>""<td>City<td>City for form autocomplete
+  <tr><td>Country<td>string<td>""<td>Country<td>Country for form autocomplete
+  <tr><td>EMail<td>string<td>""<td>EMail<td>E-mail address for form autocomplete
+  <tr><td>First Name<td>string<td>""<td>Firstname<td>First name for form autocomple
+  <tr><td>Home Page<td>string<td>""<td>Home<td>Home page for form autocomplete
+  <tr><td>Special 1<td>string<td>""<td>Special1<td>Extra field 1 for form autocomplete
+  <tr><td>Special 2<td>string<td>""<td>Special2<td>Extra field 2 for form autocomplete
+  <tr><td>Special 3<td>string<td>""<td>Special3<td>Extra field 3 for form autocomplete
+  <tr><td>State<td>string<td>""<td>State<td>State for form autocomplete
+  <tr><td>Surname<td>string<td>""<td>Surname<td>Surname for form autocomplete
+  <tr><td>Telefax<td>string<td>""<td>Telefax<td>Mobile/telefax number for form autocomplete
+  <tr><td>Telephone<td>string<td>""<td>Telephone<td>Telephone number for form autocomplete
+  <tr><td>Zip<td>string<td>""<td>Zip<td>Zip code for form autocomplete
+  <tr class='section'><th colspan=5>[User Agent]
+  <tr><td>Allow Components In UA String Comment<td>boolean<td class="tweak">true (1)<td>Allow&shy;Components&shy;In&shy;UAString&shy;Comment<td>Allow adding extra components to UA string
+  <tr class='section'><th colspan=5>[User Prefs]
+  <tr><td>AutocompleteOff Disables Wand<td>boolean<td>false (0)<td>Autocomplete&shy;Off&shy;Disables&shy;Wand<td>Enable support for autocomplete="off"
+  <tr><td>Blocklist Location<td>string<td>"http://get.geo.opera.com/res/servicefiles/hardware-acceleration/"<td>Blocklist&shy;Location<td>location of the blocklist files used to determine whether hw acc can be enabled
+  <tr><td>Blocklist Refetch Delay<td>integer<td>60*60*24*7<td>Blocklist&shy;Refetch&shy;Delay<td>how long to wait, in seconds, before updating the blocklist
+  <tr><td>Blocklist Retry Delay<td>integer<td>60*10<td>Blocklist&shy;Retry&shy;Delay<td>how long to wait, in seconds, before a new attempt is made to fetch blocklist on failure
+  <tr><td>Color Scheme Mode<td>integer<td>0<td>Color&shy;Scheme&shy;Mode<td>Auto color scheme system enabled
+  <tr><td>Console Error Log Enabled<td>boolean<td>false (0)<td>Use&shy;Error&shy;Log<td>Enable logging of console errors to file
+  <tr><td>Console Error Log Filter<td>string<td>"javascript"<td>Error&shy;Log&shy;Filter<td>Filter to use in console error log
+  <tr><td>Custom User-Agent<td>string<td>""<td>Custom&shy;UAString<td>Custom User-Agent string
+  <tr><td>Enable Gesture<td>boolean<td>true (1)<td>Enable&shy;Gesture<td>Enable mouse gestures
+  <tr><td>Enable Hardware Acceleration<td>integer<td class="tweak">1<td>Enable&shy;Hardware&shy;Acceleration<td>Set 0 to disable hardware acceleration, 1 for autodetect (default), 2 to force on if available (use at your own risk).
+  <tr><td>Enable Mouse Flips<td>boolean<td>true (1)<td>Enable&shy;Mouse&shy;Flips<td>Enable mouse flip back and forward
+  <tr><td>Enable Speed Dial<td>boolean<td>true (1)<td>Enable&shy;Speed&shy;Dial<td>Set to false to disable speed dial
+  <tr><td>Enable TV Store<td>boolean<td>false (0)<td>Enable&shy;TVStore<td>Enable TV Store functionality
+  <tr><td>Enable Wand<td>boolean<td class="tweak">true (1)<td>Enable&shy;Wand<td>Enable Wand support
+  <tr><td>Enable WebGL<td>integer<td class="tweak">1<td>Enable&shy;Web&shy;GL<td>Set 0 to disable WebGL, 1 for autodetect (default), 2 to force on if possible (use at your own risk).
+  <tr><td>Enable config URL<td>boolean<td>true (1)<td>Opera&shy;Config&shy;Enabled<td>Enable opera:config
+  <tr><td>Gesture Threshold<td>integer<td>5<td>Gesture&shy;Threshold<td>Threshold for mouse gestures
+  <tr><td>Home URL<td>string<td class="tweak">"http://portal.opera.com"<td>Home&shy;URL<td>Global start page
+  <tr><td>Last Sitepatch Update Check<td>integer<td>0<td>Last&shy;Sitepatch&shy;Update&shy;Check<td>Identifies when the last sitepatch update check was performed. The integer represents the number of seconds since epoch, when the last update check was performed.
+  <tr><td>Last Used Spellcheck Language<td>string<td>""<td>Last&shy;Used&shy;Spellcheck&shy;Language<td>Last language used for spellchecking
+  <tr><td>Max Console Messages<td>integer<td class="tweak">512<td>Max&shy;Console&shy;Messages<td>Maximum number of messages in the console
+  <tr><td>Max Direct History Lines<td>integer<td class="tweak">200<td>Max&shy;Direct&shy;History<td>Maximum number of direct addressing history items
+  <tr><td>Max Global History Lines<td>integer<td class="tweak">50<td>Max&shy;Global&shy;History<td>Maximum number of global history items
+  <tr><td>Max Window History Lines<td>integer<td class="tweak">30<td>Max&shy;Window&shy;History<td>Maximum number of window history items
+  <tr><td>Maximum bookmark folder depth<td>integer<td>1000000<td>Bookmarks&shy;Max&shy;Folder&shy;Depth<td>Maximum allowed bookmark folder depth
+  <tr><td>Maximum length of created time string<td>integer<td class="tweak">32<td>Bookmarks&shy;Created&shy;Max&shy;Length<td>Maximum allowed length of created time string
+  <tr><td>Maximum length of description<td>integer<td class="tweak">2048<td>Bookmarks&shy;Desc&shy;Max&shy;Length<td>Maximum allowed length of bookmark description
+  <tr><td>Maximum length of favicon file name<td>integer<td class="tweak">2048<td>Bookmarks&shy;Favicon&shy;File&shy;Max&shy;Length<td>Maximum allowed length of bookmark favicon file name
+  <tr><td>Maximum length of shortname<td>integer<td class="tweak">2048<td>Bookmarks&shy;Sn&shy;Max&shy;Length<td>Maximum allowed length of bookmark shortname
+  <tr><td>Maximum length of thumbnail file name<td>integer<td class="tweak">2048<td>Bookmarks&shy;Thumbnail&shy;File&shy;Max&shy;Length<td>Maximum allowed length of bookmark thumbnail file name
+  <tr><td>Maximum length of title<td>integer<td class="tweak">2048<td>Bookmarks&shy;Title&shy;Max&shy;Length<td>Maximum allowed length of bookmark title
+  <tr><td>Maximum length of url<td>integer<td class="tweak">2048<td>Bookmarks&shy;Url&shy;Max&shy;Length<td>Maximum allowed length of bookmark url
+  <tr><td>Maximum length of visited time string<td>integer<td class="tweak">32<td>Bookmarks&shy;Visited&shy;Max&shy;Length<td>Maximum allowed length of visited time string
+  <tr><td>Maximum number of bookmarks<td>integer<td>1000000<td>Bookmarks&shy;Max&shy;Count<td>Maximum total number of bookmarks
+  <tr><td>Maximum number per folder<td>integer<td>1000000<td>Bookmarks&shy;Max&shy;Count&shy;Per&shy;Folder<td>Maximum allowed bookmark count per folder
+  <tr><td>Number Of Hits<td>integer<td>0<td>Preferred&shy;Number&shy;Of&shy;Hits<td>Preferred number of search hits
+  <tr><td>Overrides Server Timestamp<td>integer<td>0<td>Spoof&shy;Server&shy;Time&shy;Stamp<td>Timestamp of the overrides file which is currently available at the server. This value is different from SpoofTimeStamp if an overrides file update is available on the server, but the update was not yet downloaded and installed.
+  <tr><td>Overrides Timestamp<td>integer<td>0<td>Spoof&shy;Time&shy;Stamp<td>Timestamp of the currently used overrides file, used when checking for updates.
+  <tr><td>Preferences Version<td>integer<td>0<td>Preference&shy;Upgrade<td>Internal flag for prefs for upgrades
+  <tr><td>Preferred renderer<td>integer<td class="tweak">0<td>Preferred&shy;Renderer<td>Set to 0 for OpenGL, 1 for DX10 (Hardware), 2 for DX10 (Warp).
+  <tr><td>Protocols List Server Timestamp<td>integer<td>0<td>Protocols&shy;List&shy;Server&shy;Time&shy;Stamp<td>Timestamp of the handler-ignore.ini file which is currently available at the server. This value is different from ProtocolsWLTimeStamp if an handlers-ignore.ini file update is available on the server, but the update was not yet downloaded and installed.
+  <tr><td>Protocols List Timestamp<td>integer<td>0<td>Protocols&shy;List&shy;Time&shy;Stamp<td>Timestamp of the currently used handler-ignore.ini file, used when checking for updates.
+  <tr><td>Reverse Button Flipping<td>boolean<td>-1<td>Reverse&shy;Button&shy;Flipping<td>Use left-handed flipback/flipforward gestures
+  <tr><td>Save policy for bookmarks<td>integer<td>3<td>Bookmarks&shy;Save&shy;Policy<td>Save policy used when bookmarks have changed
+  <tr><td>Scroll Step<td>integer<td class="tweak">50<td>Scroll&shy;Step<td>Percent to scroll with arrow key in desktop mode
+  <tr><td>Scroll Step Handheld<td>integer<td>25<td>Scroll&shy;Step&shy;Handheld<td>Percent to scroll with arrow key in handheld mode
+  <tr><td>Scroll Step Horizontal<td>integer<td class="tweak">5<td>Scroll&shy;Step&shy;Horizontal<td>Percent to scroll horizontally with arrow key
+  <tr><td>Search Field On Error Pages<td>boolean<td>true (1)<td>Enable&shy;Search&shy;Field&shy;Error&shy;Page<td>Adds a form with a search field on error pages using the user's default search engine
+  <tr><td>Skin scale<td>integer<td>100<td>Skin&shy;Scale<td>Zoom for skin images in percent
+  <tr><td>Special effects<td>boolean<td class="tweak">false (0)<td>Special&shy;Effects<td>Enable skin special effects
+  <tr><td>Spellcheck enabled by default<td>boolean<td>true (1)<td>Spellcheck&shy;Enabled&shy;By&shy;Default<td>Determine if spellchecking should be enabled by default
+  <tr><td>Timeout value for bookmark save<td>integer<td>BOOKMARKS_&shy;DEFAULT_&shy;SAVE_&shy;TIMEOUT<td>Bookmarks&shy;Save&shy;Timeout<td>Timeout value in milliseconds to wait before saving bookmark changes
+  <tr><td>Visited Pages<td>boolean<td>true (1)<td>Visited&shy;Pages<td>Enable/Disable visited pages indexing
+  <tr><td>Wand Autosubmit<td>boolean<td class="tweak">true (1)<td>Wand&shy;Autosubmit<td>Wand submits forms data automatically
+ </table>
+ <h2 id="prefscollectiondesktopui">PrefsCollectionDesktopUI</h2>
+ <table>
+  <tr class="head"><th>Setting<th>Type<th>Default value<th>Name<th>Description
+  <tr class='section'><th colspan=5>[Auto Update]
+  <tr><td>Add-ons Check Interval<td>integer<td>259200<td>Update&shy;Check&shy;Interval&shy;Gadgets<td>This setting holds the interval Opera checks for gadgets (extensions, unite, widgets) updates (in seconds). Min is one day, max is 30 days, default 3 days.
+  <tr><td>Auto Update Responded<td>boolean<td>false (0)<td>Auto&shy;Update&shy;Responded<td>This is set after the first response from the autoupdate server. This will separate the first installs from the upgrades
+  <tr><td>Auto Update State<td>integer<td>0<td>Auto&shy;Update&shy;State<td>This setting holds the state of the automatic update system, which are: No update available, Update on server, Update downloaded and Update installation started, which are represented by the integers [0,3].
+  <tr><td>Autoupdate Geo Server<td>string<td>"https://autoupdate.geo.opera.com/"<td>Auto&shy;Update&shy;Geo&shy;Server<td>The address of the Geo-DNS autoupdate server. Used for the metrics.
+  <tr><td>Autoupdate Server<td>string<td class="tweak">"http://xml.opera.com/autoupdate"<td>Auto&shy;Update&shy;Server<td>The address of the autoupdate server
+  <tr><td>Browser JS Time<td>integer<td>0<td>Browser&shy;JSTime<td>Holds the time of the last downloaded browser.js file
+  <tr><td>Country Code<td>string<td>""<td>Au&shy;Country&shy;Code<td>Sets which region settings to use for the region of the world you are in. Setting is sent from the Autoupdate server.
+  <tr><td>Delayed Update Check Interval<td>integer<td>0<td>Delayed&shy;Update&shy;Check&shy;Interval<td>This setting holds the delayed interval Opera checks for updates (in seconds) when server is not responding
+  <tr><td>Dictionary Time<td>integer<td>0<td>Dictionary&shy;Time<td>Holds the time of the last downloaded dictionaries.xml
+  <tr><td>Download All Snapshots<td>boolean<td>true (1)<td>Download&shy;All&shy;Snapshots<td>Set to download all snapshots
+  <tr><td>Handlers Ignore Time<td>integer<td>0<td>Handlers&shy;Ignore&shy;Time<td>Holds the time of the last downloaded handlers ignore file
+  <tr><td>Hardware Blocklist Time<td>integer<td>0<td>Hardware&shy;Blocklist&shy;Time<td>Holds the time of the last downloaded hardware blocklist
+  <tr><td>Plugin Auto Install Enabled<td>boolean<td>true (1)<td>Plugin&shy;Auto&shy;Install&shy;Enabled<td>Enable the missing plugin detection and automatic installation wizard
+  <tr><td>Plugin Auto Install Max Item Count<td>integer<td>20<td>Plugin&shy;Auto&shy;Install&shy;Max&shy;Items<td>How many missing plugin items will be tracked at maximum
+  <tr><td>Save Auto Update XML<td>boolean<td>false (0)<td>Save&shy;Auto&shy;Update&shy;XML<td>Set to save the XML returned from the auto update server to disk
+  <tr><td>Spoof Time<td>integer<td>0<td>Spoof&shy;Time<td>Holds the time of the last downloaded spoof file
+  <tr><td>Throttle Level<td>integer<td>5<td>Throttle&shy;Level<td>This setting holds the level at which to throttle an active update download when throttling is active
+  <tr><td>Throttle Period<td>integer<td>120<td>Throttle&shy;Period<td>This setting holds the time in seconds of one period of throttling when throttling is active
+  <tr><td>Time Of Last Upgrade Check<td>integer<td>0<td>Time&shy;Of&shy;Last&shy;Update&shy;Check<td>This setting holds the time of the last call home to Opera to check for updates
+  <tr><td>Update Check Interval<td>integer<td>86400<td>Update&shy;Check&shy;Interval<td>This setting holds the interval Opera checks for updates (in seconds)
+  <tr class='section'><th colspan=5>[Brand]
+  <tr><td>Branded Banner Height<td>integer<td>60<td>Branded&shy;Banner&shy;Height<td>Height of branded banner (pixels)
+  <tr><td>Branded Banner URL<td>string<td>""<td>Branded&shy;Banner&shy;URL<td>URL for branded banner
+  <tr><td>Branded Banner Width<td>integer<td>468<td>Branded&shy;Banner&shy;Width<td>Width of branded banner (pixels)
+  <tr><td>Targeted Ads<td>boolean<td>false (0)<td>Targeted&shy;Ads<td>Use targeted ads
+  <tr><td>Use Branded Banner<td>boolean<td>false (0)<td>Use&shy;Branded&shy;Banner<td>Enable branded banner
+  <tr class='section'><th colspan=5>[Clear Private Data Dialog]
+  <tr><td>CheckFlags<td>integer<td>0<td>Clear&shy;Private&shy;Data&shy;Dialog_Check&shy;Flags<td>bit field for checkbox states
+  <tr class='section'><th colspan=5>[Collection View]
+  <tr><td>Collection Sort Type<td>integer<td>0<td>Collection&shy;Sort&shy;Type<td>There are two types of sorting: a. Sort by date which has value 0   b. Sort by name which has value 1.  Default sorting is by date.
+  <tr><td>Collection Splitter<td>integer<td>0x3300<td>Collection&shy;Splitter<td>Position of splitter in collection manager
+  <tr><td>Collection Style<td>integer<td>1<td>Collection&shy;Style<td>There are two types of collection view style: a. Listview which has value 0.  b. Thumbnail-view which has value 1.  Default is set to thumbnail-view.
+  <tr><td>Collection Zoom Level<td>integer<td>100<td>Collection&shy;Zoom&shy;Level<td>Indicates current zoom level of collection's viewpane for thumbnail style. Default is 100%
+  <tr class='section'><th colspan=5>[Columns]
+  <tr><td>&lt;name of treeview&gt;<td>string<td>-<td>m_treeview_columns<td>List of columns for treeview
+  <tr class='section'><th colspan=5>[Extensions]
+  <tr><td>Ask Flash Download<td>boolean<td>true (1)<td>Ask&shy;About&shy;Flash&shy;Download<td>Prompt about Flash Plug-in Download when Flash Plug-in is not available
+  <tr class='section'><th colspan=5>[HotListWindow]
+  <tr><td>ActiveTab<td>string<td>0<td>Hotlist&shy;Active&shy;Tab<td>Active tab in hotlist
+  <tr><td>Bookmarks Manager Splitter<td>integer<td>0x4000<td>Hotlist&shy;Bookmarks&shy;Manager&shy;Splitter<td>Position of splitter in bookmark manager
+  <tr><td>Bookmarks Manager Style<td>integer<td>1<td>Hotlist&shy;Bookmarks&shy;Manager&shy;Style<td>View mode for bookmarks manager
+  <tr><td>Bookmarks Splitter<td>integer<td>0x8000<td>Hotlist&shy;Bookmarks&shy;Splitter<td>Position of splitter in bookmark panel
+  <tr><td>Bookmarks Splitter Position<td>string<td>"0.33"<td>Hotlist&shy;Bookmarks&shy;YSplitter<td>Splitter pos (float) in bookmarks window. Valid range 0-1  (height_of_top_view / (height_of_bottom_view + height_of_top_view))
+  <tr><td>Bookmarks Style<td>integer<td>0<td>Hotlist&shy;Bookmarks&shy;Style<td>View mode for bookmarks panel
+  <tr><td>Contacts Manager Splitter<td>integer<td>0x4000<td>Hotlist&shy;Contacts&shy;Manager&shy;Splitter<td>Position of splitter in contacts manager
+  <tr><td>Contacts Manager Style<td>integer<td>1<td>Hotlist&shy;Contacts&shy;Manager&shy;Style<td>View mode for contacts manager
+  <tr><td>Contacts Splitter<td>integer<td>0x8000<td>Hotlist&shy;Contacts&shy;Splitter<td>Position of splitter in contacts panel
+  <tr><td>Contacts Splitter Position<td>string<td>"0.33"<td>Hotlist&shy;Contacts&shy;YSplitter<td>Splitter pos (float) in contacts window.  Valid range 0-1  (height_of_top_view / (height_of_bottom_view + height_of_top_view))
+  <tr><td>Contacts Style<td>integer<td>0<td>Hotlist&shy;Contacts&shy;Style<td>View mode for contacts panel
+  <tr><td>Hotlist Single Click<td>boolean<td>true (1)<td>Hotlist&shy;Single&shy;Click<td>Use single click in panels
+  <tr><td>Notes Splitter<td>integer<td>0x8000<td>Hotlist&shy;Notes&shy;Splitter<td>Position of splitter in notes panel
+  <tr><td>Show Accountinfo Details<td>integer<td>0<td>Hotlist&shy;Show&shy;Account&shy;Info&shy;Details<td>Show server status for each mail account
+  <tr><td>SortAsc<td>integer<td>TRUE<td>Hotlist&shy;Sort&shy;Asc<td>Sort hotlist ascending
+  <tr><td>SortBy<td>integer<td>0<td>Hotlist&shy;Sort&shy;By<td>Order of hotlist sorting
+  <tr><td>Visible<td>boolean<td>true (1)<td>Hotlist&shy;Visible<td>Display hotlist
+  <tr><td>cxDocked<td>integer<td>272<td>Hotlist&shy;Splitter<td>Undocumented
+  <tr class='section'><th colspan=5>[Install]
+  <tr><td>Custom Bookmark Merge File<td>string<td>""<td>Custom&shy;Bookmark&shy;Import&shy;Filename<td>Filename of the custom bookmarkfile to import
+  <tr><td>Custom Bookmark Revision<td>integer<td>0<td>Imported&shy;Custom&shy;Bookmarks<td>Filename of bookmarks that should be merged into existsing bookmarks on startup
+  <tr><td>First Run Timestamp<td>integer<td>0<td>First&shy;Run&shy;Timestamp<td>Unix timestamp of first run
+  <tr><td>First Used Version<td>string<td>""<td>First&shy;Version&shy;Run<td>Indicates the first version of Opera that has succcessfully run
+  <tr><td>Newest Used Beta Name<td>string<td>""<td>Newest&shy;Used&shy;Beta&shy;Name<td>Indicates the newest beta name of Opera that has succcessfully run
+  <tr><td>Newest Used Version<td>string<td>"9.63.1"<td>Max&shy;Version&shy;Run<td>Indicates the highest version of Opera that has succcessfully run
+  <tr><td>One Time Page<td>string<td>""<td>One&shy;Time&shy;Page<td>Page to only display once after install
+  <tr class='section'><th colspan=5>[Mail]
+  <tr><td>Handler<td>integer<td>MAILHANDLER_&shy;OPERA<td>Mail&shy;Handler<td>How to handle mail
+  <tr><td>Webmail Service<td>integer<td>0<td>Webmail&shy;Service<td>ID of a webmail service to use for mailto URLs
+  <tr class='section'><th colspan=5>[Matches]
+  <tr><td>&lt;name of treeview&gt;<td>string<td>"list", "of", "search", "words"<td>m_treeview_matches<td>Remembered search words for quick search
+  <tr class='section'><th colspan=5>[Sounds]
+  <tr><td>Clicked<td>string<td>""<td>Clicked&shy;Sound<td>Link clicked sound path
+  <tr><td>Enabled<td>boolean<td>true (1)<td>Sounds&shy;Enabled<td>Enable program sounds
+  <tr><td>End<td>string<td>""<td>End&shy;Sound<td>Shutdown sound path
+  <tr><td>Failure<td>string<td>""<td>Failure&shy;Sound<td>Loading failure sound path
+  <tr><td>Loaded<td>string<td>""<td>Loaded&shy;Sound<td>Page loaded sound path
+  <tr><td>Start<td>string<td>""<td>Start&shy;Sound<td>Start-up sound path
+  <tr><td>Transfer Done<td>string<td>""<td>Transfer&shy;Done&shy;Sound<td>Transfer done sound path
+  <tr class='section'><th colspan=5>[Special]
+  <tr><td>Go Home Time Out<td>integer<td>0<td>Seconds&shy;Before&shy;Auto&shy;Home<td>Time before returning to home page (seconds)
+  <tr class='section'><th colspan=5>[State]
+  <tr><td>Accept License<td>integer<td class="tweak">1<td>Accept&shy;License<td>Has accepted license agreement
+  <tr><td>Active Country Code<td>string<td>""<td>Active&shy;Country&shy;Code<td>Country code in ISO 3166-1 alpha-2 format. Determines ActiveRegion
+  <tr><td>Active Default Language<td>string<td>""<td>Active&shy;Default&shy;Language<td>Default language for active country. Used as a second choice (after region) when loading regional customizations
+  <tr><td>Active Region<td>string<td>""<td>Active&shy;Region<td>Sets folder from which Opera should load regional customizations (bookmarks, speed dials, etc.)
+  <tr><td>Country Check<td>integer<td>0<td>Country&shy;Check<td>State of country check. Default value means it is not active (finished or not started).
+  <tr><td>Data1<td>string<td>""<td>Id&shy;Of&shy;Hardcoded&shy;Default&shy;Search<td>Search protection (hidden preference)
+  <tr><td>Data2<td>string<td>""<td>Hash&shy;Of&shy;Default&shy;Search<td>Search protection (hidden preference)
+  <tr><td>Data3<td>string<td>""<td>Id&shy;Of&shy;Hardcoded&shy;Speed&shy;Dial&shy;Search<td>Search protection (hidden preference)
+  <tr><td>Data4<td>string<td>""<td>Hash&shy;Of&shy;Speed&shy;Dial&shy;Search<td>Search protection (hidden preference)
+  <tr><td>Detected Country Code<td>string<td>""<td>Detected&shy;Country&shy;Code<td>Country code in ISO 3166-1 alpha-2 format. Value reported by OS or received from autoupdate server
+  <tr><td>Run<td>boolean<td>false (0)<td>Running<td>Already running?
+  <tr><td>Startup Timestamp<td>integer<td>0<td>Startup&shy;Timestamp<td>Timestamp from when Opera was started
+  <tr><td>Total Uptime<td>integer<td>0<td>Total&shy;Uptime<td>Total uptime in seconds since the last crash
+  <tr><td>Upgrade Count<td>integer<td>0<td>Upgrade&shy;Count<td>Number of times this installation has been upgraded
+  <tr><td>Upgrade From Version<td>string<td>""<td>Upgrade&shy;From&shy;Version<td>The version previous to current when installation has been upgraded
+  <tr class='section'><th colspan=5>[TransferWindow]
+  <tr><td>Activate On New Transfer<td>integer<td>2<td>Trans&shy;Win&shy;Activate&shy;On&shy;New&shy;Transfer<td>Activate transfer window on new transfer, 0=not, 1=front, 2=background
+  <tr><td>Keep Entries Days<td>integer<td>7<td>Trans&shy;Win&shy;Log&shy;Entry&shy;Days&shy;To&shy;Live<td>Lifetime for transfer items (days)
+  <tr><td>ShowDetails<td>boolean<td>true (1)<td>Trans&shy;Win&shy;Show&shy;Details<td>Show detailed information
+  <tr class='section'><th colspan=5>[User Prefs]
+  <tr><td>Activate Tab On Close<td>integer<td>0<td>Activate&shy;Tab&shy;On&shy;Close<td>Activate next tab behavior on closing tabs
+  <tr><td>Address Search Drop Down Weighted Width<td>integer<td class="tweak">180<td>Address&shy;Search&shy;Drop&shy;Down&shy;Weighted&shy;Width<td>New default weighted width of the address search drop down field
+  <tr><td>AddressBar Alignment<td>integer<td>2<td>Addressbar&shy;Alignment<td>Position of address bar
+  <tr><td>Addressbar Inline Auto Completion<td>boolean<td>true (1)<td>Addressbar&shy;Inline&shy;Autocompletion<td>Automatic completion of previosly typed addresses inline in the addressfield.
+  <tr><td>Addressfield: mix search engine suggestions with history<td>boolean<td>true (1)<td>Address&shy;Dropdown&shy;Mix&shy;Suggestions<td>Switch for mixing search engine suggestions with history in the dropdown
+  <tr><td>Allow Context Menus<td>boolean<td>true (1)<td>Allow&shy;Context&shy;Menus<td>Show context menus
+  <tr><td>Allow Empty Workspace<td>boolean<td>false (0)<td>Allow&shy;Empty&shy;Workspace<td>Allow to close the last tab while maintaining an empty workspace
+  <tr><td>Alternative Page Cycle Mode<td>integer<td>1<td>Alternative&shy;Page&shy;Cycle&shy;Mode<td>Cycle order when not displaying list of pages
+  <tr><td>Ask About Missing Dictionary<td>boolean<td>true (1)<td>Ask&shy;About&shy;Missing&shy;Dictionary<td>Ask if we should use Autoupdate to install a dictionary matching Opera's UI language
+  <tr><td>Ask For Usage Stats Percentage<td>integer<td>1<td>Ask&shy;For&shy;Usage&shy;Stats&shy;Percentage<td>Percentage of users that will be asked if they want to participate in usage stats when installing or upgrading.
+  <tr><td>Center Mousebutton Action<td>integer<td>2<td>Center&shy;Mouse&shy;Button&shy;Action<td>Decide what to do on a mid-click
+  <tr><td>Check For New Opera<td>integer<td>1<td>Check&shy;For&shy;New&shy;Opera<td>Keeps track of the time of the next check. Set to 0 if no checking is to occur.
+  <tr><td>Chrome Integration Drag Area<td>integer<td>20<td>Chrome&shy;Integration&shy;Drag&shy;Area<td>The height of the draggable area when the tabs are integrated in the window chrome
+  <tr><td>Chrome Integration Drag Area Maximized<td>integer<td>1<td>Chrome&shy;Integration&shy;Drag&shy;Area&shy;Maximized<td>The height of the draggable area when the tabs are integrated in the window chrome and the window is maximized
+  <tr><td>Click To Minimize<td>boolean<td>false (0)<td>Click&shy;To&shy;Minimize<td>Click a tab to minimize it
+  <tr><td>Color List Row Mode<td>integer<td>0<td>Color&shy;List&shy;Row&shy;Mode<td>Alternate background colours in listings
+  <tr><td>Confirm Open Bookmark Limit<td>integer<td>5<td>Confirm&shy;Open&shy;Bookmark&shy;Limit<td>Prompt if more than X bookmarks are opened
+  <tr><td>Country Code<td>string<td>""<td>Country&shy;Code<td>Country code in ISO 3166-1 alpha-2 format. Overrides country code detected by Opera
+  <tr><td>Crash Feedback Page<td>string<td>""<td>Crash&shy;Feedback&shy;Page<td>web address of feedback page about the crash after Opera crashed and the user has choosed to upload the log
+  <tr><td>Debug Skin<td>boolean<td>false (0)<td>Debug&shy;Skin<td>When set, will show information about the skin element in the tooltip hover
+  <tr><td>DevTools Open Attached<td>boolean<td>true (1)<td>Dev&shy;Tools&shy;Is&shy;Attached<td>Last used state of developer tools window (attached or detached).
+  <tr><td>DevTools Splitter Position<td>integer<td>500<td>Dev&shy;Tools&shy;Splitter<td>Splitter pos in in main window for integrated developer tools window. Set in pixels
+  <tr><td>Dim Search Opacity<td>integer<td>52<td>Dim&shy;Search&shy;Opacity<td>Opacity for the dim effect used when using page search.
+  <tr><td>Disable Bookmark Import<td>boolean<td>false (0)<td>Disable&shy;Bookmark&shy;Import<td>Disable import of bookmarks on first run. Can be set on packaging/installation to prevent bookmark import from current default browser.
+  <tr><td>Disable Opera Package AutoUpdate<td>boolean<td>false (0)<td>Disable&shy;Opera&shy;Package&shy;Auto&shy;Update<td>Disables the autoupdate of Opera package
+  <tr><td>Do Not Show Language Version Conflict Warning<td>boolean<td>false (0)<td>Show&shy;Language&shy;File&shy;Warning<td>Warning dialog for version conflicts
+  <tr><td>Doubleclick to Close Tab<td>boolean<td>false (0)<td>Doubleclick&shy;To&shy;Close<td>Close tab when doubleclicked
+  <tr><td>Download Manager<td>string<td>""<td>Download&shy;Manager<td>The path of external download manager to use, empty value or "opera" indicates none.
+  <tr><td>Ellipsis In Center<td>boolean<td>false (0)<td>Ellipsis&shy;In&shy;Center<td>Shorten button and tab names in the middle
+  <tr><td>Enable Drag<td>integer<td>DRAG_&shy;ALL&(~DRAG_&shy;SAMEWINDOW)<td>Enable&shy;Drag<td>Select elements to enable drag and drop for
+  <tr><td>Enable Extended Keyboard Shortcuts<td>boolean<td>false (0)<td>Extended&shy;Keyboard&shy;Shortcuts<td>When enabled, extended keyboard shortcuts (mostly single key shortcuts) are active
+  <tr><td>Enable Scroll Marker<td>integer<td>0<td>Enable&shy;Scroll&shy;Marker<td>Enable the marker on the visual device, indicating the last position before scrolling
+  <tr><td>Enable Service Discovery Notifications<td>boolean<td>true (1)<td>Enable&shy;Service&shy;Discovery&shy;Notifications<td>Preference that shows/hides discovered devices in the UI.
+  <tr><td>Enable UI Animations<td>boolean<td>true (1)<td>Enable&shy;UIAnimations<td>Enable animations in the UI.
+  <tr><td>Enable Unite<td>boolean<td>false (0)<td>Enable&shy;Unite<td>Preference for enabling unite services.
+  <tr><td>Enable Usage Statistics<td>boolean<td>true (1)<td>Enable&shy;Usage&shy;Statistics<td>Enable generation and uploading of usage statistics.
+  <tr><td>Error Console Filter<td>string<td>"mail=3"<td>Error&shy;Console&shy;Filter<td>Current display filter for the console
+  <tr><td>Extended Center Mousebutton Action<td>integer<td>1<td>Extended&shy;Center&shy;Mouse&shy;Button&shy;Action<td>0 = start panning
+  <tr><td>Extension Set Parent<td>string<td>"Document Toolbar"<td>Extension&shy;Set&shy;Parent<td>Name of toolbar, that is supposed to show ExtensionSet widget
+  <tr><td>Google TLD Default<td>string<td>".google.com"<td>Google&shy;TLDDefault<td>Default top level domain to use for google
+  <tr><td>Google TLD Downloaded<td>boolean<td>false (0)<td>Google&shy;TLDDownloaded<td>Set on a successful download of the google tld, and reset on every attempt to download the tld
+  <tr><td>Google TLD URL<td>string<td>"https://www.google.com/searchdomaincheck?format=domain"<td>Google&shy;TLDServer<td>URL to google's top level domain lookup server
+  <tr><td>Has Shown Center Click Info<td>boolean<td>false (0)<td>Has&shy;Shown&shy;Center&shy;Click&shy;Info<td>Mid-click configuration dialogue displayed
+  <tr><td>Hide URL Parameter<td>boolean<td>true (1)<td>Hide&shy;URLParameter<td>Hide URL parameter in address bar
+  <tr><td>History View Style<td>integer<td>0<td>History&shy;View&shy;Style<td>View mode for history panel
+  <tr><td>Hotlist Alignment<td>integer<td>1<td>Hotlist&shy;Alignment<td>Position of hot list window
+  <tr><td>IntranetHosts<td>string<td>0<td>Intranet&shy;Hosts<td>List of hostnames that should be treated like URLs instead of go to default search engine. Previosly typed intranets are stored here.
+  <tr><td>Language Codes File<td>string<td>""<td>Language&shy;Codes&shy;File&shy;Name<td>Filename of text file describing language codes with name
+  <tr><td>Level Of Update Automation<td>integer<td>2<td>Level&shy;Of&shy;Update&shy;Automation<td>This setting holds the level of automation in the automatic update system. The range is from 0 to 2, where 0 is no checking and 2 is automatic installation of security updates
+  <tr><td>Limit Task Bar Attention To Personal Chat Messages<td>boolean<td>true (1)<td>Limit&shy;Attention&shy;To&shy;Personal&shy;Chat&shy;Messages<td>Notify new chat messages if they are to me
+  <tr><td>Linkbar Position<td>integer<td>kLinkBarDefaultPosition<td>Link&shy;Bar&shy;Position<td>Position of LINK bar
+  <tr><td>MainBar Alignment<td>integer<td>2<td>Mainbar&shy;Alignment<td>Position of main button bar
+  <tr><td>Max width for bookmarks in menu<td>integer<td>200<td>Max&shy;Width&shy;For&shy;Bookmarks&shy;In&shy;Menu<td>Maximum width for bookmark items in the bookmarks menu
+  <tr><td>Maximize New Windows<td>integer<td>1<td>Maximize&shy;New&shy;Windows&shy;When&shy;Appropriate<td>Maximize new windows when no other windows are displayed
+  <tr><td>NavigationBar Alignment<td>integer<td>0<td>Navigationbar&shy;Alignment<td>Position of site navigation bar
+  <tr><td>NavigationBar Auto Alignment<td>boolean<td>false (0)<td>Navigationbar&shy;Auto&shy;Alignment<td>Display navigation bar when needed
+  <tr><td>Newest Seen Version<td>string<td>""<td>Newest&shy;Seen&shy;Version<td>Most current version notified to the user
+  <tr><td>No Open<td>boolean<td>false (0)<td>No&shy;Open<td>Disable all file open dialogs
+  <tr><td>No Save<td>boolean<td>false (0)<td>No&shy;Save<td>Disable all file save dialogs
+  <tr><td>Number Of Speed Dial Columns<td>integer<td>0<td>Number&shy;Of&shy;Speed&shy;Dial&shy;Columns<td>Number of speed dial columns
+  <tr><td>Open Dragged Link In Background<td>boolean<td>false (0)<td>Open&shy;Dragged&shy;Link&shy;In&shy;Background<td>Open in background window when dragging link in page
+  <tr><td>Open Page Next To Current<td>boolean<td>false (0)<td>Open&shy;Page&shy;Next&shy;To&shy;Current<td>Open page adjacent in page bar
+  <tr><td>Opera Turbo Mode<td>integer<td>2<td>Opera&shy;Turbo&shy;Mode<td>Opera Turbo Mode (0=auto, 1=on, 2=off)
+  <tr><td>Opera Unite exit policy<td>integer<td>ExitStrategyConfirm<td>Opera&shy;Unite&shy;Exit&shy;Policy<td>Decides if a dialog should be shown when Unite is running, or if Opera should be exited/hidden automatically
+  <tr><td>PageBar Alignment<td>integer<td>2<td>Pagebar&shy;Alignment<td>Position of page bar
+  <tr><td>PageBar Auto Alignment<td>integer<td>FALSE<td>Pagebar&shy;Auto&shy;Alignment<td>Display page bar when needed
+  <tr><td>PageBar Open URL On MiddleClick<td>boolean<td>DEFAULT_&shy;PAGEBAR_&shy;OPEN_&shy;URL_&shy;ON_&shy;MIDDLE_&shy;CLICK<td>Pagebar&shy;Open&shy;URLOn&shy;Middle&shy;Click<td>Open url in clipboard when creating a new page
+  <tr><td>Pagebar Height<td>integer<td>0<td>Pagebar&shy;Height<td>Height of page bar if it has been resized
+  <tr><td>Pagebar Width<td>integer<td>0<td>Pagebar&shy;Width<td>Width of page bar if it has been resized
+  <tr><td>Permanent Homepage<td>boolean<td>false (0)<td>Permanent&shy;Homepage<td>Removes all UI to change the homepage and startup type
+  <tr><td>PersonalBar Alignment<td>integer<td>0<td>Personalbar&shy;Alignment<td>Position of personal bar
+  <tr><td>PersonalBar Inline Alignment<td>integer<td>2<td>Personalbar&shy;Inline&shy;Alignment<td>Position of the tab inline personal bar
+  <tr><td>Popup Button Help<td>boolean<td>true (1)<td>Popup&shy;Button&shy;Help<td>Show help for buttons as popup
+  <tr><td>Recovery Strategy<td>integer<td>Restore_&shy;RegularStartup<td>Window&shy;Recovery&shy;Strategy<td>Last used window recovery strategy
+  <tr><td>Report Timeout For Usage Statistics<td>integer<td>60<td>Report&shy;Timeout&shy;For&shy;Usage&shy;Statistics<td>Set report timeout (in minutes) for usage statistics in order to alleviate testing
+  <tr><td>Restart Unite Services After Crash<td>boolean<td>true (1)<td>Restart&shy;Unite&shy;Services&shy;After&shy;Crash<td>Option to restart Opera Unite services after a crash
+  <tr><td>SDI<td>boolean<td>false (0)<td>SDI<td>Use SDI support
+  <tr><td>Show Add Speed Dial Button<td>boolean<td>true (1)<td>Show&shy;Add&shy;Speed&shy;Dial&shy;Button<td>The Speed Dial should show the button for adding new speed dials
+  <tr><td>Show Address In Caption<td>boolean<td>false (0)<td>Show&shy;Address&shy;In&shy;Caption<td>Display URL in title bar instead of page title
+  <tr><td>Show Close All But Active Dialog<td>boolean<td>true (1)<td>Show&shy;Close&shy;All&shy;But&shy;Active&shy;Dialog<td>Prompt when closing all but active document
+  <tr><td>Show Close All Dialog<td>boolean<td>true (1)<td>Show&shy;Close&shy;All&shy;Dialog<td>Prompt when closing all documents
+  <tr><td>Show Close Buttons<td>boolean<td>true (1)<td>Show&shy;Close&shy;Buttons<td>Show close buttons on each tab
+  <tr><td>Show Crash Log Upload Dialog<td>boolean<td>true (1)<td>Show&shy;Crash&shy;Log&shy;Upload&shy;Dlg<td>Show crash log upload dialogue after crash
+  <tr><td>Show Default Browser Dialog<td>boolean<td>true (1)<td>Show&shy;Default&shy;Browser&shy;Dialog<td>Show set default browser dialog on start
+  <tr><td>Show Disable JS Checkbox<td>boolean<td>true (1)<td>Show&shy;Disable&shy;JSCheckbox<td>Show disable JS checkbox in JS dialogs
+  <tr><td>Show Download Manager Selection Dialog<td>boolean<td>true (1)<td>Show&shy;Download&shy;Manager&shy;Selection&shy;Dialog<td>Show the download manager selection dialog where the user can choose a preferred tool
+  <tr><td>Show Dropdown Button In Addressfield<td>boolean<td>false (0)<td>Show&shy;Dropdown&shy;Button&shy;In&shy;Addressfield<td>Restores the dropdown button inside the address field
+  <tr><td>Show Exit Dialog<td>integer<td>ExitStrategyExit<td>Show&shy;Exit&shy;Dialog<td>Show exit dialog
+  <tr><td>Show Favicons in Addressfield<td>boolean<td>false (0)<td>Enable&shy;Addressbar&shy;Favicons<td>Show Favicons in addressbar dropdown
+  <tr><td>Show Full URL<td>boolean<td>false (0)<td>Show&shy;Full&shy;URL<td>Show the full url in address bar
+  <tr><td>Show Fullscreen Exit Information<td>boolean<td>true (1)<td>Show&shy;Fullscreen&shy;Exit&shy;Information<td>Show the fullscreen exit help overlay when entering fullscreeen
+  <tr><td>Show Geolocation License Dialog<td>boolean<td>true (1)<td>Show&shy;Geolocation&shy;License&shy;Dialog<td>Show the Geolocation license/privacy dialog on next use
+  <tr><td>Show Gesture UI<td>boolean<td>true (1)<td>Show&shy;Gesture&shy;UI<td>Show the mouse gesture UI when performing a gesture
+  <tr><td>Show Hidden Toolbars While Customizing<td>boolean<td>false (0)<td>Show&shy;Hidden&shy;Toolbars&shy;While&shy;Customizing<td>Display all toolbars when customizing
+  <tr><td>Show Mail Error Dialog<td>boolean<td>true (1)<td>Show&shy;Mail&shy;Error&shy;Dialog<td>Show special dialog instead of console when mailer errors are posted to the console.
+  <tr><td>Show Menu<td>boolean<td>false (0)<td>Show&shy;Menu<td>Show menu
+  <tr><td>Show Network Speed Notification<td>boolean<td>true (1)<td>Show&shy;Network&shy;Speed&shy;Notification<td>Should we show notification when detecting fast or slow network
+  <tr><td>Show New Opera Dialog<td>boolean<td>true (1)<td>Show&shy;New&shy;Opera&shy;Dialog<td>Display a dialog if a new version is available when checking
+  <tr><td>Show Notification For Blocked Popups<td>boolean<td>true (1)<td>Show&shy;Notification&shy;For&shy;Blocked&shy;Popups<td>Notify blocked popups
+  <tr><td>Show Notification For Finished Transfers<td>boolean<td>true (1)<td>Show&shy;Notification&shy;For&shy;Finished&shy;Transfers<td>Notify finished downloads
+  <tr><td>Show Notification For New Messages<td>boolean<td>true (1)<td>Show&shy;Notification&shy;For&shy;New&shy;Messages<td>Notify new messages
+  <tr><td>Show Notification For No New Messages<td>boolean<td>true (1)<td>Show&shy;Notification&shy;For&shy;No&shy;New&shy;Messages<td>Notify on no new messages
+  <tr><td>Show Notifications For Widgets<td>boolean<td>true (1)<td>Show&shy;Notifications&shy;For&shy;Widgets<td>Show widget notifications
+  <tr><td>Show Opera Turbo Info<td>boolean<td>true (1)<td>Show&shy;Opera&shy;Turbo&shy;Info<td>Set if we should open a turbo info page
+  <tr><td>Show Private Mode Introduction Page<td>boolean<td>true (1)<td>Show&shy;Private&shy;Intro&shy;Page<td>When set, will show private mode introduction page on starting a new private tab.
+  <tr><td>Show Problem Dialog<td>boolean<td>true (1)<td>Show&shy;Problem&shy;Dlg<td>Show problem dialogue after crash
+  <tr><td>Show Progress As Popup<td>integer<td>2<td>Progress&shy;Popup<td>Type of progress bar display
+  <tr><td>Show Progress Dialog<td>boolean<td>true (1)<td>Show&shy;Progress&shy;Dlg<td>Enable address bar
+  <tr><td>Show Search Suggestions In Addressfield Dropdown<td>boolean<td>true (1)<td>Show&shy;Searches&shy;In&shy;Addressfield&shy;Autocompletion<td>Show search suggestions in addressfield dropdown.
+  <tr><td>Show Setupdialog On Start<td>integer<td>1<td>Show&shy;Setupdialog&shy;On&shy;Start<td>Show first-time setup dialog
+  <tr><td>Show Startup Dialog<td>boolean<td>false (0)<td>Show&shy;Startup&shy;Dialog<td>Show dialog on startup, also when not recovering after crash.
+  <tr><td>Show Tray Icon<td>boolean<td>true (1)<td>Show&shy;Tray&shy;Icon<td>Show an icon in the tray
+  <tr><td>Show Validation Dialog<td>boolean<td>true (1)<td>Show&shy;Validation&shy;Dialog<td>Ask about upload to external server for validation
+  <tr><td>Show Widget Debug Info Dialog<td>boolean<td>true (1)<td>Show&shy;Widget&shy;Debug&shy;Info&shy;Dialog<td>Shows dialog with information about widget in debug mode
+  <tr><td>Show Window Menu<td>boolean<td>false (0)<td>Show&shy;Window&shy;Menu<td>Show the window menu in the main menu
+  <tr><td>Show panel toggle<td>boolean<td>false (0)<td>Show&shy;Panel&shy;Toggle<td>Display panel toggle
+  <tr><td>Source Viewer Mode<td>integer<td>UseInternalApplication<td>Source&shy;Viewer&shy;Mode<td>Source viewer setting
+  <tr><td>Speed Dial State<td>integer<td>1<td>Speed&shy;Dial&shy;State<td>Indicates the current state of the speed dial
+  <tr><td>Speed Dial Zoom Level<td>integer<td>0<td>Speed&shy;Dial&shy;Zoom&shy;Level<td>Indicates the current zoom level of the speed dial
+  <tr><td>Startup Type<td>integer<td>STARTUP_&shy;CONTINUE<td>Startup&shy;Type<td>What to display when starting
+  <tr><td>StatusBar Alignment<td>integer<td>4<td>Statusbar&shy;Alignment<td>Position of status bar
+  <tr><td>Strategy On Application Cache<td>integer<td>1<td>Strategy&shy;On&shy;Application&shy;Cache<td>What to do when a webpage requests saving offline cache
+  <tr><td>Tips Configuration<td>string<td>""<td>Tips&shy;Config&shy;File<td>Tips configuration file
+  <tr><td>Tips Meta Configuration<td>string<td>""<td>Tips&shy;Config&shy;Meta&shy;File<td>Tips configuration meta file
+  <tr><td>Title<td>string<td>""<td>Program&shy;Title<td>Caption for main window
+  <tr><td>Transfers Added On Top<td>boolean<td>true (1)<td>Transfer&shy;Items&shy;Added&shy;On&shy;Top<td>Show transfers in reverse chronological order
+  <tr><td>TreeView DropDown Max Lines<td>integer<td>20<td>Tree&shy;View&shy;Drop&shy;Down&shy;Max&shy;Lines<td>Max number of lines to show in a tree view show in a drop down (i.e. Address bar drop down)
+  <tr><td>Turbo Slow Network Notifications Left<td>integer<td>2<td>Turbo&shy;SNNotification&shy;Left<td>Indicates how many more notifications comming from Turbo will be shown to the user
+  <tr><td>UI Property Examiner<td>boolean<td>false (0)<td>UIProperty&shy;Examiner<td>Set to show quick widget and window properties in a tooltip to aid writing automated tests
+  <tr><td>Use External Button Set<td>boolean<td>false (0)<td>Use&shy;External&shy;Button&shy;Set<td>Use external buttonset
+  <tr><td>Use External Download Manager<td>boolean<td>false (0)<td>Use&shy;External&shy;Download&shy;Manager<td>Detect and use external download manager
+  <tr><td>Use HTTP Proxy For All Protocols<td>boolean<td>false (0)<td>Use&shy;HTTPProxy&shy;For&shy;All&shy;Protocols<td>Use HTTP proxy server for all protocols
+  <tr><td>Use Integrated Search<td>boolean<td>false (0)<td>Use&shy;Integrated&shy;Search<td>Use inline search from search field
+  <tr><td>Use Thumbnails Inside Tabs<td>boolean<td>true (1)<td>Use&shy;Thumbnails&shy;Inside&shy;Tabs<td>Use thumbnails inside tabs
+  <tr><td>Use Thumbnails in Tab Tooltips<td>boolean<td>true (1)<td>Use&shy;Thumbnails&shy;In&shy;Tab&shy;Tooltips<td>Use thumbnails when hovering over a tab
+  <tr><td>Use Thumbnails in Window Cycle<td>boolean<td class="tweak">false (0)<td>Use&shy;Thumbnails&shy;In&shy;Window&shy;Cycle<td>Use thumbnails when cycling between windows with Ctrl+Tab
+  <tr><td>Use Windows 7 Taskbar Thumbnails<td>boolean<td>false (0)<td>Use&shy;Windows7Taskbar&shy;Thumbnails<td>Integrate with the Windows 7 taskbar thumbnails
+  <tr><td>User Email<td>string<td>""<td>User&shy;Email<td>Email address of the user, logged when reporting crash log
+  <tr><td>Validation Form Element<td>string<td>"uploaded_&shy;file"<td>Validation&shy;Form<td>Form element to use for uploaded file
+  <tr><td>Validation URL<td>string<td>"http://validator.w3.org/check"<td>Validation&shy;URL<td>URL to document validation service
+  <tr><td>Virtual Keyboard Type<td>integer<td>0<td>Virtual&shy;Keyboard&shy;Type<td>Type of virtual keyboard to use. (0 standard for platform)
+  <tr><td>Warn about active transfers on exit<td>integer<td>ExitStrategyConfirm<td>Warn&shy;About&shy;Active&shy;Transfers&shy;On&shy;Exit<td>Prompt about active downloads when closing Opera
+  <tr><td>Window Cycle Type<td>integer<td>WINDOW_&shy;CYCLE_&shy;TYPE_&shy;STACK<td>Window&shy;Cycle&shy;Type<td>How to switch between windows
+  <tr class='section'><th colspan=5>[Widgets]
+  <tr><td>Disable Widget Runtime<td>boolean<td>true (1)<td>Disable&shy;Widget&shy;Runtime<td>Disables widget runtime
+  <tr class='section'><th colspan=5>[Windows]
+  <tr><td>&lt;name of window&gt;<td>string<td>x,y,width,height,state<td>m_windowsizeprefs<td>Saved size and state of window
+ </table>
+ <h2 id="prefscollectionm2">PrefsCollectionM2</h2>
+ <table>
+  <tr class="head"><th>Setting<th>Type<th>Default value<th>Name<th>Description
+  <tr class='section'><th colspan=5>[Mail]
+  <tr><td>Compose Header Display<td>integer<td>0x477<td>Mail&shy;Compose&shy;Header&shy;Display<td>Bit field used to store which headers should be visible in the compose window
+  <tr><td>Default Mail Search Type<td>integer<td>0<td>Default&shy;Mail&shy;Search<td>Where we should search for mail, 0 in current view, 1 in all messages
+  <tr><td>Default Mail Sorting<td>integer<td>7<td>Default&shy;Mail&shy;Sorting<td>Which column number mail views are sorted by. Positive number means ascending order, Negative descending
+  <tr><td>Default Mail Sorting Ascending<td>boolean<td>false (0)<td>Default&shy;Mail&shy;Sorting&shy;Ascending<td>Which column number mail views are sorted by.
+  <tr><td>Fit To Width Messages<td>integer<td>1<td>Fit&shy;To&shy;Width<td>Enables fit to width for all messages in Opera Mail
+  <tr><td>Load Mail Databases Asynchronously<td>boolean<td>true (1)<td>Load&shy;Mail&shy;Databases&shy;Asynchronously<td>Whether to load the mail databases asynchronously or instantaniously
+  <tr><td>Mail Database Consistency Check Time<td>integer<td>0<td>Last&shy;Database&shy;Check<td>Holds the time of the last database consistency check
+  <tr><td>Mail Default Flat Threaded View<td>integer<td>1<td>Default&shy;Mail&shy;Flat&shy;Threaded&shy;View<td>0 for flat view, 1 for threaded view
+  <tr><td>Mail Grouping Method<td>integer<td>2<td>Mail&shy;Grouping&shy;Method<td>A method number, which is used to form groups of mails. -1 = no grouping; 0 = group by status; 1 = group by field \Flagged; 2 = group by date
+  <tr><td>Mail Message Width List On Top<td>integer<td>105<td>Message&shy;Width&shy;List&shy;On&shy;Top<td>How wide messages should be presented when list is on top, in characters (or 0 for all available width)
+  <tr><td>Mail View Two Lined Messages<td>integer<td>1<td>Mail&shy;Two&shy;Lined&shy;Items<td>One Line all the time = 0, Two Lines Per Message in the Mail View if the Mail List is on the side = 1, Two lines all the time = 2
+  <tr><td>Message Width List On Left<td>integer<td>0<td>Message&shy;Width&shy;List&shy;On&shy;Right<td>How wide messages should be presented when the list is on the left, in characters (or 0 for all available width)
+  <tr><td>Padding in Compose Window<td>boolean<td>true (1)<td>Padding&shy;In&shy;Compose&shy;Window<td>Whether the compose window should add padding (TRUE) or use the whole width for the compose window (FALSE)
+  <tr><td>Show Default Mail Client Dialog<td>boolean<td>true (1)<td>Show&shy;Default&shy;Mail&shy;Client&shy;Dialog<td>Show set default mail client dialog
+  <tr><td>Split Up Thread When Subject Changed<td>boolean<td>true (1)<td>Split&shy;Up&shy;Thread&shy;When&shy;Subject&shy;Changed<td>Whether to create a new thread when a subject of a thread has been changed.
+  <tr><td>Webmail Address<td>string<td>"http://www.operamail.com/"<td>Webmail&shy;Address<td>URL to webmail service
+  <tr class='section'><th colspan=5>[User Prefs]
+  <tr><td>Auto Mail Panel Toggle<td>boolean<td>true (1)<td>Auto&shy;Mail&shy;Panel&shy;Toggle<td>Whether the mail panel should toggle automatically or not when opening a mail window
+  <tr><td>Chat Room Splitter<td>integer<td>100<td>Chat&shy;Room&shy;Splitter<td>Position of splitter in chat window
+  <tr><td>Default Mail Store Type<td>integer<td>2<td>Default&shy;Mail&shy;Store&shy;Type<td>Type of store used to save mail bodies
+  <tr><td>Mail View Accountinfo Splitter<td>integer<td>0xd000<td>Account&shy;Info&shy;Splitter<td>Position of splitter in account info window
+  <tr><td>Mail View List Splitter<td>integer<td>0x8000<td>Mail&shy;View&shy;List&shy;Splitter<td>Position of splitter in mail list
+  <tr><td>Mail View Mode<td>integer<td>1<td>Mail&shy;View&shy;Mode<td>Mail view mode, 0=vertical, 1=horizontal, 2=list only
+  <tr><td>Mark As Read Automatically<td>integer<td>0<td>Mark&shy;As&shy;Read&shy;Automatically<td>Seconds until a message is automatically marked as read (0 to disable)
+  <tr><td>Preferred Mail Body Mode<td>integer<td>1<td>Mail&shy;Body&shy;Mode<td>0=prefer text/plain, 1=prefer text/html, 2=force text/plain, 3=decided by individual mail account
+  <tr><td>Show Attachments Inline<td>boolean<td>false (0)<td>Show&shy;Attachments&shy;Inline<td>Show e-mail attachments in-line
+  <tr><td>Show Delete Mail Dialog<td>boolean<td>true (1)<td>Show&shy;Delete&shy;Mail&shy;Dialog<td>Warn before deleting messages
+  <tr><td>Show E-mail Client<td>boolean<td>true (1)<td>Show&shy;Email&shy;Client<td>Enable M2
+  <tr><td>Show Encoding Mismatch Dialog<td>integer<td>0<td>Show&shy;Encoding&shy;Mismatch&shy;Dialog<td>Warn if using characters outside the specified e-mail encoding
+  <tr><td>Show Mail Header Toolbar<td>boolean<td>true (1)<td>Show&shy;Quick&shy;Headers<td>Show mail/news headers as quick widgets
+  <tr><td>Show quick reply<td>boolean<td>false (0)<td>Show&shy;Quick&shy;Reply<td>Display "Quick reply" field
+ </table>
+ <h2 id="prefscollectionmacos">PrefsCollectionMacOS</h2>
+ <table>
+  <tr class="head"><th>Setting<th>Type<th>Default value<th>Name<th>Description
+  <tr class='section'><th colspan=5>[Mail]
+  <tr><td>Combined Mail and Feed Notification<td>boolean<td>false (0)<td>Combined&shy;Mail&shy;And&shy;Feed&shy;Notifications<td>Show multiple mails and feed notification as one notification
+ </table>
+ <h2 id="prefscollectionmswin">PrefsCollectionMSWIN</h2>
+ <table>
+  <tr class="head"><th>Setting<th>Type<th>Default value<th>Name<th>Description
+  <tr class='section'><th colspan=5>[System]
+  <tr><td>Ban Default DirectShow Renderers<td>boolean<td>true (1)<td>Ban&shy;Default&shy;Direct&shy;Show&shy;Renderers<td>When set to TRUE, will disable adding default renderers to the graph by IGraphBuilder::Render; when set to FALSE, can result in actual behaviour of DSK-362335. This is done on camera manager startup, but will affect all DShow graphs created inside Opera. OTOH, currently only camera uses DShow.
+  <tr><td>Multi User<td>boolean<td>true (1)<td>Multi&shy;User<td>Enable multiple profiles (only read from operadef6.ini)
+  <tr><td>Opera Labs Name<td>string<td>""<td>Opera&shy;Labs&shy;Name<td>When Opera product is set to 2, the full name of the Labs build
+  <tr><td>Opera Product<td>integer<td>0<td>Opera&shy;Product<td>Whether to run as Opera (0), Opera next (1) or Opera Labs (2)
+  <tr><td>Supported Camera Format<td>string<td>""<td>Supported&shy;Camera&shy;Format<td>When set, will limit the supported formats to the format given. Must be one of: RGB24, RGB32, YUY2, MJPG, I420
+  <tr><td>Use ScreenReader Menus<td>boolean<td>false (0)<td>Use&shy;Screen&shy;Reader&shy;Menus<td>Enables screen-reader compatible menus when an MSAA query is detected
+  <tr class='section'><th colspan=5>[User Prefs]
+  <tr><td>Application Icon<td>string<td>""<td>Application&shy;Icon&shy;File<td>Icon replacing the internal
+  <tr><td>Ask Closing DialUp Connections<td>boolean<td>false (0)<td>Show&shy;Close&shy;Ras&shy;Dialog<td>Should close dial-up dialogue be shown?
+  <tr><td>Enable Accessibility Support<td>boolean<td>false (0)<td>Enable&shy;Accessibility&shy;Support<td>Enable accessibility (IAccessible) support
+  <tr><td>Enable DDE<td>boolean<td>true (1)<td>DDEEnabled<td>Accept DDE calls from other applications
+  <tr><td>Enable Touch UI<td>integer<td>1<td>Enable&shy;Touch&shy;UI<td>Set 0 to disable touch UI, 1 for autodetect (default), 2 to force on if available (use at your own risk).
+  <tr><td>GDI Measuring Mode<td>boolean<td>false (0)<td>Use&shy;GDIMeasuring&shy;Mode<td>Use GDI measuring mode when using DirectDraw for text layout. If DirectDraw is not used, this pref does nothing.
+  <tr><td>Max Number Cached Bitmaps<td>integer<td>100<td>Max&shy;Cached&shy;Bitmaps<td>Maximum #of bitmaps to cache in memory
+  <tr><td>Min Allowed GDI Resources<td>integer<td>20<td>Min&shy;Allowed&shy;GDIResources<td>Amount of GDI resources to keep free
+  <tr><td>Paint Throttling<td>integer<td>15<td>Paint&shy;Throttling<td>Delay in ms the paint events should be throttled with.
+  <tr><td>Show MSIMG32 Warning<td>boolean<td>true (1)<td>Show&shy;Warning&shy;MSIMG32<td>Show MSIMG32 upgrade warning on W9x
+ </table>
+ <p>Generated on Fri Jan 13 19:24:02 2017; 1226 preferences listed.</p>
+</body>
+</html>

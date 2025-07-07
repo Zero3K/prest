@@ -1,0 +1,15 @@
+platforms/crashlog/src/crashlog_mac32.cpp
+platforms/mac/debug/debug_mac.cpp
+platforms/mac/QuickOperaApp/QuickCommandConverter.cpp
+platforms/mac/QuickOperaApp/QuickWidgetApp.cpp
+platforms/mac/QuickOperaApp/QuickWidgetLibHandler.cpp
+platforms/mac/QuickOperaApp/QuickWidgetManager.cpp
+platforms/mac/QuickOperaApp/CocoaApplication.mm
+platforms/mac/QuickOperaApp/OperaExternalNSMenu.mm
+platforms/mac/QuickOperaApp/OperaExternalNSMenuItem.mm
+platforms/mac/QuickOperaApp/QuickAppCoreIncludes.cpp
+platforms/mac/QuickOperaApp/CocoaQuickWidgetMenu.mm
+platforms/mac/QuickOperaApp/QuickOperaAppExtraSymbols.cpp
+platforms/mac/QuickOperaApp/QuickOperaAppExtraSymbols.mm
+platforms/mac/util/systemcapabilities.mm
+platforms/mac/util/string_convert2.cpp

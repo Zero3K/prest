@@ -1,0 +1,203 @@
+/* -*- Mode: c++; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*-
+**
+** Copyright (C) 1995-2017 Opera Software AS.  All rights reserved.
+**
+** This file is part of the Opera web browser.  It may not be distributed
+** under any circumstances.
+**
+** Note: This file is generated, any modifications to this file will
+**       be overwritten when the file is regenerated. See modules/protobuf/cpp.conf for
+**       details on how this file is generated.
+*/
+
+// Generated from ../../adjunct/m2/src/mapi/mapimessage.proto
+
+#include "core/pch.h"
+
+#ifndef G_MESSAGE_M2_MAPIMESSAGE_CPP
+#define G_MESSAGE_M2_MAPIMESSAGE_CPP
+
+
+
+#include "adjunct/m2/src/generated/g_message_m2_mapimessage.h"
+#include "modules/protobuf/src/protobuf_input.h"
+#include "modules/protobuf/src/protobuf_output.h"
+#include "modules/protobuf/src/protobuf_message.h"
+#include "modules/protobuf/src/protobuf_data.h"
+#include "modules/protobuf/src/generated/g_protobuf_descriptors.h"
+
+
+// BEGIN: Message classes
+
+// BEGIN: Message OpCreateNewMailMessage
+
+OpCreateNewMailMessage::~OpCreateNewMailMessage()
+{
+}
+
+/* static */ OpCreateNewMailMessage*
+OpCreateNewMailMessage::Cast(const OpTypedMessage* msg)
+{
+	OP_ASSERT(msg && msg->GetType() == Type);
+    return static_cast<OpCreateNewMailMessage*>(const_cast<OpTypedMessage*>(msg));
+}
+
+/* static */ OpCreateNewMailMessage*
+OpCreateNewMailMessage::Deserialize(
+		const OpMessageAddress& src,
+		const OpMessageAddress& dst,
+		double delay,
+		const OpData& data)
+{
+	OpProtobufInputStream stream;
+	RETURN_VALUE_IF_ERROR(stream.Construct(data), NULL);
+	OpCreateNewMailMessage *msg = OpCreateNewMailMessage::Create(src, dst, delay);
+	if (!msg)
+		return NULL;
+	OpProtobufInstanceProxy instance(OpM2Mapimessage_MessageSet::CreateNewMail::GetMessageDescriptor(PROTOBUF_DESCRIPTOR(desc_m2_mapimessage)), &msg->protobuf_data);
+	if (OpStatus::IsError(stream.Read(instance)))
+	{
+		OP_DELETE(msg);
+		return NULL;
+	}
+	return msg;
+}
+
+OP_STATUS
+OpCreateNewMailMessage::Serialize(OpData& data) const
+{
+	OpProtobufOpDataOutputRange range(data);
+	OpProtobufOutputStream stream(&range);
+	OpM2Mapimessage_MessageSet::CreateNewMail *proto = const_cast<OpM2Mapimessage_MessageSet::CreateNewMail *>(&protobuf_data);
+	void *proto_ptr = proto;
+	OpProtobufInstanceProxy instance(OpM2Mapimessage_MessageSet::CreateNewMail::GetMessageDescriptor(PROTOBUF_DESCRIPTOR(desc_m2_mapimessage)), proto_ptr);
+	return stream.Write(instance);
+}
+
+const char *
+OpCreateNewMailMessage::GetTypeString() const
+{
+	const OpProtobufMessage *d = OpM2Mapimessage_MessageSet::CreateNewMail::GetMessageDescriptor(PROTOBUF_DESCRIPTOR(desc_m2_mapimessage));
+	return d ? d->GetName() : NULL;
+}
+OP_STATUS
+OpCreateNewMailMessage::SetSubject(const UniString & v) 
+{
+	return protobuf_data.SetSubject(v);
+}
+
+
+OP_STATUS
+OpCreateNewMailMessage::SetSubject(const uni_char * v, int l) 
+{
+	return protobuf_data.SetSubject(v, l);
+}
+
+
+OP_STATUS
+OpCreateNewMailMessage::SetText(const UniString & v) 
+{
+	return protobuf_data.SetText(v);
+}
+
+
+OP_STATUS
+OpCreateNewMailMessage::SetText(const uni_char * v, int l) 
+{
+	return protobuf_data.SetText(v, l);
+}
+
+
+OP_STATUS
+OpCreateNewMailMessage::SetDate(const UniString & v) 
+{
+	return protobuf_data.SetDate(v);
+}
+
+
+OP_STATUS
+OpCreateNewMailMessage::SetDate(const uni_char * v, int l) 
+{
+	return protobuf_data.SetDate(v, l);
+}
+
+
+OP_STATUS
+OpCreateNewMailMessage::SetTo(const UniString & v) 
+{
+	return protobuf_data.SetTo(v);
+}
+
+
+OP_STATUS
+OpCreateNewMailMessage::SetTo(const uni_char * v, int l) 
+{
+	return protobuf_data.SetTo(v, l);
+}
+
+
+OP_STATUS
+OpCreateNewMailMessage::SetCc(const UniString & v) 
+{
+	return protobuf_data.SetCc(v);
+}
+
+
+OP_STATUS
+OpCreateNewMailMessage::SetCc(const uni_char * v, int l) 
+{
+	return protobuf_data.SetCc(v, l);
+}
+
+
+OP_STATUS
+OpCreateNewMailMessage::SetBcc(const UniString & v) 
+{
+	return protobuf_data.SetBcc(v);
+}
+
+
+OP_STATUS
+OpCreateNewMailMessage::SetBcc(const uni_char * v, int l) 
+{
+	return protobuf_data.SetBcc(v, l);
+}
+
+
+OP_STATUS
+OpCreateNewMailMessage::SetFilePaths(const UniString & v) 
+{
+	return protobuf_data.SetFilePaths(v);
+}
+
+
+OP_STATUS
+OpCreateNewMailMessage::SetFilePaths(const uni_char * v, int l) 
+{
+	return protobuf_data.SetFilePaths(v, l);
+}
+
+
+OP_STATUS
+OpCreateNewMailMessage::SetFileNames(const UniString & v) 
+{
+	return protobuf_data.SetFileNames(v);
+}
+
+
+OP_STATUS
+OpCreateNewMailMessage::SetFileNames(const uni_char * v, int l) 
+{
+	return protobuf_data.SetFileNames(v, l);
+}
+
+
+
+
+// END: Message OpCreateNewMailMessage
+
+
+// END: Message classes
+
+
+#endif // G_MESSAGE_M2_MAPIMESSAGE_CPP

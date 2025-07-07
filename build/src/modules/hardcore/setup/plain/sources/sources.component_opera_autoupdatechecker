@@ -1,0 +1,7 @@
+adjunct/autoupdate/autoupdate_checker/autoupdatechecker.cpp
+adjunct/autoupdate/autoupdate_checker/platforms/universal_adaptation_layer/networkimpl.cpp
+adjunct/autoupdate/autoupdate_checker/platforms/universal_adaptation_layer/protocolimpl.cpp
+platforms/posix/autoupdate_checker/impl/globalstorageimpl.cpp
+platforms/posix/autoupdate_checker/impl/ipcimpl.cpp
+platforms/posix/autoupdate_checker/impl/systeminfoimpl.cpp
+platforms/posix/autoupdate_checker/main.cpp

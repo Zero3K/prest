@@ -1,0 +1,9 @@
+platforms/quix/toolkits/kde4/Kde4ColorChooser.cpp
+platforms/quix/toolkits/kde4/Kde4FileChooser.cpp
+platforms/quix/toolkits/kde4/Kde4Mainloop.cpp
+platforms/quix/toolkits/kde4/Kde4PrinterIntegration.cpp
+platforms/quix/toolkits/kde4/Kde4SkinElement.cpp
+platforms/quix/toolkits/kde4/Kde4ToolkitLibrary.cpp
+platforms/quix/toolkits/kde4/Kde4UiSettings.cpp
+platforms/quix/toolkits/kde4/Kde4Utils.cpp
+platforms/quix/toolkits/kde4/Kde4WidgetPainter.cpp

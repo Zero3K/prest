@@ -1,0 +1,379 @@
+/* -*- Mode: c++; indent-tabs-mode: t; tab-width: 4 -*- */
+
+    	/* JavaScript */
+	DOM_FUNCTIONS3(JS_WindowPrototype)
+	DOM_FUNCTIONS3(JS_Navigator)
+	DOM_FUNCTIONS2(JS_History)
+	DOM_FUNCTIONS3(JS_Console)
+	DOM_FUNCTIONS3(JS_Location)
+	DOM_FUNCTIONS1(JS_PluginArray)
+
+	/* DOM 2 Core */
+	DOM_FUNCTIONS3(DOM_Node)
+	DOM_FUNCTIONS3(DOM_Document)
+	DOM_FUNCTIONS2(DOM_DocumentFragment)
+	DOM_FUNCTIONS1(DOM_CharacterData)
+	DOM_FUNCTIONS3(DOM_Element)
+	DOM_FUNCTIONS1(DOM_Text)
+	DOM_FUNCTIONS1(DOM_Collection)
+	DOM_FUNCTIONS2(DOM_NamedNodeMap)
+	DOM_FUNCTIONS1(DOM_XMLDocument)
+	DOM_FUNCTIONS1(DOM_ClientRectList)
+
+	/* HTML5 Microdata */
+	DOM_FUNCTIONS1(DOM_HTMLPropertiesCollection)
+	DOM_FUNCTIONS1(DOM_PropertyNodeList_Collection)
+
+	/* DOM 3 Core */
+	DOM_FUNCTIONS2(DOM_DOMConfiguration)
+	DOM_FUNCTIONS1(DOM_DOMStringList)
+	DOM_FUNCTIONS3(DOM_DOMTokenList)
+
+	/* DOM 2 Events */
+	DOM_FUNCTIONS3(DOM_Event)
+	DOM_FUNCTIONS1(DOM_UIEvent)
+	DOM_FUNCTIONS1(DOM_MouseEvent)
+	DOM_FUNCTIONS1(DOM_KeyboardEvent)
+#ifdef DOM2_MUTATION_EVENTS
+	DOM_FUNCTIONS1(DOM_MutationEvent)
+#endif // DOM2_MUTATION_EVENTS
+#ifdef PROGRESS_EVENTS_SUPPORT
+	DOM_FUNCTIONS1(DOM_ProgressEvent)
+#endif // PROGRESS_EVENTS_SUPPORT
+#ifdef CSS_TRANSITIONS
+	DOM_FUNCTIONS1(DOM_TransitionEvent)
+#endif // CSS_TRANSITIONS
+#ifdef CSS_ANIMATIONS
+	DOM_FUNCTIONS1(DOM_AnimationEvent)
+#endif // CSS_ANIMATIONS
+	DOM_FUNCTIONS1(DOM_HashChangeEvent)
+	DOM_FUNCTIONS1(DOM_ErrorEvent)
+	DOM_FUNCTIONS1(DOM_CustomEvent)
+
+	/* DOM 3 Events */
+	DOM_FUNCTIONS1(DOM_TextEvent)
+
+	/* DOM 2 HTML */
+	DOM_FUNCTIONS1(DOM_HTMLCollection)
+	DOM_FUNCTIONS2(DOM_HTMLOptionsCollection)
+	DOM_FUNCTIONS3(DOM_HTMLDocument)
+	DOM_FUNCTIONS1(DOM_HTMLElement)
+
+	/* DOM 2 CSS */
+	DOM_FUNCTIONS1(DOM_CSSStyleDeclaration)
+	DOM_FUNCTIONS1(DOM_CSSStyleSheet)
+	DOM_FUNCTIONS1(DOM_CSSRuleList)
+	DOM_FUNCTIONS1(DOM_CSSConditionalRule)
+#ifdef CSS_ANIMATIONS
+	DOM_FUNCTIONS1(DOM_CSSKeyframesRule)
+#endif // CSS_ANIMATIONS
+#ifdef CSS_TRANSFORMS
+	DOM_FUNCTIONS1(DOM_CSSMatrix)
+#endif // CSS_TRANSFORMS
+
+	/* DOM 2 Traversal & Range */
+#ifdef DOM2_TRAVERSAL
+	DOM_FUNCTIONS3(DOM_NodeIterator)
+	DOM_FUNCTIONS2(DOM_TreeWalker)
+#endif // DOM2_TRAVERSAL
+#ifdef DOM2_RANGE
+	DOM_FUNCTIONS3(DOM_Range)
+#endif // DOM2_RANGE
+
+	/* DOM 2 Style Sheets */
+	DOM_FUNCTIONS1(DOM_StyleSheetList)
+	DOM_FUNCTIONS1(DOM_MediaList)
+
+	/* CSSOM View */
+	DOM_FUNCTIONS1(DOM_MediaQueryList)
+
+	/* DOM 3 Load & Save and extras */
+#ifdef DOM3_LOAD
+	DOM_FUNCTIONS3(DOM_LSParser)
+	DOM_FUNCTIONS1(DOM_DOMParser)
+#endif // DOM3_LOAD
+#ifdef DOM3_SAVE
+	DOM_FUNCTIONS2(DOM_LSSerializer)
+	DOM_FUNCTIONS1(DOM_XMLSerializer)
+#endif // DOM3_SAVE
+#ifdef DOM_HTTP_SUPPORT
+	DOM_FUNCTIONS3(DOM_XMLHttpRequest)
+#endif // DOM_HTTP_SUPPORT
+#if defined DOM_HTTP_SUPPORT && defined PROGRESS_EVENTS_SUPPORT
+	DOM_FUNCTIONS3(DOM_XMLHttpRequestUpload)
+#endif // DOM_HTTP_SUPPORT && PROGRESS_EVENTS_SUPPORT
+#ifdef DOM_HTTP_SUPPORT
+	DOM_FUNCTIONS1(DOM_FormData)
+#endif // DOM_HTTP_SUPPORT
+
+	/* DOM 3 XPath */
+#ifdef DOM3_XPATH
+	DOM_FUNCTIONS3(DOM_XPathEvaluator)
+	DOM_FUNCTIONS1(DOM_XPathExpression)
+	DOM_FUNCTIONS1(DOM_XPathNSResolver)
+	DOM_FUNCTIONS2(DOM_XPathResult)
+	DOM_FUNCTIONS1(DOM_XPathResult_NodeList)
+#endif // DOM3_XPATH
+
+	/* Canvas */
+#ifdef CANVAS_SUPPORT
+	DOM_FUNCTIONS1(DOMCanvasContext2D)
+	DOM_FUNCTIONS1(DOMCanvasGradient)
+#endif // CANVAS_SUPPORT
+
+	/* Canvas3D */
+#ifdef CANVAS3D_SUPPORT
+	DOM_FUNCTIONS1(DOMCanvasContextWebGL)
+#endif // CANVAS3D_SUPPORT
+
+	/* SVG */
+#ifdef SVG_DOM
+#ifdef SVG_FULL_11
+	DOM_FUNCTIONS1(DOM_SVGList)
+	DOM_FUNCTIONS1(DOM_SVGStringList)
+#endif // SVG_FULL_11
+	DOM_FUNCTIONS3(DOM_SVGElementInstance)
+#ifdef SVG_FULL_11
+	DOM_FUNCTIONS1(DOM_SVGElementInstanceList)
+#endif // SVG_FULL_11
+	DOM_FUNCTIONS1(DOM_TimeEvent)
+#endif // SVG_DOM
+
+	/* Debugger */
+#ifdef DOM_DEBUGGER_SUPPORT
+	DOM_FUNCTIONS1(DOM_Debugger)
+#endif // DOM_DEBUGGER_SUPPORT
+
+	/* TextRange */
+#ifdef DOM_SELECTION_SUPPORT
+	DOM_FUNCTIONS3(DOM_WindowSelection)
+#endif // DOM_SELECTION_SUPPORT
+
+	/* Proprietary XSLT support */
+#ifdef DOM_XSLT_SUPPORT
+	DOM_FUNCTIONS3(DOM_XSLTProcessor)
+#endif // DOM_XSLT_SUPPORT
+
+	/* WebFeeds support */
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	DOM_FUNCTIONS1(DOM_WebFeeds)
+	DOM_FUNCTIONS1(DOM_FeedList)
+	DOM_FUNCTIONS1(DOM_Feed)
+	DOM_FUNCTIONS1(DOM_FeedEntryList)
+	DOM_FUNCTIONS1(DOM_FeedEntry)
+#ifdef WEBFEEDS_EXTERNAL_READERS
+	DOM_FUNCTIONS1(DOM_FeedReaderList)
+	DOM_FUNCTIONS1(DOM_FeedReader)
+#endif // WEBFEEDS_EXTERNAL_READERS
+#endif // WEBFEEDS_BACKEND_SUPPORT
+
+	/* WebServer support */
+#ifdef WEBSERVER_SUPPORT
+	DOM_FUNCTIONS1(DOM_WebServerRequest)
+	DOM_FUNCTIONS1(DOM_WebServerResponse)
+	DOM_FUNCTIONS1(DOM_WebServerUploadedFile)
+	DOM_FUNCTIONS1(DOM_WebServerSession)
+#endif // WEBSERVER_SUPPORT
+
+	/* Gadget support */
+#ifdef GADGET_SUPPORT
+	DOM_FUNCTIONS2(DOM_WidgetIcon)
+	DOM_FUNCTIONS3(DOM_WidgetWindow)
+#endif // GADGET_SUPPORT
+
+	/* Gadget Manager support */
+#if defined DOM_WIDGETMANAGER_SUPPORT || defined DOM_UNITEAPPMANAGER_SUPPORT || defined EXTENSION_MANAGER_SUPPORT
+	DOM_FUNCTIONS1(DOM_WidgetManager)
+#endif // DOM_WIDGETMANAGER_SUPPORT || DOM_UNITEAPPMANAGER_SUPPORT || EXTENSION_MANAGER_SUPPORT
+
+	/* Opera Account support */
+#if defined DOM_ACCOUNTMANAGER_SUPPORT
+	DOM_FUNCTIONS1(DOM_OperaAccountManager)
+#endif // DOM_ACCOUNTMANAGER_SUPPORT
+
+	/* Unite support */
+#if defined DOM_UNITEDEVMANAGER_SUPPORT
+	DOM_FUNCTIONS1(DOM_UniteDeviceManager)
+#endif // DOM_UNITEDEVMANAGER_SUPPORT
+
+	/* Gadget File API support */
+#if defined DOM_GADGET_FILE_API_SUPPORT
+	DOM_FUNCTIONS3(DOM_GadgetFile)
+	DOM_FUNCTIONS3(DOM_FileStream)
+	DOM_FUNCTIONS3(DOM_FileSystem)
+#endif // DOM_GADGET_FILE_API_SUPPORT
+
+	/* File API support */
+	DOM_FUNCTIONS1(DOM_Blob)
+	DOM_FUNCTIONS1(DOM_FileList)
+	DOM_FUNCTIONS3(DOM_FileReader)
+	DOM_FUNCTIONS2(DOM_FileReaderSync)
+
+	/* Media */
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_FUNCTIONS2(DOM_TimeRanges)
+	DOM_FUNCTIONS3(DOM_TextTrack)
+	DOM_FUNCTIONS3(DOM_TextTrackList)
+	DOM_FUNCTIONS3(DOM_TextTrackCue)
+	DOM_FUNCTIONS1(DOM_TextTrackCueList)
+#endif // MEDIA_HTML_SUPPORT
+
+	/* Geolocation support */
+#if defined(DOM_GEOLOCATION_SUPPORT) && defined(PI_GEOLOCATION)
+	DOM_FUNCTIONS1(DOM_Geolocation)
+#endif // DOM_GEOLOCATION_SUPPORT && PI_GEOLOCATION
+
+	/* HTML5 Client-side Storage */
+#ifdef CLIENTSIDE_STORAGE_SUPPORT
+	DOM_FUNCTIONS1(DOM_Storage)
+#ifdef WEBSTORAGE_USER_SCRIPT_STORAGE_SUPPORT
+#endif // WEBSTORAGE_USER_SCRIPT_STORAGE_SUPPORT
+	DOM_FUNCTIONS1(DOM_StorageEvent)
+#endif // CLIENTSIDE_STORAGE_SUPPORT
+
+	/* HTML5 Database Storage */
+#ifdef DATABASE_STORAGE_SUPPORT
+	DOM_FUNCTIONS3(DOM_Database)
+	DOM_FUNCTIONS1(DOM_SQLTransaction)
+	DOM_FUNCTIONS1(DOM_SQLResultSetRowList)
+#endif // DATABASE_STORAGE_SUPPORT
+
+	/* JIL API support */
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_FUNCTIONS1(DOM_JILAddressBookItem)
+#ifdef MEDIA_JIL_PLAYER_SUPPORT
+	DOM_FUNCTIONS1(DOM_JILAudioPlayer)
+#endif // MEDIA_JIL_PLAYER_SUPPORT
+	DOM_FUNCTIONS1(DOM_JILCalendarItem)
+#ifdef JIL_CAMERA_SUPPORT
+	DOM_FUNCTIONS1(DOM_JILCamera)
+#endif // JIL_CAMERA_SUPPORT
+	DOM_FUNCTIONS1(DOM_JILConfig)
+	DOM_FUNCTIONS1(DOM_JILDataNetworkInfo)
+	DOM_FUNCTIONS1(DOM_JILDevice)
+	DOM_FUNCTIONS1(DOM_JILDeviceStateInfo)
+	DOM_FUNCTIONS1(DOM_JILMessage)
+	DOM_FUNCTIONS1(DOM_JILMessaging)
+#ifdef MEDIA_JIL_PLAYER_SUPPORT
+	DOM_FUNCTIONS1(DOM_JILMultimedia)
+#endif // MEDIA_JIL_PLAYER_SUPPORT
+	DOM_FUNCTIONS1(DOM_JILPIM)
+	DOM_FUNCTIONS1(DOM_JILTelephony)
+#ifdef MEDIA_JIL_PLAYER_SUPPORT
+	DOM_FUNCTIONS1(DOM_JILVideoPlayer)
+#endif // MEDIA_JIL_PLAYER_SUPPORT
+	DOM_FUNCTIONS1(DOM_JILWidget)
+#endif // DOM_JIL_API_SUPPORT
+
+	/* HTML 5 Offline Web Application */
+#ifdef APPLICATION_CACHE_SUPPORT
+	DOM_FUNCTIONS3(DOM_ApplicationCache)
+#endif // APPLICATION_CACHE_SUPPORT
+
+	/* WebSocket */
+#ifdef WEBSOCKETS_SUPPORT
+	DOM_FUNCTIONS3(DOM_WebSocket)
+	DOM_FUNCTIONS1(DOM_CloseEvent)
+#endif // WEBSOCKETS_SUPPORT
+
+	/* HTML5 Web Workers */
+#ifdef DOM_WEBWORKERS_SUPPORT
+	DOM_FUNCTIONS3(DOM_DedicatedWorkerGlobalScope)
+	DOM_FUNCTIONS3(DOM_SharedWorkerGlobalScope)
+	DOM_FUNCTIONS3(DOM_DedicatedWorkerObject)
+	DOM_FUNCTIONS3(DOM_SharedWorkerObject)
+	DOM_FUNCTIONS1(JS_Location_Worker)
+#endif // DOM_WEBWORKERS_SUPPORT
+
+	/* HTML5 Cross Document Messaging */
+#ifdef DOM_CROSSDOCUMENT_MESSAGING_SUPPORT
+	DOM_FUNCTIONS1(DOM_MessageEvent)
+	DOM_FUNCTIONS3(DOM_MessagePort)
+#endif // DOM_CROSSDOCUMENT_MESSAGING_SUPPORT
+
+	/* HTML5 Server-Sent Events */
+#ifdef EVENT_SOURCE_SUPPORT
+	DOM_FUNCTIONS3(DOM_EventSource)
+#endif // EVENT_SOURCE_SUPPORT
+
+	/* Touch Events support */
+#ifdef TOUCH_EVENTS_SUPPORT
+	DOM_FUNCTIONS1(DOM_TouchList)
+	DOM_FUNCTIONS1(DOM_TouchEvent)
+#endif // TOUCH_EVENTS_SUPPORT
+
+	/* Extension support */
+#ifdef EXTENSION_SUPPORT
+	DOM_FUNCTIONS3(DOM_Extension)
+	DOM_FUNCTIONS3(DOM_ExtensionBackground)
+	DOM_FUNCTIONS1(DOM_ExtensionContext)
+	DOM_FUNCTIONS3(DOM_ExtensionPageContext)
+	DOM_FUNCTIONS2(DOM_ExtensionScopePrototype)
+	DOM_FUNCTIONS1(DOM_ExtensionUIBadge)
+	DOM_FUNCTIONS3(DOM_ExtensionUIItem)
+	DOM_FUNCTIONS1(DOM_ExtensionUIItemEvent)
+	DOM_FUNCTIONS1(DOM_ExtensionUIPopup)
+#ifdef URL_FILTER
+	DOM_FUNCTIONS2(DOM_ExtensionURLFilter)
+	DOM_FUNCTIONS1(DOM_ExtensionRuleList)
+#endif // URL_FILTER
+#endif // EXTENSION_SUPPORT
+
+	/* Tabs & windows API */
+#ifdef DOM_EXTENSIONS_TAB_API_SUPPORT
+	DOM_FUNCTIONS1(DOM_BrowserTab)
+	DOM_FUNCTIONS3(DOM_BrowserTabManager)
+	DOM_FUNCTIONS1(DOM_BrowserTabGroup)
+	DOM_FUNCTIONS3(DOM_BrowserTabGroupManager)
+	DOM_FUNCTIONS1(DOM_BrowserWindow)
+	DOM_FUNCTIONS3(DOM_BrowserWindowManager)
+#endif // DOM_EXTENSIONS_TAB_API_SUPPORT
+
+	/* Extension Context Menu API */
+#ifdef DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	DOM_FUNCTIONS3(DOM_ExtensionMenuContext)
+	DOM_FUNCTIONS1(DOM_ExtensionRootMenuContext)
+	DOM_FUNCTIONS2(DOM_ExtensionMenuContextProxy)
+#endif // DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+
+	/* HTML5 History */
+	DOM_FUNCTIONS1(DOM_PopStateEvent)
+
+	/* DOMPerformance */
+#ifdef DOM_WINDOW_PERFORMANCE_OBJECT_SUPPORT
+	DOM_FUNCTIONS1(DOM_Performance)
+#endif // DOM_WINDOW_PERFORMANCE_OBJECT_SUPPORT
+
+	/* Stream API support */
+#ifdef DOM_STREAM_API_SUPPORT
+	DOM_FUNCTIONS3(DOM_LocalMediaStream)
+#endif // DOM_STREAM_API_SUPPORT
+
+	/* DeviceOrientation Event */
+#ifdef DOM_DEVICE_ORIENTATION_EVENT_SUPPORT
+	DOM_FUNCTIONS1(DOM_DeviceOrientationEvent)
+	DOM_FUNCTIONS1(DOM_DeviceMotionEvent)
+#endif // DOM_DEVICE_ORIENTATION_EVENT_SUPPORT
+
+	/* Paged display */
+#ifdef PAGED_MEDIA_SUPPORT
+	DOM_FUNCTIONS1(DOM_PageEvent)
+#endif // PAGED_MEDIA_SUPPORT
+
+	/* HTML5 Data Transfer */
+#if defined(DRAG_SUPPORT) || defined(USE_OP_CLIPBOARD)
+	DOM_FUNCTIONS3(DOM_DataTransfer)
+	DOM_FUNCTIONS2(DOM_DataTransferItem)
+	DOM_FUNCTIONS1(DOM_DataTransferItems)
+#endif // DRAG_SUPPORT || USE_OP_CLIPBOARD
+
+	/* HTML5 DND */
+#ifdef DRAG_SUPPORT
+	DOM_FUNCTIONS1(DOM_DragEvent)
+#endif // DRAG_SUPPORT
+
+	/* Clipboard Event */
+#ifdef USE_OP_CLIPBOARD
+	DOM_FUNCTIONS1(DOM_ClipboardEvent)
+#endif // USE_OP_CLIPBOARD
+

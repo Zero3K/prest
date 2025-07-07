@@ -1,0 +1,6471 @@
+/* -*- mode: c++; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
+
+#ifdef DOM_NO_COMPLEX_GLOBALS
+# define DOM_ATOM_NAMES_START() void DOM_atomNames_Init(DOM_GlobalData *global_data) { const char **names = global_data->atomNames;
+# define DOM_ATOM_NAMES_ITEM(name) *names = name; ++names;
+# define DOM_ATOM_NAMES_ITEM_LAST(name) *names = name;
+# define DOM_ATOM_NAMES_END() }
+#else // DOM_NO_COMPLEX_GLOBALS
+# define DOM_ATOM_NAMES_START() const char *const g_DOM_atomNames[] = {
+# define DOM_ATOM_NAMES_ITEM(name) name,
+# define DOM_ATOM_NAMES_ITEM_LAST(name) name
+# define DOM_ATOM_NAMES_END() };
+#endif // DOM_NO_COMPLEX_GLOBALS
+
+DOM_ATOM_NAMES_START()
+	DOM_ATOM_NAMES_ITEM("AppleDashboardRegion")
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("MIMEType")
+	DOM_ATOM_NAMES_ITEM("Multimedia")
+#endif // DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("OBorderImage")
+#ifdef CSS_MINI_EXTENSIONS
+	DOM_ATOM_NAMES_ITEM("OFocusOpacity")
+#endif // CSS_MINI_EXTENSIONS
+	DOM_ATOM_NAMES_ITEM("OLink")
+	DOM_ATOM_NAMES_ITEM("OLinkSource")
+#ifdef CSS_MINI_EXTENSIONS
+	DOM_ATOM_NAMES_ITEM("OMiniFold")
+#endif // CSS_MINI_EXTENSIONS
+	DOM_ATOM_NAMES_ITEM("OObjectFit")
+	DOM_ATOM_NAMES_ITEM("OObjectPosition")
+	DOM_ATOM_NAMES_ITEM("OTabSize")
+	DOM_ATOM_NAMES_ITEM("OTableBaseline")
+#ifdef CSS_TRANSFORMS
+	DOM_ATOM_NAMES_ITEM("OTransform")
+	DOM_ATOM_NAMES_ITEM("OTransformOrigin")
+#endif // CSS_TRANSFORMS
+#ifdef CSS_TRANSITIONS
+	DOM_ATOM_NAMES_ITEM("OTransition")
+	DOM_ATOM_NAMES_ITEM("OTransitionDelay")
+	DOM_ATOM_NAMES_ITEM("OTransitionDuration")
+	DOM_ATOM_NAMES_ITEM("OTransitionProperty")
+	DOM_ATOM_NAMES_ITEM("OTransitionTimingFunction")
+#endif // CSS_TRANSITIONS
+	DOM_ATOM_NAMES_ITEM("URL")
+	DOM_ATOM_NAMES_ITEM("WapAccesskey")
+	DOM_ATOM_NAMES_ITEM("WapInputFormat")
+	DOM_ATOM_NAMES_ITEM("WapInputRequired")
+	DOM_ATOM_NAMES_ITEM("WapMarqueeDir")
+	DOM_ATOM_NAMES_ITEM("WapMarqueeLoop")
+	DOM_ATOM_NAMES_ITEM("WapMarqueeSpeed")
+	DOM_ATOM_NAMES_ITEM("WapMarqueeStyle")
+	DOM_ATOM_NAMES_ITEM("WebkitBackgroundSize")
+	DOM_ATOM_NAMES_ITEM("WebkitBorderBottomLeftRadius")
+	DOM_ATOM_NAMES_ITEM("WebkitBorderBottomRightRadius")
+	DOM_ATOM_NAMES_ITEM("WebkitBorderRadius")
+	DOM_ATOM_NAMES_ITEM("WebkitBorderTopLeftRadius")
+	DOM_ATOM_NAMES_ITEM("WebkitBorderTopRightRadius")
+	DOM_ATOM_NAMES_ITEM("WebkitBoxAlign")
+	DOM_ATOM_NAMES_ITEM("WebkitBoxDirection")
+	DOM_ATOM_NAMES_ITEM("WebkitBoxFlex")
+	DOM_ATOM_NAMES_ITEM("WebkitBoxLines")
+	DOM_ATOM_NAMES_ITEM("WebkitBoxOrdinalGroup")
+	DOM_ATOM_NAMES_ITEM("WebkitBoxOrient")
+	DOM_ATOM_NAMES_ITEM("WebkitBoxPack")
+	DOM_ATOM_NAMES_ITEM("WebkitBoxShadow")
+#ifdef CSS_TRANSFORMS
+	DOM_ATOM_NAMES_ITEM("WebkitTransform")
+	DOM_ATOM_NAMES_ITEM("WebkitTransformOrigin")
+#endif // CSS_TRANSFORMS
+#ifdef CSS_TRANSITIONS
+	DOM_ATOM_NAMES_ITEM("WebkitTransition")
+	DOM_ATOM_NAMES_ITEM("WebkitTransitionDelay")
+	DOM_ATOM_NAMES_ITEM("WebkitTransitionDuration")
+	DOM_ATOM_NAMES_ITEM("WebkitTransitionProperty")
+	DOM_ATOM_NAMES_ITEM("WebkitTransitionTimingFunction")
+#endif // CSS_TRANSITIONS
+#if defined SVG_DOM || defined CSS_TRANSFORMS
+	DOM_ATOM_NAMES_ITEM("a")
+#endif // SVG_DOM || CSS_TRANSFORMS
+	DOM_ATOM_NAMES_ITEM("aLink")
+	DOM_ATOM_NAMES_ITEM("abbr")
+	DOM_ATOM_NAMES_ITEM("accept")
+	DOM_ATOM_NAMES_ITEM("acceptCharset")
+	DOM_ATOM_NAMES_ITEM("accessKey")
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("accountId")
+	DOM_ATOM_NAMES_ITEM("accountName")
+#endif // DOM_JIL_API_SUPPORT
+#ifdef DOM_GEOLOCATION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("accuracy")
+#endif // DOM_GEOLOCATION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("action")
+#if defined WEBSERVER_SUPPORT || defined GADGET_SUPPORT
+	DOM_ATOM_NAMES_ITEM("active")
+#endif // WEBSERVER_SUPPORT || GADGET_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("activeCues")
+#endif // MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("activeElement")
+	DOM_ATOM_NAMES_ITEM("addEventListener")
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("address")
+	DOM_ATOM_NAMES_ITEM("addressBookItemId")
+	DOM_ATOM_NAMES_ITEM("alarmDate")
+	DOM_ATOM_NAMES_ITEM("alarmed")
+#endif // DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("align")
+	DOM_ATOM_NAMES_ITEM("alignContent")
+	DOM_ATOM_NAMES_ITEM("alignItems")
+	DOM_ATOM_NAMES_ITEM("alignSelf")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("alignmentBaseline")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("alinkColor")
+	DOM_ATOM_NAMES_ITEM("all")
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	DOM_ATOM_NAMES_ITEM("allFeeds")
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#if defined EXTENSION_SUPPORT && defined URL_FILTER
+	DOM_ATOM_NAMES_ITEM("allow")
+#endif // EXTENSION_SUPPORT && URL_FILTER
+#ifdef CANVAS3D_SUPPORT
+	DOM_ATOM_NAMES_ITEM("alpha")
+#endif // CANVAS3D_SUPPORT
+	DOM_ATOM_NAMES_ITEM("alt")
+	DOM_ATOM_NAMES_ITEM("altKey")
+#ifdef UPNP_SUPPORT
+	DOM_ATOM_NAMES_ITEM("alternateURL")
+#endif // UPNP_SUPPORT
+#ifdef DOM_GEOLOCATION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("altitude")
+	DOM_ATOM_NAMES_ITEM("altitudeAccuracy")
+#endif // DOM_GEOLOCATION_SUPPORT
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("amplitude")
+#endif // SVG_DOM
+#ifdef DOM_SELECTION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("anchorNode")
+	DOM_ATOM_NAMES_ITEM("anchorOffset")
+#endif // DOM_SELECTION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("anchors")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("angle")
+	DOM_ATOM_NAMES_ITEM("animVal")
+	DOM_ATOM_NAMES_ITEM("animatedInstanceRoot")
+	DOM_ATOM_NAMES_ITEM("animatedNormalizedPathSegList")
+	DOM_ATOM_NAMES_ITEM("animatedPathSegList")
+	DOM_ATOM_NAMES_ITEM("animatedPoints")
+#endif // SVG_DOM
+#ifdef CSS_ANIMATIONS
+	DOM_ATOM_NAMES_ITEM("animation")
+	DOM_ATOM_NAMES_ITEM("animationDelay")
+	DOM_ATOM_NAMES_ITEM("animationDirection")
+	DOM_ATOM_NAMES_ITEM("animationDuration")
+	DOM_ATOM_NAMES_ITEM("animationFillMode")
+	DOM_ATOM_NAMES_ITEM("animationIterationCount")
+	DOM_ATOM_NAMES_ITEM("animationName")
+	DOM_ATOM_NAMES_ITEM("animationPlayState")
+	DOM_ATOM_NAMES_ITEM("animationTimingFunction")
+#endif // CSS_ANIMATIONS
+#ifdef CANVAS3D_SUPPORT
+	DOM_ATOM_NAMES_ITEM("antialias")
+#endif // CANVAS3D_SUPPORT
+	DOM_ATOM_NAMES_ITEM("appCodeName")
+	DOM_ATOM_NAMES_ITEM("appMinorVersion")
+	DOM_ATOM_NAMES_ITEM("appName")
+	DOM_ATOM_NAMES_ITEM("appVersion")
+	DOM_ATOM_NAMES_ITEM("applets")
+#if defined APPLICATION_CACHE_SUPPORT || defined DOM_WEBWORKERS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("applicationCache")
+#endif // APPLICATION_CACHE_SUPPORT || DOM_WEBWORKERS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("archive")
+	DOM_ATOM_NAMES_ITEM("areas")
+	DOM_ATOM_NAMES_ITEM("async")
+#ifdef INTEGRATED_DEVTOOLS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("attached")
+#endif // INTEGRATED_DEVTOOLS_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("attachments")
+#endif // DOM_JIL_API_SUPPORT
+#ifdef DOM2_MUTATION_EVENTS
+	DOM_ATOM_NAMES_ITEM("attrChange")
+	DOM_ATOM_NAMES_ITEM("attrName")
+#endif // DOM2_MUTATION_EVENTS
+	DOM_ATOM_NAMES_ITEM("attributes")
+#if defined SVG_DOM
+	DOM_ATOM_NAMES_ITEM("audioLevel")
+#endif // SVG_DOM
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("audioPath")
+#endif // DOM_JIL_API_SUPPORT
+#ifdef OPERA_AUTH_SUPPORT
+	DOM_ATOM_NAMES_ITEM("authState")
+	DOM_ATOM_NAMES_ITEM("authStatus")
+#endif // OPERA_AUTH_SUPPORT
+#ifdef WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("authentication")
+#endif // WEBSERVER_SUPPORT
+#if defined WEBFEEDS_BACKEND_SUPPORT || defined WEBSERVER_SUPPORT || defined GADGET_SUPPORT
+	DOM_ATOM_NAMES_ITEM("author")
+#endif // WEBFEEDS_BACKEND_SUPPORT || WEBSERVER_SUPPORT || GADGET_SUPPORT
+#ifdef GADGET_SUPPORT
+	DOM_ATOM_NAMES_ITEM("authorEmail")
+	DOM_ATOM_NAMES_ITEM("authorHref")
+#endif // GADGET_SUPPORT
+	DOM_ATOM_NAMES_ITEM("autocomplete")
+	DOM_ATOM_NAMES_ITEM("autofocus")
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("autoplay")
+#endif // MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("availHeight")
+	DOM_ATOM_NAMES_ITEM("availWidth")
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("availableMemory")
+#endif // DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("axis")
+	DOM_ATOM_NAMES_ITEM("azimuth")
+#if defined SVG_DOM || defined CSS_TRANSFORMS
+	DOM_ATOM_NAMES_ITEM("b")
+#endif // SVG_DOM || CSS_TRANSFORMS
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("backLightOn")
+#endif // DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("background")
+	DOM_ATOM_NAMES_ITEM("backgroundAttachment")
+	DOM_ATOM_NAMES_ITEM("backgroundClip")
+	DOM_ATOM_NAMES_ITEM("backgroundColor")
+	DOM_ATOM_NAMES_ITEM("backgroundImage")
+	DOM_ATOM_NAMES_ITEM("backgroundOrigin")
+	DOM_ATOM_NAMES_ITEM("backgroundPosition")
+	DOM_ATOM_NAMES_ITEM("backgroundRepeat")
+	DOM_ATOM_NAMES_ITEM("backgroundSize")
+#ifdef EXTENSION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("badge")
+#endif // EXTENSION_SUPPORT
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("baseFrequencyX")
+	DOM_ATOM_NAMES_ITEM("baseFrequencyY")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("baseURI")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("baseVal")
+	DOM_ATOM_NAMES_ITEM("baselineShift")
+#endif // SVG_DOM
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("bccAddress")
+#endif // DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("behavior")
+	DOM_ATOM_NAMES_ITEM("bgColor")
+#ifdef EXTENSION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("bgProcess")
+#endif // EXTENSION_SUPPORT
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("bias")
+#endif // SVG_DOM
+#ifdef WEBSOCKETS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("binaryType")
+#endif // WEBSOCKETS_SUPPORT
+#if defined EXTENSION_SUPPORT && defined URL_FILTER
+	DOM_ATOM_NAMES_ITEM("block")
+#endif // EXTENSION_SUPPORT && URL_FILTER
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("blue")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("blur")
+	DOM_ATOM_NAMES_ITEM("body")
+#ifdef WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("bodyItems")
+#endif // WEBSERVER_SUPPORT
+#ifdef DOM3_XPATH
+	DOM_ATOM_NAMES_ITEM("booleanValue")
+#endif // DOM3_XPATH
+	DOM_ATOM_NAMES_ITEM("border")
+	DOM_ATOM_NAMES_ITEM("borderBottom")
+	DOM_ATOM_NAMES_ITEM("borderBottomColor")
+	DOM_ATOM_NAMES_ITEM("borderBottomLeftRadius")
+	DOM_ATOM_NAMES_ITEM("borderBottomRightRadius")
+	DOM_ATOM_NAMES_ITEM("borderBottomStyle")
+	DOM_ATOM_NAMES_ITEM("borderBottomWidth")
+	DOM_ATOM_NAMES_ITEM("borderCollapse")
+	DOM_ATOM_NAMES_ITEM("borderColor")
+	DOM_ATOM_NAMES_ITEM("borderLeft")
+	DOM_ATOM_NAMES_ITEM("borderLeftColor")
+	DOM_ATOM_NAMES_ITEM("borderLeftStyle")
+	DOM_ATOM_NAMES_ITEM("borderLeftWidth")
+	DOM_ATOM_NAMES_ITEM("borderRadius")
+	DOM_ATOM_NAMES_ITEM("borderRight")
+	DOM_ATOM_NAMES_ITEM("borderRightColor")
+	DOM_ATOM_NAMES_ITEM("borderRightStyle")
+	DOM_ATOM_NAMES_ITEM("borderRightWidth")
+	DOM_ATOM_NAMES_ITEM("borderSpacing")
+	DOM_ATOM_NAMES_ITEM("borderStyle")
+	DOM_ATOM_NAMES_ITEM("borderTop")
+	DOM_ATOM_NAMES_ITEM("borderTopColor")
+	DOM_ATOM_NAMES_ITEM("borderTopLeftRadius")
+	DOM_ATOM_NAMES_ITEM("borderTopRightRadius")
+	DOM_ATOM_NAMES_ITEM("borderTopStyle")
+	DOM_ATOM_NAMES_ITEM("borderTopWidth")
+	DOM_ATOM_NAMES_ITEM("borderWidth")
+	DOM_ATOM_NAMES_ITEM("bottom")
+	DOM_ATOM_NAMES_ITEM("boxDecorationBreak")
+	DOM_ATOM_NAMES_ITEM("boxShadow")
+	DOM_ATOM_NAMES_ITEM("boxSizing")
+	DOM_ATOM_NAMES_ITEM("breakAfter")
+	DOM_ATOM_NAMES_ITEM("breakBefore")
+	DOM_ATOM_NAMES_ITEM("breakInside")
+	DOM_ATOM_NAMES_ITEM("browserLanguage")
+#ifdef DOM_EXTENSIONS_TAB_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("browserWindow")
+#endif // DOM_EXTENSIONS_TAB_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("bubbles")
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("buffered")
+#endif // MEDIA_HTML_SUPPORT
+#ifdef WEBSOCKETS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("bufferedAmount")
+#endif // WEBSOCKETS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("bufferedRendering")
+	DOM_ATOM_NAMES_ITEM("busy")
+	DOM_ATOM_NAMES_ITEM("button")
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("bytesAvailable")
+#endif // DOM_GADGET_FILE_API_SUPPORT
+#if defined SVG_DOM || defined CSS_TRANSFORMS
+	DOM_ATOM_NAMES_ITEM("c")
+#endif // SVG_DOM || CSS_TRANSFORMS
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("calendarItemId")
+	DOM_ATOM_NAMES_ITEM("callRecordAddress")
+	DOM_ATOM_NAMES_ITEM("callRecordId")
+	DOM_ATOM_NAMES_ITEM("callRecordName")
+	DOM_ATOM_NAMES_ITEM("callRecordType")
+	DOM_ATOM_NAMES_ITEM("callbackNumber")
+#endif // DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("cancelBubble")
+	DOM_ATOM_NAMES_ITEM("cancelable")
+#ifdef CANVAS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("canvas")
+#endif // CANVAS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("caption")
+	DOM_ATOM_NAMES_ITEM("captionSide")
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("ccAddress")
+#endif // DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("cellIndex")
+	DOM_ATOM_NAMES_ITEM("cellPadding")
+	DOM_ATOM_NAMES_ITEM("cellSpacing")
+	DOM_ATOM_NAMES_ITEM("cells")
+	DOM_ATOM_NAMES_ITEM("ch")
+	DOM_ATOM_NAMES_ITEM("chOff")
+	DOM_ATOM_NAMES_ITEM("challenge")
+#ifdef TOUCH_EVENTS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("changedTouches")
+#endif // TOUCH_EVENTS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("char")
+	DOM_ATOM_NAMES_ITEM("charCode")
+	DOM_ATOM_NAMES_ITEM("characterSet")
+#ifdef CSS_CHARACTER_TYPE_SUPPORT
+	DOM_ATOM_NAMES_ITEM("characterType")
+#endif // CSS_CHARACTER_TYPE_SUPPORT
+	DOM_ATOM_NAMES_ITEM("charset")
+	DOM_ATOM_NAMES_ITEM("checked")
+	DOM_ATOM_NAMES_ITEM("childElementCount")
+	DOM_ATOM_NAMES_ITEM("childNodes")
+	DOM_ATOM_NAMES_ITEM("children")
+#ifdef WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("chunked")
+#endif // WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("cite")
+	DOM_ATOM_NAMES_ITEM("class")
+	DOM_ATOM_NAMES_ITEM("classId")
+	DOM_ATOM_NAMES_ITEM("classList")
+	DOM_ATOM_NAMES_ITEM("className")
+	DOM_ATOM_NAMES_ITEM("clear")
+	DOM_ATOM_NAMES_ITEM("clientHeight")
+	DOM_ATOM_NAMES_ITEM("clientLeft")
+	DOM_ATOM_NAMES_ITEM("clientTop")
+	DOM_ATOM_NAMES_ITEM("clientWidth")
+	DOM_ATOM_NAMES_ITEM("clientX")
+	DOM_ATOM_NAMES_ITEM("clientY")
+	DOM_ATOM_NAMES_ITEM("clip")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("clipPath")
+	DOM_ATOM_NAMES_ITEM("clipPathUnits")
+	DOM_ATOM_NAMES_ITEM("clipRule")
+#endif // SVG_DOM
+#ifdef USE_OP_CLIPBOARD
+	DOM_ATOM_NAMES_ITEM("clipboardData")
+#endif // USE_OP_CLIPBOARD
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("clipboardString")
+#endif // DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("close")
+	DOM_ATOM_NAMES_ITEM("closed")
+	DOM_ATOM_NAMES_ITEM("code")
+	DOM_ATOM_NAMES_ITEM("codeBase")
+	DOM_ATOM_NAMES_ITEM("codeType")
+	DOM_ATOM_NAMES_ITEM("colSpan")
+#ifdef DOM2_RANGE
+	DOM_ATOM_NAMES_ITEM("collapsed")
+#endif // DOM2_RANGE
+	DOM_ATOM_NAMES_ITEM("color")
+	DOM_ATOM_NAMES_ITEM("colorDepth")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("colorInterpolation")
+	DOM_ATOM_NAMES_ITEM("colorInterpolationFilters")
+	DOM_ATOM_NAMES_ITEM("colorProfile")
+	DOM_ATOM_NAMES_ITEM("colorRendering")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("cols")
+	DOM_ATOM_NAMES_ITEM("columnCount")
+	DOM_ATOM_NAMES_ITEM("columnFill")
+	DOM_ATOM_NAMES_ITEM("columnGap")
+	DOM_ATOM_NAMES_ITEM("columnRule")
+	DOM_ATOM_NAMES_ITEM("columnRuleColor")
+	DOM_ATOM_NAMES_ITEM("columnRuleStyle")
+	DOM_ATOM_NAMES_ITEM("columnRuleWidth")
+	DOM_ATOM_NAMES_ITEM("columnSpan")
+	DOM_ATOM_NAMES_ITEM("columnWidth")
+	DOM_ATOM_NAMES_ITEM("columns")
+#ifdef DOM2_RANGE
+	DOM_ATOM_NAMES_ITEM("commonAncestorContainer")
+#endif // DOM2_RANGE
+	DOM_ATOM_NAMES_ITEM("compact")
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("company")
+#endif // DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("compatMode")
+	DOM_ATOM_NAMES_ITEM("complete")
+#ifdef WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("connection")
+#endif // WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("content")
+	DOM_ATOM_NAMES_ITEM("contentDocument")
+	DOM_ATOM_NAMES_ITEM("contentEditable")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("contentScriptType")
+	DOM_ATOM_NAMES_ITEM("contentStyleType")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("contentType")
+	DOM_ATOM_NAMES_ITEM("contentWindow")
+#ifdef EXTENSION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("contexts")
+#endif // EXTENSION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("control")
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("controls")
+#endif // MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("cookie")
+	DOM_ATOM_NAMES_ITEM("cookieEnabled")
+	DOM_ATOM_NAMES_ITEM("coords")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("correspondingElement")
+	DOM_ATOM_NAMES_ITEM("correspondingUseElement")
+#endif // SVG_DOM
+#ifdef GADGET_SUPPORT
+	DOM_ATOM_NAMES_ITEM("count")
+#endif // GADGET_SUPPORT
+	DOM_ATOM_NAMES_ITEM("counterIncrement")
+	DOM_ATOM_NAMES_ITEM("counterReset")
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("createDate")
+#endif // DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("createDocumentFragment")
+	DOM_ATOM_NAMES_ITEM("createElement")
+	DOM_ATOM_NAMES_ITEM("createEvent")
+	DOM_ATOM_NAMES_ITEM("createTextNode")
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("created")
+#endif // DOM_GADGET_FILE_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("crossOrigin")
+	DOM_ATOM_NAMES_ITEM("cssFloat")
+	DOM_ATOM_NAMES_ITEM("cssRules")
+	DOM_ATOM_NAMES_ITEM("cssText")
+	DOM_ATOM_NAMES_ITEM("ctrlKey")
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("cues")
+#endif // MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("current")
+#ifdef SVG_SUPPORT
+	DOM_ATOM_NAMES_ITEM("currentFps")
+#endif // SVG_SUPPORT
+#ifdef GADGET_SUPPORT
+	DOM_ATOM_NAMES_ITEM("currentIcon")
+#endif // GADGET_SUPPORT
+#ifdef DOM2_TRAVERSAL
+	DOM_ATOM_NAMES_ITEM("currentNode")
+#endif // DOM2_TRAVERSAL
+#ifdef PAGED_MEDIA_SUPPORT
+	DOM_ATOM_NAMES_ITEM("currentPage")
+#endif // PAGED_MEDIA_SUPPORT
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("currentRotate")
+	DOM_ATOM_NAMES_ITEM("currentScale")
+#endif // SVG_DOM
+#ifdef WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("currentServiceName")
+	DOM_ATOM_NAMES_ITEM("currentServicePath")
+#endif // WEBSERVER_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("currentSrc")
+#endif // MEDIA_HTML_SUPPORT
+#ifdef CURRENT_STYLE_SUPPORT
+	DOM_ATOM_NAMES_ITEM("currentStyle")
+#endif // CURRENT_STYLE_SUPPORT
+	DOM_ATOM_NAMES_ITEM("currentTarget")
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("currentTime")
+#endif // MEDIA_HTML_SUPPORT
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("currentTranslate")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("cursor")
+	DOM_ATOM_NAMES_ITEM("customError")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("cx")
+	DOM_ATOM_NAMES_ITEM("cy")
+#endif // SVG_DOM
+#if defined SVG_DOM || defined CSS_TRANSFORMS
+	DOM_ATOM_NAMES_ITEM("d")
+#endif // SVG_DOM || CSS_TRANSFORMS
+	DOM_ATOM_NAMES_ITEM("data")
+#ifdef DRAG_SUPPORT
+	DOM_ATOM_NAMES_ITEM("dataTransfer")
+#endif // DRAG_SUPPORT
+	DOM_ATOM_NAMES_ITEM("dataset")
+	DOM_ATOM_NAMES_ITEM("dateTime")
+	DOM_ATOM_NAMES_ITEM("declare")
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("default")
+#endif // MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("defaultChecked")
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("defaultMuted")
+	DOM_ATOM_NAMES_ITEM("defaultPlaybackRate")
+#endif // MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("defaultPrevented")
+	DOM_ATOM_NAMES_ITEM("defaultSelected")
+	DOM_ATOM_NAMES_ITEM("defaultStatus")
+	DOM_ATOM_NAMES_ITEM("defaultValue")
+	DOM_ATOM_NAMES_ITEM("defaultView")
+	DOM_ATOM_NAMES_ITEM("defer")
+#ifdef CANVAS3D_SUPPORT
+	DOM_ATOM_NAMES_ITEM("depth")
+#endif // CANVAS3D_SUPPORT
+	DOM_ATOM_NAMES_ITEM("description")
+	DOM_ATOM_NAMES_ITEM("designMode")
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("destinationAddress")
+#endif // DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("detail")
+#if defined UPNP_SUPPORT || (defined GADGET_SUPPORT && defined WEBSERVER_SUPPORT && defined OPERAUNITE_URL)
+	DOM_ATOM_NAMES_ITEM("device")
+#endif // UPNP_SUPPORT || GADGET_SUPPORT && WEBSERVER_SUPPORT && OPERAUNITE_URL
+#ifdef WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("deviceName")
+#endif // WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("devicePixelRatio")
+#ifdef ABOUT_HTML_DIALOGS
+	DOM_ATOM_NAMES_ITEM("dialogArguments")
+#endif // ABOUT_HTML_DIALOGS
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("diffuseConstant")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("dir")
+	DOM_ATOM_NAMES_ITEM("dirName")
+	DOM_ATOM_NAMES_ITEM("direction")
+	DOM_ATOM_NAMES_ITEM("disabled")
+	DOM_ATOM_NAMES_ITEM("dispatchEvent")
+	DOM_ATOM_NAMES_ITEM("display")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("displayAlign")
+	DOM_ATOM_NAMES_ITEM("divisor")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("doNotTrack")
+	DOM_ATOM_NAMES_ITEM("doctype")
+	DOM_ATOM_NAMES_ITEM("document")
+	DOM_ATOM_NAMES_ITEM("documentElement")
+	DOM_ATOM_NAMES_ITEM("documentURI")
+#ifdef DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("documentURL")
+	DOM_ATOM_NAMES_ITEM("documentURLPatterns")
+#endif // DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("domConfig")
+	DOM_ATOM_NAMES_ITEM("domain")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("dominantBaseline")
+#endif // SVG_DOM
+#ifdef DRAG_SUPPORT
+	DOM_ATOM_NAMES_ITEM("draggable")
+#endif // DRAG_SUPPORT
+#ifdef CANVAS3D_SUPPORT
+	DOM_ATOM_NAMES_ITEM("drawingBufferHeight")
+	DOM_ATOM_NAMES_ITEM("drawingBufferWidth")
+#endif // CANVAS3D_SUPPORT
+#ifdef DRAG_SUPPORT
+	DOM_ATOM_NAMES_ITEM("dropEffect")
+	DOM_ATOM_NAMES_ITEM("dropzone")
+#endif // DRAG_SUPPORT
+#ifdef DOM_DSE_DEBUGGING
+	DOM_ATOM_NAMES_ITEM("dseEnabled")
+	DOM_ATOM_NAMES_ITEM("dseRecovered")
+#endif // DOM_DSE_DEBUGGING
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("duration")
+#endif // MEDIA_HTML_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("durationSeconds")
+#endif // DOM_JIL_API_SUPPORT
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("dx")
+	DOM_ATOM_NAMES_ITEM("dy")
+#endif // SVG_DOM
+#if defined SVG_DOM || defined CSS_TRANSFORMS
+	DOM_ATOM_NAMES_ITEM("e")
+#endif // SVG_DOM || CSS_TRANSFORMS
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("eMail")
+#endif // DOM_JIL_API_SUPPORT
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("edgeMode")
+#endif // SVG_DOM
+#ifdef DRAG_SUPPORT
+	DOM_ATOM_NAMES_ITEM("effectAllowed")
+#endif // DRAG_SUPPORT
+	DOM_ATOM_NAMES_ITEM("elapsedTime")
+	DOM_ATOM_NAMES_ITEM("element")
+	DOM_ATOM_NAMES_ITEM("elements")
+	DOM_ATOM_NAMES_ITEM("elevation")
+	DOM_ATOM_NAMES_ITEM("embeds")
+	DOM_ATOM_NAMES_ITEM("emptyCells")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("enableBackground")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("enabledPlugin")
+	DOM_ATOM_NAMES_ITEM("encoding")
+	DOM_ATOM_NAMES_ITEM("enctype")
+#ifdef DOM2_RANGE
+	DOM_ATOM_NAMES_ITEM("endContainer")
+	DOM_ATOM_NAMES_ITEM("endOffset")
+#endif // DOM2_RANGE
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("endTime")
+	DOM_ATOM_NAMES_ITEM("ended")
+#endif // MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("entities")
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	DOM_ATOM_NAMES_ITEM("entries")
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#if defined WEBSERVER_SUPPORT || defined DOM_GADGET_FILE_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("eof")
+#endif // WEBSERVER_SUPPORT || DOM_GADGET_FILE_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("error")
+	DOM_ATOM_NAMES_ITEM("event")
+#ifdef USER_JAVASCRIPT
+	DOM_ATOM_NAMES_ITEM("eventCancelled")
+#endif // USER_JAVASCRIPT
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("eventEndTime")
+	DOM_ATOM_NAMES_ITEM("eventName")
+	DOM_ATOM_NAMES_ITEM("eventNotes")
+#endif // DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("eventPhase")
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("eventRecurrence")
+	DOM_ATOM_NAMES_ITEM("eventStartTime")
+#endif // DOM_JIL_API_SUPPORT
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("exists")
+#endif // DOM_GADGET_FILE_API_SUPPORT
+#ifdef DOM2_TRAVERSAL
+	DOM_ATOM_NAMES_ITEM("expandEntityReferences")
+#endif // DOM2_TRAVERSAL
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("exponent")
+#endif // SVG_DOM
+#ifdef EXTENSION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("extension")
+#endif // EXTENSION_SUPPORT
+#ifdef WEBSOCKETS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("extensions")
+#endif // WEBSOCKETS_SUPPORT
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("externalResourcesRequired")
+#endif // SVG_DOM
+#if defined SVG_DOM || defined CSS_TRANSFORMS
+	DOM_ATOM_NAMES_ITEM("f")
+#endif // SVG_DOM || CSS_TRANSFORMS
+	DOM_ATOM_NAMES_ITEM("face")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("farthestViewportElement")
+#endif // SVG_DOM
+#ifdef EXTENSION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("favicon")
+	DOM_ATOM_NAMES_ITEM("faviconUrl")
+#endif // EXTENSION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("fgColor")
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("fileInstance")
+#endif // DOM_GADGET_FILE_API_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("fileName")
+	DOM_ATOM_NAMES_ITEM("filePath")
+#endif // DOM_JIL_API_SUPPORT
+#if defined DOM_GADGET_FILE_API_SUPPORT || defined DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("fileSize")
+#endif // DOM_GADGET_FILE_API_SUPPORT || DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("filename")
+	DOM_ATOM_NAMES_ITEM("files")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("fill")
+	DOM_ATOM_NAMES_ITEM("fillOpacity")
+	DOM_ATOM_NAMES_ITEM("fillRule")
+#endif // SVG_DOM
+#ifdef CANVAS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("fillStyle")
+#endif // CANVAS_SUPPORT
+#if defined DOM2_TRAVERSAL || defined DOM3_LOAD || defined DOM3_SAVE || defined SVG_DOM
+	DOM_ATOM_NAMES_ITEM("filter")
+#endif // DOM2_TRAVERSAL || DOM3_LOAD || DOM3_SAVE || SVG_DOM
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("filterResX")
+	DOM_ATOM_NAMES_ITEM("filterResY")
+	DOM_ATOM_NAMES_ITEM("filterUnits")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("firstChild")
+	DOM_ATOM_NAMES_ITEM("firstElementChild")
+	DOM_ATOM_NAMES_ITEM("flex")
+	DOM_ATOM_NAMES_ITEM("flexBasis")
+	DOM_ATOM_NAMES_ITEM("flexDirection")
+	DOM_ATOM_NAMES_ITEM("flexFlow")
+	DOM_ATOM_NAMES_ITEM("flexGrow")
+	DOM_ATOM_NAMES_ITEM("flexShrink")
+	DOM_ATOM_NAMES_ITEM("flexWrap")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("floodColor")
+	DOM_ATOM_NAMES_ITEM("floodOpacity")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("focus")
+#ifdef DOM_SELECTION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("focusNode")
+	DOM_ATOM_NAMES_ITEM("focusOffset")
+#endif // DOM_SELECTION_SUPPORT
+#ifdef DOM_EXTENSIONS_TAB_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("focused")
+#endif // DOM_EXTENSIONS_TAB_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("font")
+	DOM_ATOM_NAMES_ITEM("fontFamily")
+	DOM_ATOM_NAMES_ITEM("fontSize")
+	DOM_ATOM_NAMES_ITEM("fontSizeAdjust")
+	DOM_ATOM_NAMES_ITEM("fontStretch")
+	DOM_ATOM_NAMES_ITEM("fontStyle")
+	DOM_ATOM_NAMES_ITEM("fontVariant")
+	DOM_ATOM_NAMES_ITEM("fontWeight")
+	DOM_ATOM_NAMES_ITEM("for")
+	DOM_ATOM_NAMES_ITEM("form")
+	DOM_ATOM_NAMES_ITEM("formAction")
+	DOM_ATOM_NAMES_ITEM("formEnctype")
+	DOM_ATOM_NAMES_ITEM("formMethod")
+	DOM_ATOM_NAMES_ITEM("formNoValidate")
+	DOM_ATOM_NAMES_ITEM("formTarget")
+	DOM_ATOM_NAMES_ITEM("forms")
+	DOM_ATOM_NAMES_ITEM("frame")
+	DOM_ATOM_NAMES_ITEM("frameBorder")
+	DOM_ATOM_NAMES_ITEM("frameElement")
+	DOM_ATOM_NAMES_ITEM("frames")
+	DOM_ATOM_NAMES_ITEM("fromElement")
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("fullName")
+#endif // DOM_JIL_API_SUPPORT
+#ifdef DOM_FULLSCREEN_MODE
+	DOM_ATOM_NAMES_ITEM("fullscreenElement")
+	DOM_ATOM_NAMES_ITEM("fullscreenEnabled")
+#endif // DOM_FULLSCREEN_MODE
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("fx")
+	DOM_ATOM_NAMES_ITEM("fy")
+#endif // SVG_DOM
+#ifdef DOM_GEOLOCATION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("geolocation")
+#endif // DOM_GEOLOCATION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("getElementById")
+	DOM_ATOM_NAMES_ITEM("getElementsByClassName")
+	DOM_ATOM_NAMES_ITEM("getElementsByTagName")
+#ifdef CANVAS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("globalAlpha")
+	DOM_ATOM_NAMES_ITEM("globalCompositeOperation")
+#endif // CANVAS_SUPPORT
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("glyphOrientationHorizontal")
+	DOM_ATOM_NAMES_ITEM("glyphOrientationVertical")
+	DOM_ATOM_NAMES_ITEM("gradientTransform")
+	DOM_ATOM_NAMES_ITEM("gradientUnits")
+	DOM_ATOM_NAMES_ITEM("green")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("hash")
+	DOM_ATOM_NAMES_ITEM("head")
+	DOM_ATOM_NAMES_ITEM("headers")
+#ifdef DOM_GEOLOCATION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("heading")
+#endif // DOM_GEOLOCATION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("height")
+	DOM_ATOM_NAMES_ITEM("hidden")
+	DOM_ATOM_NAMES_ITEM("high")
+	DOM_ATOM_NAMES_ITEM("history")
+#ifdef ESUTILS_PROFILER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("hits")
+#endif // ESUTILS_PROFILER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("home")
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("homePhone")
+#endif // DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("host")
+#ifdef WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("hostName")
+#endif // WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("hostname")
+	DOM_ATOM_NAMES_ITEM("href")
+	DOM_ATOM_NAMES_ITEM("hreflang")
+	DOM_ATOM_NAMES_ITEM("hspace")
+	DOM_ATOM_NAMES_ITEM("htmlFor")
+	DOM_ATOM_NAMES_ITEM("httpEquiv")
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	DOM_ATOM_NAMES_ITEM("icon")
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#ifdef GADGET_SUPPORT
+	DOM_ATOM_NAMES_ITEM("icons")
+#endif // GADGET_SUPPORT
+	DOM_ATOM_NAMES_ITEM("id")
+#if defined GADGET_SUPPORT || defined TOUCH_EVENTS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("identifier")
+#endif // GADGET_SUPPORT || TOUCH_EVENTS_SUPPORT
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("imageRendering")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("images")
+	DOM_ATOM_NAMES_ITEM("implementation")
+#ifdef WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("implicitFlush")
+#endif // WEBSERVER_SUPPORT
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("in1")
+	DOM_ATOM_NAMES_ITEM("in2")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("indeterminate")
+	DOM_ATOM_NAMES_ITEM("index")
+	DOM_ATOM_NAMES_ITEM("innerHTML")
+	DOM_ATOM_NAMES_ITEM("innerHeight")
+	DOM_ATOM_NAMES_ITEM("innerText")
+	DOM_ATOM_NAMES_ITEM("innerWidth")
+	DOM_ATOM_NAMES_ITEM("input")
+	DOM_ATOM_NAMES_ITEM("inputFormat")
+	DOM_ATOM_NAMES_ITEM("inputMethod")
+	DOM_ATOM_NAMES_ITEM("inputmode")
+	DOM_ATOM_NAMES_ITEM("insertAdjacentHTML")
+	DOM_ATOM_NAMES_ITEM("insertAdjacentText")
+#ifdef DATABASE_STORAGE_SUPPORT
+	DOM_ATOM_NAMES_ITEM("insertId")
+#endif // DATABASE_STORAGE_SUPPORT
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("instanceRoot")
+	DOM_ATOM_NAMES_ITEM("intercept")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("internalSubset")
+#ifdef DOM3_XPATH
+	DOM_ATOM_NAMES_ITEM("invalidIteratorState")
+#endif // DOM3_XPATH
+#ifdef WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("ip")
+#endif // WEBSERVER_SUPPORT
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("isArchive")
+#endif // DOM_GADGET_FILE_API_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("isAudioPlaying")
+#endif // DOM_JIL_API_SUPPORT
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	DOM_ATOM_NAMES_ITEM("isBinary")
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("isCharging")
+#endif // DOM_JIL_API_SUPPORT
+#ifdef DOM_SELECTION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("isCollapsed")
+#endif // DOM_SELECTION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("isContentEditable")
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("isDataNetworkConnected")
+#endif // DOM_JIL_API_SUPPORT
+#if defined DOM_GADGET_FILE_API_SUPPORT || defined DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("isDirectory")
+#endif // DOM_GADGET_FILE_API_SUPPORT || DOM_JIL_API_SUPPORT
+#ifdef DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("isEditable")
+#endif // DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("isElementContentWhitespace")
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("isFile")
+	DOM_ATOM_NAMES_ITEM("isHidden")
+#endif // DOM_GADGET_FILE_API_SUPPORT
+#if defined WEBSERVER_SUPPORT || defined UPNP_SUPPORT
+	DOM_ATOM_NAMES_ITEM("isLocal")
+#endif // WEBSERVER_SUPPORT || UPNP_SUPPORT
+	DOM_ATOM_NAMES_ITEM("isMap")
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	DOM_ATOM_NAMES_ITEM("isMarkup")
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#ifdef WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("isOwner")
+#endif // WEBSERVER_SUPPORT
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("isPaused")
+#endif // SVG_DOM
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	DOM_ATOM_NAMES_ITEM("isPlainText")
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#ifdef WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("isProxied")
+#endif // WEBSERVER_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("isRadioEnabled")
+	DOM_ATOM_NAMES_ITEM("isRead")
+	DOM_ATOM_NAMES_ITEM("isRoaming")
+#endif // DOM_JIL_API_SUPPORT
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	DOM_ATOM_NAMES_ITEM("isSubscribed")
+#endif // WEBFEEDS_BACKEND_SUPPORT
+	DOM_ATOM_NAMES_ITEM("isTrusted")
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("isVideoPlaying")
+#endif // DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("item")
+	DOM_ATOM_NAMES_ITEM("itemId")
+	DOM_ATOM_NAMES_ITEM("itemProp")
+	DOM_ATOM_NAMES_ITEM("itemRef")
+	DOM_ATOM_NAMES_ITEM("itemScope")
+	DOM_ATOM_NAMES_ITEM("itemType")
+	DOM_ATOM_NAMES_ITEM("itemValue")
+#if defined DRAG_SUPPORT || defined USE_OP_CLIPBOARD
+	DOM_ATOM_NAMES_ITEM("items")
+#endif // DRAG_SUPPORT || USE_OP_CLIPBOARD
+	DOM_ATOM_NAMES_ITEM("justifyContent")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("k1")
+	DOM_ATOM_NAMES_ITEM("k2")
+	DOM_ATOM_NAMES_ITEM("k3")
+	DOM_ATOM_NAMES_ITEM("k4")
+#endif // SVG_DOM
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	DOM_ATOM_NAMES_ITEM("keep")
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("kernelMatrix")
+	DOM_ATOM_NAMES_ITEM("kernelUnitLengthX")
+	DOM_ATOM_NAMES_ITEM("kernelUnitLengthY")
+	DOM_ATOM_NAMES_ITEM("kerning")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("key")
+	DOM_ATOM_NAMES_ITEM("keyCode")
+#ifdef CSS_ANIMATIONS
+	DOM_ATOM_NAMES_ITEM("keyText")
+#endif // CSS_ANIMATIONS
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("keypadLightOn")
+#endif // DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("keytype")
+#if defined MEDIA_HTML_SUPPORT || defined DRAG_SUPPORT || defined USE_OP_CLIPBOARD
+	DOM_ATOM_NAMES_ITEM("kind")
+#endif // MEDIA_HTML_SUPPORT || DRAG_SUPPORT || USE_OP_CLIPBOARD
+	DOM_ATOM_NAMES_ITEM("label")
+	DOM_ATOM_NAMES_ITEM("labels")
+	DOM_ATOM_NAMES_ITEM("lang")
+	DOM_ATOM_NAMES_ITEM("language")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("largeArcFlag")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("lastChild")
+	DOM_ATOM_NAMES_ITEM("lastElementChild")
+#if defined DOM_CROSSDOCUMENT_MESSAGING_SUPPORT || defined WEBSOCKETS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("lastEventId")
+#endif // DOM_CROSSDOCUMENT_MESSAGING_SUPPORT || WEBSOCKETS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("lastModified")
+	DOM_ATOM_NAMES_ITEM("lastModifiedDate")
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("lastModifyDate")
+#endif // DOM_JIL_API_SUPPORT
+#ifdef DOM_GEOLOCATION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("lastPosition")
+#endif // DOM_GEOLOCATION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("lastUpdate")
+#ifdef DOM_GEOLOCATION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("latitude")
+#endif // DOM_GEOLOCATION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("left")
+	DOM_ATOM_NAMES_ITEM("length")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("lengthAdjust")
+#endif // SVG_DOM
+#ifdef PROGRESS_EVENTS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("lengthComputable")
+#endif // PROGRESS_EVENTS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("letterSpacing")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("lightingColor")
+	DOM_ATOM_NAMES_ITEM("limitingConeAngle")
+#endif // SVG_DOM
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("line")
+#endif // MEDIA_HTML_SUPPORT
+#ifdef CANVAS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("lineCap")
+#endif // CANVAS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("lineHeight")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("lineIncrement")
+#endif // SVG_DOM
+#ifdef CANVAS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("lineJoin")
+	DOM_ATOM_NAMES_ITEM("lineWidth")
+#endif // CANVAS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("lineno")
+#ifdef ESUTILS_PROFILER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("lines")
+#endif // ESUTILS_PROFILER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("link")
+	DOM_ATOM_NAMES_ITEM("linkColor")
+#ifdef DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("linkURL")
+#endif // DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("links")
+	DOM_ATOM_NAMES_ITEM("list")
+	DOM_ATOM_NAMES_ITEM("listStyle")
+	DOM_ATOM_NAMES_ITEM("listStyleImage")
+	DOM_ATOM_NAMES_ITEM("listStylePosition")
+	DOM_ATOM_NAMES_ITEM("listStyleType")
+	DOM_ATOM_NAMES_ITEM("listener")
+#ifdef PROGRESS_EVENTS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("loaded")
+#endif // PROGRESS_EVENTS_SUPPORT
+#if defined USE_SPDY && defined DOM_EXTENSIONS_TAB_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("loadedWithSPDY")
+#endif // USE_SPDY && DOM_EXTENSIONS_TAB_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("localName")
+#ifdef CLIENTSIDE_STORAGE_SUPPORT
+	DOM_ATOM_NAMES_ITEM("localStorage")
+#endif // CLIENTSIDE_STORAGE_SUPPORT
+	DOM_ATOM_NAMES_ITEM("locale")
+	DOM_ATOM_NAMES_ITEM("location")
+#ifdef DOM_EXTENSIONS_TAB_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("locked")
+#endif // DOM_EXTENSIONS_TAB_API_SUPPORT
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	DOM_ATOM_NAMES_ITEM("logo")
+#endif // WEBFEEDS_BACKEND_SUPPORT
+	DOM_ATOM_NAMES_ITEM("longDesc")
+#ifdef DOM_GEOLOCATION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("longitude")
+#endif // DOM_GEOLOCATION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("loop")
+	DOM_ATOM_NAMES_ITEM("low")
+	DOM_ATOM_NAMES_ITEM("lowsrc")
+	DOM_ATOM_NAMES_ITEM("margin")
+	DOM_ATOM_NAMES_ITEM("marginBottom")
+	DOM_ATOM_NAMES_ITEM("marginHeight")
+	DOM_ATOM_NAMES_ITEM("marginLeft")
+	DOM_ATOM_NAMES_ITEM("marginRight")
+	DOM_ATOM_NAMES_ITEM("marginTop")
+	DOM_ATOM_NAMES_ITEM("marginWidth")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("marker")
+	DOM_ATOM_NAMES_ITEM("markerEnd")
+	DOM_ATOM_NAMES_ITEM("markerHeight")
+	DOM_ATOM_NAMES_ITEM("markerMid")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("markerOffset")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("markerStart")
+	DOM_ATOM_NAMES_ITEM("markerUnits")
+	DOM_ATOM_NAMES_ITEM("markerWidth")
+	DOM_ATOM_NAMES_ITEM("mask")
+	DOM_ATOM_NAMES_ITEM("maskContentUnits")
+	DOM_ATOM_NAMES_ITEM("maskUnits")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("matches")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("matrix")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("max")
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	DOM_ATOM_NAMES_ITEM("maxAge")
+	DOM_ATOM_NAMES_ITEM("maxEntries")
+#endif // WEBFEEDS_BACKEND_SUPPORT
+	DOM_ATOM_NAMES_ITEM("maxHeight")
+	DOM_ATOM_NAMES_ITEM("maxLength")
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("maxPathLength")
+#endif // DOM_GADGET_FILE_API_SUPPORT
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	DOM_ATOM_NAMES_ITEM("maxSize")
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#if defined UPNP_SUPPORT || (defined GADGET_SUPPORT && defined WEBSERVER_SUPPORT && defined OPERAUNITE_URL)
+	DOM_ATOM_NAMES_ITEM("maxUploadRate")
+#endif // UPNP_SUPPORT || GADGET_SUPPORT && WEBSERVER_SUPPORT && OPERAUNITE_URL
+	DOM_ATOM_NAMES_ITEM("maxWidth")
+	DOM_ATOM_NAMES_ITEM("maxZoom")
+	DOM_ATOM_NAMES_ITEM("media")
+	DOM_ATOM_NAMES_ITEM("mediaText")
+#ifdef DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("mediaType")
+#endif // DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("meetOrSlice")
+#endif // SVG_DOM
+#ifdef EXTENSION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("menu")
+#endif // EXTENSION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("menubar")
+	DOM_ATOM_NAMES_ITEM("message")
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("messageId")
+	DOM_ATOM_NAMES_ITEM("messagePriority")
+	DOM_ATOM_NAMES_ITEM("messageType")
+#endif // DOM_JIL_API_SUPPORT
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("metaData")
+#endif // DOM_GADGET_FILE_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("metaKey")
+	DOM_ATOM_NAMES_ITEM("method")
+#ifdef ESUTILS_PROFILER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("millisecondsSelf")
+	DOM_ATOM_NAMES_ITEM("millisecondsTotal")
+#endif // ESUTILS_PROFILER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("mimeTypes")
+	DOM_ATOM_NAMES_ITEM("min")
+	DOM_ATOM_NAMES_ITEM("minHeight")
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	DOM_ATOM_NAMES_ITEM("minUpdateInterval")
+#endif // WEBFEEDS_BACKEND_SUPPORT
+	DOM_ATOM_NAMES_ITEM("minWidth")
+	DOM_ATOM_NAMES_ITEM("minZoom")
+#ifdef CANVAS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("miterLimit")
+#endif // CANVAS_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("mobilePhone")
+#endif // DOM_JIL_API_SUPPORT
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("mode")
+#endif // SVG_DOM
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("modified")
+	DOM_ATOM_NAMES_ITEM("mountPoints")
+#endif // DOM_GADGET_FILE_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("moveBy")
+	DOM_ATOM_NAMES_ITEM("moveTo")
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("msgRingtoneVolume")
+#endif // DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("multiple")
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("muted")
+#endif // MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("name")
+	DOM_ATOM_NAMES_ITEM("namedItem")
+	DOM_ATOM_NAMES_ITEM("names")
+	DOM_ATOM_NAMES_ITEM("namespaceURI")
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("nativePath")
+#endif // DOM_GADGET_FILE_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("naturalHeight")
+	DOM_ATOM_NAMES_ITEM("naturalWidth")
+	DOM_ATOM_NAMES_ITEM("navDown")
+	DOM_ATOM_NAMES_ITEM("navIndex")
+	DOM_ATOM_NAMES_ITEM("navLeft")
+	DOM_ATOM_NAMES_ITEM("navRight")
+	DOM_ATOM_NAMES_ITEM("navUp")
+	DOM_ATOM_NAMES_ITEM("navigationMode")
+	DOM_ATOM_NAMES_ITEM("navigator")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("nearestViewportElement")
+#endif // SVG_DOM
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("networkConnectionType")
+#endif // DOM_JIL_API_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("networkState")
+#endif // MEDIA_HTML_SUPPORT
+#ifdef DOM3_LOAD
+	DOM_ATOM_NAMES_ITEM("newDocument")
+#endif // DOM3_LOAD
+#if defined DOM3_SAVE || defined DOM_GADGET_FILE_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("newLine")
+#endif // DOM3_SAVE || DOM_GADGET_FILE_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("newURL")
+#if defined DOM2_MUTATION_EVENTS || defined CLIENTSIDE_STORAGE_SUPPORT
+	DOM_ATOM_NAMES_ITEM("newValue")
+#endif // DOM2_MUTATION_EVENTS || CLIENTSIDE_STORAGE_SUPPORT
+	DOM_ATOM_NAMES_ITEM("next")
+	DOM_ATOM_NAMES_ITEM("nextElementSibling")
+	DOM_ATOM_NAMES_ITEM("nextSibling")
+	DOM_ATOM_NAMES_ITEM("noHref")
+	DOM_ATOM_NAMES_ITEM("noResize")
+	DOM_ATOM_NAMES_ITEM("noShade")
+	DOM_ATOM_NAMES_ITEM("noValidate")
+	DOM_ATOM_NAMES_ITEM("noWrap")
+	DOM_ATOM_NAMES_ITEM("nodeName")
+	DOM_ATOM_NAMES_ITEM("nodeType")
+	DOM_ATOM_NAMES_ITEM("nodeValue")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("normalizedPathSegList")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("notationName")
+	DOM_ATOM_NAMES_ITEM("notations")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("numOctaves")
+	DOM_ATOM_NAMES_ITEM("numberOfItems")
+	DOM_ATOM_NAMES_ITEM("numberOfSegments")
+#endif // SVG_DOM
+#ifdef DOM3_XPATH
+	DOM_ATOM_NAMES_ITEM("numberValue")
+#endif // DOM3_XPATH
+	DOM_ATOM_NAMES_ITEM("object")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("offset")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("offsetHeight")
+	DOM_ATOM_NAMES_ITEM("offsetLeft")
+	DOM_ATOM_NAMES_ITEM("offsetParent")
+	DOM_ATOM_NAMES_ITEM("offsetTop")
+	DOM_ATOM_NAMES_ITEM("offsetWidth")
+	DOM_ATOM_NAMES_ITEM("offsetX")
+	DOM_ATOM_NAMES_ITEM("offsetY")
+	DOM_ATOM_NAMES_ITEM("oldURL")
+#ifdef CLIENTSIDE_STORAGE_SUPPORT
+	DOM_ATOM_NAMES_ITEM("oldValue")
+#endif // CLIENTSIDE_STORAGE_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("onAddressBookItemsFound")
+	DOM_ATOM_NAMES_ITEM("onCalendarItemAlert")
+	DOM_ATOM_NAMES_ITEM("onCalendarItemsFound")
+	DOM_ATOM_NAMES_ITEM("onCallEvent")
+	DOM_ATOM_NAMES_ITEM("onCallRecordsFound")
+	DOM_ATOM_NAMES_ITEM("onCameraCaptured")
+	DOM_ATOM_NAMES_ITEM("onChargeLevelChange")
+	DOM_ATOM_NAMES_ITEM("onChargeStateChange")
+	DOM_ATOM_NAMES_ITEM("onFilesFound")
+	DOM_ATOM_NAMES_ITEM("onFocus")
+#endif // DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("onLine")
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("onLowBattery")
+	DOM_ATOM_NAMES_ITEM("onMaximize")
+	DOM_ATOM_NAMES_ITEM("onMessageArrived")
+	DOM_ATOM_NAMES_ITEM("onMessageSendingFailure")
+	DOM_ATOM_NAMES_ITEM("onMessagesFound")
+	DOM_ATOM_NAMES_ITEM("onNetworkConnectionChanged")
+	DOM_ATOM_NAMES_ITEM("onPositionRetrieved")
+	DOM_ATOM_NAMES_ITEM("onRestore")
+	DOM_ATOM_NAMES_ITEM("onScreenChangeDimensions")
+	DOM_ATOM_NAMES_ITEM("onSignalSourceChange")
+	DOM_ATOM_NAMES_ITEM("onStateChange")
+	DOM_ATOM_NAMES_ITEM("onVCardExportingFinish")
+	DOM_ATOM_NAMES_ITEM("onWakeup")
+#endif // DOM_JIL_API_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("onaddtrack")
+#endif // MEDIA_HTML_SUPPORT
+#ifdef GADGET_SUPPORT
+	DOM_ATOM_NAMES_ITEM("onafterupdate")
+#endif // GADGET_SUPPORT
+#ifdef OPERA_AUTH_SUPPORT
+	DOM_ATOM_NAMES_ITEM("onauthenticationchange")
+#endif // OPERA_AUTH_SUPPORT
+#ifdef GADGET_SUPPORT
+	DOM_ATOM_NAMES_ITEM("onbeforeupdate")
+#endif // GADGET_SUPPORT
+#ifdef WEBSOCKETS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("onclose")
+#endif // WEBSOCKETS_SUPPORT
+#if defined DOM_WEBWORKERS_SUPPORT || defined DOM_CROSSDOCUMENT_MESSAGING_SUPPORT
+	DOM_ATOM_NAMES_ITEM("onconnect")
+#endif // DOM_WEBWORKERS_SUPPORT || DOM_CROSSDOCUMENT_MESSAGING_SUPPORT
+#ifdef EXTENSION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("oncreate")
+#endif // EXTENSION_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("oncuechange")
+#endif // MEDIA_HTML_SUPPORT
+#ifdef EXTENSION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("ondisconnect")
+#endif // EXTENSION_SUPPORT
+#ifdef GADGET_SUPPORT
+	DOM_ATOM_NAMES_ITEM("ondragstart")
+	DOM_ATOM_NAMES_ITEM("ondragstop")
+#endif // GADGET_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("onenter")
+#endif // MEDIA_HTML_SUPPORT
+#if defined DOM_WEBWORKERS_SUPPORT || defined DOM_CROSSDOCUMENT_MESSAGING_SUPPORT || defined WEBSOCKETS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("onerror")
+#endif // DOM_WEBWORKERS_SUPPORT || DOM_CROSSDOCUMENT_MESSAGING_SUPPORT || WEBSOCKETS_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("onexit")
+#endif // MEDIA_HTML_SUPPORT
+#ifdef EXTENSION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("onfocus")
+#endif // EXTENSION_SUPPORT
+#ifdef GADGET_SUPPORT
+	DOM_ATOM_NAMES_ITEM("onhide")
+#endif // GADGET_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("onload")
+#endif // MEDIA_HTML_SUPPORT
+#if defined DOM_WEBWORKERS_SUPPORT || defined DOM_CROSSDOCUMENT_MESSAGING_SUPPORT || defined WEBSOCKETS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("onmessage")
+#endif // DOM_WEBWORKERS_SUPPORT || DOM_CROSSDOCUMENT_MESSAGING_SUPPORT || WEBSOCKETS_SUPPORT
+#ifdef EXTENSION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("onmove")
+#endif // EXTENSION_SUPPORT
+#ifdef WEBSOCKETS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("onopen")
+#endif // WEBSOCKETS_SUPPORT
+#if defined GADGET_SUPPORT && defined WEBSERVER_SUPPORT && defined OPERAUNITE_URL
+	DOM_ATOM_NAMES_ITEM("onrangechange")
+#endif // GADGET_SUPPORT && WEBSERVER_SUPPORT && OPERAUNITE_URL
+#ifdef GADGET_SUPPORT
+	DOM_ATOM_NAMES_ITEM("onrefresh")
+#endif // GADGET_SUPPORT
+#ifdef EXTENSION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("onremove")
+#endif // EXTENSION_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("onremovetrack")
+#endif // MEDIA_HTML_SUPPORT
+#ifdef GADGET_SUPPORT
+	DOM_ATOM_NAMES_ITEM("onshow")
+#endif // GADGET_SUPPORT
+	DOM_ATOM_NAMES_ITEM("onthread")
+#ifdef EXTENSION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("onupdate")
+#endif // EXTENSION_SUPPORT
+#ifdef GADGET_SUPPORT
+	DOM_ATOM_NAMES_ITEM("onviewstatechanged")
+#endif // GADGET_SUPPORT
+	DOM_ATOM_NAMES_ITEM("opacity")
+	DOM_ATOM_NAMES_ITEM("opener")
+#ifdef CSS_TRANSFORMS
+	DOM_ATOM_NAMES_ITEM("operationType")
+#endif // CSS_TRANSFORMS
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("operator")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("optimum")
+	DOM_ATOM_NAMES_ITEM("options")
+	DOM_ATOM_NAMES_ITEM("order")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("orderX")
+	DOM_ATOM_NAMES_ITEM("orderY")
+	DOM_ATOM_NAMES_ITEM("orientAngle")
+	DOM_ATOM_NAMES_ITEM("orientType")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("orientation")
+	DOM_ATOM_NAMES_ITEM("origin")
+#if defined(GADGET_SUPPORT) || defined(WEBSERVER_SUPPORT)
+	DOM_ATOM_NAMES_ITEM("originURL")
+#endif // GADGET_SUPPORT || WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("orphans")
+	DOM_ATOM_NAMES_ITEM("outerHTML")
+	DOM_ATOM_NAMES_ITEM("outerHeight")
+	DOM_ATOM_NAMES_ITEM("outerText")
+	DOM_ATOM_NAMES_ITEM("outerWidth")
+	DOM_ATOM_NAMES_ITEM("outline")
+	DOM_ATOM_NAMES_ITEM("outlineColor")
+	DOM_ATOM_NAMES_ITEM("outlineOffset")
+	DOM_ATOM_NAMES_ITEM("outlineStyle")
+	DOM_ATOM_NAMES_ITEM("outlineWidth")
+	DOM_ATOM_NAMES_ITEM("output")
+	DOM_ATOM_NAMES_ITEM("overflow")
+	DOM_ATOM_NAMES_ITEM("overflowWrap")
+	DOM_ATOM_NAMES_ITEM("overflowX")
+	DOM_ATOM_NAMES_ITEM("overflowY")
+	DOM_ATOM_NAMES_ITEM("ownerDocument")
+	DOM_ATOM_NAMES_ITEM("ownerElement")
+	DOM_ATOM_NAMES_ITEM("ownerNode")
+	DOM_ATOM_NAMES_ITEM("ownerRule")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("ownerSVGElement")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("padding")
+	DOM_ATOM_NAMES_ITEM("paddingBottom")
+	DOM_ATOM_NAMES_ITEM("paddingLeft")
+	DOM_ATOM_NAMES_ITEM("paddingRight")
+	DOM_ATOM_NAMES_ITEM("paddingTop")
+	DOM_ATOM_NAMES_ITEM("page")
+	DOM_ATOM_NAMES_ITEM("pageBreakAfter")
+	DOM_ATOM_NAMES_ITEM("pageBreakBefore")
+	DOM_ATOM_NAMES_ITEM("pageBreakInside")
+#ifdef PAGED_MEDIA_SUPPORT
+	DOM_ATOM_NAMES_ITEM("pageCount")
+#endif // PAGED_MEDIA_SUPPORT
+#ifdef DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("pageURL")
+#endif // DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("pageX")
+	DOM_ATOM_NAMES_ITEM("pageXOffset")
+	DOM_ATOM_NAMES_ITEM("pageY")
+	DOM_ATOM_NAMES_ITEM("pageYOffset")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("paintType")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("parameterNames")
+	DOM_ATOM_NAMES_ITEM("parent")
+	DOM_ATOM_NAMES_ITEM("parentElement")
+	DOM_ATOM_NAMES_ITEM("parentNode")
+	DOM_ATOM_NAMES_ITEM("parentRule")
+	DOM_ATOM_NAMES_ITEM("parentStyleSheet")
+	DOM_ATOM_NAMES_ITEM("parentWindow")
+#ifdef WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("passwordProtected")
+#endif // WEBSERVER_SUPPORT
+#ifdef GADGET_SUPPORT
+	DOM_ATOM_NAMES_ITEM("path")
+#endif // GADGET_SUPPORT
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("pathLength")
+	DOM_ATOM_NAMES_ITEM("pathSegList")
+	DOM_ATOM_NAMES_ITEM("pathSegType")
+	DOM_ATOM_NAMES_ITEM("pathSegTypeAsLetter")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("pathname")
+	DOM_ATOM_NAMES_ITEM("pattern")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("patternContentUnits")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("patternMismatch")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("patternTransform")
+	DOM_ATOM_NAMES_ITEM("patternUnits")
+#endif // SVG_DOM
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("pauseOnExit")
+	DOM_ATOM_NAMES_ITEM("paused")
+#endif // MEDIA_HTML_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("percentRemaining")
+	DOM_ATOM_NAMES_ITEM("phoneColorDepthDefault")
+	DOM_ATOM_NAMES_ITEM("phoneFirmware")
+	DOM_ATOM_NAMES_ITEM("phoneMSISDN")
+	DOM_ATOM_NAMES_ITEM("phoneManufacturer")
+	DOM_ATOM_NAMES_ITEM("phoneModel")
+	DOM_ATOM_NAMES_ITEM("phoneOS")
+	DOM_ATOM_NAMES_ITEM("phoneOperatorName")
+	DOM_ATOM_NAMES_ITEM("phoneScreenHeightDefault")
+	DOM_ATOM_NAMES_ITEM("phoneScreenWidthDefault")
+	DOM_ATOM_NAMES_ITEM("phoneSoftware")
+	DOM_ATOM_NAMES_ITEM("phoneUserUniqueId")
+#endif // DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("pixelBottom")
+	DOM_ATOM_NAMES_ITEM("pixelDepth")
+	DOM_ATOM_NAMES_ITEM("pixelHeight")
+	DOM_ATOM_NAMES_ITEM("pixelLeft")
+	DOM_ATOM_NAMES_ITEM("pixelRight")
+	DOM_ATOM_NAMES_ITEM("pixelTop")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("pixelUnitToMillimeterX")
+	DOM_ATOM_NAMES_ITEM("pixelUnitToMillimeterY")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("pixelWidth")
+	DOM_ATOM_NAMES_ITEM("placeholder")
+	DOM_ATOM_NAMES_ITEM("platform")
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("playbackRate")
+	DOM_ATOM_NAMES_ITEM("played")
+#endif // MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("plugins")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("pointerEvents")
+	DOM_ATOM_NAMES_ITEM("points")
+	DOM_ATOM_NAMES_ITEM("pointsAtX")
+	DOM_ATOM_NAMES_ITEM("pointsAtY")
+	DOM_ATOM_NAMES_ITEM("pointsAtZ")
+#endif // SVG_DOM
+#ifdef EXTENSION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("popup")
+#endif // EXTENSION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("port")
+#ifdef DOM_CROSSDOCUMENT_MESSAGING_SUPPORT
+	DOM_ATOM_NAMES_ITEM("port1")
+	DOM_ATOM_NAMES_ITEM("port2")
+	DOM_ATOM_NAMES_ITEM("ports")
+#endif // DOM_CROSSDOCUMENT_MESSAGING_SUPPORT
+	DOM_ATOM_NAMES_ITEM("posBottom")
+	DOM_ATOM_NAMES_ITEM("posHeight")
+	DOM_ATOM_NAMES_ITEM("posLeft")
+	DOM_ATOM_NAMES_ITEM("posRight")
+	DOM_ATOM_NAMES_ITEM("posTop")
+	DOM_ATOM_NAMES_ITEM("posWidth")
+	DOM_ATOM_NAMES_ITEM("position")
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("poster")
+#endif // MEDIA_HTML_SUPPORT
+#ifdef GADGET_SUPPORT
+	DOM_ATOM_NAMES_ITEM("preferences")
+#endif // GADGET_SUPPORT
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	DOM_ATOM_NAMES_ITEM("prefetchPrimaryLink")
+#endif // WEBFEEDS_BACKEND_SUPPORT
+	DOM_ATOM_NAMES_ITEM("prefix")
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("preload")
+#endif // MEDIA_HTML_SUPPORT
+#ifdef CANVAS3D_SUPPORT
+	DOM_ATOM_NAMES_ITEM("premultipliedAlpha")
+#endif // CANVAS3D_SUPPORT
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("preserveAlpha")
+	DOM_ATOM_NAMES_ITEM("preserveAspectRatio")
+#endif // SVG_DOM
+#ifdef CANVAS3D_SUPPORT
+	DOM_ATOM_NAMES_ITEM("preserveDrawingBuffer")
+#endif // CANVAS3D_SUPPORT
+#ifdef DOM_EXTENSIONS_TAB_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("prevPosition")
+	DOM_ATOM_NAMES_ITEM("prevTabGroup")
+#endif // DOM_EXTENSIONS_TAB_API_SUPPORT
+#ifdef DOM2_MUTATION_EVENTS
+	DOM_ATOM_NAMES_ITEM("prevValue")
+#endif // DOM2_MUTATION_EVENTS
+#ifdef DOM_EXTENSIONS_TAB_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("prevWindow")
+#endif // DOM_EXTENSIONS_TAB_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("previous")
+	DOM_ATOM_NAMES_ITEM("previousElementSibling")
+	DOM_ATOM_NAMES_ITEM("previousSibling")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("primitiveUnits")
+#endif // SVG_DOM
+#ifdef DOM_EXTENSIONS_TAB_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("private")
+#endif // DOM_EXTENSIONS_TAB_API_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("processorUtilizationPercent")
+#endif // DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("prompt")
+#ifdef USER_JAVASCRIPT
+	DOM_ATOM_NAMES_ITEM("propagationStopped")
+#endif // USER_JAVASCRIPT
+	DOM_ATOM_NAMES_ITEM("properties")
+	DOM_ATOM_NAMES_ITEM("propertyName")
+	DOM_ATOM_NAMES_ITEM("protocol")
+	DOM_ATOM_NAMES_ITEM("prototype")
+#ifdef WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("proxyName")
+#endif // WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("pubDate")
+#ifdef WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("publicIP")
+#endif // WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("publicId")
+#ifdef WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("publicPort")
+#endif // WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("publicationDate")
+#ifdef WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("queryItems")
+#endif // WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("quotes")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("r")
+	DOM_ATOM_NAMES_ITEM("r1")
+	DOM_ATOM_NAMES_ITEM("r2")
+#endif // SVG_DOM
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("radioSignalSource")
+	DOM_ATOM_NAMES_ITEM("radioSignalStrengthPercent")
+#endif // DOM_JIL_API_SUPPORT
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("radiusX")
+	DOM_ATOM_NAMES_ITEM("radiusY")
+#endif // SVG_DOM
+#if defined GADGET_SUPPORT && defined WEBSERVER_SUPPORT && defined OPERAUNITE_URL
+	DOM_ATOM_NAMES_ITEM("range")
+#endif // GADGET_SUPPORT && WEBSERVER_SUPPORT && OPERAUNITE_URL
+#ifdef DOM_SELECTION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("rangeCount")
+#endif // DOM_SELECTION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("rangeOverflow")
+	DOM_ATOM_NAMES_ITEM("rangeUnderflow")
+	DOM_ATOM_NAMES_ITEM("readOnly")
+	DOM_ATOM_NAMES_ITEM("readyState")
+#ifdef WEBSOCKETS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("reason")
+#endif // WEBSOCKETS_SUPPORT
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("red")
+	DOM_ATOM_NAMES_ITEM("refX")
+	DOM_ATOM_NAMES_ITEM("refY")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("referrer")
+	DOM_ATOM_NAMES_ITEM("rel")
+#ifdef DOM2_MUTATION_EVENTS
+	DOM_ATOM_NAMES_ITEM("relatedNode")
+#endif // DOM2_MUTATION_EVENTS
+	DOM_ATOM_NAMES_ITEM("relatedTarget")
+#ifdef OPERA_AUTH_SUPPORT
+	DOM_ATOM_NAMES_ITEM("rememberMe")
+#endif // OPERA_AUTH_SUPPORT
+	DOM_ATOM_NAMES_ITEM("renderingMode")
+#if defined GADGET_SUPPORT && defined WEBSERVER_SUPPORT && defined OPERAUNITE_URL
+	DOM_ATOM_NAMES_ITEM("rendezvous")
+#endif // GADGET_SUPPORT && WEBSERVER_SUPPORT && OPERAUNITE_URL
+	DOM_ATOM_NAMES_ITEM("repeat")
+#ifdef WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("request")
+#endif // WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("required")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("requiredExtensions")
+	DOM_ATOM_NAMES_ITEM("requiredFeatures")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("resize")
+	DOM_ATOM_NAMES_ITEM("resizeBy")
+	DOM_ATOM_NAMES_ITEM("resizeTo")
+	DOM_ATOM_NAMES_ITEM("response")
+	DOM_ATOM_NAMES_ITEM("responseText")
+	DOM_ATOM_NAMES_ITEM("responseType")
+	DOM_ATOM_NAMES_ITEM("responseXML")
+	DOM_ATOM_NAMES_ITEM("result")
+#ifdef DOM3_XPATH
+	DOM_ATOM_NAMES_ITEM("resultType")
+#endif // DOM3_XPATH
+	DOM_ATOM_NAMES_ITEM("returnValue")
+	DOM_ATOM_NAMES_ITEM("rev")
+	DOM_ATOM_NAMES_ITEM("reversed")
+	DOM_ATOM_NAMES_ITEM("rgbColor")
+	DOM_ATOM_NAMES_ITEM("right")
+	DOM_ATOM_NAMES_ITEM("rightMargin")
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("ringtoneVolume")
+#endif // DOM_JIL_API_SUPPORT
+#if defined GADGET_SUPPORT && defined WEBSERVER_SUPPORT && defined OPERAUNITE_URL
+	DOM_ATOM_NAMES_ITEM("robotstxtEnabled")
+#endif // GADGET_SUPPORT && WEBSERVER_SUPPORT && OPERAUNITE_URL
+	DOM_ATOM_NAMES_ITEM("root")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("rootElement")
+	DOM_ATOM_NAMES_ITEM("rotate")
+#endif // SVG_DOM
+#ifdef TOUCH_EVENTS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("rotation")
+#endif // TOUCH_EVENTS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("rowIndex")
+	DOM_ATOM_NAMES_ITEM("rowSpan")
+	DOM_ATOM_NAMES_ITEM("rows")
+#ifdef DATABASE_STORAGE_SUPPORT
+	DOM_ATOM_NAMES_ITEM("rowsAffected")
+#endif // DATABASE_STORAGE_SUPPORT
+	DOM_ATOM_NAMES_ITEM("rules")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("rx")
+	DOM_ATOM_NAMES_ITEM("ry")
+#endif // SVG_DOM
+#if defined(SVG_DOM) || defined(TOUCH_EVENTS_SUPPORT)
+	DOM_ATOM_NAMES_ITEM("scale")
+#endif // SVG_DOM || TOUCH_EVENTS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("scheme")
+	DOM_ATOM_NAMES_ITEM("scope")
+#ifdef SCOPE_SUPPORT
+	DOM_ATOM_NAMES_ITEM("scopeListenerAddress")
+#endif // SCOPE_SUPPORT
+	DOM_ATOM_NAMES_ITEM("screen")
+	DOM_ATOM_NAMES_ITEM("screenLeft")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("screenPixelToMillimeterX")
+	DOM_ATOM_NAMES_ITEM("screenPixelToMillimeterY")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("screenTop")
+	DOM_ATOM_NAMES_ITEM("screenX")
+	DOM_ATOM_NAMES_ITEM("screenY")
+	DOM_ATOM_NAMES_ITEM("scripts")
+	DOM_ATOM_NAMES_ITEM("scroll")
+	DOM_ATOM_NAMES_ITEM("scrollAmount")
+	DOM_ATOM_NAMES_ITEM("scrollBy")
+	DOM_ATOM_NAMES_ITEM("scrollDelay")
+	DOM_ATOM_NAMES_ITEM("scrollHeight")
+	DOM_ATOM_NAMES_ITEM("scrollLeft")
+	DOM_ATOM_NAMES_ITEM("scrollTo")
+	DOM_ATOM_NAMES_ITEM("scrollTop")
+	DOM_ATOM_NAMES_ITEM("scrollWidth")
+	DOM_ATOM_NAMES_ITEM("scrollX")
+	DOM_ATOM_NAMES_ITEM("scrollY")
+	DOM_ATOM_NAMES_ITEM("scrollbar3dlightColor")
+	DOM_ATOM_NAMES_ITEM("scrollbarArrowColor")
+	DOM_ATOM_NAMES_ITEM("scrollbarBaseColor")
+	DOM_ATOM_NAMES_ITEM("scrollbarDarkshadowColor")
+	DOM_ATOM_NAMES_ITEM("scrollbarFaceColor")
+	DOM_ATOM_NAMES_ITEM("scrollbarHighlightColor")
+	DOM_ATOM_NAMES_ITEM("scrollbarShadowColor")
+	DOM_ATOM_NAMES_ITEM("scrollbarTrackColor")
+	DOM_ATOM_NAMES_ITEM("scrolling")
+	DOM_ATOM_NAMES_ITEM("search")
+	DOM_ATOM_NAMES_ITEM("sectionRowIndex")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("seed")
+#endif // SVG_DOM
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("seekable")
+	DOM_ATOM_NAMES_ITEM("seeking")
+#endif // MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("selected")
+	DOM_ATOM_NAMES_ITEM("selectedIndex")
+	DOM_ATOM_NAMES_ITEM("selectedOptions")
+#ifdef DOM_SELECTION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("selectionDirection")
+	DOM_ATOM_NAMES_ITEM("selectionEnd")
+	DOM_ATOM_NAMES_ITEM("selectionStart")
+#endif // DOM_SELECTION_SUPPORT
+#ifdef DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("selectionText")
+#endif // DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("selectorText")
+	DOM_ATOM_NAMES_ITEM("self")
+#ifdef WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("servicePath")
+#endif // WEBSERVER_SUPPORT
+#if defined WEBSERVER_SUPPORT || defined UPNP_SUPPORT
+	DOM_ATOM_NAMES_ITEM("services")
+#endif // WEBSERVER_SUPPORT || UPNP_SUPPORT
+#ifdef WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("session")
+#endif // WEBSERVER_SUPPORT
+#ifdef CLIENTSIDE_STORAGE_SUPPORT
+	DOM_ATOM_NAMES_ITEM("sessionStorage")
+#endif // CLIENTSIDE_STORAGE_SUPPORT
+	DOM_ATOM_NAMES_ITEM("setInterval")
+#ifdef CANVAS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("shadowBlur")
+	DOM_ATOM_NAMES_ITEM("shadowColor")
+	DOM_ATOM_NAMES_ITEM("shadowOffsetX")
+	DOM_ATOM_NAMES_ITEM("shadowOffsetY")
+#endif // CANVAS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("shape")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("shapeRendering")
+#endif // SVG_DOM
+#if defined GADGET_SUPPORT && defined WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("sharedFolder")
+#endif // GADGET_SUPPORT && WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("sheet")
+	DOM_ATOM_NAMES_ITEM("shiftKey")
+#ifdef GADGET_SUPPORT
+	DOM_ATOM_NAMES_ITEM("shortName")
+#endif // GADGET_SUPPORT
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	DOM_ATOM_NAMES_ITEM("showImages")
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#ifdef DOM3_XPATH
+	DOM_ATOM_NAMES_ITEM("singleNodeValue")
+#endif // DOM3_XPATH
+	DOM_ATOM_NAMES_ITEM("size")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("slope")
+#endif // SVG_DOM
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("snapToLines")
+#endif // MEDIA_HTML_SUPPORT
+#ifdef DOM3_XPATH
+	DOM_ATOM_NAMES_ITEM("snapshotLength")
+#endif // DOM3_XPATH
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("solidColor")
+	DOM_ATOM_NAMES_ITEM("solidOpacity")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("source")
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("sourceAddress")
+#endif // DOM_JIL_API_SUPPORT
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("spacing")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("span")
+	DOM_ATOM_NAMES_ITEM("speakNumeral")
+	DOM_ATOM_NAMES_ITEM("specified")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("specularConstant")
+	DOM_ATOM_NAMES_ITEM("specularExponent")
+#endif // SVG_DOM
+#ifdef DOM_GEOLOCATION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("speed")
+#endif // DOM_GEOLOCATION_SUPPORT
+#ifdef EXTENSION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("speeddial")
+#endif // EXTENSION_SUPPORT
+#ifdef INTERNAL_SPELLCHECK_SUPPORT
+	DOM_ATOM_NAMES_ITEM("spellcheck")
+#endif // INTERNAL_SPELLCHECK_SUPPORT
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("spreadMethod")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("src")
+	DOM_ATOM_NAMES_ITEM("srcElement")
+#ifdef DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("srcURL")
+#endif // DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("srclang")
+#endif // MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("standby")
+	DOM_ATOM_NAMES_ITEM("start")
+#ifdef DOM2_RANGE
+	DOM_ATOM_NAMES_ITEM("startContainer")
+#endif // DOM2_RANGE
+#if defined(DOM2_RANGE) || defined(SVG_DOM)
+	DOM_ATOM_NAMES_ITEM("startOffset")
+#endif // DOM2_RANGE || SVG_DOM
+#if defined(MEDIA_HTML_SUPPORT) || defined(DOM_JIL_API_SUPPORT)
+	DOM_ATOM_NAMES_ITEM("startTime")
+#endif // MEDIA_HTML_SUPPORT || DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("state")
+	DOM_ATOM_NAMES_ITEM("status")
+#ifdef DOM_HTTP_SUPPORT
+	DOM_ATOM_NAMES_ITEM("statusText")
+#endif // DOM_HTTP_SUPPORT
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("stdDeviationX")
+	DOM_ATOM_NAMES_ITEM("stdDeviationY")
+#endif // SVG_DOM
+#ifdef CANVAS3D_SUPPORT
+	DOM_ATOM_NAMES_ITEM("stencil")
+#endif // CANVAS3D_SUPPORT
+	DOM_ATOM_NAMES_ITEM("step")
+	DOM_ATOM_NAMES_ITEM("stepMismatch")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("stitchTiles")
+	DOM_ATOM_NAMES_ITEM("stopColor")
+	DOM_ATOM_NAMES_ITEM("stopOpacity")
+#endif // SVG_DOM
+#ifdef CLIENTSIDE_STORAGE_SUPPORT
+	DOM_ATOM_NAMES_ITEM("storageArea")
+#endif // CLIENTSIDE_STORAGE_SUPPORT
+#ifdef SCOPE_SUPPORT
+	DOM_ATOM_NAMES_ITEM("stpVersion")
+#endif // SCOPE_SUPPORT
+#ifdef DOM3_XPATH
+	DOM_ATOM_NAMES_ITEM("stringValue")
+#endif // DOM3_XPATH
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("stroke")
+	DOM_ATOM_NAMES_ITEM("strokeDasharray")
+	DOM_ATOM_NAMES_ITEM("strokeDashoffset")
+	DOM_ATOM_NAMES_ITEM("strokeLinecap")
+	DOM_ATOM_NAMES_ITEM("strokeLinejoin")
+	DOM_ATOM_NAMES_ITEM("strokeMiterlimit")
+	DOM_ATOM_NAMES_ITEM("strokeOpacity")
+#endif // SVG_DOM
+#ifdef CANVAS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("strokeStyle")
+#endif // CANVAS_SUPPORT
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("strokeWidth")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("style")
+	DOM_ATOM_NAMES_ITEM("styleFloat")
+	DOM_ATOM_NAMES_ITEM("styleSheet")
+	DOM_ATOM_NAMES_ITEM("styleSheets")
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("subject")
+#endif // DOM_JIL_API_SUPPORT
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	DOM_ATOM_NAMES_ITEM("subscribedFeeds")
+#endif // WEBFEEDS_BACKEND_SUPPORT
+	DOM_ATOM_NAMES_ITEM("suffixes")
+	DOM_ATOM_NAMES_ITEM("summary")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("surfaceScale")
+	DOM_ATOM_NAMES_ITEM("sweepFlag")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("systemId")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("systemLanguage")
+#endif // SVG_DOM
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("systemNewLine")
+#endif // DOM_GADGET_FILE_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("tBodies")
+	DOM_ATOM_NAMES_ITEM("tFoot")
+	DOM_ATOM_NAMES_ITEM("tHead")
+#ifdef DOM_EXTENSIONS_TAB_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("tab")
+	DOM_ATOM_NAMES_ITEM("tabGroup")
+	DOM_ATOM_NAMES_ITEM("tabGroups")
+#endif // DOM_EXTENSIONS_TAB_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("tabIndex")
+	DOM_ATOM_NAMES_ITEM("tableLayout")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("tableValues")
+#endif // SVG_DOM
+#ifdef DOM_EXTENSIONS_TAB_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("tabs")
+#endif // DOM_EXTENSIONS_TAB_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("tagName")
+	DOM_ATOM_NAMES_ITEM("target")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("targetElement")
+#endif // SVG_DOM
+#ifdef SVG_SUPPORT
+	DOM_ATOM_NAMES_ITEM("targetFps")
+#endif // SVG_SUPPORT
+#ifdef TOUCH_EVENTS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("targetTouches")
+#endif // TOUCH_EVENTS_SUPPORT
+#ifdef DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("targetURLPatterns")
+#endif // DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("targetX")
+	DOM_ATOM_NAMES_ITEM("targetY")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("text")
+	DOM_ATOM_NAMES_ITEM("textAlign")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("textAnchor")
+#endif // SVG_DOM
+#ifdef CANVAS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("textBaseline")
+#endif // CANVAS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("textContent")
+	DOM_ATOM_NAMES_ITEM("textDecoration")
+	DOM_ATOM_NAMES_ITEM("textIndent")
+	DOM_ATOM_NAMES_ITEM("textLength")
+	DOM_ATOM_NAMES_ITEM("textOverflow")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("textRendering")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("textShadow")
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("textTracks")
+#endif // MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("textTransform")
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("time")
+#endif // DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("timeStamp")
+#ifdef DOM_HTTP_SUPPORT
+	DOM_ATOM_NAMES_ITEM("timeout")
+#endif // DOM_HTTP_SUPPORT
+#ifdef DOM_GEOLOCATION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("timestamp")
+#endif // DOM_GEOLOCATION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("title")
+	DOM_ATOM_NAMES_ITEM("toElement")
+	DOM_ATOM_NAMES_ITEM("tooLong")
+#ifdef EXTENSION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("toolbar")
+#endif // EXTENSION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("top")
+#ifdef EXTENSION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("topWindow")
+#endif // EXTENSION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("total")
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("totalMemory")
+#endif // DOM_JIL_API_SUPPORT
+#ifdef TOUCH_EVENTS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("touches")
+#endif // TOUCH_EVENTS_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("track")
+#endif // MEDIA_HTML_SUPPORT
+#if defined SVG_DOM || defined CSS_TRANSFORMS
+	DOM_ATOM_NAMES_ITEM("transform")
+#endif // SVG_DOM || CSS_TRANSFORMS
+#ifdef CSS_TRANSFORMS
+	DOM_ATOM_NAMES_ITEM("transformOrigin")
+#endif // CSS_TRANSFORMS
+#ifdef CSS_TRANSITIONS
+	DOM_ATOM_NAMES_ITEM("transition")
+	DOM_ATOM_NAMES_ITEM("transitionDelay")
+	DOM_ATOM_NAMES_ITEM("transitionDuration")
+	DOM_ATOM_NAMES_ITEM("transitionProperty")
+	DOM_ATOM_NAMES_ITEM("transitionTimingFunction")
+#endif // CSS_TRANSITIONS
+	DOM_ATOM_NAMES_ITEM("type")
+	DOM_ATOM_NAMES_ITEM("typeMismatch")
+#if defined DRAG_SUPPORT || defined USE_OP_CLIPBOARD
+	DOM_ATOM_NAMES_ITEM("types")
+#endif // DRAG_SUPPORT || USE_OP_CLIPBOARD
+	DOM_ATOM_NAMES_ITEM("unicodeBidi")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("unitType")
+#endif // SVG_DOM
+#if defined WEBSERVER_SUPPORT || defined UPNP_SUPPORT
+	DOM_ATOM_NAMES_ITEM("uniteDeviceName")
+#endif // WEBSERVER_SUPPORT || UPNP_SUPPORT
+#ifdef UPNP_SUPPORT
+	DOM_ATOM_NAMES_ITEM("uniteServiceName")
+#endif // UPNP_SUPPORT
+#if defined WEBSERVER_SUPPORT || defined UPNP_SUPPORT
+	DOM_ATOM_NAMES_ITEM("uniteUser")
+#endif // WEBSERVER_SUPPORT || UPNP_SUPPORT
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	DOM_ATOM_NAMES_ITEM("unread")
+#endif // WEBFEEDS_BACKEND_SUPPORT
+	DOM_ATOM_NAMES_ITEM("unselectable")
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	DOM_ATOM_NAMES_ITEM("updateInterval")
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#if defined DOM_HTTP_SUPPORT && defined PROGRESS_EVENTS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("upload")
+#endif // DOM_HTTP_SUPPORT && PROGRESS_EVENTS_SUPPORT
+#if defined WEBSERVER_SUPPORT || defined UPNP_SUPPORT
+	DOM_ATOM_NAMES_ITEM("upnpDeviceIcon")
+	DOM_ATOM_NAMES_ITEM("upnpDevicePayload")
+#endif // WEBSERVER_SUPPORT || UPNP_SUPPORT
+#if defined GADGET_SUPPORT && defined WEBSERVER_SUPPORT && defined OPERAUNITE_URL
+	DOM_ATOM_NAMES_ITEM("upnpEnabled")
+#endif // GADGET_SUPPORT && WEBSERVER_SUPPORT && OPERAUNITE_URL
+	DOM_ATOM_NAMES_ITEM("uri")
+#if defined CLIENTSIDE_STORAGE_SUPPORT || defined UPNP_SUPPORT || defined WEBSOCKETS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("url")
+#endif // CLIENTSIDE_STORAGE_SUPPORT || UPNP_SUPPORT || WEBSOCKETS_SUPPORT
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("useCurrentView")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("useMap")
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("userAccountBalance")
+#endif // DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("userAgent")
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	DOM_ATOM_NAMES_ITEM("userDefinedTitle")
+#endif // WEBFEEDS_BACKEND_SUPPORT
+	DOM_ATOM_NAMES_ITEM("userLanguage")
+#ifdef WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("userName")
+#endif // WEBSERVER_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("userSubscriptionType")
+#endif // DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("userZoom")
+#ifdef OPERA_AUTH_SUPPORT
+	DOM_ATOM_NAMES_ITEM("username")
+#endif // OPERA_AUTH_SUPPORT
+#ifdef WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("users")
+#endif // WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("vAlign")
+	DOM_ATOM_NAMES_ITEM("vLink")
+	DOM_ATOM_NAMES_ITEM("valid")
+	DOM_ATOM_NAMES_ITEM("validationMessage")
+	DOM_ATOM_NAMES_ITEM("validity")
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("validityPeriodHours")
+#endif // DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("value")
+	DOM_ATOM_NAMES_ITEM("valueAsDate")
+	DOM_ATOM_NAMES_ITEM("valueAsNumber")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("valueAsString")
+	DOM_ATOM_NAMES_ITEM("valueInSpecifiedUnits")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("valueMissing")
+	DOM_ATOM_NAMES_ITEM("valueType")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("values")
+	DOM_ATOM_NAMES_ITEM("vectorEffect")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("version")
+	DOM_ATOM_NAMES_ITEM("verticalAlign")
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("vibrationSetting")
+#endif // DOM_JIL_API_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("videoHeight")
+	DOM_ATOM_NAMES_ITEM("videoWidth")
+#endif // MEDIA_HTML_SUPPORT
+	DOM_ATOM_NAMES_ITEM("view")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("viewBox")
+	DOM_ATOM_NAMES_ITEM("viewport")
+	DOM_ATOM_NAMES_ITEM("viewportElement")
+	DOM_ATOM_NAMES_ITEM("viewportFill")
+	DOM_ATOM_NAMES_ITEM("viewportFillOpacity")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("visibility")
+	DOM_ATOM_NAMES_ITEM("visibilityState")
+#if defined GADGET_SUPPORT && defined WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("visibleToLocalNetwork")
+	DOM_ATOM_NAMES_ITEM("visibleToSearchEngines")
+	DOM_ATOM_NAMES_ITEM("visibleToServiceDiscovery")
+#endif // GADGET_SUPPORT && WEBSERVER_SUPPORT
+	DOM_ATOM_NAMES_ITEM("vlinkColor")
+	DOM_ATOM_NAMES_ITEM("volume")
+	DOM_ATOM_NAMES_ITEM("vspace")
+#ifdef WEBSOCKETS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("wasClean")
+#endif // WEBSOCKETS_SUPPORT
+#ifdef DOM2_TRAVERSAL
+	DOM_ATOM_NAMES_ITEM("whatToShow")
+#endif // DOM2_TRAVERSAL
+	DOM_ATOM_NAMES_ITEM("wheelDelta")
+	DOM_ATOM_NAMES_ITEM("wheelDeltaX")
+	DOM_ATOM_NAMES_ITEM("wheelDeltaY")
+	DOM_ATOM_NAMES_ITEM("which")
+	DOM_ATOM_NAMES_ITEM("whiteSpace")
+	DOM_ATOM_NAMES_ITEM("wholeText")
+	DOM_ATOM_NAMES_ITEM("widgetMode")
+#ifdef GADGET_SUPPORT
+	DOM_ATOM_NAMES_ITEM("widgets")
+#endif // GADGET_SUPPORT
+	DOM_ATOM_NAMES_ITEM("widows")
+	DOM_ATOM_NAMES_ITEM("width")
+	DOM_ATOM_NAMES_ITEM("willValidate")
+	DOM_ATOM_NAMES_ITEM("window")
+#ifdef EXTENSION_SUPPORT
+	DOM_ATOM_NAMES_ITEM("windows")
+#endif // EXTENSION_SUPPORT
+#ifdef CORS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("withCredentials")
+#endif // CORS_SUPPORT
+	DOM_ATOM_NAMES_ITEM("wordSpacing")
+	DOM_ATOM_NAMES_ITEM("wordWrap")
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("workPhone")
+#endif // DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("wrap")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("writingMode")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("x")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("x1")
+	DOM_ATOM_NAMES_ITEM("x2")
+#endif // SVG_DOM
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("xAxis")
+#endif // DOM_JIL_API_SUPPORT
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("xChannelSelector")
+	DOM_ATOM_NAMES_ITEM("xmlbase")
+	DOM_ATOM_NAMES_ITEM("xmlspace")
+#endif // SVG_DOM
+	DOM_ATOM_NAMES_ITEM("y")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("y1")
+	DOM_ATOM_NAMES_ITEM("y2")
+#endif // SVG_DOM
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("yAxis")
+#endif // DOM_JIL_API_SUPPORT
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM("yChannelSelector")
+	DOM_ATOM_NAMES_ITEM("z")
+#endif // SVG_DOM
+#ifdef DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("zAxis")
+#endif // DOM_JIL_API_SUPPORT
+	DOM_ATOM_NAMES_ITEM("zIndex")
+	DOM_ATOM_NAMES_ITEM("zoom")
+#ifdef SVG_DOM
+	DOM_ATOM_NAMES_ITEM_LAST("zoomAndPan")
+#endif // SVG_DOM
+DOM_ATOM_NAMES_END()
+
+const unsigned g_DOM_atomData[] =
+{
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY__apple_dashboard_region), // AppleDashboardRegion
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // MIMEType
+	UINT_MAX, // Multimedia
+#endif // DOM_JIL_API_SUPPORT
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY__o_border_image), // OBorderImage
+#ifdef CSS_MINI_EXTENSIONS
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY__o_focus_opacity), // OFocusOpacity
+#endif // CSS_MINI_EXTENSIONS
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY__o_link), // OLink
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY__o_link_source), // OLinkSource
+#ifdef CSS_MINI_EXTENSIONS
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY__o_mini_fold), // OMiniFold
+#endif // CSS_MINI_EXTENSIONS
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY__o_object_fit), // OObjectFit
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY__o_object_position), // OObjectPosition
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY__o_tab_size), // OTabSize
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY__o_table_baseline), // OTableBaseline
+#ifdef CSS_TRANSFORMS
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_transform), // OTransform
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_transform_origin), // OTransformOrigin
+#endif // CSS_TRANSFORMS
+#ifdef CSS_TRANSITIONS
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_transition), // OTransition
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_transition_delay), // OTransitionDelay
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_transition_duration), // OTransitionDuration
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_transition_property), // OTransitionProperty
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_transition_timing_function), // OTransitionTimingFunction
+#endif // CSS_TRANSITIONS
+	UINT_MAX, // URL
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY__wap_accesskey), // WapAccesskey
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY__wap_input_format), // WapInputFormat
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY__wap_input_required), // WapInputRequired
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY__wap_marquee_dir), // WapMarqueeDir
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY__wap_marquee_loop), // WapMarqueeLoop
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY__wap_marquee_speed), // WapMarqueeSpeed
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY__wap_marquee_style), // WapMarqueeStyle
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_background_size), // WebkitBackgroundSize
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_bottom_left_radius), // WebkitBorderBottomLeftRadius
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_bottom_right_radius), // WebkitBorderBottomRightRadius
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_radius), // WebkitBorderRadius
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_top_left_radius), // WebkitBorderTopLeftRadius
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_top_right_radius), // WebkitBorderTopRightRadius
+	UINT_MAX, // WebkitBoxAlign
+	UINT_MAX, // WebkitBoxDirection
+	UINT_MAX, // WebkitBoxFlex
+	UINT_MAX, // WebkitBoxLines
+	UINT_MAX, // WebkitBoxOrdinalGroup
+	UINT_MAX, // WebkitBoxOrient
+	UINT_MAX, // WebkitBoxPack
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_box_shadow), // WebkitBoxShadow
+#ifdef CSS_TRANSFORMS
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_transform), // WebkitTransform
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_transform_origin), // WebkitTransformOrigin
+#endif // CSS_TRANSFORMS
+#ifdef CSS_TRANSITIONS
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_transition), // WebkitTransition
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_transition_delay), // WebkitTransitionDelay
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_transition_duration), // WebkitTransitionDuration
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_transition_property), // WebkitTransitionProperty
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_transition_timing_function), // WebkitTransitionTimingFunction
+#endif // CSS_TRANSITIONS
+#if defined SVG_DOM || defined CSS_TRANSFORMS
+	UINT_MAX, // a
+#endif // SVG_DOM || CSS_TRANSFORMS
+	static_cast<unsigned>(ATTR_ALINK << 16 | USHRT_MAX), // aLink
+	static_cast<unsigned>(ATTR_ABBR << 16 | USHRT_MAX), // abbr
+	static_cast<unsigned>(ATTR_ACCEPT << 16 | USHRT_MAX), // accept
+	static_cast<unsigned>(ATTR_ACCEPT_CHARSET << 16 | USHRT_MAX), // acceptCharset
+	static_cast<unsigned>(ATTR_ACCESSKEY << 16 | USHRT_MAX), // accessKey
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // accountId
+	UINT_MAX, // accountName
+#endif // DOM_JIL_API_SUPPORT
+#ifdef DOM_GEOLOCATION_SUPPORT
+	UINT_MAX, // accuracy
+#endif // DOM_GEOLOCATION_SUPPORT
+	static_cast<unsigned>(ATTR_ACTION << 16 | USHRT_MAX), // action
+#if defined WEBSERVER_SUPPORT || defined GADGET_SUPPORT
+	UINT_MAX, // active
+#endif // WEBSERVER_SUPPORT || GADGET_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	UINT_MAX, // activeCues
+#endif // MEDIA_HTML_SUPPORT
+	UINT_MAX, // activeElement
+	UINT_MAX, // addEventListener
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // address
+	UINT_MAX, // addressBookItemId
+	UINT_MAX, // alarmDate
+	UINT_MAX, // alarmed
+#endif // DOM_JIL_API_SUPPORT
+	static_cast<unsigned>(ATTR_ALIGN << 16 | USHRT_MAX), // align
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_align_content), // alignContent
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_align_items), // alignItems
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_align_self), // alignSelf
+#ifdef SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_alignment_baseline), // alignmentBaseline
+#endif // SVG_DOM
+	UINT_MAX, // alinkColor
+	UINT_MAX, // all
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	UINT_MAX, // allFeeds
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#if defined EXTENSION_SUPPORT && defined URL_FILTER
+	UINT_MAX, // allow
+#endif // EXTENSION_SUPPORT && URL_FILTER
+#ifdef CANVAS3D_SUPPORT
+	UINT_MAX, // alpha
+#endif // CANVAS3D_SUPPORT
+	static_cast<unsigned>(ATTR_ALT << 16 | USHRT_MAX), // alt
+	UINT_MAX, // altKey
+#ifdef UPNP_SUPPORT
+	UINT_MAX, // alternateURL
+#endif // UPNP_SUPPORT
+#ifdef DOM_GEOLOCATION_SUPPORT
+	UINT_MAX, // altitude
+	UINT_MAX, // altitudeAccuracy
+#endif // DOM_GEOLOCATION_SUPPORT
+#ifdef SVG_DOM
+	UINT_MAX, // amplitude
+#endif // SVG_DOM
+#ifdef DOM_SELECTION_SUPPORT
+	UINT_MAX, // anchorNode
+	UINT_MAX, // anchorOffset
+#endif // DOM_SELECTION_SUPPORT
+	UINT_MAX, // anchors
+#ifdef SVG_DOM
+	UINT_MAX, // angle
+	UINT_MAX, // animVal
+	UINT_MAX, // animatedInstanceRoot
+	UINT_MAX, // animatedNormalizedPathSegList
+	UINT_MAX, // animatedPathSegList
+	UINT_MAX, // animatedPoints
+#endif // SVG_DOM
+#ifdef CSS_ANIMATIONS
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_animation), // animation
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_animation_delay), // animationDelay
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_animation_direction), // animationDirection
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_animation_duration), // animationDuration
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_animation_fill_mode), // animationFillMode
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_animation_iteration_count), // animationIterationCount
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_animation_name), // animationName
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_animation_play_state), // animationPlayState
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_animation_timing_function), // animationTimingFunction
+#endif // CSS_ANIMATIONS
+#ifdef CANVAS3D_SUPPORT
+	UINT_MAX, // antialias
+#endif // CANVAS3D_SUPPORT
+	UINT_MAX, // appCodeName
+	UINT_MAX, // appMinorVersion
+	UINT_MAX, // appName
+	UINT_MAX, // appVersion
+	UINT_MAX, // applets
+#if defined APPLICATION_CACHE_SUPPORT || defined DOM_WEBWORKERS_SUPPORT
+	UINT_MAX, // applicationCache
+#endif // APPLICATION_CACHE_SUPPORT || DOM_WEBWORKERS_SUPPORT
+	static_cast<unsigned>(ATTR_ARCHIVE << 16 | USHRT_MAX), // archive
+	UINT_MAX, // areas
+	UINT_MAX, // async
+#ifdef INTEGRATED_DEVTOOLS_SUPPORT
+	UINT_MAX, // attached
+#endif // INTEGRATED_DEVTOOLS_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // attachments
+#endif // DOM_JIL_API_SUPPORT
+#ifdef DOM2_MUTATION_EVENTS
+	UINT_MAX, // attrChange
+	UINT_MAX, // attrName
+#endif // DOM2_MUTATION_EVENTS
+	UINT_MAX, // attributes
+#if defined SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_audio_level), // audioLevel
+#endif // SVG_DOM
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // audioPath
+#endif // DOM_JIL_API_SUPPORT
+#ifdef OPERA_AUTH_SUPPORT
+	UINT_MAX, // authState
+	UINT_MAX, // authStatus
+#endif // OPERA_AUTH_SUPPORT
+#ifdef WEBSERVER_SUPPORT
+	UINT_MAX, // authentication
+#endif // WEBSERVER_SUPPORT
+#if defined WEBFEEDS_BACKEND_SUPPORT || defined WEBSERVER_SUPPORT || defined GADGET_SUPPORT
+	UINT_MAX, // author
+#endif // WEBFEEDS_BACKEND_SUPPORT || WEBSERVER_SUPPORT || GADGET_SUPPORT
+#ifdef GADGET_SUPPORT
+	UINT_MAX, // authorEmail
+	UINT_MAX, // authorHref
+#endif // GADGET_SUPPORT
+	static_cast<unsigned>(ATTR_AUTOCOMPLETE << 16 | USHRT_MAX), // autocomplete
+	static_cast<unsigned>(ATTR_AUTOFOCUS << 16 | USHRT_MAX), // autofocus
+#ifdef MEDIA_HTML_SUPPORT
+	static_cast<unsigned>(ATTR_AUTOPLAY << 16 | USHRT_MAX), // autoplay
+#endif // MEDIA_HTML_SUPPORT
+	UINT_MAX, // availHeight
+	UINT_MAX, // availWidth
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // availableMemory
+#endif // DOM_JIL_API_SUPPORT
+	static_cast<unsigned>(ATTR_AXIS << 16 | USHRT_MAX), // axis
+	UINT_MAX, // azimuth
+#if defined SVG_DOM || defined CSS_TRANSFORMS
+	UINT_MAX, // b
+#endif // SVG_DOM || CSS_TRANSFORMS
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // backLightOn
+#endif // DOM_JIL_API_SUPPORT
+	static_cast<unsigned>(ATTR_BACKGROUND << 16 | CSS_PROPERTY_background), // background
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_background_attachment), // backgroundAttachment
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_background_clip), // backgroundClip
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_background_color), // backgroundColor
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_background_image), // backgroundImage
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_background_origin), // backgroundOrigin
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_background_position), // backgroundPosition
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_background_repeat), // backgroundRepeat
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_background_size), // backgroundSize
+#ifdef EXTENSION_SUPPORT
+	UINT_MAX, // badge
+#endif // EXTENSION_SUPPORT
+#ifdef SVG_DOM
+	UINT_MAX, // baseFrequencyX
+	UINT_MAX, // baseFrequencyY
+#endif // SVG_DOM
+	UINT_MAX, // baseURI
+#ifdef SVG_DOM
+	UINT_MAX, // baseVal
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_baseline_shift), // baselineShift
+#endif // SVG_DOM
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // bccAddress
+#endif // DOM_JIL_API_SUPPORT
+	static_cast<unsigned>(ATTR_BEHAVIOR << 16 | USHRT_MAX), // behavior
+	static_cast<unsigned>(ATTR_BGCOLOR << 16 | USHRT_MAX), // bgColor
+#ifdef EXTENSION_SUPPORT
+	UINT_MAX, // bgProcess
+#endif // EXTENSION_SUPPORT
+#ifdef SVG_DOM
+	UINT_MAX, // bias
+#endif // SVG_DOM
+#ifdef WEBSOCKETS_SUPPORT
+	UINT_MAX, // binaryType
+#endif // WEBSOCKETS_SUPPORT
+#if defined EXTENSION_SUPPORT && defined URL_FILTER
+	UINT_MAX, // block
+#endif // EXTENSION_SUPPORT && URL_FILTER
+#ifdef SVG_DOM
+	UINT_MAX, // blue
+#endif // SVG_DOM
+	UINT_MAX, // blur
+	UINT_MAX, // body
+#ifdef WEBSERVER_SUPPORT
+	UINT_MAX, // bodyItems
+#endif // WEBSERVER_SUPPORT
+#ifdef DOM3_XPATH
+	UINT_MAX, // booleanValue
+#endif // DOM3_XPATH
+	static_cast<unsigned>(ATTR_BORDER << 16 | CSS_PROPERTY_border), // border
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_bottom), // borderBottom
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_bottom_color), // borderBottomColor
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_bottom_left_radius), // borderBottomLeftRadius
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_bottom_right_radius), // borderBottomRightRadius
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_bottom_style), // borderBottomStyle
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_bottom_width), // borderBottomWidth
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_collapse), // borderCollapse
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_color), // borderColor
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_left), // borderLeft
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_left_color), // borderLeftColor
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_left_style), // borderLeftStyle
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_left_width), // borderLeftWidth
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_radius), // borderRadius
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_right), // borderRight
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_right_color), // borderRightColor
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_right_style), // borderRightStyle
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_right_width), // borderRightWidth
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_spacing), // borderSpacing
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_style), // borderStyle
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_top), // borderTop
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_top_color), // borderTopColor
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_top_left_radius), // borderTopLeftRadius
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_top_right_radius), // borderTopRightRadius
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_top_style), // borderTopStyle
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_top_width), // borderTopWidth
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_border_width), // borderWidth
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_bottom), // bottom
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_box_decoration_break), // boxDecorationBreak
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_box_shadow), // boxShadow
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_box_sizing), // boxSizing
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_break_after), // breakAfter
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_break_before), // breakBefore
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_break_inside), // breakInside
+	UINT_MAX, // browserLanguage
+#ifdef DOM_EXTENSIONS_TAB_API_SUPPORT
+	UINT_MAX, // browserWindow
+#endif // DOM_EXTENSIONS_TAB_API_SUPPORT
+	UINT_MAX, // bubbles
+#ifdef MEDIA_HTML_SUPPORT
+	UINT_MAX, // buffered
+#endif // MEDIA_HTML_SUPPORT
+#ifdef WEBSOCKETS_SUPPORT
+	UINT_MAX, // bufferedAmount
+#endif // WEBSOCKETS_SUPPORT
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_buffered_rendering), // bufferedRendering
+	UINT_MAX, // busy
+	UINT_MAX, // button
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	UINT_MAX, // bytesAvailable
+#endif // DOM_GADGET_FILE_API_SUPPORT
+#if defined SVG_DOM || defined CSS_TRANSFORMS
+	UINT_MAX, // c
+#endif // SVG_DOM || CSS_TRANSFORMS
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // calendarItemId
+	UINT_MAX, // callRecordAddress
+	UINT_MAX, // callRecordId
+	UINT_MAX, // callRecordName
+	UINT_MAX, // callRecordType
+	UINT_MAX, // callbackNumber
+#endif // DOM_JIL_API_SUPPORT
+	UINT_MAX, // cancelBubble
+	UINT_MAX, // cancelable
+#ifdef CANVAS_SUPPORT
+	UINT_MAX, // canvas
+#endif // CANVAS_SUPPORT
+	UINT_MAX, // caption
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_caption_side), // captionSide
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // ccAddress
+#endif // DOM_JIL_API_SUPPORT
+	UINT_MAX, // cellIndex
+	static_cast<unsigned>(ATTR_CELLPADDING << 16 | USHRT_MAX), // cellPadding
+	static_cast<unsigned>(ATTR_CELLSPACING << 16 | USHRT_MAX), // cellSpacing
+	UINT_MAX, // cells
+	static_cast<unsigned>(ATTR_CHAR << 16 | USHRT_MAX), // ch
+	static_cast<unsigned>(ATTR_CHAROFF << 16 | USHRT_MAX), // chOff
+	static_cast<unsigned>(ATTR_CHALLENGE << 16 | USHRT_MAX), // challenge
+#ifdef TOUCH_EVENTS_SUPPORT
+	UINT_MAX, // changedTouches
+#endif // TOUCH_EVENTS_SUPPORT
+	UINT_MAX, // char
+	UINT_MAX, // charCode
+	UINT_MAX, // characterSet
+#ifdef CSS_CHARACTER_TYPE_SUPPORT
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_character_type), // characterType
+#endif // CSS_CHARACTER_TYPE_SUPPORT
+	static_cast<unsigned>(ATTR_CHARSET << 16 | USHRT_MAX), // charset
+	static_cast<unsigned>(ATTR_CHECKED << 16 | USHRT_MAX), // checked
+	UINT_MAX, // childElementCount
+	UINT_MAX, // childNodes
+	UINT_MAX, // children
+#ifdef WEBSERVER_SUPPORT
+	UINT_MAX, // chunked
+#endif // WEBSERVER_SUPPORT
+	static_cast<unsigned>(ATTR_CITE << 16 | USHRT_MAX), // cite
+	static_cast<unsigned>(ATTR_CLASS << 16 | USHRT_MAX), // class
+	static_cast<unsigned>(ATTR_CLASSID << 16 | USHRT_MAX), // classId
+	UINT_MAX, // classList
+	static_cast<unsigned>(ATTR_CLASS << 16 | USHRT_MAX), // className
+	static_cast<unsigned>(ATTR_CLEAR << 16 | CSS_PROPERTY_clear), // clear
+	UINT_MAX, // clientHeight
+	UINT_MAX, // clientLeft
+	UINT_MAX, // clientTop
+	UINT_MAX, // clientWidth
+	UINT_MAX, // clientX
+	UINT_MAX, // clientY
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_clip), // clip
+#ifdef SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_clip_path), // clipPath
+	UINT_MAX, // clipPathUnits
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_clip_rule), // clipRule
+#endif // SVG_DOM
+#ifdef USE_OP_CLIPBOARD
+	UINT_MAX, // clipboardData
+#endif // USE_OP_CLIPBOARD
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // clipboardString
+#endif // DOM_JIL_API_SUPPORT
+	UINT_MAX, // close
+	UINT_MAX, // closed
+	static_cast<unsigned>(ATTR_CODE << 16 | USHRT_MAX), // code
+	static_cast<unsigned>(ATTR_CODEBASE << 16 | USHRT_MAX), // codeBase
+	static_cast<unsigned>(ATTR_CODETYPE << 16 | USHRT_MAX), // codeType
+	static_cast<unsigned>(ATTR_COLSPAN << 16 | USHRT_MAX), // colSpan
+#ifdef DOM2_RANGE
+	UINT_MAX, // collapsed
+#endif // DOM2_RANGE
+	static_cast<unsigned>(ATTR_COLOR << 16 | CSS_PROPERTY_color), // color
+	UINT_MAX, // colorDepth
+#ifdef SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_color_interpolation), // colorInterpolation
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_color_interpolation_filters), // colorInterpolationFilters
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_color_profile), // colorProfile
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_color_rendering), // colorRendering
+#endif // SVG_DOM
+	static_cast<unsigned>(ATTR_COLS << 16 | USHRT_MAX), // cols
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_column_count), // columnCount
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_column_fill), // columnFill
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_column_gap), // columnGap
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_column_rule), // columnRule
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_column_rule_color), // columnRuleColor
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_column_rule_style), // columnRuleStyle
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_column_rule_width), // columnRuleWidth
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_column_span), // columnSpan
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_column_width), // columnWidth
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_columns), // columns
+#ifdef DOM2_RANGE
+	UINT_MAX, // commonAncestorContainer
+#endif // DOM2_RANGE
+	static_cast<unsigned>(ATTR_COMPACT << 16 | USHRT_MAX), // compact
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // company
+#endif // DOM_JIL_API_SUPPORT
+	UINT_MAX, // compatMode
+	UINT_MAX, // complete
+#ifdef WEBSERVER_SUPPORT
+	UINT_MAX, // connection
+#endif // WEBSERVER_SUPPORT
+	static_cast<unsigned>(ATTR_CONTENT << 16 | CSS_PROPERTY_content), // content
+	UINT_MAX, // contentDocument
+	static_cast<unsigned>(ATTR_CONTENTEDITABLE << 16 | USHRT_MAX), // contentEditable
+#ifdef SVG_DOM
+	UINT_MAX, // contentScriptType
+	UINT_MAX, // contentStyleType
+#endif // SVG_DOM
+	UINT_MAX, // contentType
+	UINT_MAX, // contentWindow
+#ifdef EXTENSION_SUPPORT
+	UINT_MAX, // contexts
+#endif // EXTENSION_SUPPORT
+	UINT_MAX, // control
+#ifdef MEDIA_HTML_SUPPORT
+	static_cast<unsigned>(ATTR_CONTROLS << 16 | USHRT_MAX), // controls
+#endif // MEDIA_HTML_SUPPORT
+	UINT_MAX, // cookie
+	UINT_MAX, // cookieEnabled
+	static_cast<unsigned>(ATTR_COORDS << 16 | USHRT_MAX), // coords
+#ifdef SVG_DOM
+	UINT_MAX, // correspondingElement
+	UINT_MAX, // correspondingUseElement
+#endif // SVG_DOM
+#ifdef GADGET_SUPPORT
+	UINT_MAX, // count
+#endif // GADGET_SUPPORT
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_counter_increment), // counterIncrement
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_counter_reset), // counterReset
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // createDate
+#endif // DOM_JIL_API_SUPPORT
+	UINT_MAX, // createDocumentFragment
+	UINT_MAX, // createElement
+	UINT_MAX, // createEvent
+	UINT_MAX, // createTextNode
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	UINT_MAX, // created
+#endif // DOM_GADGET_FILE_API_SUPPORT
+	static_cast<unsigned>(Markup::HA_CROSSORIGIN << 16 | USHRT_MAX), // crossOrigin
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_float), // cssFloat
+	UINT_MAX, // cssRules
+	UINT_MAX, // cssText
+	UINT_MAX, // ctrlKey
+#ifdef MEDIA_HTML_SUPPORT
+	UINT_MAX, // cues
+#endif // MEDIA_HTML_SUPPORT
+	UINT_MAX, // current
+#ifdef SVG_SUPPORT
+	UINT_MAX, // currentFps
+#endif // SVG_SUPPORT
+#ifdef GADGET_SUPPORT
+	UINT_MAX, // currentIcon
+#endif // GADGET_SUPPORT
+#ifdef DOM2_TRAVERSAL
+	UINT_MAX, // currentNode
+#endif // DOM2_TRAVERSAL
+#ifdef PAGED_MEDIA_SUPPORT
+	UINT_MAX, // currentPage
+#endif // PAGED_MEDIA_SUPPORT
+#ifdef SVG_DOM
+	UINT_MAX, // currentRotate
+	UINT_MAX, // currentScale
+#endif // SVG_DOM
+#ifdef WEBSERVER_SUPPORT
+	UINT_MAX, // currentServiceName
+	UINT_MAX, // currentServicePath
+#endif // WEBSERVER_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	UINT_MAX, // currentSrc
+#endif // MEDIA_HTML_SUPPORT
+#ifdef CURRENT_STYLE_SUPPORT
+	UINT_MAX, // currentStyle
+#endif // CURRENT_STYLE_SUPPORT
+	UINT_MAX, // currentTarget
+#ifdef MEDIA_HTML_SUPPORT
+	UINT_MAX, // currentTime
+#endif // MEDIA_HTML_SUPPORT
+#ifdef SVG_DOM
+	UINT_MAX, // currentTranslate
+#endif // SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_cursor), // cursor
+	UINT_MAX, // customError
+#ifdef SVG_DOM
+	UINT_MAX, // cx
+	UINT_MAX, // cy
+#endif // SVG_DOM
+#if defined SVG_DOM || defined CSS_TRANSFORMS
+	UINT_MAX, // d
+#endif // SVG_DOM || CSS_TRANSFORMS
+	static_cast<unsigned>(ATTR_DATA << 16 | USHRT_MAX), // data
+#ifdef DRAG_SUPPORT
+	UINT_MAX, // dataTransfer
+#endif // DRAG_SUPPORT
+	UINT_MAX, // dataset
+	static_cast<unsigned>(ATTR_DATETIME << 16 | USHRT_MAX), // dateTime
+	static_cast<unsigned>(ATTR_DECLARE << 16 | USHRT_MAX), // declare
+#ifdef MEDIA_HTML_SUPPORT
+	static_cast<unsigned>(Markup::HA_DEFAULT << 16 | USHRT_MAX), // default
+#endif // MEDIA_HTML_SUPPORT
+	static_cast<unsigned>(ATTR_CHECKED << 16 | USHRT_MAX), // defaultChecked
+#ifdef MEDIA_HTML_SUPPORT
+	static_cast<unsigned>(ATTR_MUTED << 16 | USHRT_MAX), // defaultMuted
+	UINT_MAX, // defaultPlaybackRate
+#endif // MEDIA_HTML_SUPPORT
+	UINT_MAX, // defaultPrevented
+	static_cast<unsigned>(ATTR_SELECTED << 16 | USHRT_MAX), // defaultSelected
+	UINT_MAX, // defaultStatus
+	static_cast<unsigned>(ATTR_VALUE << 16 | USHRT_MAX), // defaultValue
+	UINT_MAX, // defaultView
+	static_cast<unsigned>(ATTR_DEFER << 16 | USHRT_MAX), // defer
+#ifdef CANVAS3D_SUPPORT
+	UINT_MAX, // depth
+#endif // CANVAS3D_SUPPORT
+	UINT_MAX, // description
+	UINT_MAX, // designMode
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // destinationAddress
+#endif // DOM_JIL_API_SUPPORT
+	UINT_MAX, // detail
+#if defined UPNP_SUPPORT || (defined GADGET_SUPPORT && defined WEBSERVER_SUPPORT && defined OPERAUNITE_URL)
+	UINT_MAX, // device
+#endif // UPNP_SUPPORT || GADGET_SUPPORT && WEBSERVER_SUPPORT && OPERAUNITE_URL
+#ifdef WEBSERVER_SUPPORT
+	UINT_MAX, // deviceName
+#endif // WEBSERVER_SUPPORT
+	UINT_MAX, // devicePixelRatio
+#ifdef ABOUT_HTML_DIALOGS
+	UINT_MAX, // dialogArguments
+#endif // ABOUT_HTML_DIALOGS
+#ifdef SVG_DOM
+	UINT_MAX, // diffuseConstant
+#endif // SVG_DOM
+	static_cast<unsigned>(ATTR_DIR << 16 | USHRT_MAX), // dir
+	static_cast<unsigned>(ATTR_DIRNAME << 16 | USHRT_MAX), // dirName
+	static_cast<unsigned>(ATTR_DIRECTION << 16 | CSS_PROPERTY_direction), // direction
+	static_cast<unsigned>(ATTR_DISABLED << 16 | USHRT_MAX), // disabled
+	UINT_MAX, // dispatchEvent
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_display), // display
+#ifdef SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_display_align), // displayAlign
+	UINT_MAX, // divisor
+#endif // SVG_DOM
+	UINT_MAX, // doNotTrack
+	UINT_MAX, // doctype
+	UINT_MAX, // document
+	UINT_MAX, // documentElement
+	UINT_MAX, // documentURI
+#ifdef DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	UINT_MAX, // documentURL
+	UINT_MAX, // documentURLPatterns
+#endif // DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	UINT_MAX, // domConfig
+	UINT_MAX, // domain
+#ifdef SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_dominant_baseline), // dominantBaseline
+#endif // SVG_DOM
+#ifdef DRAG_SUPPORT
+	static_cast<unsigned>(Markup::HA_DRAGGABLE << 16 | USHRT_MAX), // draggable
+#endif // DRAG_SUPPORT
+#ifdef CANVAS3D_SUPPORT
+	UINT_MAX, // drawingBufferHeight
+	UINT_MAX, // drawingBufferWidth
+#endif // CANVAS3D_SUPPORT
+#ifdef DRAG_SUPPORT
+	UINT_MAX, // dropEffect
+	static_cast<unsigned>(Markup::HA_DROPZONE << 16 | USHRT_MAX), // dropzone
+#endif // DRAG_SUPPORT
+#ifdef DOM_DSE_DEBUGGING
+	UINT_MAX, // dseEnabled
+	UINT_MAX, // dseRecovered
+#endif // DOM_DSE_DEBUGGING
+#ifdef MEDIA_HTML_SUPPORT
+	UINT_MAX, // duration
+#endif // MEDIA_HTML_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // durationSeconds
+#endif // DOM_JIL_API_SUPPORT
+#ifdef SVG_DOM
+	UINT_MAX, // dx
+	UINT_MAX, // dy
+#endif // SVG_DOM
+#if defined SVG_DOM || defined CSS_TRANSFORMS
+	UINT_MAX, // e
+#endif // SVG_DOM || CSS_TRANSFORMS
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // eMail
+#endif // DOM_JIL_API_SUPPORT
+#ifdef SVG_DOM
+	UINT_MAX, // edgeMode
+#endif // SVG_DOM
+#ifdef DRAG_SUPPORT
+	UINT_MAX, // effectAllowed
+#endif // DRAG_SUPPORT
+	UINT_MAX, // elapsedTime
+	UINT_MAX, // element
+	UINT_MAX, // elements
+	UINT_MAX, // elevation
+	UINT_MAX, // embeds
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_empty_cells), // emptyCells
+#ifdef SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_enable_background), // enableBackground
+#endif // SVG_DOM
+	UINT_MAX, // enabledPlugin
+	static_cast<unsigned>(ATTR_ENCTYPE << 16 | USHRT_MAX), // encoding
+	static_cast<unsigned>(ATTR_ENCTYPE << 16 | USHRT_MAX), // enctype
+#ifdef DOM2_RANGE
+	UINT_MAX, // endContainer
+	UINT_MAX, // endOffset
+#endif // DOM2_RANGE
+#ifdef MEDIA_HTML_SUPPORT
+	UINT_MAX, // endTime
+	UINT_MAX, // ended
+#endif // MEDIA_HTML_SUPPORT
+	UINT_MAX, // entities
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	UINT_MAX, // entries
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#if defined WEBSERVER_SUPPORT || defined DOM_GADGET_FILE_API_SUPPORT
+	UINT_MAX, // eof
+#endif // WEBSERVER_SUPPORT || DOM_GADGET_FILE_API_SUPPORT
+	UINT_MAX, // error
+	static_cast<unsigned>(ATTR_EVENT << 16 | USHRT_MAX), // event
+#ifdef USER_JAVASCRIPT
+	UINT_MAX, // eventCancelled
+#endif // USER_JAVASCRIPT
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // eventEndTime
+	UINT_MAX, // eventName
+	UINT_MAX, // eventNotes
+#endif // DOM_JIL_API_SUPPORT
+	UINT_MAX, // eventPhase
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // eventRecurrence
+	UINT_MAX, // eventStartTime
+#endif // DOM_JIL_API_SUPPORT
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	UINT_MAX, // exists
+#endif // DOM_GADGET_FILE_API_SUPPORT
+#ifdef DOM2_TRAVERSAL
+	UINT_MAX, // expandEntityReferences
+#endif // DOM2_TRAVERSAL
+#ifdef SVG_DOM
+	UINT_MAX, // exponent
+#endif // SVG_DOM
+#ifdef EXTENSION_SUPPORT
+	UINT_MAX, // extension
+#endif // EXTENSION_SUPPORT
+#ifdef WEBSOCKETS_SUPPORT
+	UINT_MAX, // extensions
+#endif // WEBSOCKETS_SUPPORT
+#ifdef SVG_DOM
+	UINT_MAX, // externalResourcesRequired
+#endif // SVG_DOM
+#if defined SVG_DOM || defined CSS_TRANSFORMS
+	UINT_MAX, // f
+#endif // SVG_DOM || CSS_TRANSFORMS
+	static_cast<unsigned>(ATTR_FACE << 16 | USHRT_MAX), // face
+#ifdef SVG_DOM
+	UINT_MAX, // farthestViewportElement
+#endif // SVG_DOM
+#ifdef EXTENSION_SUPPORT
+	UINT_MAX, // favicon
+	UINT_MAX, // faviconUrl
+#endif // EXTENSION_SUPPORT
+	UINT_MAX, // fgColor
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	UINT_MAX, // fileInstance
+#endif // DOM_GADGET_FILE_API_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // fileName
+	UINT_MAX, // filePath
+#endif // DOM_JIL_API_SUPPORT
+#if defined DOM_GADGET_FILE_API_SUPPORT || defined DOM_JIL_API_SUPPORT
+	UINT_MAX, // fileSize
+#endif // DOM_GADGET_FILE_API_SUPPORT || DOM_JIL_API_SUPPORT
+	UINT_MAX, // filename
+	UINT_MAX, // files
+#ifdef SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_fill), // fill
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_fill_opacity), // fillOpacity
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_fill_rule), // fillRule
+#endif // SVG_DOM
+#ifdef CANVAS_SUPPORT
+	UINT_MAX, // fillStyle
+#endif // CANVAS_SUPPORT
+#if defined DOM2_TRAVERSAL || defined DOM3_LOAD || defined DOM3_SAVE || defined SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_filter), // filter
+#endif // DOM2_TRAVERSAL || DOM3_LOAD || DOM3_SAVE || SVG_DOM
+#ifdef SVG_DOM
+	UINT_MAX, // filterResX
+	UINT_MAX, // filterResY
+	UINT_MAX, // filterUnits
+#endif // SVG_DOM
+	UINT_MAX, // firstChild
+	UINT_MAX, // firstElementChild
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_flex), // flex
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_flex_basis), // flexBasis
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_flex_direction), // flexDirection
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_flex_flow), // flexFlow
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_flex_grow), // flexGrow
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_flex_shrink), // flexShrink
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_flex_wrap), // flexWrap
+#ifdef SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_flood_color), // floodColor
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_flood_opacity), // floodOpacity
+#endif // SVG_DOM
+	UINT_MAX, // focus
+#ifdef DOM_SELECTION_SUPPORT
+	UINT_MAX, // focusNode
+	UINT_MAX, // focusOffset
+#endif // DOM_SELECTION_SUPPORT
+#ifdef DOM_EXTENSIONS_TAB_API_SUPPORT
+	UINT_MAX, // focused
+#endif // DOM_EXTENSIONS_TAB_API_SUPPORT
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_font), // font
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_font_family), // fontFamily
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_font_size), // fontSize
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_font_size_adjust), // fontSizeAdjust
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_font_stretch), // fontStretch
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_font_style), // fontStyle
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_font_variant), // fontVariant
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_font_weight), // fontWeight
+	static_cast<unsigned>(ATTR_FOR << 16 | USHRT_MAX), // for
+	UINT_MAX, // form
+	static_cast<unsigned>(ATTR_FORMACTION << 16 | USHRT_MAX), // formAction
+	static_cast<unsigned>(ATTR_FORMENCTYPE << 16 | USHRT_MAX), // formEnctype
+	static_cast<unsigned>(ATTR_FORMMETHOD << 16 | USHRT_MAX), // formMethod
+	static_cast<unsigned>(ATTR_FORMNOVALIDATE << 16 | USHRT_MAX), // formNoValidate
+	static_cast<unsigned>(ATTR_FORMTARGET << 16 | USHRT_MAX), // formTarget
+	UINT_MAX, // forms
+	static_cast<unsigned>(ATTR_FRAME << 16 | USHRT_MAX), // frame
+	static_cast<unsigned>(ATTR_FRAMEBORDER << 16 | USHRT_MAX), // frameBorder
+	UINT_MAX, // frameElement
+	UINT_MAX, // frames
+	UINT_MAX, // fromElement
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // fullName
+#endif // DOM_JIL_API_SUPPORT
+#ifdef DOM_FULLSCREEN_MODE
+	UINT_MAX, // fullscreenElement
+	UINT_MAX, // fullscreenEnabled
+#endif // DOM_FULLSCREEN_MODE
+#ifdef SVG_DOM
+	UINT_MAX, // fx
+	UINT_MAX, // fy
+#endif // SVG_DOM
+#ifdef DOM_GEOLOCATION_SUPPORT
+	UINT_MAX, // geolocation
+#endif // DOM_GEOLOCATION_SUPPORT
+	UINT_MAX, // getElementById
+	UINT_MAX, // getElementsByClassName
+	UINT_MAX, // getElementsByTagName
+#ifdef CANVAS_SUPPORT
+	UINT_MAX, // globalAlpha
+	UINT_MAX, // globalCompositeOperation
+#endif // CANVAS_SUPPORT
+#ifdef SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_glyph_orientation_horizontal), // glyphOrientationHorizontal
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_glyph_orientation_vertical), // glyphOrientationVertical
+	UINT_MAX, // gradientTransform
+	UINT_MAX, // gradientUnits
+	UINT_MAX, // green
+#endif // SVG_DOM
+	UINT_MAX, // hash
+	UINT_MAX, // head
+	static_cast<unsigned>(ATTR_HEADERS << 16 | USHRT_MAX), // headers
+#ifdef DOM_GEOLOCATION_SUPPORT
+	UINT_MAX, // heading
+#endif // DOM_GEOLOCATION_SUPPORT
+	static_cast<unsigned>(ATTR_HEIGHT << 16 | CSS_PROPERTY_height), // height
+	static_cast<unsigned>(ATTR_HIDDEN << 16 | USHRT_MAX), // hidden
+	static_cast<unsigned>(ATTR_HIGH << 16 | USHRT_MAX), // high
+	UINT_MAX, // history
+#ifdef ESUTILS_PROFILER_SUPPORT
+	UINT_MAX, // hits
+#endif // ESUTILS_PROFILER_SUPPORT
+	UINT_MAX, // home
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // homePhone
+#endif // DOM_JIL_API_SUPPORT
+	UINT_MAX, // host
+#ifdef WEBSERVER_SUPPORT
+	UINT_MAX, // hostName
+#endif // WEBSERVER_SUPPORT
+	UINT_MAX, // hostname
+	static_cast<unsigned>(ATTR_HREF << 16 | USHRT_MAX), // href
+	static_cast<unsigned>(ATTR_HREFLANG << 16 | USHRT_MAX), // hreflang
+	static_cast<unsigned>(ATTR_HSPACE << 16 | USHRT_MAX), // hspace
+	static_cast<unsigned>(ATTR_FOR << 16 | USHRT_MAX), // htmlFor
+	static_cast<unsigned>(ATTR_HTTP_EQUIV << 16 | USHRT_MAX), // httpEquiv
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	UINT_MAX, // icon
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#ifdef GADGET_SUPPORT
+	UINT_MAX, // icons
+#endif // GADGET_SUPPORT
+	static_cast<unsigned>(ATTR_ID << 16 | USHRT_MAX), // id
+#if defined GADGET_SUPPORT || defined TOUCH_EVENTS_SUPPORT
+	UINT_MAX, // identifier
+#endif // GADGET_SUPPORT || TOUCH_EVENTS_SUPPORT
+#ifdef SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_image_rendering), // imageRendering
+#endif // SVG_DOM
+	UINT_MAX, // images
+	UINT_MAX, // implementation
+#ifdef WEBSERVER_SUPPORT
+	UINT_MAX, // implicitFlush
+#endif // WEBSERVER_SUPPORT
+#ifdef SVG_DOM
+	UINT_MAX, // in1
+	UINT_MAX, // in2
+#endif // SVG_DOM
+	UINT_MAX, // indeterminate
+	UINT_MAX, // index
+	UINT_MAX, // innerHTML
+	UINT_MAX, // innerHeight
+	UINT_MAX, // innerText
+	UINT_MAX, // innerWidth
+	UINT_MAX, // input
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_input_format), // inputFormat
+	UINT_MAX, // inputMethod
+	static_cast<unsigned>(ATTR_INPUTMODE << 16 | USHRT_MAX), // inputmode
+	UINT_MAX, // insertAdjacentHTML
+	UINT_MAX, // insertAdjacentText
+#ifdef DATABASE_STORAGE_SUPPORT
+	UINT_MAX, // insertId
+#endif // DATABASE_STORAGE_SUPPORT
+#ifdef SVG_DOM
+	UINT_MAX, // instanceRoot
+	UINT_MAX, // intercept
+#endif // SVG_DOM
+	UINT_MAX, // internalSubset
+#ifdef DOM3_XPATH
+	UINT_MAX, // invalidIteratorState
+#endif // DOM3_XPATH
+#ifdef WEBSERVER_SUPPORT
+	UINT_MAX, // ip
+#endif // WEBSERVER_SUPPORT
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	UINT_MAX, // isArchive
+#endif // DOM_GADGET_FILE_API_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // isAudioPlaying
+#endif // DOM_JIL_API_SUPPORT
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	UINT_MAX, // isBinary
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // isCharging
+#endif // DOM_JIL_API_SUPPORT
+#ifdef DOM_SELECTION_SUPPORT
+	UINT_MAX, // isCollapsed
+#endif // DOM_SELECTION_SUPPORT
+	UINT_MAX, // isContentEditable
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // isDataNetworkConnected
+#endif // DOM_JIL_API_SUPPORT
+#if defined DOM_GADGET_FILE_API_SUPPORT || defined DOM_JIL_API_SUPPORT
+	UINT_MAX, // isDirectory
+#endif // DOM_GADGET_FILE_API_SUPPORT || DOM_JIL_API_SUPPORT
+#ifdef DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	UINT_MAX, // isEditable
+#endif // DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	UINT_MAX, // isElementContentWhitespace
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	UINT_MAX, // isFile
+	UINT_MAX, // isHidden
+#endif // DOM_GADGET_FILE_API_SUPPORT
+#if defined WEBSERVER_SUPPORT || defined UPNP_SUPPORT
+	UINT_MAX, // isLocal
+#endif // WEBSERVER_SUPPORT || UPNP_SUPPORT
+	static_cast<unsigned>(ATTR_ISMAP << 16 | USHRT_MAX), // isMap
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	UINT_MAX, // isMarkup
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#ifdef WEBSERVER_SUPPORT
+	UINT_MAX, // isOwner
+#endif // WEBSERVER_SUPPORT
+#ifdef SVG_DOM
+	UINT_MAX, // isPaused
+#endif // SVG_DOM
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	UINT_MAX, // isPlainText
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#ifdef WEBSERVER_SUPPORT
+	UINT_MAX, // isProxied
+#endif // WEBSERVER_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // isRadioEnabled
+	UINT_MAX, // isRead
+	UINT_MAX, // isRoaming
+#endif // DOM_JIL_API_SUPPORT
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	UINT_MAX, // isSubscribed
+#endif // WEBFEEDS_BACKEND_SUPPORT
+	UINT_MAX, // isTrusted
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // isVideoPlaying
+#endif // DOM_JIL_API_SUPPORT
+	UINT_MAX, // item
+	static_cast<unsigned>(ATTR_ITEMID << 16 | USHRT_MAX), // itemId
+	static_cast<unsigned>(ATTR_ITEMPROP << 16 | USHRT_MAX), // itemProp
+	static_cast<unsigned>(ATTR_ITEMREF << 16 | USHRT_MAX), // itemRef
+	static_cast<unsigned>(ATTR_ITEMSCOPE << 16 | USHRT_MAX), // itemScope
+	static_cast<unsigned>(ATTR_ITEMTYPE << 16 | USHRT_MAX), // itemType
+	UINT_MAX, // itemValue
+#if defined DRAG_SUPPORT || defined USE_OP_CLIPBOARD
+	UINT_MAX, // items
+#endif // DRAG_SUPPORT || USE_OP_CLIPBOARD
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_justify_content), // justifyContent
+#ifdef SVG_DOM
+	UINT_MAX, // k1
+	UINT_MAX, // k2
+	UINT_MAX, // k3
+	UINT_MAX, // k4
+#endif // SVG_DOM
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	UINT_MAX, // keep
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#ifdef SVG_DOM
+	UINT_MAX, // kernelMatrix
+	UINT_MAX, // kernelUnitLengthX
+	UINT_MAX, // kernelUnitLengthY
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_kerning), // kerning
+#endif // SVG_DOM
+	UINT_MAX, // key
+	UINT_MAX, // keyCode
+#ifdef CSS_ANIMATIONS
+	UINT_MAX, // keyText
+#endif // CSS_ANIMATIONS
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // keypadLightOn
+#endif // DOM_JIL_API_SUPPORT
+	static_cast<unsigned>(ATTR_KEYTYPE << 16 | USHRT_MAX), // keytype
+#if defined MEDIA_HTML_SUPPORT || defined DRAG_SUPPORT || defined USE_OP_CLIPBOARD
+	static_cast<unsigned>(Markup::HA_KIND << 16 | USHRT_MAX), // kind
+#endif // MEDIA_HTML_SUPPORT || DRAG_SUPPORT || USE_OP_CLIPBOARD
+	static_cast<unsigned>(ATTR_LABEL << 16 | USHRT_MAX), // label
+	UINT_MAX, // labels
+	static_cast<unsigned>(ATTR_LANG << 16 | USHRT_MAX), // lang
+	static_cast<unsigned>(ATTR_LANGUAGE << 16 | USHRT_MAX), // language
+#ifdef SVG_DOM
+	UINT_MAX, // largeArcFlag
+#endif // SVG_DOM
+	UINT_MAX, // lastChild
+	UINT_MAX, // lastElementChild
+#if defined DOM_CROSSDOCUMENT_MESSAGING_SUPPORT || defined WEBSOCKETS_SUPPORT
+	UINT_MAX, // lastEventId
+#endif // DOM_CROSSDOCUMENT_MESSAGING_SUPPORT || WEBSOCKETS_SUPPORT
+	UINT_MAX, // lastModified
+	UINT_MAX, // lastModifiedDate
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // lastModifyDate
+#endif // DOM_JIL_API_SUPPORT
+#ifdef DOM_GEOLOCATION_SUPPORT
+	UINT_MAX, // lastPosition
+#endif // DOM_GEOLOCATION_SUPPORT
+	UINT_MAX, // lastUpdate
+#ifdef DOM_GEOLOCATION_SUPPORT
+	UINT_MAX, // latitude
+#endif // DOM_GEOLOCATION_SUPPORT
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_left), // left
+	UINT_MAX, // length
+#ifdef SVG_DOM
+	UINT_MAX, // lengthAdjust
+#endif // SVG_DOM
+#ifdef PROGRESS_EVENTS_SUPPORT
+	UINT_MAX, // lengthComputable
+#endif // PROGRESS_EVENTS_SUPPORT
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_letter_spacing), // letterSpacing
+#ifdef SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_lighting_color), // lightingColor
+	UINT_MAX, // limitingConeAngle
+#endif // SVG_DOM
+#ifdef MEDIA_HTML_SUPPORT
+	UINT_MAX, // line
+#endif // MEDIA_HTML_SUPPORT
+#ifdef CANVAS_SUPPORT
+	UINT_MAX, // lineCap
+#endif // CANVAS_SUPPORT
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_line_height), // lineHeight
+#ifdef SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_line_increment), // lineIncrement
+#endif // SVG_DOM
+#ifdef CANVAS_SUPPORT
+	UINT_MAX, // lineJoin
+	UINT_MAX, // lineWidth
+#endif // CANVAS_SUPPORT
+	UINT_MAX, // lineno
+#ifdef ESUTILS_PROFILER_SUPPORT
+	UINT_MAX, // lines
+#endif // ESUTILS_PROFILER_SUPPORT
+	static_cast<unsigned>(ATTR_LINK << 16 | USHRT_MAX), // link
+	UINT_MAX, // linkColor
+#ifdef DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	UINT_MAX, // linkURL
+#endif // DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	UINT_MAX, // links
+	UINT_MAX, // list
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_list_style), // listStyle
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_list_style_image), // listStyleImage
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_list_style_position), // listStylePosition
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_list_style_type), // listStyleType
+	UINT_MAX, // listener
+#ifdef PROGRESS_EVENTS_SUPPORT
+	UINT_MAX, // loaded
+#endif // PROGRESS_EVENTS_SUPPORT
+#if defined USE_SPDY && defined DOM_EXTENSIONS_TAB_API_SUPPORT
+	UINT_MAX, // loadedWithSPDY
+#endif // USE_SPDY && DOM_EXTENSIONS_TAB_API_SUPPORT
+	UINT_MAX, // localName
+#ifdef CLIENTSIDE_STORAGE_SUPPORT
+	UINT_MAX, // localStorage
+#endif // CLIENTSIDE_STORAGE_SUPPORT
+	UINT_MAX, // locale
+	static_cast<unsigned>(ATTR_SRC << 16 | USHRT_MAX), // location
+#ifdef DOM_EXTENSIONS_TAB_API_SUPPORT
+	UINT_MAX, // locked
+#endif // DOM_EXTENSIONS_TAB_API_SUPPORT
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	UINT_MAX, // logo
+#endif // WEBFEEDS_BACKEND_SUPPORT
+	static_cast<unsigned>(ATTR_LONGDESC << 16 | USHRT_MAX), // longDesc
+#ifdef DOM_GEOLOCATION_SUPPORT
+	UINT_MAX, // longitude
+#endif // DOM_GEOLOCATION_SUPPORT
+	static_cast<unsigned>(ATTR_LOOP << 16 | USHRT_MAX), // loop
+	static_cast<unsigned>(ATTR_LOW << 16 | USHRT_MAX), // low
+	UINT_MAX, // lowsrc
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_margin), // margin
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_margin_bottom), // marginBottom
+	static_cast<unsigned>(ATTR_MARGINHEIGHT << 16 | USHRT_MAX), // marginHeight
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_margin_left), // marginLeft
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_margin_right), // marginRight
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_margin_top), // marginTop
+	static_cast<unsigned>(ATTR_MARGINWIDTH << 16 | USHRT_MAX), // marginWidth
+#ifdef SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_marker), // marker
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_marker_end), // markerEnd
+	UINT_MAX, // markerHeight
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_marker_mid), // markerMid
+#endif // SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_marker_offset), // markerOffset
+#ifdef SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_marker_start), // markerStart
+	UINT_MAX, // markerUnits
+	UINT_MAX, // markerWidth
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_mask), // mask
+	UINT_MAX, // maskContentUnits
+	UINT_MAX, // maskUnits
+#endif // SVG_DOM
+	UINT_MAX, // matches
+#ifdef SVG_DOM
+	UINT_MAX, // matrix
+#endif // SVG_DOM
+	static_cast<unsigned>(ATTR_MAX << 16 | USHRT_MAX), // max
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	UINT_MAX, // maxAge
+	UINT_MAX, // maxEntries
+#endif // WEBFEEDS_BACKEND_SUPPORT
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_max_height), // maxHeight
+	static_cast<unsigned>(ATTR_MAXLENGTH << 16 | USHRT_MAX), // maxLength
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	UINT_MAX, // maxPathLength
+#endif // DOM_GADGET_FILE_API_SUPPORT
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	UINT_MAX, // maxSize
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#if defined UPNP_SUPPORT || (defined GADGET_SUPPORT && defined WEBSERVER_SUPPORT && defined OPERAUNITE_URL)
+	UINT_MAX, // maxUploadRate
+#endif // UPNP_SUPPORT || GADGET_SUPPORT && WEBSERVER_SUPPORT && OPERAUNITE_URL
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_max_width), // maxWidth
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_max_zoom), // maxZoom
+	static_cast<unsigned>(ATTR_MEDIA << 16 | USHRT_MAX), // media
+	UINT_MAX, // mediaText
+#ifdef DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	UINT_MAX, // mediaType
+#endif // DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+#ifdef SVG_DOM
+	UINT_MAX, // meetOrSlice
+#endif // SVG_DOM
+#ifdef EXTENSION_SUPPORT
+	UINT_MAX, // menu
+#endif // EXTENSION_SUPPORT
+	UINT_MAX, // menubar
+	UINT_MAX, // message
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // messageId
+	UINT_MAX, // messagePriority
+	UINT_MAX, // messageType
+#endif // DOM_JIL_API_SUPPORT
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	UINT_MAX, // metaData
+#endif // DOM_GADGET_FILE_API_SUPPORT
+	UINT_MAX, // metaKey
+	static_cast<unsigned>(ATTR_METHOD << 16 | USHRT_MAX), // method
+#ifdef ESUTILS_PROFILER_SUPPORT
+	UINT_MAX, // millisecondsSelf
+	UINT_MAX, // millisecondsTotal
+#endif // ESUTILS_PROFILER_SUPPORT
+	UINT_MAX, // mimeTypes
+	static_cast<unsigned>(ATTR_MIN << 16 | USHRT_MAX), // min
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_min_height), // minHeight
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	UINT_MAX, // minUpdateInterval
+#endif // WEBFEEDS_BACKEND_SUPPORT
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_min_width), // minWidth
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_min_zoom), // minZoom
+#ifdef CANVAS_SUPPORT
+	UINT_MAX, // miterLimit
+#endif // CANVAS_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // mobilePhone
+#endif // DOM_JIL_API_SUPPORT
+#ifdef SVG_DOM
+	UINT_MAX, // mode
+#endif // SVG_DOM
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	UINT_MAX, // modified
+	UINT_MAX, // mountPoints
+#endif // DOM_GADGET_FILE_API_SUPPORT
+	UINT_MAX, // moveBy
+	UINT_MAX, // moveTo
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // msgRingtoneVolume
+#endif // DOM_JIL_API_SUPPORT
+	static_cast<unsigned>(ATTR_MULTIPLE << 16 | USHRT_MAX), // multiple
+#ifdef MEDIA_HTML_SUPPORT
+	UINT_MAX, // muted
+#endif // MEDIA_HTML_SUPPORT
+	static_cast<unsigned>(ATTR_NAME << 16 | USHRT_MAX), // name
+	UINT_MAX, // namedItem
+	UINT_MAX, // names
+	UINT_MAX, // namespaceURI
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	UINT_MAX, // nativePath
+#endif // DOM_GADGET_FILE_API_SUPPORT
+	UINT_MAX, // naturalHeight
+	UINT_MAX, // naturalWidth
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_nav_down), // navDown
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_nav_index), // navIndex
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_nav_left), // navLeft
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_nav_right), // navRight
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_nav_up), // navUp
+	UINT_MAX, // navigationMode
+	UINT_MAX, // navigator
+#ifdef SVG_DOM
+	UINT_MAX, // nearestViewportElement
+#endif // SVG_DOM
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // networkConnectionType
+#endif // DOM_JIL_API_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	UINT_MAX, // networkState
+#endif // MEDIA_HTML_SUPPORT
+#ifdef DOM3_LOAD
+	UINT_MAX, // newDocument
+#endif // DOM3_LOAD
+#if defined DOM3_SAVE || defined DOM_GADGET_FILE_API_SUPPORT
+	UINT_MAX, // newLine
+#endif // DOM3_SAVE || DOM_GADGET_FILE_API_SUPPORT
+	UINT_MAX, // newURL
+#if defined DOM2_MUTATION_EVENTS || defined CLIENTSIDE_STORAGE_SUPPORT
+	UINT_MAX, // newValue
+#endif // DOM2_MUTATION_EVENTS || CLIENTSIDE_STORAGE_SUPPORT
+	UINT_MAX, // next
+	UINT_MAX, // nextElementSibling
+	UINT_MAX, // nextSibling
+	static_cast<unsigned>(ATTR_NOHREF << 16 | USHRT_MAX), // noHref
+	static_cast<unsigned>(ATTR_NORESIZE << 16 | USHRT_MAX), // noResize
+	static_cast<unsigned>(ATTR_NOSHADE << 16 | USHRT_MAX), // noShade
+	static_cast<unsigned>(ATTR_NOVALIDATE << 16 | USHRT_MAX), // noValidate
+	static_cast<unsigned>(ATTR_NOWRAP << 16 | USHRT_MAX), // noWrap
+	UINT_MAX, // nodeName
+	UINT_MAX, // nodeType
+	UINT_MAX, // nodeValue
+#ifdef SVG_DOM
+	UINT_MAX, // normalizedPathSegList
+#endif // SVG_DOM
+	UINT_MAX, // notationName
+	UINT_MAX, // notations
+#ifdef SVG_DOM
+	UINT_MAX, // numOctaves
+	UINT_MAX, // numberOfItems
+	UINT_MAX, // numberOfSegments
+#endif // SVG_DOM
+#ifdef DOM3_XPATH
+	UINT_MAX, // numberValue
+#endif // DOM3_XPATH
+	static_cast<unsigned>(ATTR_OBJECT << 16 | USHRT_MAX), // object
+#ifdef SVG_DOM
+	UINT_MAX, // offset
+#endif // SVG_DOM
+	UINT_MAX, // offsetHeight
+	UINT_MAX, // offsetLeft
+	UINT_MAX, // offsetParent
+	UINT_MAX, // offsetTop
+	UINT_MAX, // offsetWidth
+	UINT_MAX, // offsetX
+	UINT_MAX, // offsetY
+	UINT_MAX, // oldURL
+#ifdef CLIENTSIDE_STORAGE_SUPPORT
+	UINT_MAX, // oldValue
+#endif // CLIENTSIDE_STORAGE_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // onAddressBookItemsFound
+	UINT_MAX, // onCalendarItemAlert
+	UINT_MAX, // onCalendarItemsFound
+	UINT_MAX, // onCallEvent
+	UINT_MAX, // onCallRecordsFound
+	UINT_MAX, // onCameraCaptured
+	UINT_MAX, // onChargeLevelChange
+	UINT_MAX, // onChargeStateChange
+	UINT_MAX, // onFilesFound
+	UINT_MAX, // onFocus
+#endif // DOM_JIL_API_SUPPORT
+	UINT_MAX, // onLine
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // onLowBattery
+	UINT_MAX, // onMaximize
+	UINT_MAX, // onMessageArrived
+	UINT_MAX, // onMessageSendingFailure
+	UINT_MAX, // onMessagesFound
+	UINT_MAX, // onNetworkConnectionChanged
+	UINT_MAX, // onPositionRetrieved
+	UINT_MAX, // onRestore
+	UINT_MAX, // onScreenChangeDimensions
+	UINT_MAX, // onSignalSourceChange
+	UINT_MAX, // onStateChange
+	UINT_MAX, // onVCardExportingFinish
+	UINT_MAX, // onWakeup
+#endif // DOM_JIL_API_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	UINT_MAX, // onaddtrack
+#endif // MEDIA_HTML_SUPPORT
+#ifdef GADGET_SUPPORT
+	UINT_MAX, // onafterupdate
+#endif // GADGET_SUPPORT
+#ifdef OPERA_AUTH_SUPPORT
+	UINT_MAX, // onauthenticationchange
+#endif // OPERA_AUTH_SUPPORT
+#ifdef GADGET_SUPPORT
+	UINT_MAX, // onbeforeupdate
+#endif // GADGET_SUPPORT
+#ifdef WEBSOCKETS_SUPPORT
+	UINT_MAX, // onclose
+#endif // WEBSOCKETS_SUPPORT
+#if defined DOM_WEBWORKERS_SUPPORT || defined DOM_CROSSDOCUMENT_MESSAGING_SUPPORT
+	UINT_MAX, // onconnect
+#endif // DOM_WEBWORKERS_SUPPORT || DOM_CROSSDOCUMENT_MESSAGING_SUPPORT
+#ifdef EXTENSION_SUPPORT
+	UINT_MAX, // oncreate
+#endif // EXTENSION_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	UINT_MAX, // oncuechange
+#endif // MEDIA_HTML_SUPPORT
+#ifdef EXTENSION_SUPPORT
+	UINT_MAX, // ondisconnect
+#endif // EXTENSION_SUPPORT
+#ifdef GADGET_SUPPORT
+	UINT_MAX, // ondragstart
+	UINT_MAX, // ondragstop
+#endif // GADGET_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	UINT_MAX, // onenter
+#endif // MEDIA_HTML_SUPPORT
+#if defined DOM_WEBWORKERS_SUPPORT || defined DOM_CROSSDOCUMENT_MESSAGING_SUPPORT || defined WEBSOCKETS_SUPPORT
+	UINT_MAX, // onerror
+#endif // DOM_WEBWORKERS_SUPPORT || DOM_CROSSDOCUMENT_MESSAGING_SUPPORT || WEBSOCKETS_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	UINT_MAX, // onexit
+#endif // MEDIA_HTML_SUPPORT
+#ifdef EXTENSION_SUPPORT
+	UINT_MAX, // onfocus
+#endif // EXTENSION_SUPPORT
+#ifdef GADGET_SUPPORT
+	UINT_MAX, // onhide
+#endif // GADGET_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	UINT_MAX, // onload
+#endif // MEDIA_HTML_SUPPORT
+#if defined DOM_WEBWORKERS_SUPPORT || defined DOM_CROSSDOCUMENT_MESSAGING_SUPPORT || defined WEBSOCKETS_SUPPORT
+	UINT_MAX, // onmessage
+#endif // DOM_WEBWORKERS_SUPPORT || DOM_CROSSDOCUMENT_MESSAGING_SUPPORT || WEBSOCKETS_SUPPORT
+#ifdef EXTENSION_SUPPORT
+	UINT_MAX, // onmove
+#endif // EXTENSION_SUPPORT
+#ifdef WEBSOCKETS_SUPPORT
+	UINT_MAX, // onopen
+#endif // WEBSOCKETS_SUPPORT
+#if defined GADGET_SUPPORT && defined WEBSERVER_SUPPORT && defined OPERAUNITE_URL
+	UINT_MAX, // onrangechange
+#endif // GADGET_SUPPORT && WEBSERVER_SUPPORT && OPERAUNITE_URL
+#ifdef GADGET_SUPPORT
+	UINT_MAX, // onrefresh
+#endif // GADGET_SUPPORT
+#ifdef EXTENSION_SUPPORT
+	UINT_MAX, // onremove
+#endif // EXTENSION_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	UINT_MAX, // onremovetrack
+#endif // MEDIA_HTML_SUPPORT
+#ifdef GADGET_SUPPORT
+	UINT_MAX, // onshow
+#endif // GADGET_SUPPORT
+	UINT_MAX, // onthread
+#ifdef EXTENSION_SUPPORT
+	UINT_MAX, // onupdate
+#endif // EXTENSION_SUPPORT
+#ifdef GADGET_SUPPORT
+	UINT_MAX, // onviewstatechanged
+#endif // GADGET_SUPPORT
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_opacity), // opacity
+	UINT_MAX, // opener
+#ifdef CSS_TRANSFORMS
+	UINT_MAX, // operationType
+#endif // CSS_TRANSFORMS
+#ifdef SVG_DOM
+	UINT_MAX, // operator
+#endif // SVG_DOM
+	static_cast<unsigned>(ATTR_OPTIMUM << 16 | USHRT_MAX), // optimum
+	UINT_MAX, // options
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_order), // order
+#ifdef SVG_DOM
+	UINT_MAX, // orderX
+	UINT_MAX, // orderY
+	UINT_MAX, // orientAngle
+	UINT_MAX, // orientType
+#endif // SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_orientation), // orientation
+	UINT_MAX, // origin
+#if defined(GADGET_SUPPORT) || defined(WEBSERVER_SUPPORT)
+	UINT_MAX, // originURL
+#endif // GADGET_SUPPORT || WEBSERVER_SUPPORT
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_orphans), // orphans
+	UINT_MAX, // outerHTML
+	UINT_MAX, // outerHeight
+	UINT_MAX, // outerText
+	UINT_MAX, // outerWidth
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_outline), // outline
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_outline_color), // outlineColor
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_outline_offset), // outlineOffset
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_outline_style), // outlineStyle
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_outline_width), // outlineWidth
+	UINT_MAX, // output
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_overflow), // overflow
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_overflow_wrap), // overflowWrap
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_overflow_x), // overflowX
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_overflow_y), // overflowY
+	UINT_MAX, // ownerDocument
+	UINT_MAX, // ownerElement
+	UINT_MAX, // ownerNode
+	UINT_MAX, // ownerRule
+#ifdef SVG_DOM
+	UINT_MAX, // ownerSVGElement
+#endif // SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_padding), // padding
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_padding_bottom), // paddingBottom
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_padding_left), // paddingLeft
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_padding_right), // paddingRight
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_padding_top), // paddingTop
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_page), // page
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_page_break_after), // pageBreakAfter
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_page_break_before), // pageBreakBefore
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_page_break_inside), // pageBreakInside
+#ifdef PAGED_MEDIA_SUPPORT
+	UINT_MAX, // pageCount
+#endif // PAGED_MEDIA_SUPPORT
+#ifdef DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	UINT_MAX, // pageURL
+#endif // DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	UINT_MAX, // pageX
+	UINT_MAX, // pageXOffset
+	UINT_MAX, // pageY
+	UINT_MAX, // pageYOffset
+#ifdef SVG_DOM
+	UINT_MAX, // paintType
+#endif // SVG_DOM
+	UINT_MAX, // parameterNames
+	UINT_MAX, // parent
+	UINT_MAX, // parentElement
+	UINT_MAX, // parentNode
+	UINT_MAX, // parentRule
+	UINT_MAX, // parentStyleSheet
+	UINT_MAX, // parentWindow
+#ifdef WEBSERVER_SUPPORT
+	UINT_MAX, // passwordProtected
+#endif // WEBSERVER_SUPPORT
+#ifdef GADGET_SUPPORT
+	UINT_MAX, // path
+#endif // GADGET_SUPPORT
+#ifdef SVG_DOM
+	UINT_MAX, // pathLength
+	UINT_MAX, // pathSegList
+	UINT_MAX, // pathSegType
+	UINT_MAX, // pathSegTypeAsLetter
+#endif // SVG_DOM
+	UINT_MAX, // pathname
+	static_cast<unsigned>(ATTR_PATTERN << 16 | USHRT_MAX), // pattern
+#ifdef SVG_DOM
+	UINT_MAX, // patternContentUnits
+#endif // SVG_DOM
+	UINT_MAX, // patternMismatch
+#ifdef SVG_DOM
+	UINT_MAX, // patternTransform
+	UINT_MAX, // patternUnits
+#endif // SVG_DOM
+#ifdef MEDIA_HTML_SUPPORT
+	UINT_MAX, // pauseOnExit
+	UINT_MAX, // paused
+#endif // MEDIA_HTML_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // percentRemaining
+	UINT_MAX, // phoneColorDepthDefault
+	UINT_MAX, // phoneFirmware
+	UINT_MAX, // phoneMSISDN
+	UINT_MAX, // phoneManufacturer
+	UINT_MAX, // phoneModel
+	UINT_MAX, // phoneOS
+	UINT_MAX, // phoneOperatorName
+	UINT_MAX, // phoneScreenHeightDefault
+	UINT_MAX, // phoneScreenWidthDefault
+	UINT_MAX, // phoneSoftware
+	UINT_MAX, // phoneUserUniqueId
+#endif // DOM_JIL_API_SUPPORT
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_bottom), // pixelBottom
+	UINT_MAX, // pixelDepth
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_height), // pixelHeight
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_left), // pixelLeft
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_right), // pixelRight
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_top), // pixelTop
+#ifdef SVG_DOM
+	UINT_MAX, // pixelUnitToMillimeterX
+	UINT_MAX, // pixelUnitToMillimeterY
+#endif // SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_width), // pixelWidth
+	static_cast<unsigned>(ATTR_PLACEHOLDER << 16 | USHRT_MAX), // placeholder
+	UINT_MAX, // platform
+#ifdef MEDIA_HTML_SUPPORT
+	UINT_MAX, // playbackRate
+	UINT_MAX, // played
+#endif // MEDIA_HTML_SUPPORT
+	UINT_MAX, // plugins
+#ifdef SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_pointer_events), // pointerEvents
+	UINT_MAX, // points
+	UINT_MAX, // pointsAtX
+	UINT_MAX, // pointsAtY
+	UINT_MAX, // pointsAtZ
+#endif // SVG_DOM
+#ifdef EXTENSION_SUPPORT
+	UINT_MAX, // popup
+#endif // EXTENSION_SUPPORT
+	UINT_MAX, // port
+#ifdef DOM_CROSSDOCUMENT_MESSAGING_SUPPORT
+	UINT_MAX, // port1
+	UINT_MAX, // port2
+	UINT_MAX, // ports
+#endif // DOM_CROSSDOCUMENT_MESSAGING_SUPPORT
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_bottom), // posBottom
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_height), // posHeight
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_left), // posLeft
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_right), // posRight
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_top), // posTop
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_width), // posWidth
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_position), // position
+#ifdef MEDIA_HTML_SUPPORT
+	static_cast<unsigned>(ATTR_POSTER << 16 | USHRT_MAX), // poster
+#endif // MEDIA_HTML_SUPPORT
+#ifdef GADGET_SUPPORT
+	UINT_MAX, // preferences
+#endif // GADGET_SUPPORT
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	UINT_MAX, // prefetchPrimaryLink
+#endif // WEBFEEDS_BACKEND_SUPPORT
+	UINT_MAX, // prefix
+#ifdef MEDIA_HTML_SUPPORT
+	static_cast<unsigned>(ATTR_PRELOAD << 16 | USHRT_MAX), // preload
+#endif // MEDIA_HTML_SUPPORT
+#ifdef CANVAS3D_SUPPORT
+	UINT_MAX, // premultipliedAlpha
+#endif // CANVAS3D_SUPPORT
+#ifdef SVG_DOM
+	UINT_MAX, // preserveAlpha
+	UINT_MAX, // preserveAspectRatio
+#endif // SVG_DOM
+#ifdef CANVAS3D_SUPPORT
+	UINT_MAX, // preserveDrawingBuffer
+#endif // CANVAS3D_SUPPORT
+#ifdef DOM_EXTENSIONS_TAB_API_SUPPORT
+	UINT_MAX, // prevPosition
+	UINT_MAX, // prevTabGroup
+#endif // DOM_EXTENSIONS_TAB_API_SUPPORT
+#ifdef DOM2_MUTATION_EVENTS
+	UINT_MAX, // prevValue
+#endif // DOM2_MUTATION_EVENTS
+#ifdef DOM_EXTENSIONS_TAB_API_SUPPORT
+	UINT_MAX, // prevWindow
+#endif // DOM_EXTENSIONS_TAB_API_SUPPORT
+	UINT_MAX, // previous
+	UINT_MAX, // previousElementSibling
+	UINT_MAX, // previousSibling
+#ifdef SVG_DOM
+	UINT_MAX, // primitiveUnits
+#endif // SVG_DOM
+#ifdef DOM_EXTENSIONS_TAB_API_SUPPORT
+	UINT_MAX, // private
+#endif // DOM_EXTENSIONS_TAB_API_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // processorUtilizationPercent
+#endif // DOM_JIL_API_SUPPORT
+	static_cast<unsigned>(ATTR_PROMPT << 16 | USHRT_MAX), // prompt
+#ifdef USER_JAVASCRIPT
+	UINT_MAX, // propagationStopped
+#endif // USER_JAVASCRIPT
+	UINT_MAX, // properties
+	UINT_MAX, // propertyName
+	UINT_MAX, // protocol
+	UINT_MAX, // prototype
+#ifdef WEBSERVER_SUPPORT
+	UINT_MAX, // proxyName
+#endif // WEBSERVER_SUPPORT
+	static_cast<unsigned>(ATTR_PUBDATE << 16 | USHRT_MAX), // pubDate
+#ifdef WEBSERVER_SUPPORT
+	UINT_MAX, // publicIP
+#endif // WEBSERVER_SUPPORT
+	UINT_MAX, // publicId
+#ifdef WEBSERVER_SUPPORT
+	UINT_MAX, // publicPort
+#endif // WEBSERVER_SUPPORT
+	UINT_MAX, // publicationDate
+#ifdef WEBSERVER_SUPPORT
+	UINT_MAX, // queryItems
+#endif // WEBSERVER_SUPPORT
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_quotes), // quotes
+#ifdef SVG_DOM
+	UINT_MAX, // r
+	UINT_MAX, // r1
+	UINT_MAX, // r2
+#endif // SVG_DOM
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // radioSignalSource
+	UINT_MAX, // radioSignalStrengthPercent
+#endif // DOM_JIL_API_SUPPORT
+#ifdef SVG_DOM
+	UINT_MAX, // radiusX
+	UINT_MAX, // radiusY
+#endif // SVG_DOM
+#if defined GADGET_SUPPORT && defined WEBSERVER_SUPPORT && defined OPERAUNITE_URL
+	UINT_MAX, // range
+#endif // GADGET_SUPPORT && WEBSERVER_SUPPORT && OPERAUNITE_URL
+#ifdef DOM_SELECTION_SUPPORT
+	UINT_MAX, // rangeCount
+#endif // DOM_SELECTION_SUPPORT
+	UINT_MAX, // rangeOverflow
+	UINT_MAX, // rangeUnderflow
+	static_cast<unsigned>(ATTR_READONLY << 16 | USHRT_MAX), // readOnly
+	UINT_MAX, // readyState
+#ifdef WEBSOCKETS_SUPPORT
+	UINT_MAX, // reason
+#endif // WEBSOCKETS_SUPPORT
+#ifdef SVG_DOM
+	UINT_MAX, // red
+	UINT_MAX, // refX
+	UINT_MAX, // refY
+#endif // SVG_DOM
+	UINT_MAX, // referrer
+	static_cast<unsigned>(ATTR_REL << 16 | USHRT_MAX), // rel
+#ifdef DOM2_MUTATION_EVENTS
+	UINT_MAX, // relatedNode
+#endif // DOM2_MUTATION_EVENTS
+	UINT_MAX, // relatedTarget
+#ifdef OPERA_AUTH_SUPPORT
+	UINT_MAX, // rememberMe
+#endif // OPERA_AUTH_SUPPORT
+	UINT_MAX, // renderingMode
+#if defined GADGET_SUPPORT && defined WEBSERVER_SUPPORT && defined OPERAUNITE_URL
+	UINT_MAX, // rendezvous
+#endif // GADGET_SUPPORT && WEBSERVER_SUPPORT && OPERAUNITE_URL
+	UINT_MAX, // repeat
+#ifdef WEBSERVER_SUPPORT
+	UINT_MAX, // request
+#endif // WEBSERVER_SUPPORT
+	static_cast<unsigned>(ATTR_REQUIRED << 16 | USHRT_MAX), // required
+#ifdef SVG_DOM
+	UINT_MAX, // requiredExtensions
+	UINT_MAX, // requiredFeatures
+#endif // SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_resize), // resize
+	UINT_MAX, // resizeBy
+	UINT_MAX, // resizeTo
+	UINT_MAX, // response
+	UINT_MAX, // responseText
+	UINT_MAX, // responseType
+	UINT_MAX, // responseXML
+	UINT_MAX, // result
+#ifdef DOM3_XPATH
+	UINT_MAX, // resultType
+#endif // DOM3_XPATH
+	UINT_MAX, // returnValue
+	static_cast<unsigned>(ATTR_REV << 16 | USHRT_MAX), // rev
+	static_cast<unsigned>(Markup::HA_REVERSED << 16 | USHRT_MAX), // reversed
+	UINT_MAX, // rgbColor
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_right), // right
+	UINT_MAX, // rightMargin
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // ringtoneVolume
+#endif // DOM_JIL_API_SUPPORT
+#if defined GADGET_SUPPORT && defined WEBSERVER_SUPPORT && defined OPERAUNITE_URL
+	UINT_MAX, // robotstxtEnabled
+#endif // GADGET_SUPPORT && WEBSERVER_SUPPORT && OPERAUNITE_URL
+	UINT_MAX, // root
+#ifdef SVG_DOM
+	UINT_MAX, // rootElement
+	UINT_MAX, // rotate
+#endif // SVG_DOM
+#ifdef TOUCH_EVENTS_SUPPORT
+	UINT_MAX, // rotation
+#endif // TOUCH_EVENTS_SUPPORT
+	UINT_MAX, // rowIndex
+	static_cast<unsigned>(ATTR_ROWSPAN << 16 | USHRT_MAX), // rowSpan
+	static_cast<unsigned>(ATTR_ROWS << 16 | USHRT_MAX), // rows
+#ifdef DATABASE_STORAGE_SUPPORT
+	UINT_MAX, // rowsAffected
+#endif // DATABASE_STORAGE_SUPPORT
+	static_cast<unsigned>(ATTR_RULES << 16 | USHRT_MAX), // rules
+#ifdef SVG_DOM
+	UINT_MAX, // rx
+	UINT_MAX, // ry
+#endif // SVG_DOM
+#if defined(SVG_DOM) || defined(TOUCH_EVENTS_SUPPORT)
+	UINT_MAX, // scale
+#endif // SVG_DOM || TOUCH_EVENTS_SUPPORT
+	static_cast<unsigned>(ATTR_SCHEME << 16 | USHRT_MAX), // scheme
+	static_cast<unsigned>(ATTR_SCOPE << 16 | USHRT_MAX), // scope
+#ifdef SCOPE_SUPPORT
+	UINT_MAX, // scopeListenerAddress
+#endif // SCOPE_SUPPORT
+	UINT_MAX, // screen
+	UINT_MAX, // screenLeft
+#ifdef SVG_DOM
+	UINT_MAX, // screenPixelToMillimeterX
+	UINT_MAX, // screenPixelToMillimeterY
+#endif // SVG_DOM
+	UINT_MAX, // screenTop
+	UINT_MAX, // screenX
+	UINT_MAX, // screenY
+	UINT_MAX, // scripts
+	UINT_MAX, // scroll
+	static_cast<unsigned>(ATTR_SCROLLAMOUNT << 16 | USHRT_MAX), // scrollAmount
+	UINT_MAX, // scrollBy
+	static_cast<unsigned>(ATTR_SCROLLDELAY << 16 | USHRT_MAX), // scrollDelay
+	UINT_MAX, // scrollHeight
+	UINT_MAX, // scrollLeft
+	UINT_MAX, // scrollTo
+	UINT_MAX, // scrollTop
+	UINT_MAX, // scrollWidth
+	UINT_MAX, // scrollX
+	UINT_MAX, // scrollY
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_scrollbar_3dlight_color), // scrollbar3dlightColor
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_scrollbar_arrow_color), // scrollbarArrowColor
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_scrollbar_base_color), // scrollbarBaseColor
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_scrollbar_darkshadow_color), // scrollbarDarkshadowColor
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_scrollbar_face_color), // scrollbarFaceColor
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_scrollbar_highlight_color), // scrollbarHighlightColor
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_scrollbar_shadow_color), // scrollbarShadowColor
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_scrollbar_track_color), // scrollbarTrackColor
+	static_cast<unsigned>(ATTR_SCROLLING << 16 | USHRT_MAX), // scrolling
+	UINT_MAX, // search
+	UINT_MAX, // sectionRowIndex
+#ifdef SVG_DOM
+	UINT_MAX, // seed
+#endif // SVG_DOM
+#ifdef MEDIA_HTML_SUPPORT
+	UINT_MAX, // seekable
+	UINT_MAX, // seeking
+#endif // MEDIA_HTML_SUPPORT
+	UINT_MAX, // selected
+	UINT_MAX, // selectedIndex
+	UINT_MAX, // selectedOptions
+#ifdef DOM_SELECTION_SUPPORT
+	UINT_MAX, // selectionDirection
+	UINT_MAX, // selectionEnd
+	UINT_MAX, // selectionStart
+#endif // DOM_SELECTION_SUPPORT
+#ifdef DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	UINT_MAX, // selectionText
+#endif // DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	UINT_MAX, // selectorText
+	UINT_MAX, // self
+#ifdef WEBSERVER_SUPPORT
+	UINT_MAX, // servicePath
+#endif // WEBSERVER_SUPPORT
+#if defined WEBSERVER_SUPPORT || defined UPNP_SUPPORT
+	UINT_MAX, // services
+#endif // WEBSERVER_SUPPORT || UPNP_SUPPORT
+#ifdef WEBSERVER_SUPPORT
+	UINT_MAX, // session
+#endif // WEBSERVER_SUPPORT
+#ifdef CLIENTSIDE_STORAGE_SUPPORT
+	UINT_MAX, // sessionStorage
+#endif // CLIENTSIDE_STORAGE_SUPPORT
+	UINT_MAX, // setInterval
+#ifdef CANVAS_SUPPORT
+	UINT_MAX, // shadowBlur
+	UINT_MAX, // shadowColor
+	UINT_MAX, // shadowOffsetX
+	UINT_MAX, // shadowOffsetY
+#endif // CANVAS_SUPPORT
+	static_cast<unsigned>(ATTR_SHAPE << 16 | USHRT_MAX), // shape
+#ifdef SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_shape_rendering), // shapeRendering
+#endif // SVG_DOM
+#if defined GADGET_SUPPORT && defined WEBSERVER_SUPPORT
+	UINT_MAX, // sharedFolder
+#endif // GADGET_SUPPORT && WEBSERVER_SUPPORT
+	UINT_MAX, // sheet
+	UINT_MAX, // shiftKey
+#ifdef GADGET_SUPPORT
+	UINT_MAX, // shortName
+#endif // GADGET_SUPPORT
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	UINT_MAX, // showImages
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#ifdef DOM3_XPATH
+	UINT_MAX, // singleNodeValue
+#endif // DOM3_XPATH
+	static_cast<unsigned>(ATTR_SIZE << 16 | CSS_PROPERTY_size), // size
+#ifdef SVG_DOM
+	UINT_MAX, // slope
+#endif // SVG_DOM
+#ifdef MEDIA_HTML_SUPPORT
+	UINT_MAX, // snapToLines
+#endif // MEDIA_HTML_SUPPORT
+#ifdef DOM3_XPATH
+	UINT_MAX, // snapshotLength
+#endif // DOM3_XPATH
+#ifdef SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_solid_color), // solidColor
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_solid_opacity), // solidOpacity
+#endif // SVG_DOM
+	UINT_MAX, // source
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // sourceAddress
+#endif // DOM_JIL_API_SUPPORT
+#ifdef SVG_DOM
+	UINT_MAX, // spacing
+#endif // SVG_DOM
+	static_cast<unsigned>(ATTR_SPAN << 16 | USHRT_MAX), // span
+	UINT_MAX, // speakNumeral
+	UINT_MAX, // specified
+#ifdef SVG_DOM
+	UINT_MAX, // specularConstant
+	UINT_MAX, // specularExponent
+#endif // SVG_DOM
+#ifdef DOM_GEOLOCATION_SUPPORT
+	UINT_MAX, // speed
+#endif // DOM_GEOLOCATION_SUPPORT
+#ifdef EXTENSION_SUPPORT
+	UINT_MAX, // speeddial
+#endif // EXTENSION_SUPPORT
+#ifdef INTERNAL_SPELLCHECK_SUPPORT
+	UINT_MAX, // spellcheck
+#endif // INTERNAL_SPELLCHECK_SUPPORT
+#ifdef SVG_DOM
+	UINT_MAX, // spreadMethod
+#endif // SVG_DOM
+	static_cast<unsigned>(ATTR_SRC << 16 | CSS_PROPERTY_src), // src
+	UINT_MAX, // srcElement
+#ifdef DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	UINT_MAX, // srcURL
+#endif // DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	static_cast<unsigned>(Markup::HA_SRCLANG << 16 | USHRT_MAX), // srclang
+#endif // MEDIA_HTML_SUPPORT
+	static_cast<unsigned>(ATTR_STANDBY << 16 | USHRT_MAX), // standby
+	static_cast<unsigned>(ATTR_START << 16 | USHRT_MAX), // start
+#ifdef DOM2_RANGE
+	UINT_MAX, // startContainer
+#endif // DOM2_RANGE
+#if defined(DOM2_RANGE) || defined(SVG_DOM)
+	UINT_MAX, // startOffset
+#endif // DOM2_RANGE || SVG_DOM
+#if defined(MEDIA_HTML_SUPPORT) || defined(DOM_JIL_API_SUPPORT)
+	UINT_MAX, // startTime
+#endif // MEDIA_HTML_SUPPORT || DOM_JIL_API_SUPPORT
+	UINT_MAX, // state
+	UINT_MAX, // status
+#ifdef DOM_HTTP_SUPPORT
+	UINT_MAX, // statusText
+#endif // DOM_HTTP_SUPPORT
+#ifdef SVG_DOM
+	UINT_MAX, // stdDeviationX
+	UINT_MAX, // stdDeviationY
+#endif // SVG_DOM
+#ifdef CANVAS3D_SUPPORT
+	UINT_MAX, // stencil
+#endif // CANVAS3D_SUPPORT
+	static_cast<unsigned>(ATTR_STEP << 16 | USHRT_MAX), // step
+	UINT_MAX, // stepMismatch
+#ifdef SVG_DOM
+	UINT_MAX, // stitchTiles
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_stop_color), // stopColor
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_stop_opacity), // stopOpacity
+#endif // SVG_DOM
+#ifdef CLIENTSIDE_STORAGE_SUPPORT
+	UINT_MAX, // storageArea
+#endif // CLIENTSIDE_STORAGE_SUPPORT
+#ifdef SCOPE_SUPPORT
+	UINT_MAX, // stpVersion
+#endif // SCOPE_SUPPORT
+#ifdef DOM3_XPATH
+	UINT_MAX, // stringValue
+#endif // DOM3_XPATH
+#ifdef SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_stroke), // stroke
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_stroke_dasharray), // strokeDasharray
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_stroke_dashoffset), // strokeDashoffset
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_stroke_linecap), // strokeLinecap
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_stroke_linejoin), // strokeLinejoin
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_stroke_miterlimit), // strokeMiterlimit
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_stroke_opacity), // strokeOpacity
+#endif // SVG_DOM
+#ifdef CANVAS_SUPPORT
+	UINT_MAX, // strokeStyle
+#endif // CANVAS_SUPPORT
+#ifdef SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_stroke_width), // strokeWidth
+#endif // SVG_DOM
+	static_cast<unsigned>(ATTR_STYLE << 16 | USHRT_MAX), // style
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_float), // styleFloat
+	UINT_MAX, // styleSheet
+	UINT_MAX, // styleSheets
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // subject
+#endif // DOM_JIL_API_SUPPORT
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	UINT_MAX, // subscribedFeeds
+#endif // WEBFEEDS_BACKEND_SUPPORT
+	UINT_MAX, // suffixes
+	static_cast<unsigned>(ATTR_SUMMARY << 16 | USHRT_MAX), // summary
+#ifdef SVG_DOM
+	UINT_MAX, // surfaceScale
+	UINT_MAX, // sweepFlag
+#endif // SVG_DOM
+	UINT_MAX, // systemId
+#ifdef SVG_DOM
+	UINT_MAX, // systemLanguage
+#endif // SVG_DOM
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	UINT_MAX, // systemNewLine
+#endif // DOM_GADGET_FILE_API_SUPPORT
+	UINT_MAX, // tBodies
+	UINT_MAX, // tFoot
+	UINT_MAX, // tHead
+#ifdef DOM_EXTENSIONS_TAB_API_SUPPORT
+	UINT_MAX, // tab
+	UINT_MAX, // tabGroup
+	UINT_MAX, // tabGroups
+#endif // DOM_EXTENSIONS_TAB_API_SUPPORT
+	static_cast<unsigned>(ATTR_TABINDEX << 16 | USHRT_MAX), // tabIndex
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_table_layout), // tableLayout
+#ifdef SVG_DOM
+	UINT_MAX, // tableValues
+#endif // SVG_DOM
+#ifdef DOM_EXTENSIONS_TAB_API_SUPPORT
+	UINT_MAX, // tabs
+#endif // DOM_EXTENSIONS_TAB_API_SUPPORT
+	UINT_MAX, // tagName
+	static_cast<unsigned>(ATTR_TARGET << 16 | USHRT_MAX), // target
+#ifdef SVG_DOM
+	UINT_MAX, // targetElement
+#endif // SVG_DOM
+#ifdef SVG_SUPPORT
+	UINT_MAX, // targetFps
+#endif // SVG_SUPPORT
+#ifdef TOUCH_EVENTS_SUPPORT
+	UINT_MAX, // targetTouches
+#endif // TOUCH_EVENTS_SUPPORT
+#ifdef DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	UINT_MAX, // targetURLPatterns
+#endif // DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+#ifdef SVG_DOM
+	UINT_MAX, // targetX
+	UINT_MAX, // targetY
+#endif // SVG_DOM
+	static_cast<unsigned>(ATTR_TEXT << 16 | USHRT_MAX), // text
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_text_align), // textAlign
+#ifdef SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_text_anchor), // textAnchor
+#endif // SVG_DOM
+#ifdef CANVAS_SUPPORT
+	UINT_MAX, // textBaseline
+#endif // CANVAS_SUPPORT
+	UINT_MAX, // textContent
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_text_decoration), // textDecoration
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_text_indent), // textIndent
+	UINT_MAX, // textLength
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_text_overflow), // textOverflow
+#ifdef SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_text_rendering), // textRendering
+#endif // SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_text_shadow), // textShadow
+#ifdef MEDIA_HTML_SUPPORT
+	UINT_MAX, // textTracks
+#endif // MEDIA_HTML_SUPPORT
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_text_transform), // textTransform
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // time
+#endif // DOM_JIL_API_SUPPORT
+	UINT_MAX, // timeStamp
+#ifdef DOM_HTTP_SUPPORT
+	UINT_MAX, // timeout
+#endif // DOM_HTTP_SUPPORT
+#ifdef DOM_GEOLOCATION_SUPPORT
+	UINT_MAX, // timestamp
+#endif // DOM_GEOLOCATION_SUPPORT
+	static_cast<unsigned>(ATTR_TITLE << 16 | USHRT_MAX), // title
+	UINT_MAX, // toElement
+	UINT_MAX, // tooLong
+#ifdef EXTENSION_SUPPORT
+	UINT_MAX, // toolbar
+#endif // EXTENSION_SUPPORT
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_top), // top
+#ifdef EXTENSION_SUPPORT
+	UINT_MAX, // topWindow
+#endif // EXTENSION_SUPPORT
+	UINT_MAX, // total
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // totalMemory
+#endif // DOM_JIL_API_SUPPORT
+#ifdef TOUCH_EVENTS_SUPPORT
+	UINT_MAX, // touches
+#endif // TOUCH_EVENTS_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	UINT_MAX, // track
+#endif // MEDIA_HTML_SUPPORT
+#if defined SVG_DOM || defined CSS_TRANSFORMS
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_transform), // transform
+#endif // SVG_DOM || CSS_TRANSFORMS
+#ifdef CSS_TRANSFORMS
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_transform_origin), // transformOrigin
+#endif // CSS_TRANSFORMS
+#ifdef CSS_TRANSITIONS
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_transition), // transition
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_transition_delay), // transitionDelay
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_transition_duration), // transitionDuration
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_transition_property), // transitionProperty
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_transition_timing_function), // transitionTimingFunction
+#endif // CSS_TRANSITIONS
+	static_cast<unsigned>(ATTR_TYPE << 16 | USHRT_MAX), // type
+	UINT_MAX, // typeMismatch
+#if defined DRAG_SUPPORT || defined USE_OP_CLIPBOARD
+	UINT_MAX, // types
+#endif // DRAG_SUPPORT || USE_OP_CLIPBOARD
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_unicode_bidi), // unicodeBidi
+#ifdef SVG_DOM
+	UINT_MAX, // unitType
+#endif // SVG_DOM
+#if defined WEBSERVER_SUPPORT || defined UPNP_SUPPORT
+	UINT_MAX, // uniteDeviceName
+#endif // WEBSERVER_SUPPORT || UPNP_SUPPORT
+#ifdef UPNP_SUPPORT
+	UINT_MAX, // uniteServiceName
+#endif // UPNP_SUPPORT
+#if defined WEBSERVER_SUPPORT || defined UPNP_SUPPORT
+	UINT_MAX, // uniteUser
+#endif // WEBSERVER_SUPPORT || UPNP_SUPPORT
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	UINT_MAX, // unread
+#endif // WEBFEEDS_BACKEND_SUPPORT
+	static_cast<unsigned>(ATTR_UNSELECTABLE << 16 | USHRT_MAX), // unselectable
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	UINT_MAX, // updateInterval
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#if defined DOM_HTTP_SUPPORT && defined PROGRESS_EVENTS_SUPPORT
+	UINT_MAX, // upload
+#endif // DOM_HTTP_SUPPORT && PROGRESS_EVENTS_SUPPORT
+#if defined WEBSERVER_SUPPORT || defined UPNP_SUPPORT
+	UINT_MAX, // upnpDeviceIcon
+	UINT_MAX, // upnpDevicePayload
+#endif // WEBSERVER_SUPPORT || UPNP_SUPPORT
+#if defined GADGET_SUPPORT && defined WEBSERVER_SUPPORT && defined OPERAUNITE_URL
+	UINT_MAX, // upnpEnabled
+#endif // GADGET_SUPPORT && WEBSERVER_SUPPORT && OPERAUNITE_URL
+	UINT_MAX, // uri
+#if defined CLIENTSIDE_STORAGE_SUPPORT || defined UPNP_SUPPORT || defined WEBSOCKETS_SUPPORT
+	UINT_MAX, // url
+#endif // CLIENTSIDE_STORAGE_SUPPORT || UPNP_SUPPORT || WEBSOCKETS_SUPPORT
+#ifdef SVG_DOM
+	UINT_MAX, // useCurrentView
+#endif // SVG_DOM
+	static_cast<unsigned>(ATTR_USEMAP << 16 | USHRT_MAX), // useMap
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // userAccountBalance
+#endif // DOM_JIL_API_SUPPORT
+	UINT_MAX, // userAgent
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	UINT_MAX, // userDefinedTitle
+#endif // WEBFEEDS_BACKEND_SUPPORT
+	UINT_MAX, // userLanguage
+#ifdef WEBSERVER_SUPPORT
+	UINT_MAX, // userName
+#endif // WEBSERVER_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // userSubscriptionType
+#endif // DOM_JIL_API_SUPPORT
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_user_zoom), // userZoom
+#ifdef OPERA_AUTH_SUPPORT
+	UINT_MAX, // username
+#endif // OPERA_AUTH_SUPPORT
+#ifdef WEBSERVER_SUPPORT
+	UINT_MAX, // users
+#endif // WEBSERVER_SUPPORT
+	static_cast<unsigned>(ATTR_VALIGN << 16 | USHRT_MAX), // vAlign
+	static_cast<unsigned>(ATTR_VLINK << 16 | USHRT_MAX), // vLink
+	UINT_MAX, // valid
+	UINT_MAX, // validationMessage
+	UINT_MAX, // validity
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // validityPeriodHours
+#endif // DOM_JIL_API_SUPPORT
+	static_cast<unsigned>(ATTR_VALUE << 16 | USHRT_MAX), // value
+	UINT_MAX, // valueAsDate
+	UINT_MAX, // valueAsNumber
+#ifdef SVG_DOM
+	UINT_MAX, // valueAsString
+	UINT_MAX, // valueInSpecifiedUnits
+#endif // SVG_DOM
+	UINT_MAX, // valueMissing
+	static_cast<unsigned>(ATTR_VALUETYPE << 16 | USHRT_MAX), // valueType
+#ifdef SVG_DOM
+	UINT_MAX, // values
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_vector_effect), // vectorEffect
+#endif // SVG_DOM
+	static_cast<unsigned>(ATTR_VERSION << 16 | USHRT_MAX), // version
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_vertical_align), // verticalAlign
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // vibrationSetting
+#endif // DOM_JIL_API_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	UINT_MAX, // videoHeight
+	UINT_MAX, // videoWidth
+#endif // MEDIA_HTML_SUPPORT
+	UINT_MAX, // view
+#ifdef SVG_DOM
+	UINT_MAX, // viewBox
+	UINT_MAX, // viewport
+	UINT_MAX, // viewportElement
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_viewport_fill), // viewportFill
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_viewport_fill_opacity), // viewportFillOpacity
+#endif // SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_visibility), // visibility
+	UINT_MAX, // visibilityState
+#if defined GADGET_SUPPORT && defined WEBSERVER_SUPPORT
+	UINT_MAX, // visibleToLocalNetwork
+	UINT_MAX, // visibleToSearchEngines
+	UINT_MAX, // visibleToServiceDiscovery
+#endif // GADGET_SUPPORT && WEBSERVER_SUPPORT
+	UINT_MAX, // vlinkColor
+	UINT_MAX, // volume
+	static_cast<unsigned>(ATTR_VSPACE << 16 | USHRT_MAX), // vspace
+#ifdef WEBSOCKETS_SUPPORT
+	UINT_MAX, // wasClean
+#endif // WEBSOCKETS_SUPPORT
+#ifdef DOM2_TRAVERSAL
+	UINT_MAX, // whatToShow
+#endif // DOM2_TRAVERSAL
+	UINT_MAX, // wheelDelta
+	UINT_MAX, // wheelDeltaX
+	UINT_MAX, // wheelDeltaY
+	UINT_MAX, // which
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_white_space), // whiteSpace
+	UINT_MAX, // wholeText
+	UINT_MAX, // widgetMode
+#ifdef GADGET_SUPPORT
+	UINT_MAX, // widgets
+#endif // GADGET_SUPPORT
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_widows), // widows
+	static_cast<unsigned>(ATTR_WIDTH << 16 | CSS_PROPERTY_width), // width
+	UINT_MAX, // willValidate
+	UINT_MAX, // window
+#ifdef EXTENSION_SUPPORT
+	UINT_MAX, // windows
+#endif // EXTENSION_SUPPORT
+#ifdef CORS_SUPPORT
+	UINT_MAX, // withCredentials
+#endif // CORS_SUPPORT
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_word_spacing), // wordSpacing
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_overflow_wrap), // wordWrap
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // workPhone
+#endif // DOM_JIL_API_SUPPORT
+	static_cast<unsigned>(ATTR_WRAP << 16 | USHRT_MAX), // wrap
+#ifdef SVG_DOM
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_writing_mode), // writingMode
+#endif // SVG_DOM
+	UINT_MAX, // x
+#ifdef SVG_DOM
+	UINT_MAX, // x1
+	UINT_MAX, // x2
+#endif // SVG_DOM
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // xAxis
+#endif // DOM_JIL_API_SUPPORT
+#ifdef SVG_DOM
+	UINT_MAX, // xChannelSelector
+	UINT_MAX, // xmlbase
+	UINT_MAX, // xmlspace
+#endif // SVG_DOM
+	UINT_MAX, // y
+#ifdef SVG_DOM
+	UINT_MAX, // y1
+	UINT_MAX, // y2
+#endif // SVG_DOM
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // yAxis
+#endif // DOM_JIL_API_SUPPORT
+#ifdef SVG_DOM
+	UINT_MAX, // yChannelSelector
+	UINT_MAX, // z
+#endif // SVG_DOM
+#ifdef DOM_JIL_API_SUPPORT
+	UINT_MAX, // zAxis
+#endif // DOM_JIL_API_SUPPORT
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_z_index), // zIndex
+	static_cast<unsigned>(USHRT_MAX << 16 | CSS_PROPERTY_zoom), // zoom
+#ifdef SVG_DOM
+	UINT_MAX // zoomAndPan
+#endif // SVG_DOM
+};
+
+#ifdef SVG_DOM
+const unsigned short g_DOM_SVG_atomData[] =
+{
+	USHRT_MAX, // AppleDashboardRegion
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // MIMEType
+	USHRT_MAX, // Multimedia
+#endif // DOM_JIL_API_SUPPORT
+	USHRT_MAX, // OBorderImage
+#ifdef CSS_MINI_EXTENSIONS
+	USHRT_MAX, // OFocusOpacity
+#endif // CSS_MINI_EXTENSIONS
+	USHRT_MAX, // OLink
+	USHRT_MAX, // OLinkSource
+#ifdef CSS_MINI_EXTENSIONS
+	USHRT_MAX, // OMiniFold
+#endif // CSS_MINI_EXTENSIONS
+	USHRT_MAX, // OObjectFit
+	USHRT_MAX, // OObjectPosition
+	USHRT_MAX, // OTabSize
+	USHRT_MAX, // OTableBaseline
+#ifdef CSS_TRANSFORMS
+	USHRT_MAX, // OTransform
+	USHRT_MAX, // OTransformOrigin
+#endif // CSS_TRANSFORMS
+#ifdef CSS_TRANSITIONS
+	USHRT_MAX, // OTransition
+	USHRT_MAX, // OTransitionDelay
+	USHRT_MAX, // OTransitionDuration
+	USHRT_MAX, // OTransitionProperty
+	USHRT_MAX, // OTransitionTimingFunction
+#endif // CSS_TRANSITIONS
+	USHRT_MAX, // URL
+	USHRT_MAX, // WapAccesskey
+	USHRT_MAX, // WapInputFormat
+	USHRT_MAX, // WapInputRequired
+	USHRT_MAX, // WapMarqueeDir
+	USHRT_MAX, // WapMarqueeLoop
+	USHRT_MAX, // WapMarqueeSpeed
+	USHRT_MAX, // WapMarqueeStyle
+	USHRT_MAX, // WebkitBackgroundSize
+	USHRT_MAX, // WebkitBorderBottomLeftRadius
+	USHRT_MAX, // WebkitBorderBottomRightRadius
+	USHRT_MAX, // WebkitBorderRadius
+	USHRT_MAX, // WebkitBorderTopLeftRadius
+	USHRT_MAX, // WebkitBorderTopRightRadius
+	USHRT_MAX, // WebkitBoxAlign
+	USHRT_MAX, // WebkitBoxDirection
+	USHRT_MAX, // WebkitBoxFlex
+	USHRT_MAX, // WebkitBoxLines
+	USHRT_MAX, // WebkitBoxOrdinalGroup
+	USHRT_MAX, // WebkitBoxOrient
+	USHRT_MAX, // WebkitBoxPack
+	USHRT_MAX, // WebkitBoxShadow
+#ifdef CSS_TRANSFORMS
+	USHRT_MAX, // WebkitTransform
+	USHRT_MAX, // WebkitTransformOrigin
+#endif // CSS_TRANSFORMS
+#ifdef CSS_TRANSITIONS
+	USHRT_MAX, // WebkitTransition
+	USHRT_MAX, // WebkitTransitionDelay
+	USHRT_MAX, // WebkitTransitionDuration
+	USHRT_MAX, // WebkitTransitionProperty
+	USHRT_MAX, // WebkitTransitionTimingFunction
+#endif // CSS_TRANSITIONS
+#if defined SVG_DOM || defined CSS_TRANSFORMS
+	USHRT_MAX, // a
+#endif // SVG_DOM || CSS_TRANSFORMS
+	USHRT_MAX, // aLink
+	USHRT_MAX, // abbr
+	USHRT_MAX, // accept
+	USHRT_MAX, // acceptCharset
+	USHRT_MAX, // accessKey
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // accountId
+	USHRT_MAX, // accountName
+#endif // DOM_JIL_API_SUPPORT
+#ifdef DOM_GEOLOCATION_SUPPORT
+	USHRT_MAX, // accuracy
+#endif // DOM_GEOLOCATION_SUPPORT
+	USHRT_MAX, // action
+#if defined WEBSERVER_SUPPORT || defined GADGET_SUPPORT
+	USHRT_MAX, // active
+#endif // WEBSERVER_SUPPORT || GADGET_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // activeCues
+#endif // MEDIA_HTML_SUPPORT
+	USHRT_MAX, // activeElement
+	USHRT_MAX, // addEventListener
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // address
+	USHRT_MAX, // addressBookItemId
+	USHRT_MAX, // alarmDate
+	USHRT_MAX, // alarmed
+#endif // DOM_JIL_API_SUPPORT
+	USHRT_MAX, // align
+	USHRT_MAX, // alignContent
+	USHRT_MAX, // alignItems
+	USHRT_MAX, // alignSelf
+#ifdef SVG_DOM
+	Markup::SVGA_ALIGNMENT_BASELINE, // alignmentBaseline
+#endif // SVG_DOM
+	USHRT_MAX, // alinkColor
+	USHRT_MAX, // all
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	USHRT_MAX, // allFeeds
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#if defined EXTENSION_SUPPORT && defined URL_FILTER
+	USHRT_MAX, // allow
+#endif // EXTENSION_SUPPORT && URL_FILTER
+#ifdef CANVAS3D_SUPPORT
+	USHRT_MAX, // alpha
+#endif // CANVAS3D_SUPPORT
+	USHRT_MAX, // alt
+	USHRT_MAX, // altKey
+#ifdef UPNP_SUPPORT
+	USHRT_MAX, // alternateURL
+#endif // UPNP_SUPPORT
+#ifdef DOM_GEOLOCATION_SUPPORT
+	USHRT_MAX, // altitude
+	USHRT_MAX, // altitudeAccuracy
+#endif // DOM_GEOLOCATION_SUPPORT
+#ifdef SVG_DOM
+	Markup::SVGA_AMPLITUDE, // amplitude
+#endif // SVG_DOM
+#ifdef DOM_SELECTION_SUPPORT
+	USHRT_MAX, // anchorNode
+	USHRT_MAX, // anchorOffset
+#endif // DOM_SELECTION_SUPPORT
+	USHRT_MAX, // anchors
+#ifdef SVG_DOM
+	USHRT_MAX, // angle
+	USHRT_MAX, // animVal
+	USHRT_MAX, // animatedInstanceRoot
+	USHRT_MAX, // animatedNormalizedPathSegList
+	USHRT_MAX, // animatedPathSegList
+	USHRT_MAX, // animatedPoints
+#endif // SVG_DOM
+#ifdef CSS_ANIMATIONS
+	USHRT_MAX, // animation
+	USHRT_MAX, // animationDelay
+	USHRT_MAX, // animationDirection
+	USHRT_MAX, // animationDuration
+	USHRT_MAX, // animationFillMode
+	USHRT_MAX, // animationIterationCount
+	USHRT_MAX, // animationName
+	USHRT_MAX, // animationPlayState
+	USHRT_MAX, // animationTimingFunction
+#endif // CSS_ANIMATIONS
+#ifdef CANVAS3D_SUPPORT
+	USHRT_MAX, // antialias
+#endif // CANVAS3D_SUPPORT
+	USHRT_MAX, // appCodeName
+	USHRT_MAX, // appMinorVersion
+	USHRT_MAX, // appName
+	USHRT_MAX, // appVersion
+	USHRT_MAX, // applets
+#if defined APPLICATION_CACHE_SUPPORT || defined DOM_WEBWORKERS_SUPPORT
+	USHRT_MAX, // applicationCache
+#endif // APPLICATION_CACHE_SUPPORT || DOM_WEBWORKERS_SUPPORT
+	USHRT_MAX, // archive
+	USHRT_MAX, // areas
+	USHRT_MAX, // async
+#ifdef INTEGRATED_DEVTOOLS_SUPPORT
+	USHRT_MAX, // attached
+#endif // INTEGRATED_DEVTOOLS_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // attachments
+#endif // DOM_JIL_API_SUPPORT
+#ifdef DOM2_MUTATION_EVENTS
+	USHRT_MAX, // attrChange
+	USHRT_MAX, // attrName
+#endif // DOM2_MUTATION_EVENTS
+	USHRT_MAX, // attributes
+#if defined SVG_DOM
+	USHRT_MAX, // audioLevel
+#endif // SVG_DOM
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // audioPath
+#endif // DOM_JIL_API_SUPPORT
+#ifdef OPERA_AUTH_SUPPORT
+	USHRT_MAX, // authState
+	USHRT_MAX, // authStatus
+#endif // OPERA_AUTH_SUPPORT
+#ifdef WEBSERVER_SUPPORT
+	USHRT_MAX, // authentication
+#endif // WEBSERVER_SUPPORT
+#if defined WEBFEEDS_BACKEND_SUPPORT || defined WEBSERVER_SUPPORT || defined GADGET_SUPPORT
+	USHRT_MAX, // author
+#endif // WEBFEEDS_BACKEND_SUPPORT || WEBSERVER_SUPPORT || GADGET_SUPPORT
+#ifdef GADGET_SUPPORT
+	USHRT_MAX, // authorEmail
+	USHRT_MAX, // authorHref
+#endif // GADGET_SUPPORT
+	USHRT_MAX, // autocomplete
+	USHRT_MAX, // autofocus
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // autoplay
+#endif // MEDIA_HTML_SUPPORT
+	USHRT_MAX, // availHeight
+	USHRT_MAX, // availWidth
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // availableMemory
+#endif // DOM_JIL_API_SUPPORT
+	USHRT_MAX, // axis
+	Markup::SVGA_AZIMUTH, // azimuth
+#if defined SVG_DOM || defined CSS_TRANSFORMS
+	USHRT_MAX, // b
+#endif // SVG_DOM || CSS_TRANSFORMS
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // backLightOn
+#endif // DOM_JIL_API_SUPPORT
+	USHRT_MAX, // background
+	USHRT_MAX, // backgroundAttachment
+	USHRT_MAX, // backgroundClip
+	USHRT_MAX, // backgroundColor
+	USHRT_MAX, // backgroundImage
+	USHRT_MAX, // backgroundOrigin
+	USHRT_MAX, // backgroundPosition
+	USHRT_MAX, // backgroundRepeat
+	USHRT_MAX, // backgroundSize
+#ifdef EXTENSION_SUPPORT
+	USHRT_MAX, // badge
+#endif // EXTENSION_SUPPORT
+#ifdef SVG_DOM
+	Markup::SVGA_BASEFREQUENCY, // baseFrequencyX
+	Markup::SVGA_BASEFREQUENCY, // baseFrequencyY
+#endif // SVG_DOM
+	USHRT_MAX, // baseURI
+#ifdef SVG_DOM
+	USHRT_MAX, // baseVal
+	Markup::SVGA_BASELINE_SHIFT, // baselineShift
+#endif // SVG_DOM
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // bccAddress
+#endif // DOM_JIL_API_SUPPORT
+	USHRT_MAX, // behavior
+	USHRT_MAX, // bgColor
+#ifdef EXTENSION_SUPPORT
+	USHRT_MAX, // bgProcess
+#endif // EXTENSION_SUPPORT
+#ifdef SVG_DOM
+	Markup::SVGA_BIAS, // bias
+#endif // SVG_DOM
+#ifdef WEBSOCKETS_SUPPORT
+	USHRT_MAX, // binaryType
+#endif // WEBSOCKETS_SUPPORT
+#if defined EXTENSION_SUPPORT && defined URL_FILTER
+	USHRT_MAX, // block
+#endif // EXTENSION_SUPPORT && URL_FILTER
+#ifdef SVG_DOM
+	USHRT_MAX, // blue
+#endif // SVG_DOM
+	USHRT_MAX, // blur
+	USHRT_MAX, // body
+#ifdef WEBSERVER_SUPPORT
+	USHRT_MAX, // bodyItems
+#endif // WEBSERVER_SUPPORT
+#ifdef DOM3_XPATH
+	USHRT_MAX, // booleanValue
+#endif // DOM3_XPATH
+	USHRT_MAX, // border
+	USHRT_MAX, // borderBottom
+	USHRT_MAX, // borderBottomColor
+	USHRT_MAX, // borderBottomLeftRadius
+	USHRT_MAX, // borderBottomRightRadius
+	USHRT_MAX, // borderBottomStyle
+	USHRT_MAX, // borderBottomWidth
+	USHRT_MAX, // borderCollapse
+	USHRT_MAX, // borderColor
+	USHRT_MAX, // borderLeft
+	USHRT_MAX, // borderLeftColor
+	USHRT_MAX, // borderLeftStyle
+	USHRT_MAX, // borderLeftWidth
+	USHRT_MAX, // borderRadius
+	USHRT_MAX, // borderRight
+	USHRT_MAX, // borderRightColor
+	USHRT_MAX, // borderRightStyle
+	USHRT_MAX, // borderRightWidth
+	USHRT_MAX, // borderSpacing
+	USHRT_MAX, // borderStyle
+	USHRT_MAX, // borderTop
+	USHRT_MAX, // borderTopColor
+	USHRT_MAX, // borderTopLeftRadius
+	USHRT_MAX, // borderTopRightRadius
+	USHRT_MAX, // borderTopStyle
+	USHRT_MAX, // borderTopWidth
+	USHRT_MAX, // borderWidth
+	USHRT_MAX, // bottom
+	USHRT_MAX, // boxDecorationBreak
+	USHRT_MAX, // boxShadow
+	USHRT_MAX, // boxSizing
+	USHRT_MAX, // breakAfter
+	USHRT_MAX, // breakBefore
+	USHRT_MAX, // breakInside
+	USHRT_MAX, // browserLanguage
+#ifdef DOM_EXTENSIONS_TAB_API_SUPPORT
+	USHRT_MAX, // browserWindow
+#endif // DOM_EXTENSIONS_TAB_API_SUPPORT
+	USHRT_MAX, // bubbles
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // buffered
+#endif // MEDIA_HTML_SUPPORT
+#ifdef WEBSOCKETS_SUPPORT
+	USHRT_MAX, // bufferedAmount
+#endif // WEBSOCKETS_SUPPORT
+	USHRT_MAX, // bufferedRendering
+	USHRT_MAX, // busy
+	USHRT_MAX, // button
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	USHRT_MAX, // bytesAvailable
+#endif // DOM_GADGET_FILE_API_SUPPORT
+#if defined SVG_DOM || defined CSS_TRANSFORMS
+	USHRT_MAX, // c
+#endif // SVG_DOM || CSS_TRANSFORMS
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // calendarItemId
+	USHRT_MAX, // callRecordAddress
+	USHRT_MAX, // callRecordId
+	USHRT_MAX, // callRecordName
+	USHRT_MAX, // callRecordType
+	USHRT_MAX, // callbackNumber
+#endif // DOM_JIL_API_SUPPORT
+	USHRT_MAX, // cancelBubble
+	USHRT_MAX, // cancelable
+#ifdef CANVAS_SUPPORT
+	USHRT_MAX, // canvas
+#endif // CANVAS_SUPPORT
+	USHRT_MAX, // caption
+	USHRT_MAX, // captionSide
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // ccAddress
+#endif // DOM_JIL_API_SUPPORT
+	USHRT_MAX, // cellIndex
+	USHRT_MAX, // cellPadding
+	USHRT_MAX, // cellSpacing
+	USHRT_MAX, // cells
+	USHRT_MAX, // ch
+	USHRT_MAX, // chOff
+	USHRT_MAX, // challenge
+#ifdef TOUCH_EVENTS_SUPPORT
+	USHRT_MAX, // changedTouches
+#endif // TOUCH_EVENTS_SUPPORT
+	USHRT_MAX, // char
+	USHRT_MAX, // charCode
+	USHRT_MAX, // characterSet
+#ifdef CSS_CHARACTER_TYPE_SUPPORT
+	USHRT_MAX, // characterType
+#endif // CSS_CHARACTER_TYPE_SUPPORT
+	USHRT_MAX, // charset
+	USHRT_MAX, // checked
+	USHRT_MAX, // childElementCount
+	USHRT_MAX, // childNodes
+	USHRT_MAX, // children
+#ifdef WEBSERVER_SUPPORT
+	USHRT_MAX, // chunked
+#endif // WEBSERVER_SUPPORT
+	USHRT_MAX, // cite
+	USHRT_MAX, // class
+	USHRT_MAX, // classId
+	USHRT_MAX, // classList
+	Markup::SVGA_CLASS, // className
+	USHRT_MAX, // clear
+	USHRT_MAX, // clientHeight
+	USHRT_MAX, // clientLeft
+	USHRT_MAX, // clientTop
+	USHRT_MAX, // clientWidth
+	USHRT_MAX, // clientX
+	USHRT_MAX, // clientY
+	USHRT_MAX, // clip
+#ifdef SVG_DOM
+	Markup::SVGA_CLIP_PATH, // clipPath
+	Markup::SVGA_CLIPPATHUNITS, // clipPathUnits
+	Markup::SVGA_CLIP_RULE, // clipRule
+#endif // SVG_DOM
+#ifdef USE_OP_CLIPBOARD
+	USHRT_MAX, // clipboardData
+#endif // USE_OP_CLIPBOARD
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // clipboardString
+#endif // DOM_JIL_API_SUPPORT
+	USHRT_MAX, // close
+	USHRT_MAX, // closed
+	USHRT_MAX, // code
+	USHRT_MAX, // codeBase
+	USHRT_MAX, // codeType
+	USHRT_MAX, // colSpan
+#ifdef DOM2_RANGE
+	USHRT_MAX, // collapsed
+#endif // DOM2_RANGE
+	USHRT_MAX, // color
+	USHRT_MAX, // colorDepth
+#ifdef SVG_DOM
+	Markup::SVGA_COLOR_INTERPOLATION, // colorInterpolation
+	Markup::SVGA_COLOR_INTERPOLATION_FILTERS, // colorInterpolationFilters
+	Markup::SVGA_COLOR_PROFILE, // colorProfile
+	Markup::SVGA_COLOR_RENDERING, // colorRendering
+#endif // SVG_DOM
+	USHRT_MAX, // cols
+	USHRT_MAX, // columnCount
+	USHRT_MAX, // columnFill
+	USHRT_MAX, // columnGap
+	USHRT_MAX, // columnRule
+	USHRT_MAX, // columnRuleColor
+	USHRT_MAX, // columnRuleStyle
+	USHRT_MAX, // columnRuleWidth
+	USHRT_MAX, // columnSpan
+	USHRT_MAX, // columnWidth
+	USHRT_MAX, // columns
+#ifdef DOM2_RANGE
+	USHRT_MAX, // commonAncestorContainer
+#endif // DOM2_RANGE
+	USHRT_MAX, // compact
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // company
+#endif // DOM_JIL_API_SUPPORT
+	USHRT_MAX, // compatMode
+	USHRT_MAX, // complete
+#ifdef WEBSERVER_SUPPORT
+	USHRT_MAX, // connection
+#endif // WEBSERVER_SUPPORT
+	USHRT_MAX, // content
+	USHRT_MAX, // contentDocument
+	USHRT_MAX, // contentEditable
+#ifdef SVG_DOM
+	USHRT_MAX, // contentScriptType
+	USHRT_MAX, // contentStyleType
+#endif // SVG_DOM
+	USHRT_MAX, // contentType
+	USHRT_MAX, // contentWindow
+#ifdef EXTENSION_SUPPORT
+	USHRT_MAX, // contexts
+#endif // EXTENSION_SUPPORT
+	USHRT_MAX, // control
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // controls
+#endif // MEDIA_HTML_SUPPORT
+	USHRT_MAX, // cookie
+	USHRT_MAX, // cookieEnabled
+	USHRT_MAX, // coords
+#ifdef SVG_DOM
+	USHRT_MAX, // correspondingElement
+	USHRT_MAX, // correspondingUseElement
+#endif // SVG_DOM
+#ifdef GADGET_SUPPORT
+	USHRT_MAX, // count
+#endif // GADGET_SUPPORT
+	USHRT_MAX, // counterIncrement
+	USHRT_MAX, // counterReset
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // createDate
+#endif // DOM_JIL_API_SUPPORT
+	USHRT_MAX, // createDocumentFragment
+	USHRT_MAX, // createElement
+	USHRT_MAX, // createEvent
+	USHRT_MAX, // createTextNode
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	USHRT_MAX, // created
+#endif // DOM_GADGET_FILE_API_SUPPORT
+	USHRT_MAX, // crossOrigin
+	USHRT_MAX, // cssFloat
+	USHRT_MAX, // cssRules
+	USHRT_MAX, // cssText
+	USHRT_MAX, // ctrlKey
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // cues
+#endif // MEDIA_HTML_SUPPORT
+	USHRT_MAX, // current
+#ifdef SVG_SUPPORT
+	USHRT_MAX, // currentFps
+#endif // SVG_SUPPORT
+#ifdef GADGET_SUPPORT
+	USHRT_MAX, // currentIcon
+#endif // GADGET_SUPPORT
+#ifdef DOM2_TRAVERSAL
+	USHRT_MAX, // currentNode
+#endif // DOM2_TRAVERSAL
+#ifdef PAGED_MEDIA_SUPPORT
+	USHRT_MAX, // currentPage
+#endif // PAGED_MEDIA_SUPPORT
+#ifdef SVG_DOM
+	USHRT_MAX, // currentRotate
+	USHRT_MAX, // currentScale
+#endif // SVG_DOM
+#ifdef WEBSERVER_SUPPORT
+	USHRT_MAX, // currentServiceName
+	USHRT_MAX, // currentServicePath
+#endif // WEBSERVER_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // currentSrc
+#endif // MEDIA_HTML_SUPPORT
+#ifdef CURRENT_STYLE_SUPPORT
+	USHRT_MAX, // currentStyle
+#endif // CURRENT_STYLE_SUPPORT
+	USHRT_MAX, // currentTarget
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // currentTime
+#endif // MEDIA_HTML_SUPPORT
+#ifdef SVG_DOM
+	USHRT_MAX, // currentTranslate
+#endif // SVG_DOM
+	USHRT_MAX, // cursor
+	USHRT_MAX, // customError
+#ifdef SVG_DOM
+	Markup::SVGA_CX, // cx
+	Markup::SVGA_CY, // cy
+#endif // SVG_DOM
+#if defined SVG_DOM || defined CSS_TRANSFORMS
+	Markup::SVGA_D, // d
+#endif // SVG_DOM || CSS_TRANSFORMS
+	USHRT_MAX, // data
+#ifdef DRAG_SUPPORT
+	USHRT_MAX, // dataTransfer
+#endif // DRAG_SUPPORT
+	USHRT_MAX, // dataset
+	USHRT_MAX, // dateTime
+	USHRT_MAX, // declare
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // default
+#endif // MEDIA_HTML_SUPPORT
+	USHRT_MAX, // defaultChecked
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // defaultMuted
+	USHRT_MAX, // defaultPlaybackRate
+#endif // MEDIA_HTML_SUPPORT
+	USHRT_MAX, // defaultPrevented
+	USHRT_MAX, // defaultSelected
+	USHRT_MAX, // defaultStatus
+	USHRT_MAX, // defaultValue
+	USHRT_MAX, // defaultView
+	USHRT_MAX, // defer
+#ifdef CANVAS3D_SUPPORT
+	USHRT_MAX, // depth
+#endif // CANVAS3D_SUPPORT
+	USHRT_MAX, // description
+	USHRT_MAX, // designMode
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // destinationAddress
+#endif // DOM_JIL_API_SUPPORT
+	USHRT_MAX, // detail
+#if defined UPNP_SUPPORT || (defined GADGET_SUPPORT && defined WEBSERVER_SUPPORT && defined OPERAUNITE_URL)
+	USHRT_MAX, // device
+#endif // UPNP_SUPPORT || GADGET_SUPPORT && WEBSERVER_SUPPORT && OPERAUNITE_URL
+#ifdef WEBSERVER_SUPPORT
+	USHRT_MAX, // deviceName
+#endif // WEBSERVER_SUPPORT
+	USHRT_MAX, // devicePixelRatio
+#ifdef ABOUT_HTML_DIALOGS
+	USHRT_MAX, // dialogArguments
+#endif // ABOUT_HTML_DIALOGS
+#ifdef SVG_DOM
+	Markup::SVGA_DIFFUSECONSTANT, // diffuseConstant
+#endif // SVG_DOM
+	USHRT_MAX, // dir
+	USHRT_MAX, // dirName
+	USHRT_MAX, // direction
+	USHRT_MAX, // disabled
+	USHRT_MAX, // dispatchEvent
+	USHRT_MAX, // display
+#ifdef SVG_DOM
+	USHRT_MAX, // displayAlign
+	Markup::SVGA_DIVISOR, // divisor
+#endif // SVG_DOM
+	USHRT_MAX, // doNotTrack
+	USHRT_MAX, // doctype
+	USHRT_MAX, // document
+	USHRT_MAX, // documentElement
+	USHRT_MAX, // documentURI
+#ifdef DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	USHRT_MAX, // documentURL
+	USHRT_MAX, // documentURLPatterns
+#endif // DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	USHRT_MAX, // domConfig
+	USHRT_MAX, // domain
+#ifdef SVG_DOM
+	Markup::SVGA_DOMINANT_BASELINE, // dominantBaseline
+#endif // SVG_DOM
+#ifdef DRAG_SUPPORT
+	Markup::SVGA_DRAGGABLE, // draggable
+#endif // DRAG_SUPPORT
+#ifdef CANVAS3D_SUPPORT
+	USHRT_MAX, // drawingBufferHeight
+	USHRT_MAX, // drawingBufferWidth
+#endif // CANVAS3D_SUPPORT
+#ifdef DRAG_SUPPORT
+	USHRT_MAX, // dropEffect
+	Markup::SVGA_DROPZONE, // dropzone
+#endif // DRAG_SUPPORT
+#ifdef DOM_DSE_DEBUGGING
+	USHRT_MAX, // dseEnabled
+	USHRT_MAX, // dseRecovered
+#endif // DOM_DSE_DEBUGGING
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // duration
+#endif // MEDIA_HTML_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // durationSeconds
+#endif // DOM_JIL_API_SUPPORT
+#ifdef SVG_DOM
+	Markup::SVGA_DX, // dx
+	Markup::SVGA_DY, // dy
+#endif // SVG_DOM
+#if defined SVG_DOM || defined CSS_TRANSFORMS
+	USHRT_MAX, // e
+#endif // SVG_DOM || CSS_TRANSFORMS
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // eMail
+#endif // DOM_JIL_API_SUPPORT
+#ifdef SVG_DOM
+	Markup::SVGA_EDGEMODE, // edgeMode
+#endif // SVG_DOM
+#ifdef DRAG_SUPPORT
+	USHRT_MAX, // effectAllowed
+#endif // DRAG_SUPPORT
+	USHRT_MAX, // elapsedTime
+	USHRT_MAX, // element
+	USHRT_MAX, // elements
+	Markup::SVGA_ELEVATION, // elevation
+	USHRT_MAX, // embeds
+	USHRT_MAX, // emptyCells
+#ifdef SVG_DOM
+	Markup::SVGA_ENABLE_BACKGROUND, // enableBackground
+#endif // SVG_DOM
+	USHRT_MAX, // enabledPlugin
+	USHRT_MAX, // encoding
+	USHRT_MAX, // enctype
+#ifdef DOM2_RANGE
+	USHRT_MAX, // endContainer
+	USHRT_MAX, // endOffset
+#endif // DOM2_RANGE
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // endTime
+	USHRT_MAX, // ended
+#endif // MEDIA_HTML_SUPPORT
+	USHRT_MAX, // entities
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	USHRT_MAX, // entries
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#if defined WEBSERVER_SUPPORT || defined DOM_GADGET_FILE_API_SUPPORT
+	USHRT_MAX, // eof
+#endif // WEBSERVER_SUPPORT || DOM_GADGET_FILE_API_SUPPORT
+	USHRT_MAX, // error
+	USHRT_MAX, // event
+#ifdef USER_JAVASCRIPT
+	USHRT_MAX, // eventCancelled
+#endif // USER_JAVASCRIPT
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // eventEndTime
+	USHRT_MAX, // eventName
+	USHRT_MAX, // eventNotes
+#endif // DOM_JIL_API_SUPPORT
+	USHRT_MAX, // eventPhase
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // eventRecurrence
+	USHRT_MAX, // eventStartTime
+#endif // DOM_JIL_API_SUPPORT
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	USHRT_MAX, // exists
+#endif // DOM_GADGET_FILE_API_SUPPORT
+#ifdef DOM2_TRAVERSAL
+	USHRT_MAX, // expandEntityReferences
+#endif // DOM2_TRAVERSAL
+#ifdef SVG_DOM
+	Markup::SVGA_EXPONENT, // exponent
+#endif // SVG_DOM
+#ifdef EXTENSION_SUPPORT
+	USHRT_MAX, // extension
+#endif // EXTENSION_SUPPORT
+#ifdef WEBSOCKETS_SUPPORT
+	USHRT_MAX, // extensions
+#endif // WEBSOCKETS_SUPPORT
+#ifdef SVG_DOM
+	Markup::SVGA_EXTERNALRESOURCESREQUIRED, // externalResourcesRequired
+#endif // SVG_DOM
+#if defined SVG_DOM || defined CSS_TRANSFORMS
+	USHRT_MAX, // f
+#endif // SVG_DOM || CSS_TRANSFORMS
+	USHRT_MAX, // face
+#ifdef SVG_DOM
+	USHRT_MAX, // farthestViewportElement
+#endif // SVG_DOM
+#ifdef EXTENSION_SUPPORT
+	USHRT_MAX, // favicon
+	USHRT_MAX, // faviconUrl
+#endif // EXTENSION_SUPPORT
+	USHRT_MAX, // fgColor
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	USHRT_MAX, // fileInstance
+#endif // DOM_GADGET_FILE_API_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // fileName
+	USHRT_MAX, // filePath
+#endif // DOM_JIL_API_SUPPORT
+#if defined DOM_GADGET_FILE_API_SUPPORT || defined DOM_JIL_API_SUPPORT
+	USHRT_MAX, // fileSize
+#endif // DOM_GADGET_FILE_API_SUPPORT || DOM_JIL_API_SUPPORT
+	USHRT_MAX, // filename
+	USHRT_MAX, // files
+#ifdef SVG_DOM
+	Markup::SVGA_FILL, // fill
+	Markup::SVGA_FILL_OPACITY, // fillOpacity
+	Markup::SVGA_FILL_RULE, // fillRule
+#endif // SVG_DOM
+#ifdef CANVAS_SUPPORT
+	USHRT_MAX, // fillStyle
+#endif // CANVAS_SUPPORT
+#if defined DOM2_TRAVERSAL || defined DOM3_LOAD || defined DOM3_SAVE || defined SVG_DOM
+	Markup::SVGA_FILTER, // filter
+#endif // DOM2_TRAVERSAL || DOM3_LOAD || DOM3_SAVE || SVG_DOM
+#ifdef SVG_DOM
+	Markup::SVGA_FILTERRES, // filterResX
+	Markup::SVGA_FILTERRES, // filterResY
+	Markup::SVGA_FILTERUNITS, // filterUnits
+#endif // SVG_DOM
+	USHRT_MAX, // firstChild
+	USHRT_MAX, // firstElementChild
+	USHRT_MAX, // flex
+	USHRT_MAX, // flexBasis
+	USHRT_MAX, // flexDirection
+	USHRT_MAX, // flexFlow
+	USHRT_MAX, // flexGrow
+	USHRT_MAX, // flexShrink
+	USHRT_MAX, // flexWrap
+#ifdef SVG_DOM
+	Markup::SVGA_FLOOD_COLOR, // floodColor
+	Markup::SVGA_FLOOD_OPACITY, // floodOpacity
+#endif // SVG_DOM
+	USHRT_MAX, // focus
+#ifdef DOM_SELECTION_SUPPORT
+	USHRT_MAX, // focusNode
+	USHRT_MAX, // focusOffset
+#endif // DOM_SELECTION_SUPPORT
+#ifdef DOM_EXTENSIONS_TAB_API_SUPPORT
+	USHRT_MAX, // focused
+#endif // DOM_EXTENSIONS_TAB_API_SUPPORT
+	USHRT_MAX, // font
+	USHRT_MAX, // fontFamily
+	USHRT_MAX, // fontSize
+	USHRT_MAX, // fontSizeAdjust
+	USHRT_MAX, // fontStretch
+	USHRT_MAX, // fontStyle
+	USHRT_MAX, // fontVariant
+	USHRT_MAX, // fontWeight
+	USHRT_MAX, // for
+	USHRT_MAX, // form
+	USHRT_MAX, // formAction
+	USHRT_MAX, // formEnctype
+	USHRT_MAX, // formMethod
+	USHRT_MAX, // formNoValidate
+	USHRT_MAX, // formTarget
+	USHRT_MAX, // forms
+	USHRT_MAX, // frame
+	USHRT_MAX, // frameBorder
+	USHRT_MAX, // frameElement
+	USHRT_MAX, // frames
+	USHRT_MAX, // fromElement
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // fullName
+#endif // DOM_JIL_API_SUPPORT
+#ifdef DOM_FULLSCREEN_MODE
+	USHRT_MAX, // fullscreenElement
+	USHRT_MAX, // fullscreenEnabled
+#endif // DOM_FULLSCREEN_MODE
+#ifdef SVG_DOM
+	Markup::SVGA_FX, // fx
+	Markup::SVGA_FY, // fy
+#endif // SVG_DOM
+#ifdef DOM_GEOLOCATION_SUPPORT
+	USHRT_MAX, // geolocation
+#endif // DOM_GEOLOCATION_SUPPORT
+	USHRT_MAX, // getElementById
+	USHRT_MAX, // getElementsByClassName
+	USHRT_MAX, // getElementsByTagName
+#ifdef CANVAS_SUPPORT
+	USHRT_MAX, // globalAlpha
+	USHRT_MAX, // globalCompositeOperation
+#endif // CANVAS_SUPPORT
+#ifdef SVG_DOM
+	Markup::SVGA_GLYPH_ORIENTATION_HORIZONTAL, // glyphOrientationHorizontal
+	Markup::SVGA_GLYPH_ORIENTATION_VERTICAL, // glyphOrientationVertical
+	Markup::SVGA_TRANSFORM, // gradientTransform
+	Markup::SVGA_GRADIENTUNITS, // gradientUnits
+	USHRT_MAX, // green
+#endif // SVG_DOM
+	USHRT_MAX, // hash
+	USHRT_MAX, // head
+	USHRT_MAX, // headers
+#ifdef DOM_GEOLOCATION_SUPPORT
+	USHRT_MAX, // heading
+#endif // DOM_GEOLOCATION_SUPPORT
+	Markup::SVGA_HEIGHT, // height
+	USHRT_MAX, // hidden
+	USHRT_MAX, // high
+	USHRT_MAX, // history
+#ifdef ESUTILS_PROFILER_SUPPORT
+	USHRT_MAX, // hits
+#endif // ESUTILS_PROFILER_SUPPORT
+	USHRT_MAX, // home
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // homePhone
+#endif // DOM_JIL_API_SUPPORT
+	USHRT_MAX, // host
+#ifdef WEBSERVER_SUPPORT
+	USHRT_MAX, // hostName
+#endif // WEBSERVER_SUPPORT
+	USHRT_MAX, // hostname
+	USHRT_MAX, // href
+	USHRT_MAX, // hreflang
+	USHRT_MAX, // hspace
+	USHRT_MAX, // htmlFor
+	USHRT_MAX, // httpEquiv
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	USHRT_MAX, // icon
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#ifdef GADGET_SUPPORT
+	USHRT_MAX, // icons
+#endif // GADGET_SUPPORT
+	Markup::SVGA_ID, // id
+#if defined GADGET_SUPPORT || defined TOUCH_EVENTS_SUPPORT
+	USHRT_MAX, // identifier
+#endif // GADGET_SUPPORT || TOUCH_EVENTS_SUPPORT
+#ifdef SVG_DOM
+	Markup::SVGA_IMAGE_RENDERING, // imageRendering
+#endif // SVG_DOM
+	USHRT_MAX, // images
+	USHRT_MAX, // implementation
+#ifdef WEBSERVER_SUPPORT
+	USHRT_MAX, // implicitFlush
+#endif // WEBSERVER_SUPPORT
+#ifdef SVG_DOM
+	Markup::SVGA_IN, // in1
+	Markup::SVGA_IN2, // in2
+#endif // SVG_DOM
+	USHRT_MAX, // indeterminate
+	USHRT_MAX, // index
+	USHRT_MAX, // innerHTML
+	USHRT_MAX, // innerHeight
+	USHRT_MAX, // innerText
+	USHRT_MAX, // innerWidth
+	USHRT_MAX, // input
+	USHRT_MAX, // inputFormat
+	USHRT_MAX, // inputMethod
+	USHRT_MAX, // inputmode
+	USHRT_MAX, // insertAdjacentHTML
+	USHRT_MAX, // insertAdjacentText
+#ifdef DATABASE_STORAGE_SUPPORT
+	USHRT_MAX, // insertId
+#endif // DATABASE_STORAGE_SUPPORT
+#ifdef SVG_DOM
+	USHRT_MAX, // instanceRoot
+	Markup::SVGA_INTERCEPT, // intercept
+#endif // SVG_DOM
+	USHRT_MAX, // internalSubset
+#ifdef DOM3_XPATH
+	USHRT_MAX, // invalidIteratorState
+#endif // DOM3_XPATH
+#ifdef WEBSERVER_SUPPORT
+	USHRT_MAX, // ip
+#endif // WEBSERVER_SUPPORT
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	USHRT_MAX, // isArchive
+#endif // DOM_GADGET_FILE_API_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // isAudioPlaying
+#endif // DOM_JIL_API_SUPPORT
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	USHRT_MAX, // isBinary
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // isCharging
+#endif // DOM_JIL_API_SUPPORT
+#ifdef DOM_SELECTION_SUPPORT
+	USHRT_MAX, // isCollapsed
+#endif // DOM_SELECTION_SUPPORT
+	USHRT_MAX, // isContentEditable
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // isDataNetworkConnected
+#endif // DOM_JIL_API_SUPPORT
+#if defined DOM_GADGET_FILE_API_SUPPORT || defined DOM_JIL_API_SUPPORT
+	USHRT_MAX, // isDirectory
+#endif // DOM_GADGET_FILE_API_SUPPORT || DOM_JIL_API_SUPPORT
+#ifdef DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	USHRT_MAX, // isEditable
+#endif // DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	USHRT_MAX, // isElementContentWhitespace
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	USHRT_MAX, // isFile
+	USHRT_MAX, // isHidden
+#endif // DOM_GADGET_FILE_API_SUPPORT
+#if defined WEBSERVER_SUPPORT || defined UPNP_SUPPORT
+	USHRT_MAX, // isLocal
+#endif // WEBSERVER_SUPPORT || UPNP_SUPPORT
+	USHRT_MAX, // isMap
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	USHRT_MAX, // isMarkup
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#ifdef WEBSERVER_SUPPORT
+	USHRT_MAX, // isOwner
+#endif // WEBSERVER_SUPPORT
+#ifdef SVG_DOM
+	USHRT_MAX, // isPaused
+#endif // SVG_DOM
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	USHRT_MAX, // isPlainText
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#ifdef WEBSERVER_SUPPORT
+	USHRT_MAX, // isProxied
+#endif // WEBSERVER_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // isRadioEnabled
+	USHRT_MAX, // isRead
+	USHRT_MAX, // isRoaming
+#endif // DOM_JIL_API_SUPPORT
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	USHRT_MAX, // isSubscribed
+#endif // WEBFEEDS_BACKEND_SUPPORT
+	USHRT_MAX, // isTrusted
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // isVideoPlaying
+#endif // DOM_JIL_API_SUPPORT
+	USHRT_MAX, // item
+	USHRT_MAX, // itemId
+	USHRT_MAX, // itemProp
+	USHRT_MAX, // itemRef
+	USHRT_MAX, // itemScope
+	USHRT_MAX, // itemType
+	USHRT_MAX, // itemValue
+#if defined DRAG_SUPPORT || defined USE_OP_CLIPBOARD
+	USHRT_MAX, // items
+#endif // DRAG_SUPPORT || USE_OP_CLIPBOARD
+	USHRT_MAX, // justifyContent
+#ifdef SVG_DOM
+	Markup::SVGA_K1, // k1
+	Markup::SVGA_K2, // k2
+	Markup::SVGA_K3, // k3
+	Markup::SVGA_K4, // k4
+#endif // SVG_DOM
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	USHRT_MAX, // keep
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#ifdef SVG_DOM
+	Markup::SVGA_KERNELMATRIX, // kernelMatrix
+	Markup::SVGA_KERNELUNITLENGTH, // kernelUnitLengthX
+	Markup::SVGA_KERNELUNITLENGTH, // kernelUnitLengthY
+	Markup::SVGA_KERNING, // kerning
+#endif // SVG_DOM
+	USHRT_MAX, // key
+	USHRT_MAX, // keyCode
+#ifdef CSS_ANIMATIONS
+	USHRT_MAX, // keyText
+#endif // CSS_ANIMATIONS
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // keypadLightOn
+#endif // DOM_JIL_API_SUPPORT
+	USHRT_MAX, // keytype
+#if defined MEDIA_HTML_SUPPORT || defined DRAG_SUPPORT || defined USE_OP_CLIPBOARD
+	USHRT_MAX, // kind
+#endif // MEDIA_HTML_SUPPORT || DRAG_SUPPORT || USE_OP_CLIPBOARD
+	USHRT_MAX, // label
+	USHRT_MAX, // labels
+	USHRT_MAX, // lang
+	USHRT_MAX, // language
+#ifdef SVG_DOM
+	USHRT_MAX, // largeArcFlag
+#endif // SVG_DOM
+	USHRT_MAX, // lastChild
+	USHRT_MAX, // lastElementChild
+#if defined DOM_CROSSDOCUMENT_MESSAGING_SUPPORT || defined WEBSOCKETS_SUPPORT
+	USHRT_MAX, // lastEventId
+#endif // DOM_CROSSDOCUMENT_MESSAGING_SUPPORT || WEBSOCKETS_SUPPORT
+	USHRT_MAX, // lastModified
+	USHRT_MAX, // lastModifiedDate
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // lastModifyDate
+#endif // DOM_JIL_API_SUPPORT
+#ifdef DOM_GEOLOCATION_SUPPORT
+	USHRT_MAX, // lastPosition
+#endif // DOM_GEOLOCATION_SUPPORT
+	USHRT_MAX, // lastUpdate
+#ifdef DOM_GEOLOCATION_SUPPORT
+	USHRT_MAX, // latitude
+#endif // DOM_GEOLOCATION_SUPPORT
+	USHRT_MAX, // left
+	USHRT_MAX, // length
+#ifdef SVG_DOM
+	Markup::SVGA_LENGTHADJUST, // lengthAdjust
+#endif // SVG_DOM
+#ifdef PROGRESS_EVENTS_SUPPORT
+	USHRT_MAX, // lengthComputable
+#endif // PROGRESS_EVENTS_SUPPORT
+	USHRT_MAX, // letterSpacing
+#ifdef SVG_DOM
+	Markup::SVGA_LIGHTING_COLOR, // lightingColor
+	Markup::SVGA_LIMITINGCONEANGLE, // limitingConeAngle
+#endif // SVG_DOM
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // line
+#endif // MEDIA_HTML_SUPPORT
+#ifdef CANVAS_SUPPORT
+	USHRT_MAX, // lineCap
+#endif // CANVAS_SUPPORT
+	USHRT_MAX, // lineHeight
+#ifdef SVG_DOM
+	USHRT_MAX, // lineIncrement
+#endif // SVG_DOM
+#ifdef CANVAS_SUPPORT
+	USHRT_MAX, // lineJoin
+	USHRT_MAX, // lineWidth
+#endif // CANVAS_SUPPORT
+	USHRT_MAX, // lineno
+#ifdef ESUTILS_PROFILER_SUPPORT
+	USHRT_MAX, // lines
+#endif // ESUTILS_PROFILER_SUPPORT
+	USHRT_MAX, // link
+	USHRT_MAX, // linkColor
+#ifdef DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	USHRT_MAX, // linkURL
+#endif // DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	USHRT_MAX, // links
+	USHRT_MAX, // list
+	USHRT_MAX, // listStyle
+	USHRT_MAX, // listStyleImage
+	USHRT_MAX, // listStylePosition
+	USHRT_MAX, // listStyleType
+	USHRT_MAX, // listener
+#ifdef PROGRESS_EVENTS_SUPPORT
+	USHRT_MAX, // loaded
+#endif // PROGRESS_EVENTS_SUPPORT
+#if defined USE_SPDY && defined DOM_EXTENSIONS_TAB_API_SUPPORT
+	USHRT_MAX, // loadedWithSPDY
+#endif // USE_SPDY && DOM_EXTENSIONS_TAB_API_SUPPORT
+	USHRT_MAX, // localName
+#ifdef CLIENTSIDE_STORAGE_SUPPORT
+	USHRT_MAX, // localStorage
+#endif // CLIENTSIDE_STORAGE_SUPPORT
+	USHRT_MAX, // locale
+	USHRT_MAX, // location
+#ifdef DOM_EXTENSIONS_TAB_API_SUPPORT
+	USHRT_MAX, // locked
+#endif // DOM_EXTENSIONS_TAB_API_SUPPORT
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	USHRT_MAX, // logo
+#endif // WEBFEEDS_BACKEND_SUPPORT
+	USHRT_MAX, // longDesc
+#ifdef DOM_GEOLOCATION_SUPPORT
+	USHRT_MAX, // longitude
+#endif // DOM_GEOLOCATION_SUPPORT
+	USHRT_MAX, // loop
+	USHRT_MAX, // low
+	USHRT_MAX, // lowsrc
+	USHRT_MAX, // margin
+	USHRT_MAX, // marginBottom
+	USHRT_MAX, // marginHeight
+	USHRT_MAX, // marginLeft
+	USHRT_MAX, // marginRight
+	USHRT_MAX, // marginTop
+	USHRT_MAX, // marginWidth
+#ifdef SVG_DOM
+	USHRT_MAX, // marker
+	Markup::SVGA_MARKER_END, // markerEnd
+	Markup::SVGA_MARKERHEIGHT, // markerHeight
+	Markup::SVGA_MARKER_MID, // markerMid
+#endif // SVG_DOM
+	USHRT_MAX, // markerOffset
+#ifdef SVG_DOM
+	Markup::SVGA_MARKER_START, // markerStart
+	Markup::SVGA_MARKERUNITS, // markerUnits
+	Markup::SVGA_MARKERWIDTH, // markerWidth
+	Markup::SVGA_MASK, // mask
+	Markup::SVGA_MASKCONTENTUNITS, // maskContentUnits
+	Markup::SVGA_MASKUNITS, // maskUnits
+#endif // SVG_DOM
+	USHRT_MAX, // matches
+#ifdef SVG_DOM
+	USHRT_MAX, // matrix
+#endif // SVG_DOM
+	USHRT_MAX, // max
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	USHRT_MAX, // maxAge
+	USHRT_MAX, // maxEntries
+#endif // WEBFEEDS_BACKEND_SUPPORT
+	USHRT_MAX, // maxHeight
+	USHRT_MAX, // maxLength
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	USHRT_MAX, // maxPathLength
+#endif // DOM_GADGET_FILE_API_SUPPORT
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	USHRT_MAX, // maxSize
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#if defined UPNP_SUPPORT || (defined GADGET_SUPPORT && defined WEBSERVER_SUPPORT && defined OPERAUNITE_URL)
+	USHRT_MAX, // maxUploadRate
+#endif // UPNP_SUPPORT || GADGET_SUPPORT && WEBSERVER_SUPPORT && OPERAUNITE_URL
+	USHRT_MAX, // maxWidth
+	USHRT_MAX, // maxZoom
+	Markup::SVGA_MEDIA, // media
+	USHRT_MAX, // mediaText
+#ifdef DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	USHRT_MAX, // mediaType
+#endif // DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+#ifdef SVG_DOM
+	USHRT_MAX, // meetOrSlice
+#endif // SVG_DOM
+#ifdef EXTENSION_SUPPORT
+	USHRT_MAX, // menu
+#endif // EXTENSION_SUPPORT
+	USHRT_MAX, // menubar
+	USHRT_MAX, // message
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // messageId
+	USHRT_MAX, // messagePriority
+	USHRT_MAX, // messageType
+#endif // DOM_JIL_API_SUPPORT
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	USHRT_MAX, // metaData
+#endif // DOM_GADGET_FILE_API_SUPPORT
+	USHRT_MAX, // metaKey
+	Markup::SVGA_METHOD, // method
+#ifdef ESUTILS_PROFILER_SUPPORT
+	USHRT_MAX, // millisecondsSelf
+	USHRT_MAX, // millisecondsTotal
+#endif // ESUTILS_PROFILER_SUPPORT
+	USHRT_MAX, // mimeTypes
+	USHRT_MAX, // min
+	USHRT_MAX, // minHeight
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	USHRT_MAX, // minUpdateInterval
+#endif // WEBFEEDS_BACKEND_SUPPORT
+	USHRT_MAX, // minWidth
+	USHRT_MAX, // minZoom
+#ifdef CANVAS_SUPPORT
+	USHRT_MAX, // miterLimit
+#endif // CANVAS_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // mobilePhone
+#endif // DOM_JIL_API_SUPPORT
+#ifdef SVG_DOM
+	Markup::SVGA_MODE, // mode
+#endif // SVG_DOM
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	USHRT_MAX, // modified
+	USHRT_MAX, // mountPoints
+#endif // DOM_GADGET_FILE_API_SUPPORT
+	USHRT_MAX, // moveBy
+	USHRT_MAX, // moveTo
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // msgRingtoneVolume
+#endif // DOM_JIL_API_SUPPORT
+	USHRT_MAX, // multiple
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // muted
+#endif // MEDIA_HTML_SUPPORT
+	USHRT_MAX, // name
+	USHRT_MAX, // namedItem
+	USHRT_MAX, // names
+	USHRT_MAX, // namespaceURI
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	USHRT_MAX, // nativePath
+#endif // DOM_GADGET_FILE_API_SUPPORT
+	USHRT_MAX, // naturalHeight
+	USHRT_MAX, // naturalWidth
+	USHRT_MAX, // navDown
+	USHRT_MAX, // navIndex
+	USHRT_MAX, // navLeft
+	USHRT_MAX, // navRight
+	USHRT_MAX, // navUp
+	USHRT_MAX, // navigationMode
+	USHRT_MAX, // navigator
+#ifdef SVG_DOM
+	USHRT_MAX, // nearestViewportElement
+#endif // SVG_DOM
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // networkConnectionType
+#endif // DOM_JIL_API_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // networkState
+#endif // MEDIA_HTML_SUPPORT
+#ifdef DOM3_LOAD
+	USHRT_MAX, // newDocument
+#endif // DOM3_LOAD
+#if defined DOM3_SAVE || defined DOM_GADGET_FILE_API_SUPPORT
+	USHRT_MAX, // newLine
+#endif // DOM3_SAVE || DOM_GADGET_FILE_API_SUPPORT
+	USHRT_MAX, // newURL
+#if defined DOM2_MUTATION_EVENTS || defined CLIENTSIDE_STORAGE_SUPPORT
+	USHRT_MAX, // newValue
+#endif // DOM2_MUTATION_EVENTS || CLIENTSIDE_STORAGE_SUPPORT
+	USHRT_MAX, // next
+	USHRT_MAX, // nextElementSibling
+	USHRT_MAX, // nextSibling
+	USHRT_MAX, // noHref
+	USHRT_MAX, // noResize
+	USHRT_MAX, // noShade
+	USHRT_MAX, // noValidate
+	USHRT_MAX, // noWrap
+	USHRT_MAX, // nodeName
+	USHRT_MAX, // nodeType
+	USHRT_MAX, // nodeValue
+#ifdef SVG_DOM
+	USHRT_MAX, // normalizedPathSegList
+#endif // SVG_DOM
+	USHRT_MAX, // notationName
+	USHRT_MAX, // notations
+#ifdef SVG_DOM
+	Markup::SVGA_NUMOCTAVES, // numOctaves
+	USHRT_MAX, // numberOfItems
+	USHRT_MAX, // numberOfSegments
+#endif // SVG_DOM
+#ifdef DOM3_XPATH
+	USHRT_MAX, // numberValue
+#endif // DOM3_XPATH
+	USHRT_MAX, // object
+#ifdef SVG_DOM
+	Markup::SVGA_OFFSET, // offset
+#endif // SVG_DOM
+	USHRT_MAX, // offsetHeight
+	USHRT_MAX, // offsetLeft
+	USHRT_MAX, // offsetParent
+	USHRT_MAX, // offsetTop
+	USHRT_MAX, // offsetWidth
+	USHRT_MAX, // offsetX
+	USHRT_MAX, // offsetY
+	USHRT_MAX, // oldURL
+#ifdef CLIENTSIDE_STORAGE_SUPPORT
+	USHRT_MAX, // oldValue
+#endif // CLIENTSIDE_STORAGE_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // onAddressBookItemsFound
+	USHRT_MAX, // onCalendarItemAlert
+	USHRT_MAX, // onCalendarItemsFound
+	USHRT_MAX, // onCallEvent
+	USHRT_MAX, // onCallRecordsFound
+	USHRT_MAX, // onCameraCaptured
+	USHRT_MAX, // onChargeLevelChange
+	USHRT_MAX, // onChargeStateChange
+	USHRT_MAX, // onFilesFound
+	USHRT_MAX, // onFocus
+#endif // DOM_JIL_API_SUPPORT
+	USHRT_MAX, // onLine
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // onLowBattery
+	USHRT_MAX, // onMaximize
+	USHRT_MAX, // onMessageArrived
+	USHRT_MAX, // onMessageSendingFailure
+	USHRT_MAX, // onMessagesFound
+	USHRT_MAX, // onNetworkConnectionChanged
+	USHRT_MAX, // onPositionRetrieved
+	USHRT_MAX, // onRestore
+	USHRT_MAX, // onScreenChangeDimensions
+	USHRT_MAX, // onSignalSourceChange
+	USHRT_MAX, // onStateChange
+	USHRT_MAX, // onVCardExportingFinish
+	USHRT_MAX, // onWakeup
+#endif // DOM_JIL_API_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // onaddtrack
+#endif // MEDIA_HTML_SUPPORT
+#ifdef GADGET_SUPPORT
+	USHRT_MAX, // onafterupdate
+#endif // GADGET_SUPPORT
+#ifdef OPERA_AUTH_SUPPORT
+	USHRT_MAX, // onauthenticationchange
+#endif // OPERA_AUTH_SUPPORT
+#ifdef GADGET_SUPPORT
+	USHRT_MAX, // onbeforeupdate
+#endif // GADGET_SUPPORT
+#ifdef WEBSOCKETS_SUPPORT
+	USHRT_MAX, // onclose
+#endif // WEBSOCKETS_SUPPORT
+#if defined DOM_WEBWORKERS_SUPPORT || defined DOM_CROSSDOCUMENT_MESSAGING_SUPPORT
+	USHRT_MAX, // onconnect
+#endif // DOM_WEBWORKERS_SUPPORT || DOM_CROSSDOCUMENT_MESSAGING_SUPPORT
+#ifdef EXTENSION_SUPPORT
+	USHRT_MAX, // oncreate
+#endif // EXTENSION_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // oncuechange
+#endif // MEDIA_HTML_SUPPORT
+#ifdef EXTENSION_SUPPORT
+	USHRT_MAX, // ondisconnect
+#endif // EXTENSION_SUPPORT
+#ifdef GADGET_SUPPORT
+	USHRT_MAX, // ondragstart
+	USHRT_MAX, // ondragstop
+#endif // GADGET_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // onenter
+#endif // MEDIA_HTML_SUPPORT
+#if defined DOM_WEBWORKERS_SUPPORT || defined DOM_CROSSDOCUMENT_MESSAGING_SUPPORT || defined WEBSOCKETS_SUPPORT
+	USHRT_MAX, // onerror
+#endif // DOM_WEBWORKERS_SUPPORT || DOM_CROSSDOCUMENT_MESSAGING_SUPPORT || WEBSOCKETS_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // onexit
+#endif // MEDIA_HTML_SUPPORT
+#ifdef EXTENSION_SUPPORT
+	USHRT_MAX, // onfocus
+#endif // EXTENSION_SUPPORT
+#ifdef GADGET_SUPPORT
+	USHRT_MAX, // onhide
+#endif // GADGET_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // onload
+#endif // MEDIA_HTML_SUPPORT
+#if defined DOM_WEBWORKERS_SUPPORT || defined DOM_CROSSDOCUMENT_MESSAGING_SUPPORT || defined WEBSOCKETS_SUPPORT
+	USHRT_MAX, // onmessage
+#endif // DOM_WEBWORKERS_SUPPORT || DOM_CROSSDOCUMENT_MESSAGING_SUPPORT || WEBSOCKETS_SUPPORT
+#ifdef EXTENSION_SUPPORT
+	USHRT_MAX, // onmove
+#endif // EXTENSION_SUPPORT
+#ifdef WEBSOCKETS_SUPPORT
+	USHRT_MAX, // onopen
+#endif // WEBSOCKETS_SUPPORT
+#if defined GADGET_SUPPORT && defined WEBSERVER_SUPPORT && defined OPERAUNITE_URL
+	USHRT_MAX, // onrangechange
+#endif // GADGET_SUPPORT && WEBSERVER_SUPPORT && OPERAUNITE_URL
+#ifdef GADGET_SUPPORT
+	USHRT_MAX, // onrefresh
+#endif // GADGET_SUPPORT
+#ifdef EXTENSION_SUPPORT
+	USHRT_MAX, // onremove
+#endif // EXTENSION_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // onremovetrack
+#endif // MEDIA_HTML_SUPPORT
+#ifdef GADGET_SUPPORT
+	USHRT_MAX, // onshow
+#endif // GADGET_SUPPORT
+	USHRT_MAX, // onthread
+#ifdef EXTENSION_SUPPORT
+	USHRT_MAX, // onupdate
+#endif // EXTENSION_SUPPORT
+#ifdef GADGET_SUPPORT
+	USHRT_MAX, // onviewstatechanged
+#endif // GADGET_SUPPORT
+	USHRT_MAX, // opacity
+	USHRT_MAX, // opener
+#ifdef CSS_TRANSFORMS
+	USHRT_MAX, // operationType
+#endif // CSS_TRANSFORMS
+#ifdef SVG_DOM
+	Markup::SVGA_OPERATOR, // operator
+#endif // SVG_DOM
+	USHRT_MAX, // optimum
+	USHRT_MAX, // options
+	USHRT_MAX, // order
+#ifdef SVG_DOM
+	Markup::SVGA_ORDER, // orderX
+	Markup::SVGA_ORDER, // orderY
+	Markup::SVGA_ORIENT, // orientAngle
+	Markup::SVGA_ORIENT, // orientType
+#endif // SVG_DOM
+	USHRT_MAX, // orientation
+	USHRT_MAX, // origin
+#if defined(GADGET_SUPPORT) || defined(WEBSERVER_SUPPORT)
+	USHRT_MAX, // originURL
+#endif // GADGET_SUPPORT || WEBSERVER_SUPPORT
+	USHRT_MAX, // orphans
+	USHRT_MAX, // outerHTML
+	USHRT_MAX, // outerHeight
+	USHRT_MAX, // outerText
+	USHRT_MAX, // outerWidth
+	USHRT_MAX, // outline
+	USHRT_MAX, // outlineColor
+	USHRT_MAX, // outlineOffset
+	USHRT_MAX, // outlineStyle
+	USHRT_MAX, // outlineWidth
+	USHRT_MAX, // output
+	USHRT_MAX, // overflow
+	USHRT_MAX, // overflowWrap
+	USHRT_MAX, // overflowX
+	USHRT_MAX, // overflowY
+	USHRT_MAX, // ownerDocument
+	USHRT_MAX, // ownerElement
+	USHRT_MAX, // ownerNode
+	USHRT_MAX, // ownerRule
+#ifdef SVG_DOM
+	USHRT_MAX, // ownerSVGElement
+#endif // SVG_DOM
+	USHRT_MAX, // padding
+	USHRT_MAX, // paddingBottom
+	USHRT_MAX, // paddingLeft
+	USHRT_MAX, // paddingRight
+	USHRT_MAX, // paddingTop
+	USHRT_MAX, // page
+	USHRT_MAX, // pageBreakAfter
+	USHRT_MAX, // pageBreakBefore
+	USHRT_MAX, // pageBreakInside
+#ifdef PAGED_MEDIA_SUPPORT
+	USHRT_MAX, // pageCount
+#endif // PAGED_MEDIA_SUPPORT
+#ifdef DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	USHRT_MAX, // pageURL
+#endif // DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	USHRT_MAX, // pageX
+	USHRT_MAX, // pageXOffset
+	USHRT_MAX, // pageY
+	USHRT_MAX, // pageYOffset
+#ifdef SVG_DOM
+	USHRT_MAX, // paintType
+#endif // SVG_DOM
+	USHRT_MAX, // parameterNames
+	USHRT_MAX, // parent
+	USHRT_MAX, // parentElement
+	USHRT_MAX, // parentNode
+	USHRT_MAX, // parentRule
+	USHRT_MAX, // parentStyleSheet
+	USHRT_MAX, // parentWindow
+#ifdef WEBSERVER_SUPPORT
+	USHRT_MAX, // passwordProtected
+#endif // WEBSERVER_SUPPORT
+#ifdef GADGET_SUPPORT
+	USHRT_MAX, // path
+#endif // GADGET_SUPPORT
+#ifdef SVG_DOM
+	Markup::SVGA_PATHLENGTH, // pathLength
+	USHRT_MAX, // pathSegList
+	USHRT_MAX, // pathSegType
+	USHRT_MAX, // pathSegTypeAsLetter
+#endif // SVG_DOM
+	USHRT_MAX, // pathname
+	USHRT_MAX, // pattern
+#ifdef SVG_DOM
+	Markup::SVGA_PATTERNCONTENTUNITS, // patternContentUnits
+#endif // SVG_DOM
+	USHRT_MAX, // patternMismatch
+#ifdef SVG_DOM
+	Markup::SVGA_PATTERNTRANSFORM, // patternTransform
+	Markup::SVGA_PATTERNUNITS, // patternUnits
+#endif // SVG_DOM
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // pauseOnExit
+	USHRT_MAX, // paused
+#endif // MEDIA_HTML_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // percentRemaining
+	USHRT_MAX, // phoneColorDepthDefault
+	USHRT_MAX, // phoneFirmware
+	USHRT_MAX, // phoneMSISDN
+	USHRT_MAX, // phoneManufacturer
+	USHRT_MAX, // phoneModel
+	USHRT_MAX, // phoneOS
+	USHRT_MAX, // phoneOperatorName
+	USHRT_MAX, // phoneScreenHeightDefault
+	USHRT_MAX, // phoneScreenWidthDefault
+	USHRT_MAX, // phoneSoftware
+	USHRT_MAX, // phoneUserUniqueId
+#endif // DOM_JIL_API_SUPPORT
+	USHRT_MAX, // pixelBottom
+	USHRT_MAX, // pixelDepth
+	USHRT_MAX, // pixelHeight
+	USHRT_MAX, // pixelLeft
+	USHRT_MAX, // pixelRight
+	USHRT_MAX, // pixelTop
+#ifdef SVG_DOM
+	USHRT_MAX, // pixelUnitToMillimeterX
+	USHRT_MAX, // pixelUnitToMillimeterY
+#endif // SVG_DOM
+	USHRT_MAX, // pixelWidth
+	USHRT_MAX, // placeholder
+	USHRT_MAX, // platform
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // playbackRate
+	USHRT_MAX, // played
+#endif // MEDIA_HTML_SUPPORT
+	USHRT_MAX, // plugins
+#ifdef SVG_DOM
+	Markup::SVGA_POINTER_EVENTS, // pointerEvents
+	USHRT_MAX, // points
+	Markup::SVGA_POINTSATX, // pointsAtX
+	Markup::SVGA_POINTSATY, // pointsAtY
+	Markup::SVGA_POINTSATZ, // pointsAtZ
+#endif // SVG_DOM
+#ifdef EXTENSION_SUPPORT
+	USHRT_MAX, // popup
+#endif // EXTENSION_SUPPORT
+	USHRT_MAX, // port
+#ifdef DOM_CROSSDOCUMENT_MESSAGING_SUPPORT
+	USHRT_MAX, // port1
+	USHRT_MAX, // port2
+	USHRT_MAX, // ports
+#endif // DOM_CROSSDOCUMENT_MESSAGING_SUPPORT
+	USHRT_MAX, // posBottom
+	USHRT_MAX, // posHeight
+	USHRT_MAX, // posLeft
+	USHRT_MAX, // posRight
+	USHRT_MAX, // posTop
+	USHRT_MAX, // posWidth
+	USHRT_MAX, // position
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // poster
+#endif // MEDIA_HTML_SUPPORT
+#ifdef GADGET_SUPPORT
+	USHRT_MAX, // preferences
+#endif // GADGET_SUPPORT
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	USHRT_MAX, // prefetchPrimaryLink
+#endif // WEBFEEDS_BACKEND_SUPPORT
+	USHRT_MAX, // prefix
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // preload
+#endif // MEDIA_HTML_SUPPORT
+#ifdef CANVAS3D_SUPPORT
+	USHRT_MAX, // premultipliedAlpha
+#endif // CANVAS3D_SUPPORT
+#ifdef SVG_DOM
+	Markup::SVGA_PRESERVEALPHA, // preserveAlpha
+	Markup::SVGA_PRESERVEASPECTRATIO, // preserveAspectRatio
+#endif // SVG_DOM
+#ifdef CANVAS3D_SUPPORT
+	USHRT_MAX, // preserveDrawingBuffer
+#endif // CANVAS3D_SUPPORT
+#ifdef DOM_EXTENSIONS_TAB_API_SUPPORT
+	USHRT_MAX, // prevPosition
+	USHRT_MAX, // prevTabGroup
+#endif // DOM_EXTENSIONS_TAB_API_SUPPORT
+#ifdef DOM2_MUTATION_EVENTS
+	USHRT_MAX, // prevValue
+#endif // DOM2_MUTATION_EVENTS
+#ifdef DOM_EXTENSIONS_TAB_API_SUPPORT
+	USHRT_MAX, // prevWindow
+#endif // DOM_EXTENSIONS_TAB_API_SUPPORT
+	USHRT_MAX, // previous
+	USHRT_MAX, // previousElementSibling
+	USHRT_MAX, // previousSibling
+#ifdef SVG_DOM
+	Markup::SVGA_PRIMITIVEUNITS, // primitiveUnits
+#endif // SVG_DOM
+#ifdef DOM_EXTENSIONS_TAB_API_SUPPORT
+	USHRT_MAX, // private
+#endif // DOM_EXTENSIONS_TAB_API_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // processorUtilizationPercent
+#endif // DOM_JIL_API_SUPPORT
+	USHRT_MAX, // prompt
+#ifdef USER_JAVASCRIPT
+	USHRT_MAX, // propagationStopped
+#endif // USER_JAVASCRIPT
+	USHRT_MAX, // properties
+	USHRT_MAX, // propertyName
+	USHRT_MAX, // protocol
+	USHRT_MAX, // prototype
+#ifdef WEBSERVER_SUPPORT
+	USHRT_MAX, // proxyName
+#endif // WEBSERVER_SUPPORT
+	USHRT_MAX, // pubDate
+#ifdef WEBSERVER_SUPPORT
+	USHRT_MAX, // publicIP
+#endif // WEBSERVER_SUPPORT
+	USHRT_MAX, // publicId
+#ifdef WEBSERVER_SUPPORT
+	USHRT_MAX, // publicPort
+#endif // WEBSERVER_SUPPORT
+	USHRT_MAX, // publicationDate
+#ifdef WEBSERVER_SUPPORT
+	USHRT_MAX, // queryItems
+#endif // WEBSERVER_SUPPORT
+	USHRT_MAX, // quotes
+#ifdef SVG_DOM
+	Markup::SVGA_R, // r
+	USHRT_MAX, // r1
+	USHRT_MAX, // r2
+#endif // SVG_DOM
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // radioSignalSource
+	USHRT_MAX, // radioSignalStrengthPercent
+#endif // DOM_JIL_API_SUPPORT
+#ifdef SVG_DOM
+	Markup::SVGA_RADIUS, // radiusX
+	Markup::SVGA_RADIUS, // radiusY
+#endif // SVG_DOM
+#if defined GADGET_SUPPORT && defined WEBSERVER_SUPPORT && defined OPERAUNITE_URL
+	USHRT_MAX, // range
+#endif // GADGET_SUPPORT && WEBSERVER_SUPPORT && OPERAUNITE_URL
+#ifdef DOM_SELECTION_SUPPORT
+	USHRT_MAX, // rangeCount
+#endif // DOM_SELECTION_SUPPORT
+	USHRT_MAX, // rangeOverflow
+	USHRT_MAX, // rangeUnderflow
+	USHRT_MAX, // readOnly
+	USHRT_MAX, // readyState
+#ifdef WEBSOCKETS_SUPPORT
+	USHRT_MAX, // reason
+#endif // WEBSOCKETS_SUPPORT
+#ifdef SVG_DOM
+	USHRT_MAX, // red
+	Markup::SVGA_REFX, // refX
+	Markup::SVGA_REFY, // refY
+#endif // SVG_DOM
+	USHRT_MAX, // referrer
+	USHRT_MAX, // rel
+#ifdef DOM2_MUTATION_EVENTS
+	USHRT_MAX, // relatedNode
+#endif // DOM2_MUTATION_EVENTS
+	USHRT_MAX, // relatedTarget
+#ifdef OPERA_AUTH_SUPPORT
+	USHRT_MAX, // rememberMe
+#endif // OPERA_AUTH_SUPPORT
+	USHRT_MAX, // renderingMode
+#if defined GADGET_SUPPORT && defined WEBSERVER_SUPPORT && defined OPERAUNITE_URL
+	USHRT_MAX, // rendezvous
+#endif // GADGET_SUPPORT && WEBSERVER_SUPPORT && OPERAUNITE_URL
+	USHRT_MAX, // repeat
+#ifdef WEBSERVER_SUPPORT
+	USHRT_MAX, // request
+#endif // WEBSERVER_SUPPORT
+	USHRT_MAX, // required
+#ifdef SVG_DOM
+	Markup::SVGA_REQUIREDEXTENSIONS, // requiredExtensions
+	Markup::SVGA_REQUIREDFEATURES, // requiredFeatures
+#endif // SVG_DOM
+	USHRT_MAX, // resize
+	USHRT_MAX, // resizeBy
+	USHRT_MAX, // resizeTo
+	USHRT_MAX, // response
+	USHRT_MAX, // responseText
+	USHRT_MAX, // responseType
+	USHRT_MAX, // responseXML
+	Markup::SVGA_RESULT, // result
+#ifdef DOM3_XPATH
+	USHRT_MAX, // resultType
+#endif // DOM3_XPATH
+	USHRT_MAX, // returnValue
+	USHRT_MAX, // rev
+	USHRT_MAX, // reversed
+	USHRT_MAX, // rgbColor
+	USHRT_MAX, // right
+	USHRT_MAX, // rightMargin
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // ringtoneVolume
+#endif // DOM_JIL_API_SUPPORT
+#if defined GADGET_SUPPORT && defined WEBSERVER_SUPPORT && defined OPERAUNITE_URL
+	USHRT_MAX, // robotstxtEnabled
+#endif // GADGET_SUPPORT && WEBSERVER_SUPPORT && OPERAUNITE_URL
+	USHRT_MAX, // root
+#ifdef SVG_DOM
+	USHRT_MAX, // rootElement
+	Markup::SVGA_ROTATE, // rotate
+#endif // SVG_DOM
+#ifdef TOUCH_EVENTS_SUPPORT
+	USHRT_MAX, // rotation
+#endif // TOUCH_EVENTS_SUPPORT
+	USHRT_MAX, // rowIndex
+	USHRT_MAX, // rowSpan
+	USHRT_MAX, // rows
+#ifdef DATABASE_STORAGE_SUPPORT
+	USHRT_MAX, // rowsAffected
+#endif // DATABASE_STORAGE_SUPPORT
+	USHRT_MAX, // rules
+#ifdef SVG_DOM
+	Markup::SVGA_RX, // rx
+	Markup::SVGA_RY, // ry
+#endif // SVG_DOM
+#if defined(SVG_DOM) || defined(TOUCH_EVENTS_SUPPORT)
+	Markup::SVGA_SCALE, // scale
+#endif // SVG_DOM || TOUCH_EVENTS_SUPPORT
+	USHRT_MAX, // scheme
+	USHRT_MAX, // scope
+#ifdef SCOPE_SUPPORT
+	USHRT_MAX, // scopeListenerAddress
+#endif // SCOPE_SUPPORT
+	USHRT_MAX, // screen
+	USHRT_MAX, // screenLeft
+#ifdef SVG_DOM
+	USHRT_MAX, // screenPixelToMillimeterX
+	USHRT_MAX, // screenPixelToMillimeterY
+#endif // SVG_DOM
+	USHRT_MAX, // screenTop
+	USHRT_MAX, // screenX
+	USHRT_MAX, // screenY
+	USHRT_MAX, // scripts
+	USHRT_MAX, // scroll
+	USHRT_MAX, // scrollAmount
+	USHRT_MAX, // scrollBy
+	USHRT_MAX, // scrollDelay
+	USHRT_MAX, // scrollHeight
+	USHRT_MAX, // scrollLeft
+	USHRT_MAX, // scrollTo
+	USHRT_MAX, // scrollTop
+	USHRT_MAX, // scrollWidth
+	USHRT_MAX, // scrollX
+	USHRT_MAX, // scrollY
+	USHRT_MAX, // scrollbar3dlightColor
+	USHRT_MAX, // scrollbarArrowColor
+	USHRT_MAX, // scrollbarBaseColor
+	USHRT_MAX, // scrollbarDarkshadowColor
+	USHRT_MAX, // scrollbarFaceColor
+	USHRT_MAX, // scrollbarHighlightColor
+	USHRT_MAX, // scrollbarShadowColor
+	USHRT_MAX, // scrollbarTrackColor
+	USHRT_MAX, // scrolling
+	USHRT_MAX, // search
+	USHRT_MAX, // sectionRowIndex
+#ifdef SVG_DOM
+	Markup::SVGA_SEED, // seed
+#endif // SVG_DOM
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // seekable
+	USHRT_MAX, // seeking
+#endif // MEDIA_HTML_SUPPORT
+	USHRT_MAX, // selected
+	USHRT_MAX, // selectedIndex
+	USHRT_MAX, // selectedOptions
+#ifdef DOM_SELECTION_SUPPORT
+	USHRT_MAX, // selectionDirection
+	USHRT_MAX, // selectionEnd
+	USHRT_MAX, // selectionStart
+#endif // DOM_SELECTION_SUPPORT
+#ifdef DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	USHRT_MAX, // selectionText
+#endif // DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	USHRT_MAX, // selectorText
+	USHRT_MAX, // self
+#ifdef WEBSERVER_SUPPORT
+	USHRT_MAX, // servicePath
+#endif // WEBSERVER_SUPPORT
+#if defined WEBSERVER_SUPPORT || defined UPNP_SUPPORT
+	USHRT_MAX, // services
+#endif // WEBSERVER_SUPPORT || UPNP_SUPPORT
+#ifdef WEBSERVER_SUPPORT
+	USHRT_MAX, // session
+#endif // WEBSERVER_SUPPORT
+#ifdef CLIENTSIDE_STORAGE_SUPPORT
+	USHRT_MAX, // sessionStorage
+#endif // CLIENTSIDE_STORAGE_SUPPORT
+	USHRT_MAX, // setInterval
+#ifdef CANVAS_SUPPORT
+	USHRT_MAX, // shadowBlur
+	USHRT_MAX, // shadowColor
+	USHRT_MAX, // shadowOffsetX
+	USHRT_MAX, // shadowOffsetY
+#endif // CANVAS_SUPPORT
+	USHRT_MAX, // shape
+#ifdef SVG_DOM
+	Markup::SVGA_SHAPE_RENDERING, // shapeRendering
+#endif // SVG_DOM
+#if defined GADGET_SUPPORT && defined WEBSERVER_SUPPORT
+	USHRT_MAX, // sharedFolder
+#endif // GADGET_SUPPORT && WEBSERVER_SUPPORT
+	USHRT_MAX, // sheet
+	USHRT_MAX, // shiftKey
+#ifdef GADGET_SUPPORT
+	USHRT_MAX, // shortName
+#endif // GADGET_SUPPORT
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	USHRT_MAX, // showImages
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#ifdef DOM3_XPATH
+	USHRT_MAX, // singleNodeValue
+#endif // DOM3_XPATH
+	USHRT_MAX, // size
+#ifdef SVG_DOM
+	Markup::SVGA_SLOPE, // slope
+#endif // SVG_DOM
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // snapToLines
+#endif // MEDIA_HTML_SUPPORT
+#ifdef DOM3_XPATH
+	USHRT_MAX, // snapshotLength
+#endif // DOM3_XPATH
+#ifdef SVG_DOM
+	USHRT_MAX, // solidColor
+	USHRT_MAX, // solidOpacity
+#endif // SVG_DOM
+	USHRT_MAX, // source
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // sourceAddress
+#endif // DOM_JIL_API_SUPPORT
+#ifdef SVG_DOM
+	Markup::SVGA_SPACING, // spacing
+#endif // SVG_DOM
+	USHRT_MAX, // span
+	USHRT_MAX, // speakNumeral
+	USHRT_MAX, // specified
+#ifdef SVG_DOM
+	Markup::SVGA_SPECULARCONSTANT, // specularConstant
+	Markup::SVGA_SPECULAREXPONENT, // specularExponent
+#endif // SVG_DOM
+#ifdef DOM_GEOLOCATION_SUPPORT
+	USHRT_MAX, // speed
+#endif // DOM_GEOLOCATION_SUPPORT
+#ifdef EXTENSION_SUPPORT
+	USHRT_MAX, // speeddial
+#endif // EXTENSION_SUPPORT
+#ifdef INTERNAL_SPELLCHECK_SUPPORT
+	USHRT_MAX, // spellcheck
+#endif // INTERNAL_SPELLCHECK_SUPPORT
+#ifdef SVG_DOM
+	Markup::SVGA_SPREADMETHOD, // spreadMethod
+#endif // SVG_DOM
+	USHRT_MAX, // src
+	USHRT_MAX, // srcElement
+#ifdef DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	USHRT_MAX, // srcURL
+#endif // DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // srclang
+#endif // MEDIA_HTML_SUPPORT
+	USHRT_MAX, // standby
+	USHRT_MAX, // start
+#ifdef DOM2_RANGE
+	USHRT_MAX, // startContainer
+#endif // DOM2_RANGE
+#if defined(DOM2_RANGE) || defined(SVG_DOM)
+	Markup::SVGA_STARTOFFSET, // startOffset
+#endif // DOM2_RANGE || SVG_DOM
+#if defined(MEDIA_HTML_SUPPORT) || defined(DOM_JIL_API_SUPPORT)
+	USHRT_MAX, // startTime
+#endif // MEDIA_HTML_SUPPORT || DOM_JIL_API_SUPPORT
+	USHRT_MAX, // state
+	USHRT_MAX, // status
+#ifdef DOM_HTTP_SUPPORT
+	USHRT_MAX, // statusText
+#endif // DOM_HTTP_SUPPORT
+#ifdef SVG_DOM
+	Markup::SVGA_STDDEVIATION, // stdDeviationX
+	Markup::SVGA_STDDEVIATION, // stdDeviationY
+#endif // SVG_DOM
+#ifdef CANVAS3D_SUPPORT
+	USHRT_MAX, // stencil
+#endif // CANVAS3D_SUPPORT
+	USHRT_MAX, // step
+	USHRT_MAX, // stepMismatch
+#ifdef SVG_DOM
+	Markup::SVGA_STITCHTILES, // stitchTiles
+	Markup::SVGA_STOP_COLOR, // stopColor
+	Markup::SVGA_STOP_OPACITY, // stopOpacity
+#endif // SVG_DOM
+#ifdef CLIENTSIDE_STORAGE_SUPPORT
+	USHRT_MAX, // storageArea
+#endif // CLIENTSIDE_STORAGE_SUPPORT
+#ifdef SCOPE_SUPPORT
+	USHRT_MAX, // stpVersion
+#endif // SCOPE_SUPPORT
+#ifdef DOM3_XPATH
+	USHRT_MAX, // stringValue
+#endif // DOM3_XPATH
+#ifdef SVG_DOM
+	Markup::SVGA_STROKE, // stroke
+	Markup::SVGA_STROKE_DASHARRAY, // strokeDasharray
+	Markup::SVGA_STROKE_DASHOFFSET, // strokeDashoffset
+	Markup::SVGA_STROKE_LINECAP, // strokeLinecap
+	Markup::SVGA_STROKE_LINEJOIN, // strokeLinejoin
+	Markup::SVGA_STROKE_MITERLIMIT, // strokeMiterlimit
+	Markup::SVGA_STROKE_OPACITY, // strokeOpacity
+#endif // SVG_DOM
+#ifdef CANVAS_SUPPORT
+	USHRT_MAX, // strokeStyle
+#endif // CANVAS_SUPPORT
+#ifdef SVG_DOM
+	Markup::SVGA_STROKE_WIDTH, // strokeWidth
+#endif // SVG_DOM
+	USHRT_MAX, // style
+	USHRT_MAX, // styleFloat
+	USHRT_MAX, // styleSheet
+	USHRT_MAX, // styleSheets
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // subject
+#endif // DOM_JIL_API_SUPPORT
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	USHRT_MAX, // subscribedFeeds
+#endif // WEBFEEDS_BACKEND_SUPPORT
+	USHRT_MAX, // suffixes
+	USHRT_MAX, // summary
+#ifdef SVG_DOM
+	Markup::SVGA_SURFACESCALE, // surfaceScale
+	USHRT_MAX, // sweepFlag
+#endif // SVG_DOM
+	USHRT_MAX, // systemId
+#ifdef SVG_DOM
+	Markup::SVGA_SYSTEMLANGUAGE, // systemLanguage
+#endif // SVG_DOM
+#ifdef DOM_GADGET_FILE_API_SUPPORT
+	USHRT_MAX, // systemNewLine
+#endif // DOM_GADGET_FILE_API_SUPPORT
+	USHRT_MAX, // tBodies
+	USHRT_MAX, // tFoot
+	USHRT_MAX, // tHead
+#ifdef DOM_EXTENSIONS_TAB_API_SUPPORT
+	USHRT_MAX, // tab
+	USHRT_MAX, // tabGroup
+	USHRT_MAX, // tabGroups
+#endif // DOM_EXTENSIONS_TAB_API_SUPPORT
+	USHRT_MAX, // tabIndex
+	USHRT_MAX, // tableLayout
+#ifdef SVG_DOM
+	Markup::SVGA_TABLEVALUES, // tableValues
+#endif // SVG_DOM
+#ifdef DOM_EXTENSIONS_TAB_API_SUPPORT
+	USHRT_MAX, // tabs
+#endif // DOM_EXTENSIONS_TAB_API_SUPPORT
+	USHRT_MAX, // tagName
+	Markup::SVGA_TARGET, // target
+#ifdef SVG_DOM
+	USHRT_MAX, // targetElement
+#endif // SVG_DOM
+#ifdef SVG_SUPPORT
+	USHRT_MAX, // targetFps
+#endif // SVG_SUPPORT
+#ifdef TOUCH_EVENTS_SUPPORT
+	USHRT_MAX, // targetTouches
+#endif // TOUCH_EVENTS_SUPPORT
+#ifdef DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+	USHRT_MAX, // targetURLPatterns
+#endif // DOM_EXTENSIONS_CONTEXT_MENU_API_SUPPORT
+#ifdef SVG_DOM
+	Markup::SVGA_TARGETX, // targetX
+	Markup::SVGA_TARGETY, // targetY
+#endif // SVG_DOM
+	USHRT_MAX, // text
+	USHRT_MAX, // textAlign
+#ifdef SVG_DOM
+	Markup::SVGA_TEXT_ANCHOR, // textAnchor
+#endif // SVG_DOM
+#ifdef CANVAS_SUPPORT
+	USHRT_MAX, // textBaseline
+#endif // CANVAS_SUPPORT
+	USHRT_MAX, // textContent
+	USHRT_MAX, // textDecoration
+	USHRT_MAX, // textIndent
+	Markup::SVGA_TEXTLENGTH, // textLength
+	USHRT_MAX, // textOverflow
+#ifdef SVG_DOM
+	Markup::SVGA_TEXT_RENDERING, // textRendering
+#endif // SVG_DOM
+	USHRT_MAX, // textShadow
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // textTracks
+#endif // MEDIA_HTML_SUPPORT
+	USHRT_MAX, // textTransform
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // time
+#endif // DOM_JIL_API_SUPPORT
+	USHRT_MAX, // timeStamp
+#ifdef DOM_HTTP_SUPPORT
+	USHRT_MAX, // timeout
+#endif // DOM_HTTP_SUPPORT
+#ifdef DOM_GEOLOCATION_SUPPORT
+	USHRT_MAX, // timestamp
+#endif // DOM_GEOLOCATION_SUPPORT
+	Markup::SVGA_TITLE, // title
+	USHRT_MAX, // toElement
+	USHRT_MAX, // tooLong
+#ifdef EXTENSION_SUPPORT
+	USHRT_MAX, // toolbar
+#endif // EXTENSION_SUPPORT
+	USHRT_MAX, // top
+#ifdef EXTENSION_SUPPORT
+	USHRT_MAX, // topWindow
+#endif // EXTENSION_SUPPORT
+	USHRT_MAX, // total
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // totalMemory
+#endif // DOM_JIL_API_SUPPORT
+#ifdef TOUCH_EVENTS_SUPPORT
+	USHRT_MAX, // touches
+#endif // TOUCH_EVENTS_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // track
+#endif // MEDIA_HTML_SUPPORT
+#if defined SVG_DOM || defined CSS_TRANSFORMS
+	Markup::SVGA_TRANSFORM, // transform
+#endif // SVG_DOM || CSS_TRANSFORMS
+#ifdef CSS_TRANSFORMS
+	USHRT_MAX, // transformOrigin
+#endif // CSS_TRANSFORMS
+#ifdef CSS_TRANSITIONS
+	USHRT_MAX, // transition
+	USHRT_MAX, // transitionDelay
+	USHRT_MAX, // transitionDuration
+	USHRT_MAX, // transitionProperty
+	USHRT_MAX, // transitionTimingFunction
+#endif // CSS_TRANSITIONS
+	Markup::SVGA_TYPE, // type
+	USHRT_MAX, // typeMismatch
+#if defined DRAG_SUPPORT || defined USE_OP_CLIPBOARD
+	USHRT_MAX, // types
+#endif // DRAG_SUPPORT || USE_OP_CLIPBOARD
+	USHRT_MAX, // unicodeBidi
+#ifdef SVG_DOM
+	USHRT_MAX, // unitType
+#endif // SVG_DOM
+#if defined WEBSERVER_SUPPORT || defined UPNP_SUPPORT
+	USHRT_MAX, // uniteDeviceName
+#endif // WEBSERVER_SUPPORT || UPNP_SUPPORT
+#ifdef UPNP_SUPPORT
+	USHRT_MAX, // uniteServiceName
+#endif // UPNP_SUPPORT
+#if defined WEBSERVER_SUPPORT || defined UPNP_SUPPORT
+	USHRT_MAX, // uniteUser
+#endif // WEBSERVER_SUPPORT || UPNP_SUPPORT
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	USHRT_MAX, // unread
+#endif // WEBFEEDS_BACKEND_SUPPORT
+	USHRT_MAX, // unselectable
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	USHRT_MAX, // updateInterval
+#endif // WEBFEEDS_BACKEND_SUPPORT
+#if defined DOM_HTTP_SUPPORT && defined PROGRESS_EVENTS_SUPPORT
+	USHRT_MAX, // upload
+#endif // DOM_HTTP_SUPPORT && PROGRESS_EVENTS_SUPPORT
+#if defined WEBSERVER_SUPPORT || defined UPNP_SUPPORT
+	USHRT_MAX, // upnpDeviceIcon
+	USHRT_MAX, // upnpDevicePayload
+#endif // WEBSERVER_SUPPORT || UPNP_SUPPORT
+#if defined GADGET_SUPPORT && defined WEBSERVER_SUPPORT && defined OPERAUNITE_URL
+	USHRT_MAX, // upnpEnabled
+#endif // GADGET_SUPPORT && WEBSERVER_SUPPORT && OPERAUNITE_URL
+	USHRT_MAX, // uri
+#if defined CLIENTSIDE_STORAGE_SUPPORT || defined UPNP_SUPPORT || defined WEBSOCKETS_SUPPORT
+	USHRT_MAX, // url
+#endif // CLIENTSIDE_STORAGE_SUPPORT || UPNP_SUPPORT || WEBSOCKETS_SUPPORT
+#ifdef SVG_DOM
+	USHRT_MAX, // useCurrentView
+#endif // SVG_DOM
+	USHRT_MAX, // useMap
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // userAccountBalance
+#endif // DOM_JIL_API_SUPPORT
+	USHRT_MAX, // userAgent
+#ifdef WEBFEEDS_BACKEND_SUPPORT
+	USHRT_MAX, // userDefinedTitle
+#endif // WEBFEEDS_BACKEND_SUPPORT
+	USHRT_MAX, // userLanguage
+#ifdef WEBSERVER_SUPPORT
+	USHRT_MAX, // userName
+#endif // WEBSERVER_SUPPORT
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // userSubscriptionType
+#endif // DOM_JIL_API_SUPPORT
+	USHRT_MAX, // userZoom
+#ifdef OPERA_AUTH_SUPPORT
+	USHRT_MAX, // username
+#endif // OPERA_AUTH_SUPPORT
+#ifdef WEBSERVER_SUPPORT
+	USHRT_MAX, // users
+#endif // WEBSERVER_SUPPORT
+	USHRT_MAX, // vAlign
+	USHRT_MAX, // vLink
+	USHRT_MAX, // valid
+	USHRT_MAX, // validationMessage
+	USHRT_MAX, // validity
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // validityPeriodHours
+#endif // DOM_JIL_API_SUPPORT
+	USHRT_MAX, // value
+	USHRT_MAX, // valueAsDate
+	USHRT_MAX, // valueAsNumber
+#ifdef SVG_DOM
+	USHRT_MAX, // valueAsString
+	USHRT_MAX, // valueInSpecifiedUnits
+#endif // SVG_DOM
+	USHRT_MAX, // valueMissing
+	USHRT_MAX, // valueType
+#ifdef SVG_DOM
+	Markup::SVGA_VALUES, // values
+	Markup::SVGA_VECTOR_EFFECT, // vectorEffect
+#endif // SVG_DOM
+	USHRT_MAX, // version
+	USHRT_MAX, // verticalAlign
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // vibrationSetting
+#endif // DOM_JIL_API_SUPPORT
+#ifdef MEDIA_HTML_SUPPORT
+	USHRT_MAX, // videoHeight
+	USHRT_MAX, // videoWidth
+#endif // MEDIA_HTML_SUPPORT
+	USHRT_MAX, // view
+#ifdef SVG_DOM
+	Markup::SVGA_VIEWBOX, // viewBox
+	USHRT_MAX, // viewport
+	USHRT_MAX, // viewportElement
+	USHRT_MAX, // viewportFill
+	USHRT_MAX, // viewportFillOpacity
+#endif // SVG_DOM
+	USHRT_MAX, // visibility
+	USHRT_MAX, // visibilityState
+#if defined GADGET_SUPPORT && defined WEBSERVER_SUPPORT
+	USHRT_MAX, // visibleToLocalNetwork
+	USHRT_MAX, // visibleToSearchEngines
+	USHRT_MAX, // visibleToServiceDiscovery
+#endif // GADGET_SUPPORT && WEBSERVER_SUPPORT
+	USHRT_MAX, // vlinkColor
+	USHRT_MAX, // volume
+	USHRT_MAX, // vspace
+#ifdef WEBSOCKETS_SUPPORT
+	USHRT_MAX, // wasClean
+#endif // WEBSOCKETS_SUPPORT
+#ifdef DOM2_TRAVERSAL
+	USHRT_MAX, // whatToShow
+#endif // DOM2_TRAVERSAL
+	USHRT_MAX, // wheelDelta
+	USHRT_MAX, // wheelDeltaX
+	USHRT_MAX, // wheelDeltaY
+	USHRT_MAX, // which
+	USHRT_MAX, // whiteSpace
+	USHRT_MAX, // wholeText
+	USHRT_MAX, // widgetMode
+#ifdef GADGET_SUPPORT
+	USHRT_MAX, // widgets
+#endif // GADGET_SUPPORT
+	USHRT_MAX, // widows
+	Markup::SVGA_WIDTH, // width
+	USHRT_MAX, // willValidate
+	USHRT_MAX, // window
+#ifdef EXTENSION_SUPPORT
+	USHRT_MAX, // windows
+#endif // EXTENSION_SUPPORT
+#ifdef CORS_SUPPORT
+	USHRT_MAX, // withCredentials
+#endif // CORS_SUPPORT
+	USHRT_MAX, // wordSpacing
+	USHRT_MAX, // wordWrap
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // workPhone
+#endif // DOM_JIL_API_SUPPORT
+	USHRT_MAX, // wrap
+#ifdef SVG_DOM
+	Markup::SVGA_WRITING_MODE, // writingMode
+#endif // SVG_DOM
+	Markup::SVGA_X, // x
+#ifdef SVG_DOM
+	Markup::SVGA_X1, // x1
+	Markup::SVGA_X2, // x2
+#endif // SVG_DOM
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // xAxis
+#endif // DOM_JIL_API_SUPPORT
+#ifdef SVG_DOM
+	Markup::SVGA_XCHANNELSELECTOR, // xChannelSelector
+	USHRT_MAX, // xmlbase
+	USHRT_MAX, // xmlspace
+#endif // SVG_DOM
+	Markup::SVGA_Y, // y
+#ifdef SVG_DOM
+	Markup::SVGA_Y1, // y1
+	Markup::SVGA_Y2, // y2
+#endif // SVG_DOM
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // yAxis
+#endif // DOM_JIL_API_SUPPORT
+#ifdef SVG_DOM
+	Markup::SVGA_YCHANNELSELECTOR, // yChannelSelector
+	Markup::SVGA_Z, // z
+#endif // SVG_DOM
+#ifdef DOM_JIL_API_SUPPORT
+	USHRT_MAX, // zAxis
+#endif // DOM_JIL_API_SUPPORT
+	USHRT_MAX, // zIndex
+	USHRT_MAX, // zoom
+#ifdef SVG_DOM
+	USHRT_MAX // zoomAndPan
+#endif // SVG_DOM
+};
+
+#endif // SVG_DOM

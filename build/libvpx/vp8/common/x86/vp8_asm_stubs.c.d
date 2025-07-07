@@ -1,0 +1,12 @@
+vp8/common/x86/vp8_asm_stubs.c.o vp8/common/x86/vp8_asm_stubs.c.d: \
+ /home/baka/Build/browser/platforms/media_backends/libvpx/vp8/common/x86/vp8_asm_stubs.c \
+ /usr/include/stdc-predef.h vpx_config.h vpx_rtcd.h \
+ /home/baka/Build/browser/platforms/media_backends/libvpx/vpx_ports/mem.h \
+ /home/baka/Build/browser/platforms/media_backends/libvpx/vpx/vpx_integer.h \
+ /usr/lib/gcc/x86_64-redhat-linux/6.3.1/include/stddef.h \
+ /usr/lib/gcc/x86_64-redhat-linux/6.3.1/include/stdint.h \
+ /usr/include/stdint.h /usr/include/features.h /usr/include/sys/cdefs.h \
+ /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
+ /usr/include/gnu/stubs-64.h /usr/include/bits/wchar.h \
+ /usr/include/inttypes.h \
+ /home/baka/Build/browser/platforms/media_backends/libvpx/vp8/common/x86/filter_x86.h
