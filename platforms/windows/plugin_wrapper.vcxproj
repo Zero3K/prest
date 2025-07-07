@@ -47,7 +47,7 @@
     
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>plugin_wrapper</RootNamespace>
-    
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props"/>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -235,7 +235,7 @@
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\build\src;..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -266,7 +266,7 @@
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\build\src;..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -300,7 +300,7 @@
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\build\src;..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -340,7 +340,7 @@
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\build\src;..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -379,7 +379,7 @@
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\build\src;..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -419,7 +419,7 @@
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\build\src;..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -458,7 +458,7 @@
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\build\src;..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -498,7 +498,7 @@
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\build\src;..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -537,7 +537,7 @@
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\build\src;..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -577,7 +577,7 @@
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\build\src;..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
