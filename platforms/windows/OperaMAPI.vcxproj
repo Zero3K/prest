@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -7,14 +7,6 @@
     </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
-      <Platform>x64</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Debug no selftests|Win32">
-      <Configuration>Debug no selftests</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Debug no selftests|x64">
-      <Configuration>Debug no selftests</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Instrumented|Win32">
@@ -52,179 +44,566 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9B0416C9-6BB2-4ACB-B5CE-2968B01D0F5F}</ProjectGuid>
+    
     <Keyword>Win32Proj</Keyword>
+    <RootNamespace>OperaMAPI_32</RootNamespace>
     <RootNamespace>OperaMAPI</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props"/>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <TargetName>OperaMAPI</TargetName>
+    
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug no selftests|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug no selftests|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <TargetName>OperaMAPI</TargetName>
+    
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <TargetName>OperaMAPI</TargetName>
+    
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='PGO|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
-    <WholeProgramOptimization>PGOptimize</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='PGO|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
-    <WholeProgramOptimization>PGOptimize</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Instrumented|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
-    <WholeProgramOptimization>PGInstrument</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Instrumented|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
-    <WholeProgramOptimization>PGInstrument</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <TargetName>OperaMAPI</TargetName>
+    
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='vTune|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <TargetName>OperaMAPI</TargetName>
+    
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='vTune|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <TargetName>OperaMAPI</TargetName>
+    
   </PropertyGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <ImportGroup Label="ExtensionSettings">
-  </ImportGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='PGO|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <TargetName>OperaMAPI</TargetName>
+    
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='PGO|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <TargetName>OperaMAPI</TargetName>
+    
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Instrumented|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <TargetName>OperaMAPI</TargetName>
+    
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Instrumented|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <TargetName>OperaMAPI</TargetName>
+    
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props"/>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform"/>
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform"/>
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform"/>
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform"/>
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='vTune|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform"/>
   </ImportGroup>
-  <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='vTune|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform"/>
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='PGO|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform"/>
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='PGO|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform"/>
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Instrumented|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform"/>
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Instrumented|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform"/>
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros"/>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\VS_Output\$(Configuration)\</OutDir>
+    <IntDir>$(OutDir)temp\$(ProjectName)\</IntDir>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\VS_Output\$(Configuration)\</OutDir>
+    <IntDir>$(OutDir)temp\$(ProjectName)\</IntDir>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\VS_Output\$(Configuration)\</OutDir>
+    <IntDir>$(OutDir)temp\$(ProjectName)\</IntDir>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\VS_Output\$(Configuration)\</OutDir>
+    <IntDir>$(OutDir)temp\$(ProjectName)\</IntDir>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='vTune|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\VS_Output\$(Configuration)\</OutDir>
+    <IntDir>$(OutDir)temp\$(ProjectName)\</IntDir>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='vTune|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\VS_Output\$(Configuration)\</OutDir>
+    <IntDir>$(OutDir)temp\$(ProjectName)\</IntDir>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='PGO|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\VS_Output\$(Configuration)\</OutDir>
+    <IntDir>$(OutDir)temp\$(ProjectName)\</IntDir>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='PGO|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\VS_Output\$(Configuration)\</OutDir>
+    <IntDir>$(OutDir)temp\$(ProjectName)\</IntDir>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Instrumented|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\VS_Output\$(Configuration)\</OutDir>
+    <IntDir>$(OutDir)temp\$(ProjectName)\</IntDir>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Instrumented|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\VS_Output\$(Configuration)\</OutDir>
+    <IntDir>$(OutDir)temp\$(ProjectName)\</IntDir>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;OPERAMAPI_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>OPERA_MAPI;MSWIN;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS;WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>noencodepointer.obj;version.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <LargeAddressAware>true</LargeAddressAware>
+      <ModuleDefinitionFile>$(ProjectDir)mapi\OperaMapi.def</ModuleDefinitionFile>
     </Link>
+    <CustomBuildStep>
+      <Command>copy /Y "$(TargetPath)" "$(SolutionDir)..\..\$(Configuration)\mapi\$(TargetName)$(TargetExt)"</Command>
+      <Message>Copies OperaMapi.dll over to the same place BuildResources does. Allows testing minor code changes after building this project only.</Message>
+      <Outputs>$(SolutionDir)..\..\$(Configuration)\mapi\$(TargetName)$(TargetExt)</Outputs>
+      <Inputs>$(TargetPath)</Inputs>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;OPERAMAPI_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>OPERA_MAPI;MSWIN;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS;WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>version.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <LargeAddressAware>true</LargeAddressAware>
+      <ModuleDefinitionFile>$(ProjectDir)mapi\OperaMapi.def</ModuleDefinitionFile>
     </Link>
+    <CustomBuildStep>
+      <Command>copy /Y "$(TargetPath)" "$(SolutionDir)..\..\$(Configuration)\mapi\$(TargetName)$(TargetExt)"</Command>
+      <Message>Copies OperaMapi.dll over to the same place BuildResources does. Allows testing minor code changes after building this project only.</Message>
+      <Outputs>$(SolutionDir)..\..\$(Configuration)\mapi\$(TargetName)$(TargetExt)</Outputs>
+      <Inputs>$(TargetPath)</Inputs>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;OPERAMAPI_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>OPERA_MAPI;MSWIN;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <OmitFramePointers>true</OmitFramePointers>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>noencodepointer.obj;version.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBC.lib</IgnoreSpecificDefaultLibraries>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+      <LargeAddressAware>true</LargeAddressAware>
+      <ModuleDefinitionFile>$(ProjectDir)mapi\OperaMapi.def</ModuleDefinitionFile>
     </Link>
+    <CustomBuildStep>
+      <Command>copy /Y "$(TargetPath)" "$(SolutionDir)..\..\$(Configuration)\mapi\$(TargetName)$(TargetExt)"</Command>
+      <Message>Copies OperaMapi.dll over to the same place BuildResources does. Allows testing minor code changes after building this project only.</Message>
+      <Outputs>$(SolutionDir)..\..\$(Configuration)\mapi\$(TargetName)$(TargetExt)</Outputs>
+      <Inputs>$(TargetPath)</Inputs>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;OPERAMAPI_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>OPERA_MAPI;MSWIN;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <OmitFramePointers>true</OmitFramePointers>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>version.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBC.lib</IgnoreSpecificDefaultLibraries>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+      <LargeAddressAware>true</LargeAddressAware>
+      <ModuleDefinitionFile>$(ProjectDir)mapi\OperaMapi.def</ModuleDefinitionFile>
     </Link>
+    <CustomBuildStep>
+      <Command>copy /Y "$(TargetPath)" "$(SolutionDir)..\..\$(Configuration)\mapi\$(TargetName)$(TargetExt)"</Command>
+      <Message>Copies OperaMapi.dll over to the same place BuildResources does. Allows testing minor code changes after building this project only.</Message>
+      <Outputs>$(SolutionDir)..\..\$(Configuration)\mapi\$(TargetName)$(TargetExt)</Outputs>
+      <Inputs>$(TargetPath)</Inputs>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='vTune|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>OPERA_MAPI;MSWIN;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <OmitFramePointers>true</OmitFramePointers>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>noencodepointer.obj;version.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBC.lib</IgnoreSpecificDefaultLibraries>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+      <LargeAddressAware>true</LargeAddressAware>
+      <ModuleDefinitionFile>$(ProjectDir)mapi\OperaMapi.def</ModuleDefinitionFile>
+    </Link>
+    <CustomBuildStep>
+      <Command>copy /Y "$(TargetPath)" "$(SolutionDir)..\..\$(Configuration)\mapi\$(TargetName)$(TargetExt)"</Command>
+      <Message>Copies OperaMapi.dll over to the same place BuildResources does. Allows testing minor code changes after building this project only.</Message>
+      <Outputs>$(SolutionDir)..\..\$(Configuration)\mapi\$(TargetName)$(TargetExt)</Outputs>
+      <Inputs>$(TargetPath)</Inputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='vTune|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>OPERA_MAPI;MSWIN;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <OmitFramePointers>true</OmitFramePointers>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>version.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBC.lib</IgnoreSpecificDefaultLibraries>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+      <LargeAddressAware>true</LargeAddressAware>
+      <ModuleDefinitionFile>$(ProjectDir)mapi\OperaMapi.def</ModuleDefinitionFile>
+    </Link>
+    <CustomBuildStep>
+      <Command>copy /Y "$(TargetPath)" "$(SolutionDir)..\..\$(Configuration)\mapi\$(TargetName)$(TargetExt)"</Command>
+      <Message>Copies OperaMapi.dll over to the same place BuildResources does. Allows testing minor code changes after building this project only.</Message>
+      <Outputs>$(SolutionDir)..\..\$(Configuration)\mapi\$(TargetName)$(TargetExt)</Outputs>
+      <Inputs>$(TargetPath)</Inputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='PGO|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>OPERA_MAPI;MSWIN;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <OmitFramePointers>true</OmitFramePointers>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>noencodepointer.obj;version.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBC.lib</IgnoreSpecificDefaultLibraries>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+      <LargeAddressAware>true</LargeAddressAware>
+      <ModuleDefinitionFile>$(ProjectDir)mapi\OperaMapi.def</ModuleDefinitionFile>
+    </Link>
+    <CustomBuildStep>
+      <Command>copy /Y "$(TargetPath)" "$(SolutionDir)..\..\$(Configuration)\mapi\$(TargetName)$(TargetExt)"</Command>
+      <Message>Copies OperaMapi.dll over to the same place BuildResources does. Allows testing minor code changes after building this project only.</Message>
+      <Outputs>$(SolutionDir)..\..\$(Configuration)\mapi\$(TargetName)$(TargetExt)</Outputs>
+      <Inputs>$(TargetPath)</Inputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='PGO|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>OPERA_MAPI;MSWIN;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <OmitFramePointers>true</OmitFramePointers>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>version.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBC.lib</IgnoreSpecificDefaultLibraries>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+      <LargeAddressAware>true</LargeAddressAware>
+      <ModuleDefinitionFile>$(ProjectDir)mapi\OperaMapi.def</ModuleDefinitionFile>
+    </Link>
+    <CustomBuildStep>
+      <Command>copy /Y "$(TargetPath)" "$(SolutionDir)..\..\$(Configuration)\mapi\$(TargetName)$(TargetExt)"</Command>
+      <Message>Copies OperaMapi.dll over to the same place BuildResources does. Allows testing minor code changes after building this project only.</Message>
+      <Outputs>$(SolutionDir)..\..\$(Configuration)\mapi\$(TargetName)$(TargetExt)</Outputs>
+      <Inputs>$(TargetPath)</Inputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Instrumented|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>OPERA_MAPI;MSWIN;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <OmitFramePointers>true</OmitFramePointers>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>noencodepointer.obj;version.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBC.lib</IgnoreSpecificDefaultLibraries>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+      <LargeAddressAware>true</LargeAddressAware>
+      <ModuleDefinitionFile>$(ProjectDir)mapi\OperaMapi.def</ModuleDefinitionFile>
+    </Link>
+    <CustomBuildStep>
+      <Command>copy /Y "$(TargetPath)" "$(SolutionDir)..\..\$(Configuration)\mapi\$(TargetName)$(TargetExt)"</Command>
+      <Message>Copies OperaMapi.dll over to the same place BuildResources does. Allows testing minor code changes after building this project only.</Message>
+      <Outputs>$(SolutionDir)..\..\$(Configuration)\mapi\$(TargetName)$(TargetExt)</Outputs>
+      <Inputs>$(TargetPath)</Inputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Instrumented|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>OPERA_MAPI;MSWIN;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <OmitFramePointers>true</OmitFramePointers>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <PrecompiledHeaderFile>core/pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>..\..;..\..\modules\libopeay</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>version.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBC.lib</IgnoreSpecificDefaultLibraries>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+      <LargeAddressAware>true</LargeAddressAware>
+      <ModuleDefinitionFile>$(ProjectDir)mapi\OperaMapi.def</ModuleDefinitionFile>
+    </Link>
+    <CustomBuildStep>
+      <Command>copy /Y "$(TargetPath)" "$(SolutionDir)..\..\$(Configuration)\mapi\$(TargetName)$(TargetExt)"</Command>
+      <Message>Copies OperaMapi.dll over to the same place BuildResources does. Allows testing minor code changes after building this project only.</Message>
+      <Outputs>$(SolutionDir)..\..\$(Configuration)\mapi\$(TargetName)$(TargetExt)</Outputs>
+      <Inputs>$(TargetPath)</Inputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemGroup><ClCompile Include="..\..\\adjunct\m2\src\generated\g_message_m2_mapimessage.cpp"/><ClCompile Include="..\..\\adjunct\m2\src\generated\g_proto_descriptor_m2_mapimessage.cpp"/><ClCompile Include="..\..\\adjunct\m2\src\generated\g_proto_m2_mapimessage.cpp"/><ClCompile Include="..\..\\modules\debug\src\debug_printf.cpp"/><ClCompile Include="..\..\\modules\hardcore\component\OpChannel.cpp"/><ClCompile Include="..\..\\modules\hardcore\component\OpComponent.cpp"/><ClCompile Include="..\..\\modules\hardcore\component\OpComponentManager.cpp"/><ClCompile Include="..\..\\modules\hardcore\component\OpMessenger.cpp"/><ClCompile Include="..\..\\modules\hardcore\component\OpSyncMessenger.cpp"/><ClCompile Include="..\..\\modules\hardcore\component\OpTypedMessage.cpp"/><ClCompile Include="..\..\\modules\hardcore\component\TestComponent.cpp"/><ClCompile Include="..\..\\modules\hardcore\src\generated\OpTypedMessageBase.cpp"/><ClCompile Include="..\..\\modules\hardcore\src\generated\g_message_hardcore_legacy.cpp"/><ClCompile Include="..\..\\modules\hardcore\src\generated\g_message_hardcore_messages.cpp"/><ClCompile Include="..\..\\modules\hardcore\src\generated\g_proto_descriptor_hardcore_component.cpp"/><ClCompile Include="..\..\\modules\hardcore\src\generated\g_proto_descriptor_hardcore_legacy.cpp"/><ClCompile Include="..\..\\modules\hardcore\src\generated\g_proto_descriptor_hardcore_messages.cpp"/><ClCompile Include="..\..\\modules\hardcore\src\generated\g_proto_hardcore_component.cpp"/><ClCompile Include="..\..\\modules\hardcore\src\generated\g_proto_hardcore_legacy.cpp"/><ClCompile Include="..\..\\modules\hardcore\src\generated\g_proto_hardcore_messages.cpp"/><ClCompile Include="..\..\\modules\memory\src\memory_fundamentals.cpp"/><ClCompile Include="..\..\\modules\memory\src\memory_valgrind.cpp"/><ClCompile Include="..\..\\modules\ns4plugins\src\generated\g_message_ns4plugins_messages.cpp"/><ClCompile Include="..\..\\modules\ns4plugins\src\generated\g_proto_descriptor_ns4plugins_messages.cpp"/><ClCompile Include="..\..\\modules\ns4plugins\src\generated\g_proto_ns4plugins_messages.cpp"/><ClCompile Include="..\..\\modules\opdata\src\DebugViewFormatter.cpp"/><ClCompile Include="..\..\\modules\opdata\src\NeedleFinder.cpp"/><ClCompile Include="..\..\\modules\opdata\src\OpData.cpp"/><ClCompile Include="..\..\\modules\opdata\src\OpDataASCII.cpp"/><ClCompile Include="..\..\\modules\opdata\src\OpDataFragment.cpp"/><ClCompile Include="..\..\\modules\opdata\src\OpDataFragmentIterator.cpp"/><ClCompile Include="..\..\\modules\opdata\src\OpDataUTF8.cpp"/><ClCompile Include="..\..\\modules\opdata\src\SegmentCollector.cpp"/><ClCompile Include="..\..\\modules\opdata\src\UniString.cpp"/><ClCompile Include="..\..\\modules\opdata\src\UniStringUTF8.cpp"/><ClCompile Include="..\..\\modules\protobuf\src\generated\g_protobuf_descriptors.cpp"/><ClCompile Include="..\..\\modules\protobuf\src\protobuf.cpp"/><ClCompile Include="..\..\\modules\protobuf\src\protobuf_data.cpp"/><ClCompile Include="..\..\\modules\protobuf\src\protobuf_input.cpp"/><ClCompile Include="..\..\\modules\protobuf\src\protobuf_input_common.cpp"/><ClCompile Include="..\..\\modules\protobuf\src\protobuf_message.cpp"/><ClCompile Include="..\..\\modules\protobuf\src\protobuf_output.cpp"/><ClCompile Include="..\..\\modules\protobuf\src\protobuf_output_common.cpp"/><ClCompile Include="..\..\\modules\stdlib\src\stdlib_double_format.cpp"/><ClCompile Include="..\..\\modules\stdlib\src\stdlib_float.cpp"/><ClCompile Include="..\..\\modules\stdlib\src\stdlib_integer.cpp"/><ClCompile Include="..\..\\modules\stdlib\src\stdlib_math.cpp"/><ClCompile Include="..\..\\modules\stdlib\src\stdlib_memory.cpp"/><ClCompile Include="..\..\\modules\stdlib\src\stdlib_printf.cpp"/><ClCompile Include="..\..\\modules\stdlib\src\stdlib_string.cpp"/><ClCompile Include="..\..\\modules\stdlib\src\stdlib_unicode.cpp"/><ClCompile Include="..\..\\modules\stdlib\src\thirdparty_dtoa_dmg\stdlib_dtoa_dmg.cpp"/><ClCompile Include="..\..\\modules\stdlib\src\thirdparty_dtoa_floitsch\stdlib_dtoa_floitsch.cpp"/><ClCompile Include="..\..\\modules\stdlib\src\thirdparty_printf\uni_printf.cpp"/><ClCompile Include="..\..\\modules\stdlib\src\thirdparty_printf\uni_scanf.cpp"/><ClCompile Include="..\..\\modules\stdlib\util\opbitvector.cpp"/><ClCompile Include="..\..\\modules\unicode\unicode_case.cpp"/><ClCompile Include="..\..\\modules\unicode\unicode_properties.cpp"/><ClCompile Include="..\..\\modules\unicode\unicode_stringiterator.cpp"/><ClCompile Include="..\..\\modules\unicode\utf32.cpp"/><ClCompile Include="..\..\\modules\unicode\utf8.cpp"/><ClCompile Include="..\..\\modules\util\OpHashTable.cpp"/><ClCompile Include="..\..\\modules\util\adt\bytebuffer.cpp"/><ClCompile Include="..\..\\modules\util\adt\opvector.cpp"/><ClCompile Include="..\..\\modules\util\excepts.cpp"/><ClCompile Include="..\..\\modules\util\hash.cpp"/><ClCompile Include="..\..\\modules\util\opstring.cpp"/><ClCompile Include="..\..\\modules\util\simset.cpp"/><ClCompile Include="..\..\\modules\util\tempbuf.cpp"/><ClCompile Include="..\..\\modules\windowcommander\src\generated\g_message_windowcommander_messages.cpp"/><ClCompile Include="..\..\\modules\windowcommander\src\generated\g_proto_descriptor_windowcommander_messages.cpp"/><ClCompile Include="..\..\\modules\windowcommander\src\generated\g_proto_windowcommander_messages.cpp"/><ClCompile Include="..\..\\platforms\crashlog\src\crashlog_freebsd32.cpp"/><ClCompile Include="..\..\\platforms\crashlog\src\crashlog_freebsd64.cpp"/><ClCompile Include="..\..\\platforms\crashlog\src\crashlog_linux32.cpp"/><ClCompile Include="..\..\\platforms\crashlog\src\crashlog_linux64.cpp"/><ClCompile Include="..\..\\platforms\crashlog\src\crashlog_windows.cpp"/><ClCompile Include="..\..\\platforms\windows\IPC\SharedMemory.cpp"/><ClCompile Include="..\..\\platforms\windows\IPC\SharedPluginBitmap.cpp"/><ClCompile Include="..\..\\platforms\windows\IPC\WindowsOpComponentPlatform.cpp"/><ClCompile Include="..\..\\platforms\windows\WindowsDebug.cpp"/><ClCompile Include="..\..\\platforms\windows\WindowsTLS.cpp"/><ClCompile Include="..\..\\platforms\windows\WindowsTimer.cpp"/><ClCompile Include="..\..\\platforms\windows\mapi\OperaMapiImpl.cpp"/><ClCompile Include="..\..\\platforms\windows\mapi\OperaMapiUtils.cpp"/><ClCompile Include="..\..\\platforms\windows\pi\WindowsOpThreadTools.cpp"/><ClCompile Include="..\..\\platforms\windows\pi\WindowsOpTimeInfo.cpp"/><ClCompile Include="..\..\\platforms\windows\system.cpp"/><ClCompile Include="..\..\\platforms\windows\utils\OperaProcessesList.cpp"/><ClCompile Include="..\..\\platforms\windows\utils\proc_loader_windows.cpp"/><ClCompile Include="..\..\\platforms\windows\utils\shared.cpp"/><ClCompile Include="..\..\\platforms\windows\windows_ui\registry.cpp"/><ClCompile Include="..\..\\platforms\windows_common\src\generated\g_message_windows_common_messages.cpp"/><ClCompile Include="..\..\\platforms\windows_common\src\generated\g_proto_descriptor_windows_common_messages.cpp"/><ClCompile Include="..\..\\platforms\windows_common\src\generated\g_proto_windows_common_messages.cpp"/><ClCompile Include="..\..\\platforms\windows_common\utils\fileinfo.cpp"/><ClCompile Include="..\..\\platforms\windows_common\utils\hookapi.cpp"/><ClCompile Include="..\..\\platforms\windows_common\utils\proc_loader.cpp"/></ItemGroup>
   <ItemGroup>
-    <ClInclude Include="mapi\OperaMAPI.h" />
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Instrumented|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='PGO|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='vTune|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Instrumented|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='PGO|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='vTune|x64'">Create</PrecompiledHeader>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="mapi\OperaMAPI.cpp" />
+    <ProjectReference Include="OperaProjectFile.vcxproj">
+      <Project>{f28c9556-828d-40a7-b3e2-d87cb53e5c8d}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="operasetup.vcxproj">
+      <Project>{6f9c4580-4f25-4e99-a0da-1f56b995ff99}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
   </ItemGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-  </ImportGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets"/>
 </Project>
