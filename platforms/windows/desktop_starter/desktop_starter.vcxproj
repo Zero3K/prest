@@ -605,6 +605,7 @@
     <ClCompile Include="..\..\..\adjunct\autoupdate\updater\auupdater.cpp" />
     <ClCompile Include="..\..\..\adjunct\desktop_util\version\operaversion.cpp" />
     <ClCompile Include="..\..\..\adjunct\quick\managers\LaunchManager.cpp" />
+    <ClCompile Include="..\..\..\build\src\core\opera_functions.cpp" />
     <ClCompile Include="..\..\crashlog\src\crashlog_windows.cpp" />
     <ClCompile Include="..\..\windows_common\utils\proc_loader.cpp" />
     <ClCompile Include="..\pch.cpp">

@@ -109,6 +109,7 @@ public:
         ERR=-1,
         ERR_NO_MEMORY=-2,
         ERR_NOT_SUPPORTED=-3,
+        ERR_NULL_POINTER=-4,
         ERR_FILE_NOT_FOUND=-7,
         USER_ERROR=-4000
     };
@@ -124,9 +125,43 @@ public:
 # define UNI_L(x)  (const uni_char*)x
 #endif
 
-// Common string functions
+// Opera-specific functions
+size_t op_strlen(const char* str);
 size_t uni_strlen(const uni_char* str);
 int uni_strcmp(const uni_char* str1, const uni_char* str2);
 uni_char* uni_strcpy(uni_char* dest, const uni_char* src);
+uni_char* uni_strcat(uni_char* dest, const uni_char* src);
+uni_char* uni_strncpy(uni_char* dest, const uni_char* src, size_t n);
+const uni_char* uni_strrchr(const uni_char* str, uni_char c);
+
+// For operaversion.cpp compatibility
+#define u_strlen(s) uni_strlen(s)
+#define u_strcpy(d, s) uni_strcpy(d, s)
+#define u_strcat(d, s) uni_strcat(d, s)
+OP_STATUS u_uint32_to_str(uni_char* buffer, size_t size, UINT32 value);
+
+// op_swap template function
+template <typename T>
+inline void op_swap(T& x, T& y)
+{
+    T tmp(x);
+    x = y;
+    y = tmp;
+}
+
+// Error handling macros
+#define RETURN_VALUE_IF_ERROR(expr, val) \
+    do { \
+        OP_STATUS RETURN_IF_ERROR_TMP = expr; \
+        if (OpStatus::IsError(RETURN_IF_ERROR_TMP)) \
+            return val; \
+    } while (0)
+
+#define RETURN_IF_ERROR(expr) \
+    do { \
+        OP_STATUS RETURN_IF_ERROR_TMP = expr; \
+        if (OpStatus::IsError(RETURN_IF_ERROR_TMP)) \
+            return RETURN_IF_ERROR_TMP; \
+    } while (0)
 
 #endif // CORE_PCH_H

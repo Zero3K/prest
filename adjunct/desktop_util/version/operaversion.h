@@ -11,6 +11,10 @@
 #ifndef _OPERAVERSION_H_INCLUDED_
 #define _OPERAVERSION_H_INCLUDED_
 
+// Include version information
+#include "modules/hardcore/opera_version.h"
+#include "adjunct/quick/quick-version.h"
+
 // Include build number stuff here so it saves craziness in the selftest includes
 #if defined(MSWIN)
 # include "platforms/windows/windows_ui/res/#buildnr.rci"

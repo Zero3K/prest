@@ -371,6 +371,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\platforms\crashlog\src\crashlog.cpp" />
+    <ClCompile Include="..\..\build\src\core\opera_functions.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
