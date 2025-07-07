@@ -7,9 +7,10 @@
 /IDL/*.c
 /*.sdf
 /*.opensdf
-/Opera.vcxproj
+# Project files (VS2019 versions are kept in repository for compatibility)
+# /Opera.vcxproj
 /Opera.vcxproj.filters
-/plugin_wrapper*.vcxproj
+# /plugin_wrapper*.vcxproj
 /plugin_wrapper*.vcxproj.filters
 /*.sln.docstates
 /Client/emBrowserContainer___Win32_Debug_Unicode_DLL/
@@ -24,5 +25,5 @@
 /desktop_starter/debug_log.txt
 /desktop_starter/test_apc.txt
 /desktop_starter/desktop_starter.vcxproj.user
-/OperaMAPI*.vcxproj
+# /OperaMAPI*.vcxproj
 /OperaMAPI*.vcxproj.filters
