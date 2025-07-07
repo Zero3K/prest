@@ -11,6 +11,9 @@
 #ifndef GPU_INFO_H
 #define GPU_INFO_H
 
+// Forward declarations
+class VEGA3dDevice;
+
 struct GpuInfo
 {
 	static const unsigned int MAX_INFO_LENGTH = 4096; // Max length in bytes.

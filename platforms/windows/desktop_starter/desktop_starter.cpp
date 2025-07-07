@@ -520,9 +520,10 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 #endif
 
 
-#ifdef WIDGET_RUNTIME_SUPPORT
 	uni_char exe_path[MAX_PATH];
 	uni_char dll_path[MAX_PATH];
+
+#ifdef WIDGET_RUNTIME_SUPPORT
 	if (!InitOperaPaths(exe_path, dll_path))
 	{
 		MessageBoxA(NULL, "Failed to start application.", "Opera Error",
@@ -638,6 +639,9 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 		WinFileUtils::PreLoadDll(dll_path, 0);
 	HINSTANCE operaLibrary = LoadLibrary(dll_path);
 #else
+	// Initialize paths for non-WIDGET_RUNTIME_SUPPORT case
+	GetModuleFileName(0, exe_path, MAX_PATH);
+	uni_strcpy(dll_path, UNI_L("Opera.dll"));
 	HINSTANCE operaLibrary = LoadLibraryA("Opera.dll");
 #endif // WIDGET_RUNTIME_SUPPORT
 

@@ -39,6 +39,23 @@ typedef wchar_t uni_char;
 typedef unsigned short uni_char;
 #endif
 
+// Opera version constants (for compatibility)
+#ifndef VER_NUM_MAJOR
+#define VER_NUM_MAJOR 12
+#endif
+#ifndef VER_NUM_MINOR
+#define VER_NUM_MINOR 18
+#endif
+#ifndef VER_NUM_STR
+#define VER_NUM_STR "12.18"
+#endif
+#ifndef VER_BUILD_NUMBER
+#define VER_BUILD_NUMBER 2480
+#endif
+#ifndef VER_BUILD_NUMBER_STR
+#define VER_BUILD_NUMBER_STR "2480"
+#endif
+
 typedef int OP_STATUS;
 typedef int OP_BOOLEAN;
 typedef int BOOL;
@@ -139,6 +156,16 @@ const uni_char* uni_strrchr(const uni_char* str, uni_char c);
 #define u_strcpy(d, s) uni_strcpy(d, s)
 #define u_strcat(d, s) uni_strcat(d, s)
 OP_STATUS u_uint32_to_str(uni_char* buffer, size_t size, UINT32 value);
+
+// Missing op_* functions
+size_t op_strlen(const char* str);
+char* op_strcpy(char* dest, const char* src);
+void* op_memcpy(void* dest, const void* src, size_t n);
+
+// ARRAY_SIZE macro
+#ifndef ARRAY_SIZE
+#define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]))
+#endif
 
 // op_swap template function
 template <typename T>
