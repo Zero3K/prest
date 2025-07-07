@@ -56,7 +56,7 @@
     </Midl>
     <Midl>
       <GenerateTypeLibrary>false</GenerateTypeLibrary>
-      <AdditionalIncludeDirectories>$(ProjectDir)IDL\IAccessible2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\build\src;$(ProjectDir)IDL\IAccessible2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>

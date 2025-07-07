@@ -139,7 +139,16 @@ public:
 #ifdef _WIN32
 # define UNI_L(x)  L ## x
 #else
-# define UNI_L(x)  (const uni_char*)x
+// For non-Windows, create a simple string literal conversion
+inline const uni_char* _make_uni_string(const char* str) {
+    static uni_char buf[1024];
+    for (int i = 0; i < 1023 && str[i]; i++) {
+        buf[i] = (uni_char)str[i];
+    }
+    buf[1023] = 0;
+    return buf;
+}
+# define UNI_L(x)  _make_uni_string(x)
 #endif
 
 // Opera-specific functions

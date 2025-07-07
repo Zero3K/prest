@@ -134,12 +134,7 @@ OP_STATUS u_uint32_to_str(uni_char* buffer, size_t size, UINT32 value)
     return OpStatus::OK;
 }
 
-// op_* function implementations
-size_t op_strlen(const char* str)
-{
-    return str ? strlen(str) : 0;
-}
-
+// op_* function implementations for compatibility
 char* op_strcpy(char* dest, const char* src)
 {
     return strcpy(dest, src);
