@@ -1,0 +1,307 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+const path = require('path');
+const { execSync } = require('child_process');
+
+class OperaSetup {
+    constructor() {
+        this.sourceRoot = path.resolve(__dirname, '..', '..');
+        this.outputRoot = process.cwd();
+        this.quiet = false;
+        this.defines = new Map();
+        this.includes = [];
+        this.mainlineConfiguration = 'current';
+        this.platformProductConfig = '';
+        this.generatePch = false;
+    }
+
+    log(message) {
+        if (!this.quiet) {
+            console.log(message);
+        }
+    }
+
+    error(message) {
+        console.error(`error: ${message}`);
+        process.exit(1);
+    }
+
+    warning(message) {
+        console.warn(`warning: ${message}`);
+    }
+
+    addDefine(define) {
+        const [key, value = '1'] = define.split('=');
+        this.defines.set(key, value);
+    }
+
+    addInclude(includePath) {
+        this.includes.push(includePath);
+    }
+
+    async findModules() {
+        const modulesDir = path.join(this.sourceRoot, 'modules');
+        const modules = [];
+        
+        try {
+            const entries = await fs.promises.readdir(modulesDir, { withFileTypes: true });
+            
+            for (const entry of entries) {
+                if (entry.isDirectory()) {
+                    const moduleDir = path.join(modulesDir, entry.name);
+                    const moduleAbout = path.join(moduleDir, 'module.about');
+                    
+                    if (fs.existsSync(moduleAbout)) {
+                        modules.push({
+                            name: entry.name,
+                            path: moduleDir,
+                            fullPath: () => moduleDir
+                        });
+                    }
+                }
+            }
+        } catch (error) {
+            this.warning(`Could not read modules directory: ${error.message}`);
+        }
+        
+        return modules;
+    }
+
+    async generateDefines() {
+        this.log("Generating defines...");
+        
+        const definesContent = Array.from(this.defines.entries())
+            .map(([key, value]) => `#define ${key} ${value}`)
+            .join('\n');
+            
+        const definesHeader = `
+/* -*- Mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4; c-file-style: "stroustrup" -*-
+ *
+ * Copyright (C) Opera Software ASA  2002 - 2011
+ *
+ * Automatically generated defines
+ *
+ * @author build/scripts/operasetup.js
+ */
+
+#ifndef OPERA_DEFINES_H
+#define OPERA_DEFINES_H
+
+${definesContent}
+
+#endif // OPERA_DEFINES_H
+`;
+
+        const definesPath = path.join(this.outputRoot, 'modules', 'hardcore', 'opera_defines.h');
+        await fs.promises.mkdir(path.dirname(definesPath), { recursive: true });
+        await fs.promises.writeFile(definesPath, definesHeader);
+        
+        this.log(`Generated ${definesPath}`);
+    }
+
+    async generateVersion() {
+        this.log("Generating version information...");
+        
+        const versionContent = `
+/* -*- Mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4; c-file-style: "stroustrup" -*-
+ *
+ * Copyright (C) Opera Software ASA  2002 - 2011
+ *
+ * Automatically generated version information
+ *
+ * @author build/scripts/operasetup.js
+ */
+
+#ifndef OPERA_VERSION_H
+#define OPERA_VERSION_H
+
+#define VER_BUILD_NUMBER 2480
+#define VER_BUILD_NUMBER_STR "2480"
+
+#endif // OPERA_VERSION_H
+`;
+
+        const versionPath = path.join(this.outputRoot, 'modules', 'hardcore', 'opera_version.h');
+        await fs.promises.mkdir(path.dirname(versionPath), { recursive: true });
+        await fs.promises.writeFile(versionPath, versionContent);
+        
+        this.log(`Generated ${versionPath}`);
+    }
+
+    async generateFeatures() {
+        this.log("Generating features...");
+        
+        // Basic feature definitions
+        const featuresContent = `
+/* -*- Mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4; c-file-style: "stroustrup" -*-
+ *
+ * Copyright (C) Opera Software ASA  2002 - 2011
+ *
+ * Automatically generated feature definitions
+ *
+ * @author build/scripts/operasetup.js
+ */
+
+#ifndef OPERA_FEATURES_H
+#define OPERA_FEATURES_H
+
+// Basic features always enabled
+#define FEATURE_OPERA_CONSOLE
+#define FEATURE_SELFTEST
+
+// Platform-specific features
+#ifdef _MACINTOSH_
+#define FEATURE_MAC_PLATFORM
+#endif
+
+#ifdef _WINDOWS_
+#define FEATURE_WINDOWS_PLATFORM
+#endif
+
+#ifdef _UNIX_
+#define FEATURE_UNIX_PLATFORM
+#endif
+
+#endif // OPERA_FEATURES_H
+`;
+
+        const featuresPath = path.join(this.outputRoot, 'modules', 'hardcore', 'features', 'features.h');
+        await fs.promises.mkdir(path.dirname(featuresPath), { recursive: true });
+        await fs.promises.writeFile(featuresPath, featuresContent);
+        
+        this.log(`Generated ${featuresPath}`);
+    }
+
+    async generatePCH() {
+        if (!this.generatePch) return;
+        
+        this.log("Generating precompiled header...");
+        
+        const pchContent = `
+/* -*- Mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4; c-file-style: "stroustrup" -*-
+ *
+ * Copyright (C) Opera Software ASA  2002 - 2011
+ *
+ * Precompiled header for Opera
+ *
+ * @author build/scripts/operasetup.js
+ */
+
+#ifndef OPERA_PCH_H
+#define OPERA_PCH_H
+
+// Standard includes
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Opera includes
+#include "modules/hardcore/opera_defines.h"
+#include "modules/hardcore/features/features.h"
+#include "modules/hardcore/opera_version.h"
+
+#endif // OPERA_PCH_H
+`;
+
+        const pchPath = path.join(this.outputRoot, 'modules', 'hardcore', 'opera_pch.h');
+        await fs.promises.writeFile(pchPath, pchContent);
+        
+        this.log(`Generated ${pchPath}`);
+    }
+
+    async generateStrings() {
+        this.log("Generating strings...");
+        
+        const stringContent = `
+/* -*- Mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4; c-file-style: "stroustrup" -*-
+ *
+ * Copyright (C) Opera Software ASA  2002 - 2011
+ *
+ * Automatically generated string definitions
+ *
+ * @author build/scripts/operasetup.js
+ */
+
+#ifndef OPERA_STRINGS_H
+#define OPERA_STRINGS_H
+
+// String IDs
+enum StringID {
+    STR_FIRST_STRING = 0,
+    STR_OPERA_PRODUCT_NAME,
+    STR_OPERA_VERSION,
+    STR_LAST_STRING
+};
+
+// String definitions
+const char* g_opera_strings[] = {
+    "Opera",
+    "12.15",
+    NULL
+};
+
+#endif // OPERA_STRINGS_H
+`;
+
+        const stringsPath = path.join(this.outputRoot, 'modules', 'locale', 'opera_strings.h');
+        await fs.promises.mkdir(path.dirname(stringsPath), { recursive: true });
+        await fs.promises.writeFile(stringsPath, stringContent);
+        
+        this.log(`Generated ${stringsPath}`);
+    }
+
+    parseArguments() {
+        const args = process.argv.slice(2);
+        
+        for (let i = 0; i < args.length; i++) {
+            const arg = args[i];
+            
+            if (arg.startsWith('-D')) {
+                this.addDefine(arg.substring(2));
+            } else if (arg.startsWith('-I')) {
+                this.addInclude(arg.substring(2));
+            } else if (arg === '--quiet') {
+                this.quiet = true;
+            } else if (arg === '--generate_pch') {
+                this.generatePch = true;
+            } else if (arg === '--mainline_configuration') {
+                i++;
+                if (i < args.length) {
+                    this.mainlineConfiguration = args[i];
+                }
+            } else if (arg === '--platform_product_config') {
+                i++;
+                if (i < args.length) {
+                    this.platformProductConfig = args[i];
+                }
+            }
+        }
+    }
+
+    async run() {
+        this.log("Starting Opera build setup...");
+        
+        this.parseArguments();
+        
+        // Generate all required files
+        await this.generateDefines();
+        await this.generateVersion();
+        await this.generateFeatures();
+        await this.generateStrings();
+        await this.generatePCH();
+        
+        this.log("Opera build setup completed successfully!");
+    }
+}
+
+// CLI usage
+if (require.main === module) {
+    const setup = new OperaSetup();
+    setup.run().catch(error => {
+        console.error('Opera setup failed:', error);
+        process.exit(1);
+    });
+}
+
+module.exports = OperaSetup;
