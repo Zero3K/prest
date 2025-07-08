@@ -10,25 +10,8 @@
 
 #ifdef _WIN32
 # define NOMINMAX
-# include <windows.h>
-# include <dwmapi.h>
-// Undefine some name clashes
-# undef Yield
-# undef NO_ERROR
-# undef REG_NONE
-// Include platform-specific system headers
+// Include platform-specific system headers first - this handles windows.h properly
 # include "platforms/windows/system.h"
-
-// Add missing type definitions for Windows compilation
-# ifndef MARGINS
-typedef struct _MARGINS {
-    int cxLeftWidth;
-    int cxRightWidth;
-    int cyTopHeight;
-    int cyBottomHeight;
-} MARGINS, *PMARGINS;
-# endif
-
 #endif
 
 #include <assert.h>
@@ -49,8 +32,19 @@ typedef struct _MARGINS {
 
 #ifdef _WIN32
 typedef wchar_t uni_char;
+# define UNI_L(x)  L ## x
 #else
 typedef unsigned short uni_char;
+// For non-Windows, create a simple string literal conversion
+inline const uni_char* _make_uni_string(const char* str) {
+    static uni_char buf[1024];
+    for (int i = 0; i < 1023 && str[i]; i++) {
+        buf[i] = (uni_char)str[i];
+    }
+    buf[1023] = 0;
+    return buf;
+}
+# define UNI_L(x)  _make_uni_string(x)
 #endif
 
 // Opera version constants (for compatibility)
@@ -92,12 +86,6 @@ typedef unsigned char UINT8;
 typedef int INT32;
 typedef short INT16;
 typedef char INT8;
-#else
-// On Windows, the types UINT32, INT32, etc. are already defined in windows.h
-// We don't need to redefine them, just include the necessary headers
-#include <basetsd.h>
-// Windows already defines UINT32, INT32, UINT16, INT16, UINT8, INT8
-// No need to redefine them
 #endif
 
 #ifdef _WIN64
@@ -196,10 +184,12 @@ const uni_char* uni_strrchr(const uni_char* str, uni_char c);
 #define u_strcat(d, s) uni_strcat(d, s)
 OP_STATUS u_uint32_to_str(uni_char* buffer, size_t size, UINT32 value);
 
-// Missing op_* functions
+// Opera-specific functions (only for non-Windows platforms)
+#ifndef _WIN32
 size_t op_strlen(const char* str);
 char* op_strcpy(char* dest, const char* src);
 void* op_memcpy(void* dest, const void* src, size_t n);
+#endif
 
 // ARRAY_SIZE macro
 #ifndef ARRAY_SIZE
