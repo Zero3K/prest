@@ -20,24 +20,50 @@ class TLSClient_PublicKey : public SSL_PublicKeyCipher
 {
 private:
     void* tls_key_ctx;
-    SSL_PublicKeyCipherType key_type;
+    SSL_BulkCipherType key_type;
     
 public:
-    TLSClient_PublicKey(SSL_PublicKeyCipherType type);
+    TLSClient_PublicKey(SSL_BulkCipherType type);
     virtual ~TLSClient_PublicKey();
     
     virtual BOOL Valid(SSL_Alert *msg=NULL) const;
-    virtual SSL_PublicKeyCipherType Type() const;
+    SSL_BulkCipherType Type() const;
     virtual uint32 KeyBitsLength() const;
-    virtual OP_STATUS SetPublicKey(const SSL_varvector32 &modulus, const SSL_varvector32 &exponent);
-    virtual OP_STATUS Encrypt(const SSL_varvector32 &source, SSL_varvector32 &target);
-    virtual OP_STATUS Decrypt(const SSL_varvector32 &source, SSL_varvector32 &target);
-    virtual OP_STATUS Sign(const SSL_varvector32 &source, SSL_varvector32 &target);
-    virtual OP_STATUS Verify(const SSL_varvector32 &source, const SSL_varvector32 &signature);
-    virtual SSL_PublicKeyCipher *Fork();
+    
+    // SSL_PublicKeyCipher interface implementation
+    virtual BOOL Verify(const byte *reference, uint32 len, const byte *signature, uint32 sig_len);
+    virtual byte *Sign(const byte *source, uint32 len, byte *target, uint32 &result_len, uint32 bufferlen);
+    
+#ifdef USE_SSL_ASN1_SIGNING
+    virtual byte *SignASN1(SSL_Hash *reference, byte *target, uint32 &result_len, uint32 bufferlen);
+    virtual byte *SignASN1(SSL_HashAlgorithmType alg, SSL_varvector32 &reference, byte *signature, uint32 &len, uint32 bufferlen);
+    virtual BOOL VerifyASN1(SSL_Hash *reference, const byte *signature, uint32 sig_len);
+#endif
+    
+    virtual void LoadPublicKey(uint16 id, const SSL_varvector16 &data);
+    virtual void LoadPrivateKey(uint16 id, const SSL_varvector16 &data);
+    virtual uint16 PublicSize(uint16 id) const;
+    virtual void UnLoadPublicKey(uint16 id, SSL_varvector16 &data);
+    virtual void UnLoadPrivateKey(uint16 id, SSL_varvector16 &data);
+    
+#ifdef SSL_PUBKEY_DETAILS
+    virtual uint16 PublicCount() const;
+    virtual uint16 GeneratedPublicCount() const;
+    virtual uint16 PrivateCount() const;
+    virtual uint16 GeneratedPrivateCount() const;
+    virtual uint16 PrivateSize(uint16 id) const;
+#endif
+
+#ifdef SSL_DH_SUPPORT
+    virtual void ProduceGeneratedPublicKeys();
+    virtual void ProduceGeneratedPrivateKeys();
+#endif
+
+    virtual SSL_PublicKeyCipher *Fork() const;
+    virtual void LoadAllKeys(SSL_varvector32 &key_data);
 };
 
-TLSClient_PublicKey::TLSClient_PublicKey(SSL_PublicKeyCipherType type)
+TLSClient_PublicKey::TLSClient_PublicKey(SSL_BulkCipherType type)
 {
     key_type = type;
     tls_key_ctx = NULL;
@@ -54,10 +80,10 @@ TLSClient_PublicKey::~TLSClient_PublicKey()
 
 BOOL TLSClient_PublicKey::Valid(SSL_Alert *msg) const
 {
-    return (key_type != SSL_RSA_Invalid && tls_key_ctx != NULL);
+    return (key_type != SSL_NoCipher && tls_key_ctx != NULL);
 }
 
-SSL_PublicKeyCipherType TLSClient_PublicKey::Type() const
+SSL_BulkCipherType TLSClient_PublicKey::Type() const
 {
     return key_type;
 }
@@ -68,39 +94,116 @@ uint32 TLSClient_PublicKey::KeyBitsLength() const
     return 2048; // Placeholder
 }
 
-OP_STATUS TLSClient_PublicKey::SetPublicKey(const SSL_varvector32 &modulus, const SSL_varvector32 &exponent)
-{
-    // Set public key using TLS client functions
-    return OpStatus::OK;
-}
-
-OP_STATUS TLSClient_PublicKey::Encrypt(const SSL_varvector32 &source, SSL_varvector32 &target)
-{
-    // TLS client encryption
-    return OpStatus::OK;
-}
-
-OP_STATUS TLSClient_PublicKey::Decrypt(const SSL_varvector32 &source, SSL_varvector32 &target)
-{
-    // TLS client decryption
-    return OpStatus::OK;
-}
-
-OP_STATUS TLSClient_PublicKey::Sign(const SSL_varvector32 &source, SSL_varvector32 &target)
-{
-    // TLS client signing
-    return OpStatus::OK;
-}
-
-OP_STATUS TLSClient_PublicKey::Verify(const SSL_varvector32 &source, const SSL_varvector32 &signature)
+BOOL TLSClient_PublicKey::Verify(const byte *reference, uint32 len, const byte *signature, uint32 sig_len)
 {
     // TLS client verification
-    return OpStatus::OK;
+    return TRUE; // Placeholder
 }
 
-SSL_PublicKeyCipher *TLSClient_PublicKey::Fork()
+byte *TLSClient_PublicKey::Sign(const byte *source, uint32 len, byte *target, uint32 &result_len, uint32 bufferlen)
+{
+    // TLS client signing
+    result_len = 0;
+    return target; // Placeholder
+}
+
+#ifdef USE_SSL_ASN1_SIGNING
+byte *TLSClient_PublicKey::SignASN1(SSL_Hash *reference, byte *target, uint32 &result_len, uint32 bufferlen)
+{
+    // TLS client ASN1 signing
+    result_len = 0;
+    return target; // Placeholder
+}
+
+byte *TLSClient_PublicKey::SignASN1(SSL_HashAlgorithmType alg, SSL_varvector32 &reference, byte *signature, uint32 &len, uint32 bufferlen)
+{
+    // TLS client ASN1 signing with algorithm
+    len = 0;
+    return signature; // Placeholder
+}
+
+BOOL TLSClient_PublicKey::VerifyASN1(SSL_Hash *reference, const byte *signature, uint32 sig_len)
+{
+    // TLS client ASN1 verification
+    return TRUE; // Placeholder
+}
+#endif
+
+void TLSClient_PublicKey::LoadPublicKey(uint16 id, const SSL_varvector16 &data)
+{
+    // Load public key using TLS client functions
+}
+
+void TLSClient_PublicKey::LoadPrivateKey(uint16 id, const SSL_varvector16 &data)
+{
+    // Load private key using TLS client functions
+}
+
+uint16 TLSClient_PublicKey::PublicSize(uint16 id) const
+{
+    // Return size of public key element
+    return 256; // Placeholder
+}
+
+void TLSClient_PublicKey::UnLoadPublicKey(uint16 id, SSL_varvector16 &data)
+{
+    // Extract public key element
+    data.Resize(0);
+}
+
+void TLSClient_PublicKey::UnLoadPrivateKey(uint16 id, SSL_varvector16 &data)
+{
+    // Extract private key element
+    data.Resize(0);
+}
+
+#ifdef SSL_PUBKEY_DETAILS
+uint16 TLSClient_PublicKey::PublicCount() const
+{
+    return 2; // RSA typically has 2 public elements: modulus and exponent
+}
+
+uint16 TLSClient_PublicKey::GeneratedPublicCount() const
+{
+    return 0;
+}
+
+uint16 TLSClient_PublicKey::PrivateCount() const
+{
+    return 1; // RSA typically has 1 main private element
+}
+
+uint16 TLSClient_PublicKey::GeneratedPrivateCount() const
+{
+    return 0;
+}
+
+uint16 TLSClient_PublicKey::PrivateSize(uint16 id) const
+{
+    return 256; // Placeholder
+}
+#endif
+
+#ifdef SSL_DH_SUPPORT
+void TLSClient_PublicKey::ProduceGeneratedPublicKeys()
+{
+    // Generate public keys for DH
+}
+
+void TLSClient_PublicKey::ProduceGeneratedPrivateKeys()
+{
+    // Generate private keys for DH
+}
+#endif
+
+SSL_PublicKeyCipher *TLSClient_PublicKey::Fork() const
 {
     return OP_NEW(TLSClient_PublicKey, (key_type));
+}
+
+void TLSClient_PublicKey::LoadAllKeys(SSL_varvector32 &key_data)
+{
+    // Load complete key from DER format
 }
 
 #endif // _NATIVE_SSL_SUPPORT_ && _SSL_USE_TLSCLIENT_

@@ -15,18 +15,19 @@
 
 #include "modules/libssl/sslcctx.h"
 #include "modules/libssl/keyex/certverify.h"
+#include "modules/libssl/certs/verifyinfo.h"
 
 // Placeholder certificate handling functions for TLSClient
 // These would be implemented using TLSClient's certificate verification
 
-OP_STATUS SSL_Certificate_Verification_TLSClient(SSL_Certificate_Verification_Base *item)
+OP_STATUS SSL_Certificate_Verification_TLSClient(SSL_CertificateVerification_Info *item)
 {
     if (!item)
         return OpStatus::ERR;
     
     // TLSClient certificate verification would go here
-    // For now, mark as success
-    item->SetCertificateStatus(SSL_Certificate_Verification_Base::Certificate_Verified);
+    // For now, mark as success - set status to no warning
+    item->status = SSL_CERT_NO_WARN;
     
     return OpStatus::OK;
 }
