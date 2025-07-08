@@ -11,10 +11,24 @@
 #ifdef _WIN32
 # define NOMINMAX
 # include <windows.h>
+# include <dwmapi.h>
 // Undefine some name clashes
 # undef Yield
 # undef NO_ERROR
 # undef REG_NONE
+// Include platform-specific system headers
+# include "platforms/windows/system.h"
+
+// Add missing type definitions for Windows compilation
+# ifndef MARGINS
+typedef struct _MARGINS {
+    int cxLeftWidth;
+    int cxRightWidth;
+    int cyTopHeight;
+    int cyBottomHeight;
+} MARGINS, *PMARGINS;
+# endif
+
 #endif
 
 #include <assert.h>

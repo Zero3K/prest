@@ -16,6 +16,9 @@
 //Used by DrawThemeTextEx and SetWindowThemeAttribute
 #include <Uxtheme.h>
 
+//Used by DWM functions
+#include <dwmapi.h>
+
 //Used by NtSetInformationProcess and NtQuery*
 #include "ntstatus.h"
 
