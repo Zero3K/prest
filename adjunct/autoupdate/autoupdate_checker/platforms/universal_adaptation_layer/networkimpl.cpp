@@ -163,10 +163,14 @@ CURLcode OAUCNetworkImpl::CURLManager::SslCtxFunction(CURL * curl, void * sslctx
 
 Status OAUCNetworkImpl::SendHTTPRequest(const char* url, bool https, const CertificateInfo* cert, Method method, const RequestData& data, ResponseObserver* observer)
 {
-#if !defined(_SSL_USE_OPENSSL_) || defined(NO_OPENSSL)
+#if defined(_SSL_USE_TLSCLIENT_)
+  // TLSClient doesn't support in-memory certificate loading like OpenSSL
   if (cert && cert->location == CERTIFICATE_MEMORY)
     return StatusCode::NOT_SUPPORTED;
-#endif // !_SSL_USE_OPENSSL_ || NO_OPENSSL
+#elif !defined(_SSL_USE_OPENSSL_) || defined(NO_OPENSSL)
+  if (cert && cert->location == CERTIFICATE_MEMORY)
+    return StatusCode::NOT_SUPPORTED;
+#endif // _SSL_USE_TLSCLIENT_ || !_SSL_USE_OPENSSL_ || NO_OPENSSL
 
   if (!data.data)
     return StatusCode::INVALID_PARAM;
