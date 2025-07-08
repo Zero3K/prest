@@ -21,7 +21,7 @@
 TLSClient_Hash_Base::TLSClient_Hash_Base(const SSL_Digest_and_NID *spec)
 {
     alg_spec = spec;
-    hash_type = spec ? spec->hash_alg : SSL_NoHash;
+    hash_type = spec ? spec->digest_type : SSL_NoHash;
     hash_finished = FALSE;
     tls_hash_ctx = NULL;
     
@@ -124,10 +124,10 @@ const byte *TLSClient_Hash_Base::CalculateHash(const byte *source, uint32 len)
     return ExtractHash();
 }
 
-const byte *TLSClient_Hash_Base::ExtractHash(byte *target)
+byte *TLSClient_Hash_Base::ExtractHash(byte *target)
 {
     if(hash_finished)
-        return (const byte*)hash_buffer.CStr();
+        return (byte*)hash_buffer.CStr();
     
     // Finalize hash using TLSClient
     hash_finished = TRUE;
@@ -138,7 +138,7 @@ const byte *TLSClient_Hash_Base::ExtractHash(byte *target)
         return target;
     }
     
-    return (const byte*)hash_buffer.CStr();
+    return (byte*)hash_buffer.CStr();
 }
 
 const byte *TLSClient_Hash_Base::LoadSecret(const byte *source, uint32 len)
@@ -179,7 +179,7 @@ OP_STATUS TLSClient_Hash_Base::PerformInitOperation(int operation, void *params)
 
 void TLSClient_Hash_Base::PerformStreamActionL(DataStream::DatastreamAction action, uint32 len)
 {
-    DataStream::PerformStreamActionL(action, len);
+    PerformActionL(action, len);
 }
 
 TLSClient_Hash::TLSClient_Hash(const SSL_Digest_and_NID *spec)

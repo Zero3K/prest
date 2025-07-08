@@ -14,7 +14,7 @@
 
 #if defined _NATIVE_SSL_SUPPORT_ && defined _SSL_USE_TLSCLIENT_
 
-struct SSL_Digest_and_NID;
+#include "modules/libssl/external/tlsclient/tlsclient_digest.h"
 
 #include "modules/libssl/methods/sslhash.h"
 #include "modules/tlsclient/tlsclient.h"
