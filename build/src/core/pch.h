@@ -58,7 +58,10 @@ typedef unsigned short uni_char;
 
 typedef int OP_STATUS;
 typedef int OP_BOOLEAN;
+
+#ifndef _WIN32
 typedef int BOOL;
+#endif
 
 #ifndef TRUE
 #  define TRUE 1
@@ -116,25 +119,38 @@ typedef unsigned int UINTPTR;
 #define OP_ASSERT(expr) ((void)0)
 #endif
 
-class OpStatus
-{
-public:
+// OpStatus constants for compatibility
+#ifndef OP_STATUS_OK
+#define OP_STATUS_OK 0
+#define OP_STATUS_ERR -1
+#define OP_STATUS_ERR_NO_MEMORY -2
+#define OP_STATUS_ERR_NOT_SUPPORTED -3
+#define OP_STATUS_ERR_NULL_POINTER -4
+#define OP_STATUS_ERR_FILE_NOT_FOUND -7
+#define OP_STATUS_USER_ERROR -4000
+#define OP_STATUS_IS_FALSE 1
+#define OP_STATUS_IS_TRUE 2
+#endif
+
+// Simple OpStatus namespace for compatibility
+namespace OpStatus {
     enum {
-        IS_TRUE=2,
-        IS_FALSE=1,
-        OK=0,
-        ERR=-1,
-        ERR_NO_MEMORY=-2,
-        ERR_NOT_SUPPORTED=-3,
-        ERR_NULL_POINTER=-4,
-        ERR_FILE_NOT_FOUND=-7,
-        USER_ERROR=-4000
+        IS_TRUE = OP_STATUS_IS_TRUE,
+        IS_FALSE = OP_STATUS_IS_FALSE,
+        OK = OP_STATUS_OK,
+        ERR = OP_STATUS_ERR,
+        ERR_NO_MEMORY = OP_STATUS_ERR_NO_MEMORY,
+        ERR_NOT_SUPPORTED = OP_STATUS_ERR_NOT_SUPPORTED,
+        ERR_NULL_POINTER = OP_STATUS_ERR_NULL_POINTER,
+        ERR_FILE_NOT_FOUND = OP_STATUS_ERR_FILE_NOT_FOUND,
+        USER_ERROR = OP_STATUS_USER_ERROR
     };
-    static void Ignore(int e) {}
-    static BOOL IsError(int e) { return e < 0; }
-    static BOOL IsSuccess(int e) { return e >= 0; }
-    static BOOL IsMemoryError(int e) { return e == ERR_NO_MEMORY; }
-};
+    
+    inline void Ignore(int e) {}
+    inline int IsError(int e) { return e < 0; }
+    inline int IsSuccess(int e) { return e >= 0; }
+    inline int IsMemoryError(int e) { return e == ERR_NO_MEMORY; }
+}
 
 #ifdef _WIN32
 # define UNI_L(x)  L ## x

@@ -5,6 +5,11 @@
  * Implementation of Opera-specific functions for the build system.
  */
 
+#ifdef _WIN32
+// Suppress deprecation warnings for unsafe functions in this file
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+
 #include "core/pch.h"
 #include <stdio.h>
 #include <string.h>

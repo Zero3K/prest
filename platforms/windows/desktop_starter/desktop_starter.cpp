@@ -522,6 +522,9 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 
 	uni_char exe_path[MAX_PATH];
 	uni_char dll_path[MAX_PATH];
+	
+	// Initialize exe_path to ensure it's always available
+	GetModuleFileName(0, exe_path, MAX_PATH);
 
 #ifdef WIDGET_RUNTIME_SUPPORT
 	if (!InitOperaPaths(exe_path, dll_path))
