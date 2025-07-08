@@ -46,6 +46,7 @@
     <ClCompile Include="autoupdatechecker.cpp" />
     <ClCompile Include="platforms\universal_adaptation_layer\networkimpl.cpp" />
     <ClCompile Include="platforms\universal_adaptation_layer\protocolimpl.cpp" />
+    <ClCompile Include="platforms\universal_adaptation_layer\network\curl\lib\curl_stub.c" />
     <ClCompile Include="platforms\windows\globalstorageimpl.cpp" />
     <ClCompile Include="platforms\windows\ipcimpl.cpp" />
     <ClCompile Include="platforms\windows\main_win.cpp" />
