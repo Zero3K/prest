@@ -15,7 +15,7 @@
 
 #include "modules/libssl/external/tlsclient/tlsclient_cipher.h"
 #include "modules/libssl/ssl_api.h"
-#include "modules/libssl/methods/sslnullcrypt.h"
+#include "modules/libssl/methods/sslnull.h"
 #include "modules/libssl/base/sslenum.h"
 
 TLSClient_GeneralCipher::TLSClient_GeneralCipher(SSL_BulkCipherType type)
