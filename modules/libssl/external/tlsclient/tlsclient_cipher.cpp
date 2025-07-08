@@ -16,7 +16,7 @@
 #include "modules/libssl/external/tlsclient/tlsclient_cipher.h"
 #include "modules/libssl/base/sslenum.h"
 
-TLSClient_GeneralCipher::TLSClient_GeneralCipher(SSL_CipherType type)
+TLSClient_GeneralCipher::TLSClient_GeneralCipher(SSL_BulkCipherType type)
 {
     cipher_type = type;
     tls_cipher_ctx = NULL;
@@ -89,14 +89,15 @@ uint32 TLSClient_GeneralCipher::InputBlockSize() const
 {
     switch(cipher_type)
     {
-        case SSL_AES_128:
-        case SSL_AES_192:
-        case SSL_AES_256:
+        case SSL_AES_128_CBC:
+        case SSL_AES_128_CFB:
+        case SSL_AES_256_CBC:
+        case SSL_AES_256_CFB:
+        case SSL_AES_192_CFB:
+        case SSL_AES:
             return 16;
-        case SSL_ChaCha20:
-            return 1; // Stream cipher
         default:
-            return 1;
+            return 1; // Stream cipher or unknown
     }
 }
 

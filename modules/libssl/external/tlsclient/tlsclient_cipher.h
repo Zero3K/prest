@@ -21,10 +21,10 @@ class TLSClient_GeneralCipher : public SSL_GeneralCipher
 {
 private:
     void* tls_cipher_ctx;
-    SSL_CipherType cipher_type;
+    SSL_BulkCipherType cipher_type;
     
 public:
-    TLSClient_GeneralCipher(SSL_CipherType type);
+    TLSClient_GeneralCipher(SSL_BulkCipherType type);
     virtual ~TLSClient_GeneralCipher();
     
     virtual BOOL Valid(SSL_Alert *msg=NULL) const;

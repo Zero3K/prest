@@ -334,10 +334,7 @@ SSL_Hash *TLSClient_Hash_Simple::Fork() const
     return OP_NEW(TLSClient_Hash_Simple, (this));
 }
 
-void TLSClient_Hash_Simple::PerformStreamActionL(DataStream::DatastreamAction action, uint32 len)
-{
-    DataStream::PerformStreamActionL(action, len);
-}
+
 
 #ifdef EXTERNAL_DIGEST_API
 OP_STATUS TLSClient_Hash_Simple::PerformInitOperation(int operation, void *params)
