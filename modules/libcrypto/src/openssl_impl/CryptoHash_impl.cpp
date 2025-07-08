@@ -18,7 +18,8 @@
 #include "modules/libcrypto/src/openssl_impl/openssl_util.h"
 #include "modules/util/cleanse.h"
 
-#if defined(CRYPTO_API_SUPPORT) && defined(_SSL_USE_OPENSSL_)
+// Only compile this file if OpenSSL is enabled AND TLSClient is NOT enabled
+#if defined(CRYPTO_API_SUPPORT) && defined(_SSL_USE_OPENSSL_) && !defined(_SSL_USE_TLSCLIENT_)
 
 /* static */ CryptoHash* CryptoHash::Create(CryptoHashAlgorithm algorithm)
 {

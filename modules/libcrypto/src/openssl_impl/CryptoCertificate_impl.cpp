@@ -12,7 +12,8 @@
 
 #include "core/pch.h"
 
-#if defined(CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION) && defined(_SSL_USE_OPENSSL_)
+// Only compile this file if OpenSSL is enabled AND TLSClient is NOT enabled
+#if defined(CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION) && defined(_SSL_USE_OPENSSL_) && !defined(_SSL_USE_TLSCLIENT_)
 
 #include "modules/libcrypto/src/openssl_impl/CryptoCertificate_impl.h"
 

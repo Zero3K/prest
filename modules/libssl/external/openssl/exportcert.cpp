@@ -11,7 +11,8 @@
 
 #include "core/pch.h"
 
-#if defined(_NATIVE_SSL_SUPPORT_) && defined(_SSL_USE_OPENSSL_)
+// Only compile this file if OpenSSL is enabled AND TLSClient is NOT enabled
+#if defined(_NATIVE_SSL_SUPPORT_) && defined(_SSL_USE_OPENSSL_) && !defined(_SSL_USE_TLSCLIENT_)
 #if defined USE_SSL_CERTINSTALLER
 
 

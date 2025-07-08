@@ -13,7 +13,8 @@
 
 #if defined(_NATIVE_SSL_SUPPORT_)
 
-#ifdef _SSL_USE_OPENSSL_
+// Only compile this file if OpenSSL is enabled AND TLSClient is NOT enabled
+#if defined(_SSL_USE_OPENSSL_) && !defined(_SSL_USE_TLSCLIENT_)
 
 #include "modules/libssl/sslbase.h"
 #include "modules/libssl/options/sslopt.h"
