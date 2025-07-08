@@ -27,6 +27,7 @@
 #include <stdarg.h>
 #include <string.h>
 #include <wchar.h>  // For wcslen, wcscpy, wcsrchr, etc.
+#include <setjmp.h>  // For jmp_buf (used by excepts.h)
 #include <new>  // For std::nothrow
 
 #if defined(__APPLE__) || defined(UNIX)
@@ -85,24 +86,8 @@ typedef int BOOL;
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
 #endif
 
-// Define other needed macros early
-#ifndef ANCHORD
-#define ANCHORD(type, var) type var
-#endif
-#ifndef LEAVE_IF_ERROR
-#define LEAVE_IF_ERROR(expr) do { OP_STATUS __status = (expr); if (OpStatus::IsError(__status)) throw __status; } while(0)
-#endif
-#ifndef RETURN_IF_ERROR
-#define RETURN_IF_ERROR(expr) \
-    do { \
-        OP_STATUS RETURN_IF_ERROR_TMP = expr; \
-        if (OpStatus::IsError(RETURN_IF_ERROR_TMP)) \
-            return RETURN_IF_ERROR_TMP; \
-    } while(0)
-#endif
-#ifndef RETURN_OOM_IF_NULL
-#define RETURN_OOM_IF_NULL(ptr) do { if (!(ptr)) return OpStatus::ERR_NO_MEMORY; } while(0)
-#endif
+
+
 #ifndef OP_NEWA
 #define OP_NEWA(obj, count) new (std::nothrow) obj[count]
 #endif
@@ -161,6 +146,9 @@ public:
     static inline int IsSuccess(OP_STATUS e) { return e >= 0; }
     static inline int IsMemoryError(OP_STATUS e) { return e == ERR_NO_MEMORY; }
 };
+
+// Include Opera exception handling macros (after OpStatus definition)
+#include "modules/util/excepts.h"
 
 // Basic string functions
 inline size_t op_strlen(const char* str) { 
@@ -295,7 +283,6 @@ inline OP_STATUS UniSetStr(uni_char*& dest, const uni_char* src) {
 #include "modules/opdata/OpData.h"
 #include "modules/opdata/UniString.h"
 #include "modules/util/opstring.h"
-#include "modules/logdoc/src/html5/standalone/modules/util/opautoptr.h"
 #include "modules/util/adt/opvector.h"
 #include "modules/util/OpHashTable.h"
 
