@@ -20,38 +20,17 @@
 #include "modules/libssl/methods/sslnull.h"
 #include "modules/libssl/methods/sslmd5sha.h"
 
-// Simplified TLSClient digest spec structure
-struct TLSClient_Digest_Spec {
-	SSL_HashAlgorithmType digest_type;
-	SSL_HashAlgorithmType hmac_digest_type;
-	BOOL hmac;
-	const char* name;
-};
+// TLSClient-specific functions implementation
+// Using the SSL_Digest_and_NID structure from tlsclient_digest.h
 
-// TLSClient digest map
-static const TLSClient_Digest_Spec g_TLSClient_Digest_map[] = {
-	{SSL_MD5, SSL_HMAC_MD5, FALSE, "MD5"},
-	{SSL_SHA, SSL_HMAC_SHA, FALSE, "SHA1"},
-	{SSL_SHA_224, SSL_HMAC_SHA_224, FALSE, "SHA224"},
-	{SSL_SHA_256, SSL_HMAC_SHA_256, FALSE, "SHA256"},
-	{SSL_SHA_384, SSL_HMAC_SHA_384, FALSE, "SHA384"},
-	{SSL_SHA_512, SSL_HMAC_SHA_512, FALSE, "SHA512"},
-	{SSL_HMAC_MD5, SSL_HMAC_MD5, TRUE, "HMAC-MD5"},
-	{SSL_HMAC_SHA, SSL_HMAC_SHA, TRUE, "HMAC-SHA1"},
-	{SSL_HMAC_SHA_224, SSL_HMAC_SHA_224, TRUE, "HMAC-SHA224"},
-	{SSL_HMAC_SHA_256, SSL_HMAC_SHA_256, TRUE, "HMAC-SHA256"},
-	{SSL_HMAC_SHA_384, SSL_HMAC_SHA_384, TRUE, "HMAC-SHA384"},
-	{SSL_HMAC_SHA_512, SSL_HMAC_SHA_512, TRUE, "HMAC-SHA512"},
-};
-
-static const TLSClient_Digest_Spec *GetSpecFromAlgorithm(SSL_HashAlgorithmType digest)
+static const SSL_Digest_and_NID *GetSpecFromAlgorithm(SSL_HashAlgorithmType digest)
 {
 	size_t i;
-	for(i = 0; i < ARRAY_SIZE(g_TLSClient_Digest_map); i++)
+	for(i = 0; i < CONST_ARRAY_SIZE(libssl, SSL_Digest_map); i++)
 	{
-		if(g_TLSClient_Digest_map[i].digest_type == digest)
+		if(g_SSL_Digest_map[i].digest_type == digest)
 		{
-			return &g_TLSClient_Digest_map[i];
+			return &g_SSL_Digest_map[i];
 		}
 	}
 	return NULL;

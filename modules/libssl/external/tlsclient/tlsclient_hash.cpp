@@ -201,10 +201,10 @@ SSL_Hash *TLSClient_Hash::Fork() const
     return OP_NEW(TLSClient_Hash, (this));
 }
 
-// Forward declaration - actual definition is in tlsclient_api.cpp
-struct TLSClient_Digest_Spec;
+// Forward declaration - actual definition is in tlsclient_digest.h
+struct SSL_Digest_and_NID;
 
-TLSClient_Hash_Simple::TLSClient_Hash_Simple(const TLSClient_Digest_Spec *spec)
+TLSClient_Hash_Simple::TLSClient_Hash_Simple(const SSL_Digest_and_NID *spec)
 {
     alg_spec = spec;
     hash_type = spec ? spec->digest_type : SSL_NoHash;

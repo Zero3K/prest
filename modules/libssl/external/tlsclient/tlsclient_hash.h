@@ -62,19 +62,19 @@ public:
 };
 
 // Simplified TLSClient digest spec structure
-struct TLSClient_Digest_Spec;
+struct SSL_Digest_and_NID;
 
 class TLSClient_Hash_Simple : public SSL_Hash
 {
 private:
-    const TLSClient_Digest_Spec *alg_spec;
+    const SSL_Digest_and_NID *alg_spec;
     SSL_HashAlgorithmType hash_type;
     OpString8 hash_buffer;
     BOOL hash_finished;
     void* tls_hash_ctx;
     
 public:
-    TLSClient_Hash_Simple(const TLSClient_Digest_Spec *spec);
+    TLSClient_Hash_Simple(const SSL_Digest_and_NID *spec);
     TLSClient_Hash_Simple(const TLSClient_Hash_Simple *old);
     virtual ~TLSClient_Hash_Simple();
     
