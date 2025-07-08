@@ -16,14 +16,14 @@
 #include "modules/libcrypto/include/OpRandomGenerator.h"
 #include "modules/libcrypto/include/PEMCertificateLoader.h"
 
-#if defined(CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION) && !defined(_SSL_USE_OPENSSL_)
+#if defined(CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION) && !defined(_SSL_USE_OPENSSL_) && !defined(_SSL_USE_TLSCLIENT_)
 #include "modules/formats/base64_decode.h"
 #include "modules/libopeay/openssl/cryptlib.h"
 #include "modules/libopeay/openssl/evp.h"
 #include "modules/libopeay/openssl/x509v3.h"
 #include "modules/libopeay/openssl/rsa.h"
 #include "modules/libcrypto/src/openssl_impl/openssl_util.h"
-#endif // CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION && !_SSL_USE_OPENSSL_
+#endif // CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION && !_SSL_USE_OPENSSL_ && !_SSL_USE_TLSCLIENT_
 
 
 LibcryptoModule::LibcryptoModule()
@@ -59,9 +59,9 @@ void LibcryptoModule::InitL(const OperaInitInfo& info)
 	LEAVE_IF_ERROR(CryptoExternalApiManager::InitCryptoLibrary());  // In case of external ssl, CryptoExternalApiManager::InitCryptoLibrary must be implemented by platform
 # endif
 
-# if defined(CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION) && !defined(_SSL_USE_OPENSSL_)
+# if defined(CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION) && !defined(_SSL_USE_OPENSSL_) && !defined(_SSL_USE_TLSCLIENT_)
 	InitOpenSSLLibrary();
-# endif // CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION && !_SSL_USE_OPENSSL_
+# endif // CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION && !_SSL_USE_OPENSSL_ && !_SSL_USE_TLSCLIENT_
 #endif // CRYPTO_API_SUPPORT
 
 #ifdef CRYPTO_MASTER_PASSWORD_SUPPORT
@@ -95,9 +95,9 @@ void LibcryptoModule::Destroy()
 
 #ifdef CRYPTO_API_SUPPORT	
 
-# if defined(CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION) && !defined(_SSL_USE_OPENSSL_)
+# if defined(CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION) && !defined(_SSL_USE_OPENSSL_) && !defined(_SSL_USE_TLSCLIENT_)
 	DestroyOpenSSLLibrary();
-# endif // CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION && !_SSL_USE_OPENSSL_
+# endif // CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION && !_SSL_USE_OPENSSL_ && !_SSL_USE_TLSCLIENT_
 
 # ifdef _EXTERNAL_SSL_SUPPORT_
 	CryptoExternalApiManager::DestroyCryptoLibrary(); // In case of external ssl, CryptoExternalApiManager::DestroyCryptoLibrary must be implemented by platform
