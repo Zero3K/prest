@@ -177,11 +177,6 @@ OP_STATUS TLSClient_Hash_Base::PerformInitOperation(int operation, void *params)
 }
 #endif
 
-void TLSClient_Hash_Base::PerformStreamActionL(DataStream::DatastreamAction action, uint32 len)
-{
-    PerformActionL(action, len);
-}
-
 TLSClient_Hash::TLSClient_Hash(const SSL_Digest_and_NID *spec)
 : TLSClient_Hash_Base(spec)
 {

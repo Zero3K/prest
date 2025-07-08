@@ -39,12 +39,11 @@ public:
     virtual const byte *LoadSecret(const byte *source, uint32 len);
     virtual byte *LoadDigest(byte *source);
     virtual SSL_Hash *Fork() const;
-    virtual void PerformStreamActionL(DataStream::DatastreamAction action, uint32 len=0);
 #ifdef EXTERNAL_DIGEST_API
     virtual OP_STATUS PerformInitOperation(int operation, void *params);
 #endif
     
-private:
+protected:
     OpString8 hash_buffer;
     BOOL hash_finished;
     
@@ -85,7 +84,6 @@ public:
     virtual byte *ExtractHash(byte *target=NULL);
     virtual const byte *LoadSecret(const byte *source, uint32 len);
     virtual SSL_Hash *Fork() const;
-    virtual void PerformStreamActionL(DataStream::DatastreamAction action, uint32 len=0);
 #ifdef EXTERNAL_DIGEST_API
     virtual OP_STATUS PerformInitOperation(int operation, void *params);
 #endif
