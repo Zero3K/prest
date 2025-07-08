@@ -17,8 +17,11 @@
 #include "modules/libssl/sslbase.h"
 #include "modules/libssl/options/sslopt.h"
 #include "modules/libssl/external/tlsclient/tlsclient_hash.h"
+#include "modules/libssl/external/tlsclient/tlsclient_digest.h"
 #include "modules/libssl/methods/sslnull.h"
 #include "modules/libssl/methods/sslmd5sha.h"
+#include "modules/libssl/libssl_module.h"
+#include "modules/url/tools/arrays.h"
 
 // TLSClient-specific functions implementation
 // Using the SSL_Digest_and_NID structure from tlsclient_digest.h
@@ -60,7 +63,7 @@ SSL_Hash *SSL_API::CreateMessageDigest(SSL_HashAlgorithmType digest, OP_STATUS &
 
 	default:
 		{
-			const TLSClient_Digest_Spec *alg_spec = GetSpecFromAlgorithm(digest);
+			const SSL_Digest_and_NID *alg_spec = GetSpecFromAlgorithm(digest);
 
 			if(alg_spec == NULL)
 			{
