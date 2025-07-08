@@ -13,7 +13,7 @@
 
 #if defined _NATIVE_SSL_SUPPORT_ && defined _SSL_USE_TLSCLIENT_
 
-#include "modules/libssl/base/sslcctx.h"
+#include "modules/libssl/sslcctx.h"
 #include "modules/libssl/keyex/certverify.h"
 
 // Placeholder certificate handling functions for TLSClient

@@ -33,9 +33,14 @@ public:
     virtual byte *Decrypt(const byte *source, uint32 len, byte *target, uint32 &len1, uint32 buf_len);
     virtual void InitEncrypt();
     virtual void InitDecrypt();
+    virtual byte *FinishEncrypt(byte *target, uint32 &len, uint32 buflen);
+    virtual byte *FinishDecrypt(byte *target, uint32 &len, uint32 buflen);
     virtual uint32 InputBlockSize() const;
     virtual uint32 OutputBlockSize() const;
     virtual void SetCipherDirection(SSL_CipherDirection dir);
+    virtual const byte *LoadKey(const byte *key);
+    virtual const byte *LoadIV(const byte *iv);
+    virtual void BytesToKey(SSL_HashAlgorithmType hash_alg, const SSL_varvector32 &string, const SSL_varvector32 &salt, int count);
     virtual SSL_Cipher *Fork();
 };
 

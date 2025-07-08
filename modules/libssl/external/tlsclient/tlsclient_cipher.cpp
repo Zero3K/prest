@@ -38,7 +38,15 @@ BOOL TLSClient_GeneralCipher::Valid(SSL_Alert *msg) const
 
 SSL_CipherType TLSClient_GeneralCipher::CipherType() const
 {
-    return cipher_type;
+    // Most modern ciphers are block ciphers, stream ciphers like RC4 are rare in TLS 1.2/1.3
+    switch(cipher_type)
+    {
+        case SSL_RC4:
+        case SSL_RC4_256:
+            return SSL_StreamCipher;
+        default:
+            return SSL_BlockCipher;
+    }
 }
 
 byte *TLSClient_GeneralCipher::Encrypt(const byte *source, uint32 len, byte *target, uint32 &len1, uint32 buf_len)
@@ -109,6 +117,61 @@ uint32 TLSClient_GeneralCipher::OutputBlockSize() const
 void TLSClient_GeneralCipher::SetCipherDirection(SSL_CipherDirection dir)
 {
     // Set encryption/decryption direction
+}
+
+byte *TLSClient_GeneralCipher::FinishEncrypt(byte *target, uint32 &len, uint32 buflen)
+{
+    if(target == NULL)
+    {
+        len = 0;
+        return NULL;
+    }
+    
+    // For block ciphers, may need to add padding
+    // For stream ciphers, typically no finish operation needed
+    len = 0; // No additional data produced
+    return target;
+}
+
+byte *TLSClient_GeneralCipher::FinishDecrypt(byte *target, uint32 &len, uint32 buflen)
+{
+    if(target == NULL)
+    {
+        len = 0;
+        return NULL;
+    }
+    
+    // For block ciphers, may need to handle padding removal
+    // For stream ciphers, typically no finish operation needed
+    len = 0; // No additional data produced
+    return target;
+}
+
+const byte *TLSClient_GeneralCipher::LoadKey(const byte *key)
+{
+    if(key == NULL)
+        return NULL;
+        
+    // Store the key for cipher initialization
+    // Return pointer to next byte after key
+    return key + KeySize();
+}
+
+const byte *TLSClient_GeneralCipher::LoadIV(const byte *iv)
+{
+    if(iv == NULL)
+        return NULL;
+        
+    // Store the IV for cipher initialization  
+    // Return pointer to next byte after IV
+    return iv + IVSize();
+}
+
+void TLSClient_GeneralCipher::BytesToKey(SSL_HashAlgorithmType hash_alg, const SSL_varvector32 &string, const SSL_varvector32 &salt, int count)
+{
+    // Implement key derivation similar to OpenSSL's EVP_BytesToKey
+    // This is used for password-based key derivation
+    // For now, placeholder implementation
 }
 
 SSL_Cipher *TLSClient_GeneralCipher::Fork()
