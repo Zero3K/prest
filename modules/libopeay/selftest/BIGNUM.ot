@@ -17,6 +17,7 @@
 
 group "libopeay.bignum";
 require CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION;
+require _SSL_USE_OPENSSL_;
 
 language c++;
 

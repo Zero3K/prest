@@ -1,5 +1,6 @@
 group "libopeay.digest";
 require _SSL_SUPPORT_;
+require _SSL_USE_OPENSSL_;
 language c++;
 
 include "modules/libopeay/openssl/cryptlib.h";
