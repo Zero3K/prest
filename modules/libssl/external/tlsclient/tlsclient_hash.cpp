@@ -15,7 +15,7 @@
 
 #include "modules/libssl/external/tlsclient/tlsclient_hash.h"
 #include "modules/libssl/base/sslenum.h"
-#include "modules/libssl/protocol/sslstat1.h"
+#include "modules/libssl/protocol/sslstat.h"
 #include "modules/libssl/libssl_module.h"
 
 TLSClient_Hash_Base::TLSClient_Hash_Base(const SSL_Digest_and_NID *spec)

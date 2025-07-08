@@ -117,7 +117,7 @@ void LibcryptoModule::Destroy()
 #endif // CRYPTO_API_SUPPORT	
 }
 
-#if defined(CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION) && !defined(_SSL_USE_OPENSSL_)
+#if defined(CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION) && !defined(_SSL_USE_OPENSSL_) && !defined(_SSL_USE_TLSCLIENT_)
 
 /* If _SSL_USE_OPENSSL_ is off and we want to use some openssl algorithms,
  * we need to initiate parts of openssl.
@@ -138,7 +138,7 @@ OP_STATUS LibcryptoModule::DestroyOpenSSLLibrary()
 
 	return OpStatus::OK;
 }
-#endif // CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION && !defined(_SSL_USE_OPENSSL_)
+#endif // CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION && !defined(_SSL_USE_OPENSSL_) && !defined(_SSL_USE_TLSCLIENT_)
 
 LibcryptoModule::~LibcryptoModule()
 {

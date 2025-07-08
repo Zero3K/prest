@@ -204,4 +204,4 @@ void CryptoHashSHA256::ExtractHash(UINT8 *result)
 	OP_ASSERT(ERR_peek_error() == 0);
 }
 
-#endif // defined(CRYPTO_API_SUPPORT) && defined(_SSL_USE_OPENSSL_)
+#endif // defined(CRYPTO_API_SUPPORT) && defined(_SSL_USE_OPENSSL_) && !defined(_SSL_USE_TLSCLIENT_)
