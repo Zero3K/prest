@@ -269,7 +269,6 @@ byte *SSLEAY_Hash::ExtractHash(byte *target)
 #endif
 	return target + md_spec->md_size;
 }
-#endif
 
 SSL_Hash *SSLEAY_Hash::Fork() const
 {
@@ -391,4 +390,5 @@ SSL_Hash *SSLEAY_HMAC_Hash::Fork() const
 
 	return temp;
 }
+#endif
 #endif
