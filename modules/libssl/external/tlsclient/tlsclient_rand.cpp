@@ -14,6 +14,7 @@
 #if defined _NATIVE_SSL_SUPPORT_ && defined _SSL_USE_TLSCLIENT_
 
 #include "modules/libssl/sslrand.h"
+#include "modules/libssl/ssluint.h"
 #include "modules/tlsclient/tlsclient.h"
 
 void SSL_RND_add(const void *data, int len, double entropy)
@@ -57,6 +58,35 @@ int SSL_RND_status()
 void SSL_RND_cleanup()
 {
     // TLSClient handles cleanup internally
+}
+
+// Additional SSL_RND functions required by Opera
+void SSL_RND(SSL_varvector32 &target, uint32 len)
+{
+    if(len > 0)
+        target.Resize(len);
+    SSL_RND(target.GetDirect(), target.GetLength());
+}
+
+void SSL_RND(byte *target, uint32 len)
+{
+    if(!target || len == 0)
+        return;
+        
+    // Use TLSClient random number generation
+    // For now, using system random (placeholder implementation)
+    for (uint32 i = 0; i < len; i++)
+    {
+        target[i] = (unsigned char)(rand() & 0xFF);
+    }
+}
+
+void SSL_SEED_RND(byte *source, uint32 len)
+{
+    // TLSClient handles seeding internally
+    // This is a no-op for TLSClient since it uses internal entropy sources
+    (void)source;
+    (void)len;
 }
 
 #endif // _NATIVE_SSL_SUPPORT_ && _SSL_USE_TLSCLIENT_
