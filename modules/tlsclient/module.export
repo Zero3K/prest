@@ -1,0 +1,20 @@
+API_TLSCLIENT
+
+	tls_create_context
+	tls_destroy_context
+	tls_connect
+	tls_accept
+	tls_write
+	tls_read
+	tls_shutdown
+	tls_get_error
+	tls_get_error_string
+	tls_set_certificate
+	tls_get_peer_certificate
+	tls_free_certificate
+	tls_set_cipher_list
+	tls_set_verify_mode
+
+	TLSContext		: struct
+	TLSCertificate	: struct
+	TLS_CIPHER		: enum

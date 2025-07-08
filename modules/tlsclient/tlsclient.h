@@ -158,8 +158,11 @@ typedef enum {
 struct TLSContext;
 struct TLSCertificate;
 
-// TLSClient API functions (will be implemented in tlsclient.cpp)
+// TLSClient API functions (will be implemented in tlsclient_wrapper.cpp)
+#ifdef __cplusplus
 extern "C" {
+#endif
+
     // Context management
     TLSContext* tls_create_context(int is_server);
     void tls_destroy_context(TLSContext* context);
@@ -187,6 +190,9 @@ extern "C" {
     // Configuration
     int tls_set_cipher_list(TLSContext* context, const char* cipher_list);
     int tls_set_verify_mode(TLSContext* context, int mode);
+
+#ifdef __cplusplus
 }
+#endif
 
 #endif // TLSCLIENT_H

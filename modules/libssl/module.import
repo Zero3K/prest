@@ -33,6 +33,12 @@ API_LIBOPEAY_OPENSSL_SUPPORT					yngve
 
 	Import if	: FEATURE_SSL, FEATURE_NATIVE_SSL, TWEAK_LIBSSL_USE_OPENSSL_CRYPTO
 
+API_TLSCLIENT		zero3k
+
+	When libssl is active it needs TLSClient API functions
+
+	Import if	: FEATURE_SSL, FEATURE_NATIVE_SSL, TWEAK_LIBSSL_USE_TLSCLIENT_CRYPTO
+
 API_LIBSSL_DH_SUPPORT							yngve
 
 	Use DH when DH/DSA is requested
