@@ -55,11 +55,11 @@ public:
     virtual uint32 KeyBitsLength(uint24) const { return 0; }
     virtual BOOL SelfSigned(uint24) const { return FALSE; }
     virtual SSL_ClientCertificateType CertificateType(uint24 item) const { return SSL_rsa_sign; }
-    virtual SSL_SignatureAlgorithm CertificateSignatureAlg(uint24 item) const { return SSL_SHA_RSA; }
-    virtual SSL_SignatureAlgorithm CertificateSigningKeyAlg(uint24 item) const { return SSL_SHA_RSA; }
-    virtual SSL_ExpirationType CheckIsExpired(uint24, time_t spec_date=0) { return SSL_CERT_GOOD; }
+    virtual SSL_SignatureAlgorithm CertificateSignatureAlg(uint24 item) const { return SSL_RSA_SHA; }
+    virtual SSL_SignatureAlgorithm CertificateSigningKeyAlg(uint24 item) const { return SSL_RSA_SHA; }
+    virtual SSL_ExpirationType CheckIsExpired(uint24, time_t spec_date=0) { return SSL_NotExpired; }
 #ifdef LIBSSL_AUTO_UPDATE_ROOTS
-    virtual SSL_ExpirationType CheckIsExpired(uint24, OpString8 &spec_date) { return SSL_CERT_GOOD; }
+    virtual SSL_ExpirationType CheckIsExpired(uint24, OpString8 &spec_date) { return SSL_NotExpired; }
 #endif
     virtual OP_STATUS GetIntermediateCA_Requests(uint24 index, OpString_list &ocsp_url_strings) { return OpStatus::ERR; }
     virtual OP_STATUS GetOCSP_Request(OpString_list &ocsp_url_strings, SSL_varvector32 &binary_request
