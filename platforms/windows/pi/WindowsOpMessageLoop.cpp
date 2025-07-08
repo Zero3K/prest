@@ -1003,6 +1003,7 @@ BOOL WindowsOpMessageLoop::TranslateOperaMessage(MSG *pMsg, BOOL &called_transla
 
 void WindowsOpMessageLoop::SSLSeedFromMessageLoop(const MSG *msg)
 {
+#if defined(_SSL_USE_OPENSSL_)
 	extern void SSL_Process_Feeder();
 
 	UINT message = msg->message;
@@ -1031,6 +1032,11 @@ void WindowsOpMessageLoop::SSLSeedFromMessageLoop(const MSG *msg)
 			SSL_RND_feeder_data[SSL_RND_feeder_pos++] = GetTickCount();
 		}
 	}
+#elif defined(_SSL_USE_TLSCLIENT_)
+	// TLSClient uses internal random number generation and doesn't require
+	// external entropy feeding like OpenSSL
+	// This function is a no-op for TLSClient
+#endif
 }
 
 /***********************************************************************************
