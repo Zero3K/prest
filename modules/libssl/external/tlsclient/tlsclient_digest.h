@@ -29,6 +29,9 @@ struct SSL_Digest_and_NID
 #define TLSCLIENT_MD_ENTRY(typ, hmac_typ, is_hmac, alg_name, display_name) \
     { typ, is_hmac, hmac_typ, 0, alg_name, display_name }
 
+// Function to find digest specification from algorithm type
+const SSL_Digest_and_NID *GetSpecFromAlgorithm(SSL_HashAlgorithmType digest);
+
 #endif // _NATIVE_SSL_SUPPORT_ && _SSL_USE_TLSCLIENT_
 
 #endif // !TLSCLIENT_DIGEST_H

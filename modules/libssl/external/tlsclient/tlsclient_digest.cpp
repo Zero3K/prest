@@ -13,7 +13,7 @@
 #include "modules/libssl/external/tlsclient/tlsclient_digest.h"
 #include "modules/url/tools/arrays.h"
 
-// TLSClient digest map - simplified compared to OpenSSL version
+// TLSClient digest map - matches OpenSSL structure for compatibility  
 PREFIX_CONST_ARRAY(static, SSL_Digest_and_NID, SSL_Digest_map, libssl)
     TLSCLIENT_MD_ENTRY(SSL_MD5,        SSL_HMAC_MD5, FALSE, "md5", "MD5"),
     TLSCLIENT_MD_ENTRY(SSL_SHA,        SSL_HMAC_SHA, FALSE, "sha1", "SHA-1"),
@@ -28,5 +28,19 @@ PREFIX_CONST_ARRAY(static, SSL_Digest_and_NID, SSL_Digest_map, libssl)
     TLSCLIENT_MD_ENTRY(SSL_HMAC_SHA_384, SSL_SHA_384, TRUE, "hmac-sha384", "HMAC-SHA-384"),
     TLSCLIENT_MD_ENTRY(SSL_HMAC_SHA_512, SSL_SHA_512, TRUE, "hmac-sha512", "HMAC-SHA-512"),
 CONST_END(SSL_Digest_map)
+
+// Function to find digest specification from algorithm type
+const SSL_Digest_and_NID *GetSpecFromAlgorithm(SSL_HashAlgorithmType digest)
+{
+	size_t i;
+	for(i = 0; i < CONST_ARRAY_SIZE(libssl, SSL_Digest_map); i++)
+	{
+		if(g_SSL_Digest_map[i].digest_type == digest)
+		{
+			return &g_SSL_Digest_map[i];
+		}
+	}
+	return NULL;
+}
 
 #endif // _NATIVE_SSL_SUPPORT_ && _SSL_USE_TLSCLIENT_

@@ -207,10 +207,8 @@ void LibsslModule::Destroy()
 	OP_DELETE(m_ssl_api);
 	m_ssl_api = NULL;
 
-#if defined(_SSL_USE_OPENSSL_)
 	OP_DELETE(m_cert_store);
 	m_cert_store = NULL;
-#endif
 
 #ifdef LIBSSL_ENABLE_SSL_FALSE_START
 	OP_DELETE(m_ssl_false_start_manager);

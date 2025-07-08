@@ -63,7 +63,6 @@ public:
 	BOOL m_browsing_certificates;
 	SSL_Revoke_List m_revoked_certificates;
 #if defined(_SSL_USE_OPENSSL_)
-	SSL_Cert_Store *m_cert_store;
 	BOOL  m_SSL_RND_Initialized;
 	DWORD *m_SSL_RND_feeder_data;
 #ifdef _SSL_SEED_FROMMESSAGE_LOOP_
@@ -79,6 +78,8 @@ public:
 	// TLSClient specific data structures can be added here
 	// For now, TLSClient doesn't require global state like OpenSSL
 #endif
+	// Common SSL members regardless of implementation
+	SSL_Cert_Store *m_cert_store;
 	DECLARE_MODULE_CONST_ARRAY(SSL_Cipher_and_NID, SSL_Cipher_map);
 	DECLARE_MODULE_CONST_ARRAY(SSL_Digest_and_NID, SSL_Digest_map);
 	DECLARE_MODULE_CONST_ARRAY(struct Cipher_spec, Cipher_ciphers);

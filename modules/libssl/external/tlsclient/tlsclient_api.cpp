@@ -26,19 +26,6 @@
 // TLSClient-specific functions implementation
 // Using the SSL_Digest_and_NID structure from tlsclient_digest.h
 
-static const SSL_Digest_and_NID *GetSpecFromAlgorithm(SSL_HashAlgorithmType digest)
-{
-	size_t i;
-	for(i = 0; i < CONST_ARRAY_SIZE(libssl, SSL_Digest_map); i++)
-	{
-		if(g_SSL_Digest_map[i].digest_type == digest)
-		{
-			return &g_SSL_Digest_map[i];
-		}
-	}
-	return NULL;
-}
-
 SSL_Hash *SSL_API::CreateMessageDigest(SSL_HashAlgorithmType digest, OP_STATUS &op_err)
 {
 	op_err = OpStatus::OK;
