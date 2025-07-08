@@ -176,7 +176,6 @@ public:
 #define g_ssl_oprand_buffer_pos g_opera->libssl_module.op_rand_buffer_pos
 #define g_ssl_oprand_last_refresh g_opera->libssl_module.rand_last_refresh
 #endif
-#endif
 #ifndef HAS_COMPLEX_GLOBALS
 # define g_SSL_Cipher_map	CONST_ARRAY_GLOBAL_NAME(libssl, SSL_Cipher_map)
 # define g_SSL_Digest_map	CONST_ARRAY_GLOBAL_NAME(libssl, SSL_Digest_map)
