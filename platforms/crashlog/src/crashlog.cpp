@@ -8,7 +8,7 @@
 #include "core/pch.h"
 
 #ifdef _WIN32
-#include "platforms/crashlog/src/crashlog_windows.cpp"
+#include "crashlog_windows.cpp"
 #elif defined(__linux__)
 #include "platforms/crashlog/src/crashlog_linux64.cpp"
 #elif defined(__APPLE__)

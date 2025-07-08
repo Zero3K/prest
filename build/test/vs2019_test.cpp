@@ -1,5 +1,5 @@
 // Test program to verify Visual Studio 2019 build setup
-#include "core/pch.h"
+#include "../src/core/pch.h"
 #include <iostream>
 
 int main() {

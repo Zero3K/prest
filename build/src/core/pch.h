@@ -10,6 +10,9 @@
 
 #ifdef _WIN32
 # define NOMINMAX
+# ifndef _CRT_SECURE_NO_WARNINGS
+#  define _CRT_SECURE_NO_WARNINGS
+# endif
 // Include platform-specific system headers first - this handles windows.h properly
 # include "platforms/windows/system.h"
 #endif
@@ -32,7 +35,7 @@
 
 #ifdef _WIN32
 typedef wchar_t uni_char;
-# define UNI_L(x)  L ## x
+
 #else
 typedef unsigned short uni_char;
 // For non-Windows, create a simple string literal conversion
@@ -44,7 +47,7 @@ inline const uni_char* _make_uni_string(const char* str) {
     buf[1023] = 0;
     return buf;
 }
-# define UNI_L(x)  _make_uni_string(x)
+
 #endif
 
 // Opera version constants (for compatibility)
@@ -96,8 +99,7 @@ typedef int INTPTR;
 typedef unsigned int UINTPTR;
 #endif
 
-#define MIN(a,b) ((a) < (b) ? (a) : (b))
-#define MAX(a,b) ((a) > (b) ? (a) : (b))
+
 
 #ifndef OP_DELETE
 #define OP_DELETE(ptr) delete ptr
@@ -154,20 +156,7 @@ namespace OpStatus {
     inline int IsMemoryError(int e) { return e == ERR_NO_MEMORY; }
 }
 
-#ifdef _WIN32
-# define UNI_L(x)  L ## x
-#else
-// For non-Windows, create a simple string literal conversion
-inline const uni_char* _make_uni_string(const char* str) {
-    static uni_char buf[1024];
-    for (int i = 0; i < 1023 && str[i]; i++) {
-        buf[i] = (uni_char)str[i];
-    }
-    buf[1023] = 0;
-    return buf;
-}
-# define UNI_L(x)  _make_uni_string(x)
-#endif
+
 
 // Opera-specific functions
 size_t op_strlen(const char* str);
@@ -182,7 +171,7 @@ const uni_char* uni_strrchr(const uni_char* str, uni_char c);
 #define u_strlen(s) uni_strlen(s)
 #define u_strcpy(d, s) uni_strcpy(d, s)
 #define u_strcat(d, s) uni_strcat(d, s)
-OP_STATUS u_uint32_to_str(uni_char* buffer, size_t size, UINT32 value);
+
 
 // Opera-specific functions (only for non-Windows platforms)
 #ifndef _WIN32

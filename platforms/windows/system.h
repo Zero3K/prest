@@ -601,9 +601,15 @@ typedef HANDLE OpSemaphoreId;
 # define op_force_inline __forceinline
 #endif // WIN_USE_STDLIB_64BIT
 
+#ifndef EXCEPTION_CONTINUE_EXECUTION
 #define EXCEPTION_CONTINUE_EXECUTION -1	/* Exception is dismissed. Continue execution at the point where the exception occurred. */
+#endif
+#ifndef EXCEPTION_CONTINUE_SEARCH
 #define EXCEPTION_CONTINUE_SEARCH 0		/* Exception is not recognized. Continue to search up the stack for a handler, first for containing try-except statements, then for handlers with the next highest precedence. */
+#endif
+#ifndef EXCEPTION_EXECUTE_HANDLER
 #define EXCEPTION_EXECUTE_HANDLER 1		/* Exception is recognized. Transfer control to the exception handler by executing the __except compound statement, then continue execution after the __except block. */
+#endif
 #define PLUGIN_TRY __try
 #define PLUGIN_CATCH __except(EXCEPTION_EXECUTE_HANDLER)
 #define PLUGIN_CATCH_CONDITIONAL(catch_if_true) __except(catch_if_true ? EXCEPTION_EXECUTE_HANDLER : EXCEPTION_CONTINUE_SEARCH)
