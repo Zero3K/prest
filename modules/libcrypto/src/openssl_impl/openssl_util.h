@@ -18,7 +18,7 @@
 #ifndef OPENSSL_UTIL_H
 #define OPENSSL_UTIL_H
 
-#ifdef LIBOPEAY_ENABLE_PARTLY_OPENSSL_SUPPORT
+#if defined(LIBOPEAY_ENABLE_PARTLY_OPENSSL_SUPPORT) && defined(_SSL_USE_OPENSSL_)
 
 #include "modules/libopeay/openssl/cryptlib.h"
 #include "modules/libopeay/openssl/err.h"
@@ -98,5 +98,5 @@ inline OP_STATUS openssl_error_if(bool error_condition)
 #define OPENSSL_VERIFY_OR_BREAK2(success_condition, opstatus_variable) \
 	OPENSSL_BREAK2_IF( !(success_condition), opstatus_variable )
 
-#endif // LIBOPEAY_ENABLE_PARTLY_OPENSSL_SUPPORT
+#endif // defined(LIBOPEAY_ENABLE_PARTLY_OPENSSL_SUPPORT) && defined(_SSL_USE_OPENSSL_)
 #endif // OPENSSL_UTIL_H

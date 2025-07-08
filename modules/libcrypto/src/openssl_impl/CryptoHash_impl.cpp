@@ -18,7 +18,7 @@
 #include "modules/libcrypto/src/openssl_impl/openssl_util.h"
 #include "modules/util/cleanse.h"
 
-#ifdef CRYPTO_API_SUPPORT
+#if defined(CRYPTO_API_SUPPORT) && defined(_SSL_USE_OPENSSL_)
 
 /* static */ CryptoHash* CryptoHash::Create(CryptoHashAlgorithm algorithm)
 {
@@ -203,4 +203,4 @@ void CryptoHashSHA256::ExtractHash(UINT8 *result)
 	OP_ASSERT(ERR_peek_error() == 0);
 }
 
-#endif // CRYPTO_HASH_SHA256_USE_CORE_IMPLEMENTATION
+#endif // defined(CRYPTO_API_SUPPORT) && defined(_SSL_USE_OPENSSL_)

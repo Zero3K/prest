@@ -17,7 +17,7 @@
 
 #include "core/pch.h"
 
-#if defined(CRYPTO_OCSP_SUPPORT) && defined(CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION)
+#if defined(CRYPTO_OCSP_SUPPORT) && defined(CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION) && defined(_SSL_USE_OPENSSL_)
 
 #include "modules/libcrypto/src/openssl_impl/OCSPRequestProducer_impl.h"
 
@@ -129,4 +129,4 @@ void OCSPRequestProducer_impl::ProcessL()
 	LEAVE_IF_ERROR(status);
 }
 
-#endif // defined(CRYPTO_OCSP_SUPPORT) && defined(CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION)
+#endif // defined(CRYPTO_OCSP_SUPPORT) && defined(CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION) && defined(_SSL_USE_OPENSSL_)

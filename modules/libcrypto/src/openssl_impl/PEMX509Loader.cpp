@@ -17,7 +17,7 @@
 
 #include "core/pch.h"
 
-#if defined(EXTERNAL_SSL_OPENSSL_IMPLEMENTATION) && defined(DIRECTORY_SEARCH_SUPPORT)
+#if defined(EXTERNAL_SSL_OPENSSL_IMPLEMENTATION) && defined(DIRECTORY_SEARCH_SUPPORT) && defined(_SSL_USE_OPENSSL_)
 
 #include "modules/libcrypto/src/openssl_impl/PEMX509Loader.h"
 #include "modules/libopeay/openssl/cryptlib.h"
@@ -57,4 +57,4 @@ inline void PEMX509Loader::ProcessPEMChunk(const char* pem_chunk, size_t pem_len
 		ERR_clear_error();
 }
 
-#endif // EXTERNAL_SSL_OPENSSL_IMPLEMENTATION && DIRECTORY_SEARCH_SUPPORT
+#endif // defined(EXTERNAL_SSL_OPENSSL_IMPLEMENTATION) && defined(DIRECTORY_SEARCH_SUPPORT) && defined(_SSL_USE_OPENSSL_)

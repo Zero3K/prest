@@ -13,7 +13,7 @@
 #ifndef CRYPTO_CERTIFICATE_CHAIN_IMPL_H_
 #define CRYPTO_CERTIFICATE_CHAIN_IMPL_H_
 
-#ifdef  CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION
+#if defined(CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION) && defined(_SSL_USE_OPENSSL_)
 
 #include "modules/libcrypto/include/CryptoCertificateChain.h"
 #include "modules/libopeay/openssl/cryptlib.h"
@@ -49,5 +49,5 @@ private:
 	X509_STORE_CTX *m_certificate_storage;
 };
 
-#endif // CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION
+#endif // defined(CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION) && defined(_SSL_USE_OPENSSL_)
 #endif /* CRYPTO_CERTIFICATE_CHAIN_IMPL_H_ */

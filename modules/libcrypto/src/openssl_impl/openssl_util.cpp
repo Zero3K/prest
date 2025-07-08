@@ -18,7 +18,7 @@
 
 #include "core/pch.h"
 
-#ifdef LIBOPEAY_ENABLE_PARTLY_OPENSSL_SUPPORT
+#if defined(LIBOPEAY_ENABLE_PARTLY_OPENSSL_SUPPORT) && defined(_SSL_USE_OPENSSL_)
 
 #include "modules/libcrypto/src/openssl_impl/openssl_util.h"
 
@@ -60,4 +60,4 @@ OP_STATUS openssl_success_if(bool success_condition)
 	return status;
 }
 
-#endif // LIBOPEAY_ENABLE_PARTLY_OPENSSL_SUPPORT
+#endif // defined(LIBOPEAY_ENABLE_PARTLY_OPENSSL_SUPPORT) && defined(_SSL_USE_OPENSSL_)

@@ -12,7 +12,7 @@
 
 #include "core/pch.h"
 
-#ifdef CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION
+#if defined(CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION) && defined(_SSL_USE_OPENSSL_)
 
 #include "modules/libcrypto/src/openssl_impl/CryptoCertificateStorage_impl.h"
 
@@ -112,4 +112,4 @@ OP_STATUS CryptoCertificateStorage_impl::AddOrDeleteCertificate(CryptoCertificat
 	return OpStatus::OK;
 }
 
-#endif // CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION
+#endif // CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION && defined(_SSL_USE_OPENSSL_)

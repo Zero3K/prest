@@ -12,7 +12,7 @@
 
 #include "core/pch.h"
 
-#ifdef CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION
+#if defined(CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION) && defined(_SSL_USE_OPENSSL_)
 
 #include "modules/libcrypto/src/openssl_impl/CryptoCertificateChain_impl.h"
 
@@ -339,4 +339,4 @@ OP_STATUS CryptoCertificateChain_impl::UpdateCertificateList()
 	return OpStatus::OK;
 }
 
-#endif // CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION
+#endif // defined(CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION) && defined(_SSL_USE_OPENSSL_)

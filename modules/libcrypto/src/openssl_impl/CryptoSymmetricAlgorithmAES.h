@@ -9,7 +9,7 @@
 #ifndef CRYPTO_SYMMETRIC_ALGORITHM_AES_H
 #define CRYPTO_SYMMETRIC_ALGORITHM_AES_H
 
-#ifdef CRYPTO_ENCRYPTION_AES_USE_CORE_IMPLEMENTATION
+#if defined(CRYPTO_ENCRYPTION_AES_USE_CORE_IMPLEMENTATION) && defined(_SSL_USE_OPENSSL_)
 
 #include "modules/libcrypto/include/CryptoSymmetricAlgorithm.h"
 #include "modules/libopeay/openssl/cryptlib.h"
@@ -38,5 +38,5 @@ private:
 	AES_KEY m_key;	
 };
 
-#endif // CRYPTO_ENCRYPTION_AES_USE_CORE_IMPLEMENTATION
+#endif // defined(CRYPTO_ENCRYPTION_AES_USE_CORE_IMPLEMENTATION) && defined(_SSL_USE_OPENSSL_)
 #endif /* CRYPTO_SYMMETRIC_ALGORITHM_AES_H */

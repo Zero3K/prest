@@ -15,7 +15,7 @@
 
 #include "core/pch.h"
 
-#ifdef CRYPTO_ENCRYPTION_3DES_USE_CORE_IMPLEMENTATION
+#if defined(CRYPTO_ENCRYPTION_3DES_USE_CORE_IMPLEMENTATION) && defined(_SSL_USE_OPENSSL_)
 
 #include "modules/libcrypto/src/openssl_impl/CryptoSymmetricAlgorithm3DES.h"
 #include "modules/libcrypto/src/openssl_impl/openssl_util.h"
@@ -113,4 +113,4 @@ void CryptoSymmetricAlgorithm3DES::CryptFunction3DES(const unsigned char *source
 	OP_ASSERT(ERR_peek_error() == 0);
 }
 
-#endif // CRYPTO_ENCRYPTION_3DES_USE_CORE_IMPLEMENTATION
+#endif // defined(CRYPTO_ENCRYPTION_3DES_USE_CORE_IMPLEMENTATION) && defined(_SSL_USE_OPENSSL_)
