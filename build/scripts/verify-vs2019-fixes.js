@@ -57,7 +57,7 @@ function checkXmlWellFormed(filePath, description) {
         }
         
         // Basic XML structure checks
-        const itemGroupOpen = (content.match(/<ItemGroup>/g) || []).length;
+        const itemGroupOpen = (content.match(/<ItemGroup[^>]*>/g) || []).length;
         const itemGroupClose = (content.match(/<\/ItemGroup>/g) || []).length;
         if (itemGroupOpen !== itemGroupClose) {
             console.log(`❌ ${description}: Mismatched <ItemGroup> tags in ${filePath}`);

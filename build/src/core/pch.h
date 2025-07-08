@@ -26,6 +26,7 @@
 #include <stddef.h>
 #include <stdarg.h>
 #include <string.h>
+#include <wchar.h>  // For wcslen, wcscpy, wcsrchr, etc.
 #include <new>  // For std::nothrow
 
 #if defined(__APPLE__) || defined(UNIX)
@@ -297,6 +298,14 @@ inline OP_STATUS UniSetStr(uni_char*& dest, const uni_char* src) {
 #include "modules/logdoc/src/html5/standalone/modules/util/opautoptr.h"
 #include "modules/util/adt/opvector.h"
 #include "modules/util/OpHashTable.h"
+
+// Enable VEGA support for GPU info functionality
+#ifndef VEGA_SUPPORT
+#define VEGA_SUPPORT
+#endif
+#ifndef VEGA_BACKENDS_USE_BLOCKLIST
+#define VEGA_BACKENDS_USE_BLOCKLIST
+#endif
 
 // Include VEGA 3D device headers for GPU info support
 #ifdef VEGA_SUPPORT
