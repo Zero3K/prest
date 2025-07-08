@@ -14,7 +14,7 @@
 
 #if defined _NATIVE_SSL_SUPPORT_ && defined EXTERNAL_DIGEST_API && defined _SSL_USE_TLSCLIENT_
 
-#include "modules/libssl/methods/sslghash.h"
+#include "modules/libssl/methods/sslhash.h"
 
 class External_TLSClient_Spec : public External_Digest_Handler
 {
@@ -44,7 +44,7 @@ public:
 	OP_STATUS			PerformInitOperation(SSL_Hash *digest, int operation, void *params);
 };
 
-class External_TLSClient_Digest : public SSL_GeneralHash
+class External_TLSClient_Digest : public SSL_Hash
 {
 	OpSmartPointerWithDelete<External_TLSClient_Spec> spec;
 
@@ -59,9 +59,13 @@ public:
 	/** Destructor */
 	~External_TLSClient_Digest();
 
-	OP_STATUS PerformInitOperation(int operation, void *params);
+	virtual BOOL Valid(SSL_Alert *msg=NULL) const;
+	virtual void InitHash();
+	virtual const byte *CalculateHash(const byte *source,uint32 len);
+	virtual byte *ExtractHash(byte *target=NULL);
+	virtual SSL_Hash *Fork() const;
 
-	SSL_Hash *Fork();
+	OP_STATUS PerformInitOperation(int operation, void *params);
 };
 
 #endif // EXTERNAL_DIGEST_API && _SSL_USE_TLSCLIENT_

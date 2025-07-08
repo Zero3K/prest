@@ -35,10 +35,14 @@ public:
     virtual const char *AlgName() const;
     virtual void InitHash();
     virtual const byte *CalculateHash(const byte *source,uint32 len);
-    virtual const byte *ExtractHash(byte *target=NULL);
+    virtual byte *ExtractHash(byte *target=NULL);
+    virtual const byte *LoadSecret(const byte *source, uint32 len);
     virtual byte *LoadDigest(byte *source);
-    virtual SSL_Hash *Fork();
+    virtual SSL_Hash *Fork() const;
     virtual void PerformStreamActionL(DataStream::DatastreamAction action, uint32 len=0);
+#ifdef EXTERNAL_DIGEST_API
+    virtual OP_STATUS PerformInitOperation(int operation, void *params);
+#endif
     
 private:
     OpString8 hash_buffer;
@@ -52,10 +56,10 @@ class TLSClient_Hash : public TLSClient_Hash_Base
 {
 public:
     TLSClient_Hash(const SSL_Digest_and_NID *spec);
-    TLSClient_Hash(TLSClient_Hash *old);
+    TLSClient_Hash(const TLSClient_Hash *old);
     virtual ~TLSClient_Hash();
     
-    virtual SSL_Hash *Fork();
+    virtual SSL_Hash *Fork() const;
 };
 
 #endif // _NATIVE_SSL_SUPPORT_ && _SSL_USE_TLSCLIENT_

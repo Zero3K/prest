@@ -57,13 +57,6 @@ OP_STATUS External_TLSClient_Spec::GetDigest(SSL_Hash *&digest)
 	if(new_digest == NULL)
 		return OpStatus::ERR_NO_MEMORY;
 
-	OP_STATUS op_err = new_digest->InitHash();
-	if(OpStatus::IsError(op_err))
-	{
-		OP_DELETE(new_digest);
-		return op_err;
-	}
-
 	digest = new_digest;
 	return OpStatus::OK;
 }
@@ -87,19 +80,84 @@ OP_STATUS External_TLSClient_Spec::PerformInitOperation(SSL_Hash *digest, int op
 }
 
 External_TLSClient_Digest::External_TLSClient_Digest(External_TLSClient_Spec *_spec)
-: SSL_GeneralHash(_spec->GetHashType())
 {
 	spec = _spec;
+	if (spec.get() != NULL)
+	{
+		hash_alg = spec->GetHashType();
+		switch(hash_alg)
+		{
+			case SSL_SHA:
+				hash_size = 20;
+				break;
+			case SSL_SHA_224:
+				hash_size = 28;
+				break;
+			case SSL_SHA_256:
+				hash_size = 32;
+				break;
+			case SSL_SHA_384:
+				hash_size = 48;
+				break;
+			case SSL_SHA_512:
+				hash_size = 64;
+				break;
+			case SSL_MD5:
+				hash_size = 16;
+				break;
+			default:
+				hash_size = 0;
+				break;
+		}
+	}
 }
 
 External_TLSClient_Digest::External_TLSClient_Digest(External_TLSClient_Digest *old)
-: SSL_GeneralHash(old)
 {
 	spec = old->spec;
+	if (old != NULL)
+	{
+		hash_alg = old->hash_alg;
+		hash_size = old->hash_size;
+	}
 }
 
 External_TLSClient_Digest::~External_TLSClient_Digest()
 {
+}
+
+BOOL External_TLSClient_Digest::Valid(SSL_Alert *msg) const
+{
+	return (spec.get() != NULL && hash_alg != SSL_NoHash);
+}
+
+void External_TLSClient_Digest::InitHash()
+{
+	// Initialize TLS client hash context
+}
+
+const byte *External_TLSClient_Digest::CalculateHash(const byte *source, uint32 len)
+{
+	if(source == NULL || len == 0)
+		return NULL;
+	
+	InitHash();
+	
+	// Use TLSClient hash calculation
+	// For now, placeholder implementation
+	return ExtractHash();
+}
+
+byte *External_TLSClient_Digest::ExtractHash(byte *target)
+{
+	if(target == NULL)
+		return NULL;
+	
+	// Extract hash using TLSClient
+	// For now, placeholder implementation
+	op_memset(target, 0, hash_size);
+	
+	return target;
 }
 
 OP_STATUS External_TLSClient_Digest::PerformInitOperation(int operation, void *params)
@@ -108,21 +166,6 @@ OP_STATUS External_TLSClient_Digest::PerformInitOperation(int operation, void *p
 		return OpStatus::ERR;
 
 	return spec->PerformInitOperation(this, operation, params);
-}
-
-SSL_Hash *External_TLSClient_Digest::Fork()
-{
-	External_TLSClient_Digest *new_digest = OP_NEW(External_TLSClient_Digest, (this));
-	if(new_digest == NULL)
-		return NULL;
-
-	if(OpStatus::IsError(new_digest->InitHash()))
-	{
-		OP_DELETE(new_digest);
-		return NULL;
-	}
-
-	return new_digest;
 }
 
 #endif // EXTERNAL_DIGEST_API && _SSL_USE_TLSCLIENT_

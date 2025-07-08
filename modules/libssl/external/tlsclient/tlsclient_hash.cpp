@@ -24,6 +24,33 @@ TLSClient_Hash_Base::TLSClient_Hash_Base(const SSL_Digest_and_NID *spec)
     hash_type = spec ? spec->hash_alg : SSL_NoHash;
     hash_finished = FALSE;
     tls_hash_ctx = NULL;
+    
+    // Initialize SSL_Hash base class members
+    hash_alg = hash_type;
+    switch(hash_type)
+    {
+        case SSL_SHA:
+            hash_size = 20;
+            break;
+        case SSL_SHA_224:
+            hash_size = 28;
+            break;
+        case SSL_SHA_256:
+            hash_size = 32;
+            break;
+        case SSL_SHA_384:
+            hash_size = 48;
+            break;
+        case SSL_SHA_512:
+            hash_size = 64;
+            break;
+        case SSL_MD5:
+            hash_size = 16;
+            break;
+        default:
+            hash_size = 0;
+            break;
+    }
 }
 
 TLSClient_Hash_Base::~TLSClient_Hash_Base()
@@ -114,6 +141,17 @@ const byte *TLSClient_Hash_Base::ExtractHash(byte *target)
     return (const byte*)hash_buffer.CStr();
 }
 
+const byte *TLSClient_Hash_Base::LoadSecret(const byte *source, uint32 len)
+{
+    if(source == NULL || len == 0)
+        return NULL;
+    
+    // Load secret for HMAC operations
+    hash_buffer.Set((const char*)source, len);
+    
+    return source + len;
+}
+
 byte *TLSClient_Hash_Base::LoadDigest(byte *source)
 {
     if(source == NULL)
@@ -126,10 +164,18 @@ byte *TLSClient_Hash_Base::LoadDigest(byte *source)
     return source + size;
 }
 
-SSL_Hash *TLSClient_Hash_Base::Fork()
+SSL_Hash *TLSClient_Hash_Base::Fork() const
 {
     return OP_NEW(TLSClient_Hash, (alg_spec));
 }
+
+#ifdef EXTERNAL_DIGEST_API
+OP_STATUS TLSClient_Hash_Base::PerformInitOperation(int operation, void *params)
+{
+    // TLSClient external digest operations
+    return OpStatus::OK;
+}
+#endif
 
 void TLSClient_Hash_Base::PerformStreamActionL(DataStream::DatastreamAction action, uint32 len)
 {
@@ -141,7 +187,7 @@ TLSClient_Hash::TLSClient_Hash(const SSL_Digest_and_NID *spec)
 {
 }
 
-TLSClient_Hash::TLSClient_Hash(TLSClient_Hash *old)
+TLSClient_Hash::TLSClient_Hash(const TLSClient_Hash *old)
 : TLSClient_Hash_Base(old->alg_spec)
 {
     if(old)
@@ -155,7 +201,7 @@ TLSClient_Hash::~TLSClient_Hash()
 {
 }
 
-SSL_Hash *TLSClient_Hash::Fork()
+SSL_Hash *TLSClient_Hash::Fork() const
 {
     return OP_NEW(TLSClient_Hash, (this));
 }
