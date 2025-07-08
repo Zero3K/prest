@@ -26,12 +26,13 @@
 #include <stddef.h>
 #include <stdarg.h>
 #include <string.h>
+#include <new>  // For std::nothrow
 
 #if defined(__APPLE__) || defined(UNIX)
 #  include <sys/time.h>
 #endif
 
-// Define basic types first
+// Define basic types and macros first (needed before including Opera headers)
 #ifdef _WIN32
 typedef wchar_t uni_char;
 typedef int BOOL;
@@ -62,6 +63,61 @@ typedef int BOOL;
 #define FALSE 0
 #ifndef UNI_L
 #define UNI_L(s) ((const uni_char*)_make_uni_string(s))
+#endif
+
+// Platform-specific utility macros that need to be defined early
+#ifndef op_force_inline
+#ifdef _MSC_VER
+#define op_force_inline __forceinline
+#elif defined(__GNUC__)
+#define op_force_inline inline __attribute__((always_inline))
+#else
+#define op_force_inline inline
+#endif
+#endif
+
+// Define MIN/MAX macros early (needed by Opera headers)
+#ifndef MIN
+#define MIN(a, b) ((a) < (b) ? (a) : (b))
+#endif
+#ifndef MAX
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
+#endif
+
+// Define other needed macros early
+#ifndef ANCHORD
+#define ANCHORD(type, var) type var
+#endif
+#ifndef LEAVE_IF_ERROR
+#define LEAVE_IF_ERROR(expr) do { OP_STATUS __status = (expr); if (OpStatus::IsError(__status)) throw __status; } while(0)
+#endif
+#ifndef RETURN_IF_ERROR
+#define RETURN_IF_ERROR(expr) \
+    do { \
+        OP_STATUS RETURN_IF_ERROR_TMP = expr; \
+        if (OpStatus::IsError(RETURN_IF_ERROR_TMP)) \
+            return RETURN_IF_ERROR_TMP; \
+    } while(0)
+#endif
+#ifndef RETURN_OOM_IF_NULL
+#define RETURN_OOM_IF_NULL(ptr) do { if (!(ptr)) return OpStatus::ERR_NO_MEMORY; } while(0)
+#endif
+#ifndef OP_NEWA
+#define OP_NEWA(obj, count) new (std::nothrow) obj[count]
+#endif
+#ifndef UNICODE_SIZE
+#define UNICODE_SIZE(num_chars) ((num_chars) * sizeof(uni_char))
+#endif
+#ifndef UNICODE_DOWNSIZE
+#define UNICODE_DOWNSIZE(num_bytes) ((num_bytes) / sizeof(uni_char))
+#endif
+
+// Memory operation functions
+#ifndef op_free
+#define op_free(ptr) free(ptr)
+#endif
+#ifndef op_memcpy
+#define op_memcpy(dest, src, size) memcpy(dest, src, size)
 #endif
 // For non-Windows, create a simple string literal conversion
 inline const uni_char* _make_uni_string(const char* str) {
@@ -201,9 +257,13 @@ inline OP_STATUS UniSetStr(uni_char*& dest, const uni_char* src) {
     return OpStatus::OK;
 }
 
-// Opera macro definitions
+// Opera macro definitions  
 #ifndef DEPRECATED
+#ifdef _MSC_VER
+#define DEPRECATED(func) __declspec(deprecated) func
+#else
 #define DEPRECATED(func) func __attribute__((deprecated))
+#endif
 #endif
 #ifndef OP_STATIC_ASSERT
 #define OP_STATIC_ASSERT(expr) static_assert(expr, #expr)
@@ -229,14 +289,27 @@ inline OP_STATUS UniSetStr(uni_char*& dest, const uni_char* src) {
 #define OP_DELETEA(ptr) delete[] ptr
 #endif
 
-// Include Opera utility classes  
-#include "modules/logdoc/src/html5/standalone/modules/util/opstring.h"
+// Include Opera utility classes - dependencies first, then full OpString with UTF8 support
+#include "modules/util/opswap.h"
+#include "modules/opdata/OpData.h"
+#include "modules/opdata/UniString.h"
+#include "modules/util/opstring.h"
 #include "modules/logdoc/src/html5/standalone/modules/util/opautoptr.h"
 #include "modules/util/adt/opvector.h"
 #include "modules/util/OpHashTable.h"
 
-// Forward declare VEGA3dDevice for GPU info
+// Include VEGA 3D device headers for GPU info support
+#ifdef VEGA_SUPPORT
+#include "modules/libvega/vega3ddevice.h"
+#ifdef VEGA_BACKENDS_USE_BLOCKLIST
+#include "platforms/vega_backends/vega_blocklist_device.h"
+#endif
+#endif
+
+// Forward declare VEGA3dDevice for compatibility when VEGA_SUPPORT is not defined
+#ifndef VEGA_SUPPORT
 class VEGA3dDevice;
+#endif
 
 // Opera version constants (for compatibility)
 #ifndef VER_NUM_MAJOR
@@ -277,13 +350,6 @@ class VEGA3dDevice;
 
 typedef int OP_BOOLEAN;
 
-#ifndef MIN
-#define MIN(a, b) ((a) < (b) ? (a) : (b))
-#endif
-#ifndef MAX
-#define MAX(a, b) ((a) > (b) ? (a) : (b))
-#endif
-
 
 #ifndef OP_DELETE
 #define OP_DELETE(ptr) delete ptr
@@ -297,9 +363,6 @@ typedef int OP_BOOLEAN;
 
 #undef OP_NEW
 #define OP_NEW(obj, args) new (std::nothrow) obj args
-
-#undef OP_NEWA
-#define OP_NEWA(obj, count) new (std::nothrow) obj[count]
 
 // OpStatus constants for compatibility
 #ifndef OP_STATUS_OK
@@ -337,28 +400,12 @@ inline void* op_memcpy(void* dest, const void* src, size_t n) {
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]))
 #endif
 
-// op_swap template function
-template <typename T>
-inline void op_swap(T& x, T& y)
-{
-    T tmp(x);
-    x = y;
-    y = tmp;
-}
-
 // Error handling macros
 #define RETURN_VALUE_IF_ERROR(expr, val) \
     do { \
         OP_STATUS RETURN_IF_ERROR_TMP = expr; \
         if (OpStatus::IsError(RETURN_IF_ERROR_TMP)) \
             return val; \
-    } while (0)
-
-#define RETURN_IF_ERROR(expr) \
-    do { \
-        OP_STATUS RETURN_IF_ERROR_TMP = expr; \
-        if (OpStatus::IsError(RETURN_IF_ERROR_TMP)) \
-            return RETURN_IF_ERROR_TMP; \
     } while (0)
 
 #endif // CORE_PCH_H
