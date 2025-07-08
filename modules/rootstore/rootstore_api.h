@@ -9,7 +9,7 @@
 #ifndef ROOTSTORE_API_H
 #define ROOTSTORE_API_H
 
-#if defined(_SSL_USE_OPENSSL_) && !defined(_EXTERNAL_SSL_SUPPORT_) && !defined(_CERTICOM_SSL_SUPPORT_)
+#if (defined(_SSL_USE_OPENSSL_) || defined(_SSL_USE_TLSCLIENT_)) && !defined(_EXTERNAL_SSL_SUPPORT_) && !defined(_CERTICOM_SSL_SUPPORT_)
 
 class RootStore_API
 {

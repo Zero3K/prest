@@ -1,3 +1,6 @@
+#ifndef TLSCLIENT_H
+#define TLSCLIENT_H
+
 #pragma once
 
 typedef unsigned char uchar;

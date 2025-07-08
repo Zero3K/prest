@@ -633,4 +633,13 @@ extern class OpThreadTools* g_thread_tools;
 #define __sse2_available IsProcessorFeaturePresent(PF_XMMI64_INSTRUCTIONS_AVAILABLE)
 #endif // _MSC_VER > VS2010
 
+// SSL Configuration: Use TLSClient instead of OpenSSL for modern TLS support
+#define _SSL_USE_TLSCLIENT_
+#ifdef _SSL_USE_OPENSSL_
+#undef _SSL_USE_OPENSSL_
+#endif
+
+// Enable rootstore signing key for autoupdate functionality
+#define ROOTSTORE_SIGNKEY
+
 #endif // !WINDOWS_SYSTEM_H
