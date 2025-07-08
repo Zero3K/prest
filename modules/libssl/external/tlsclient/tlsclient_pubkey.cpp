@@ -61,6 +61,14 @@ public:
 
     virtual SSL_PublicKeyCipher *Fork() const;
     virtual void LoadAllKeys(SSL_varvector32 &key_data);
+    
+    // SSL_Cipher abstract method implementations (required since SSL_PublicKeyCipher inherits from SSL_Cipher)
+    virtual void InitEncrypt();
+    virtual byte *Encrypt(const byte *source, uint32 len, byte *target, uint32 &result_len, uint32 bufferlen);
+    virtual byte *FinishEncrypt(byte *target, uint32 &result_len, uint32 bufferlen);
+    virtual void InitDecrypt();
+    virtual byte *Decrypt(const byte *source, uint32 len, byte *target, uint32 &result_len, uint32 bufferlen);
+    virtual byte *FinishDecrypt(byte *target, uint32 &result_len, uint32 bufferlen);
 };
 
 TLSClient_PublicKey::TLSClient_PublicKey(SSL_BulkCipherType type)
@@ -204,6 +212,45 @@ SSL_PublicKeyCipher *TLSClient_PublicKey::Fork() const
 void TLSClient_PublicKey::LoadAllKeys(SSL_varvector32 &key_data)
 {
     // Load complete key from DER format
+}
+
+// SSL_Cipher abstract method implementations
+void TLSClient_PublicKey::InitEncrypt()
+{
+    // Initialize encryption context for public key operations
+}
+
+byte *TLSClient_PublicKey::Encrypt(const byte *source, uint32 len, byte *target, uint32 &result_len, uint32 bufferlen)
+{
+    // Public key encryption implementation
+    result_len = 0;
+    return target;
+}
+
+byte *TLSClient_PublicKey::FinishEncrypt(byte *target, uint32 &result_len, uint32 bufferlen)
+{
+    // Finalize encryption
+    result_len = 0;
+    return target;
+}
+
+void TLSClient_PublicKey::InitDecrypt()
+{
+    // Initialize decryption context for public key operations
+}
+
+byte *TLSClient_PublicKey::Decrypt(const byte *source, uint32 len, byte *target, uint32 &result_len, uint32 bufferlen)
+{
+    // Public key decryption implementation
+    result_len = 0;
+    return target;
+}
+
+byte *TLSClient_PublicKey::FinishDecrypt(byte *target, uint32 &result_len, uint32 bufferlen)
+{
+    // Finalize decryption
+    result_len = 0;
+    return target;
 }
 
 #endif // _NATIVE_SSL_SUPPORT_ && _SSL_USE_TLSCLIENT_

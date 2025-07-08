@@ -201,13 +201,8 @@ SSL_Hash *TLSClient_Hash::Fork() const
     return OP_NEW(TLSClient_Hash, (this));
 }
 
-// Simplified TLSClient digest spec structure
-struct TLSClient_Digest_Spec {
-	SSL_HashAlgorithmType digest_type;
-	SSL_HashAlgorithmType hmac_digest_type;
-	BOOL hmac;
-	const char* name;
-};
+// Forward declaration - actual definition is in tlsclient_api.cpp
+struct TLSClient_Digest_Spec;
 
 TLSClient_Hash_Simple::TLSClient_Hash_Simple(const TLSClient_Digest_Spec *spec)
 {
