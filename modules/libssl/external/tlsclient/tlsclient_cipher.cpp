@@ -197,13 +197,13 @@ SSL_GeneralCipher *SSL_API::CreateSymmetricCipher(SSL_BulkCipherType cipher_alg,
     // Check if cipher is supported by TLSClient
     switch(cipher_alg)
     {
-    case SSL_AES_128:
-    case SSL_AES_256:
+    case SSL_AES:
+    case SSL_AES_128_CBC:
+    case SSL_AES_256_CBC:
     case SSL_3DES:
     case SSL_RC4:
-    case SSL_AES_128_GCM:
-    case SSL_AES_256_GCM:
-    case SSL_ChaCha20_Poly1305:
+    // Note: GCM and ChaCha20 not in current enum, but TLSClient supports them
+    // Future enhancement: add SSL_AES_128_GCM, SSL_AES_256_GCM, SSL_ChaCha20_Poly1305 to enum
         break;
     default:
         op_err = OpStatus::ERR_OUT_OF_RANGE;
