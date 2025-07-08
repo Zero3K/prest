@@ -45,6 +45,7 @@ external/tlsclient/tlsclient_cipher.cpp	# [forcecompileif=defined(_SSL_USE_TLSCL
 external/tlsclient/tlsclient_rand.cpp		# [forcecompileif=defined(_SSL_USE_TLSCLIENT_)]
 external/tlsclient/tlsclient_cert.cpp		# [forcecompileif=defined(_SSL_USE_TLSCLIENT_)]
 external/tlsclient/tlsclient_pubkey.cpp	# [forcecompileif=defined(_SSL_USE_TLSCLIENT_)]
+external/tlsclient/tlsclient_api.cpp		# [forcecompileif=defined(_SSL_USE_TLSCLIENT_)]
 handshake/asn1certlist.cpp
 handshake/cert_message.cpp
 handshake/certreq.cpp

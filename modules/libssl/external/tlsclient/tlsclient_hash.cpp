@@ -206,4 +206,150 @@ SSL_Hash *TLSClient_Hash::Fork() const
     return OP_NEW(TLSClient_Hash, (this));
 }
 
+// Simplified TLSClient digest spec structure
+struct TLSClient_Digest_Spec {
+	SSL_HashAlgorithmType digest_type;
+	SSL_HashAlgorithmType hmac_digest_type;
+	BOOL hmac;
+	const char* name;
+};
+
+TLSClient_Hash_Simple::TLSClient_Hash_Simple(const TLSClient_Digest_Spec *spec)
+{
+    alg_spec = spec;
+    hash_type = spec ? spec->digest_type : SSL_NoHash;
+    hash_finished = FALSE;
+    tls_hash_ctx = NULL;
+    
+    // Initialize SSL_Hash base class members
+    hash_alg = hash_type;
+    switch(hash_type)
+    {
+        case SSL_SHA:
+            hash_size = 20;
+            break;
+        case SSL_SHA_224:
+            hash_size = 28;
+            break;
+        case SSL_SHA_256:
+            hash_size = 32;
+            break;
+        case SSL_SHA_384:
+            hash_size = 48;
+            break;
+        case SSL_SHA_512:
+            hash_size = 64;
+            break;
+        case SSL_MD5:
+            hash_size = 16;
+            break;
+        default:
+            hash_size = 0;
+            break;
+    }
+}
+
+TLSClient_Hash_Simple::TLSClient_Hash_Simple(const TLSClient_Hash_Simple *old)
+{
+    alg_spec = old->alg_spec;
+    if (old != NULL)
+    {
+        hash_type = old->hash_type;
+        hash_alg = old->hash_alg;
+        hash_size = old->hash_size;
+        hash_buffer.Set(old->hash_buffer);
+        hash_finished = old->hash_finished;
+    }
+    tls_hash_ctx = NULL;
+}
+
+TLSClient_Hash_Simple::~TLSClient_Hash_Simple()
+{
+    if (tls_hash_ctx != NULL)
+    {
+        // Clean up TLS client hash context if needed
+        tls_hash_ctx = NULL;
+    }
+}
+
+BOOL TLSClient_Hash_Simple::Valid(SSL_Alert *msg) const
+{
+    return (alg_spec != NULL && hash_type != SSL_NoHash);
+}
+
+void TLSClient_Hash_Simple::InitHash()
+{
+    hash_finished = FALSE;
+    hash_buffer.Empty();
+    
+    // Initialize TLS client hash context based on hash_type
+}
+
+const byte *TLSClient_Hash_Simple::CalculateHash(const byte *source, uint32 len)
+{
+    if(source == NULL || len == 0)
+        return NULL;
+    
+    InitHash();
+    
+    // Use TLSClient hash update function
+    // For now, using a simple implementation
+    hash_buffer.Set((const char*)source, len);
+    
+    return ExtractHash();
+}
+
+byte *TLSClient_Hash_Simple::ExtractHash(byte *target)
+{
+    if(hash_finished)
+    {
+        if(target)
+        {
+            op_memcpy(target, hash_buffer.CStr(), hash_size);
+            return target;
+        }
+        return (byte*)hash_buffer.CStr();
+    }
+    
+    // Finalize hash using TLSClient
+    hash_finished = TRUE;
+    
+    if(target)
+    {
+        op_memset(target, 0, hash_size); // Placeholder
+        return target;
+    }
+    
+    return (byte*)hash_buffer.CStr();
+}
+
+const byte *TLSClient_Hash_Simple::LoadSecret(const byte *source, uint32 len)
+{
+    if(source == NULL || len == 0)
+        return NULL;
+    
+    // Load secret for HMAC operations
+    hash_buffer.Set((const char*)source, len);
+    
+    return source + len;
+}
+
+SSL_Hash *TLSClient_Hash_Simple::Fork() const
+{
+    return OP_NEW(TLSClient_Hash_Simple, (this));
+}
+
+void TLSClient_Hash_Simple::PerformStreamActionL(DataStream::DatastreamAction action, uint32 len)
+{
+    DataStream::PerformStreamActionL(action, len);
+}
+
+#ifdef EXTERNAL_DIGEST_API
+OP_STATUS TLSClient_Hash_Simple::PerformInitOperation(int operation, void *params)
+{
+    // TLSClient external digest operations
+    return OpStatus::OK;
+}
+#endif
+
 #endif // _NATIVE_SSL_SUPPORT_ && _SSL_USE_TLSCLIENT_

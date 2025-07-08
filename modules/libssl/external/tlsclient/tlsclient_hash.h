@@ -62,6 +62,35 @@ public:
     virtual SSL_Hash *Fork() const;
 };
 
+// Simplified TLSClient digest spec structure
+struct TLSClient_Digest_Spec;
+
+class TLSClient_Hash_Simple : public SSL_Hash
+{
+private:
+    const TLSClient_Digest_Spec *alg_spec;
+    SSL_HashAlgorithmType hash_type;
+    OpString8 hash_buffer;
+    BOOL hash_finished;
+    void* tls_hash_ctx;
+    
+public:
+    TLSClient_Hash_Simple(const TLSClient_Digest_Spec *spec);
+    TLSClient_Hash_Simple(const TLSClient_Hash_Simple *old);
+    virtual ~TLSClient_Hash_Simple();
+    
+    virtual BOOL Valid(SSL_Alert *msg=NULL) const;
+    virtual void InitHash();
+    virtual const byte *CalculateHash(const byte *source,uint32 len);
+    virtual byte *ExtractHash(byte *target=NULL);
+    virtual const byte *LoadSecret(const byte *source, uint32 len);
+    virtual SSL_Hash *Fork() const;
+    virtual void PerformStreamActionL(DataStream::DatastreamAction action, uint32 len=0);
+#ifdef EXTERNAL_DIGEST_API
+    virtual OP_STATUS PerformInitOperation(int operation, void *params);
+#endif
+};
+
 #endif // _NATIVE_SSL_SUPPORT_ && _SSL_USE_TLSCLIENT_
 
 #endif // TLSCLIENT_HASH_H
