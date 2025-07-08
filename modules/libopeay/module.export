@@ -33,9 +33,11 @@ API_LIBOPEAY_VERIFY_PARAM						yngve
 API_LIBOPEAY_ASYNCHRONOUS_KEYGENERATION	haavardm		
 
 	This enables asynchronous generation of rsa key pairs 
+	Only available when using OpenSSL crypto backend.
 
 	Defines		: LIBOPEAY_ASYNCHRONOUS_KEYGENERATION
 	Depends on	: _SSL_USE_OPENSSL_
+	Conflicts with	: _SSL_USE_TLSCLIENT_
 	
 API_LIBOPEAY_ENABLE_PARTLY_OPENSSL_SUPPORT	haavardm
 	In case libcrypto want to "rip-out" a few algorithms without using all of libopeay.

@@ -7,9 +7,9 @@
 **
 */
 #include "adjunct/autoupdate/autoupdate_checker/platforms/universal_adaptation_layer/networkimpl.h"
-#ifndef NO_OPENSSL
+#if defined(_SSL_USE_OPENSSL_) && !defined(NO_OPENSSL)
 #include <openssl/ssl.h>
-#endif // NO_OPENSSL
+#endif // _SSL_USE_OPENSSL_ && !NO_OPENSSL
 
 namespace opera_update_checker { namespace network {
 
