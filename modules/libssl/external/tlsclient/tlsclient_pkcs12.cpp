@@ -14,7 +14,7 @@
 #if defined _NATIVE_SSL_SUPPORT_ && defined _SSL_USE_TLSCLIENT_
 
 #include "modules/libssl/options/sslopt.h"
-#include "modules/libssl/certs/certinst.h"
+#include "modules/libssl/ui/certinst.h"
 #include "modules/libssl/base/sslcinf.h"
 
 // PKCS12 export implementation for TLSClient
