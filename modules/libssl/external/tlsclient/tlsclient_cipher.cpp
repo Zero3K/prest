@@ -14,6 +14,8 @@
 #if defined _NATIVE_SSL_SUPPORT_ && defined _SSL_USE_TLSCLIENT_
 
 #include "modules/libssl/external/tlsclient/tlsclient_cipher.h"
+#include "modules/libssl/ssl_api.h"
+#include "modules/libssl/methods/sslnullcrypt.h"
 #include "modules/libssl/base/sslenum.h"
 
 TLSClient_GeneralCipher::TLSClient_GeneralCipher(SSL_BulkCipherType type)
@@ -177,6 +179,52 @@ void TLSClient_GeneralCipher::BytesToKey(SSL_HashAlgorithmType hash_alg, const S
 SSL_Cipher *TLSClient_GeneralCipher::Fork()
 {
     return OP_NEW(TLSClient_GeneralCipher, (cipher_type));
+}
+
+// SSL_API method implementation for TLSClient
+SSL_GeneralCipher *SSL_API::CreateSymmetricCipher(SSL_BulkCipherType cipher_alg, OP_STATUS &op_err)
+{
+    op_err = OpStatus::OK;
+    
+    if(cipher_alg == SSL_NoCipher)
+    {
+        SSL_GeneralCipher *ret = OP_NEW(SSL_Null_Cipher, ());
+        if(ret == NULL)
+            op_err = OpStatus::ERR_NO_MEMORY;
+        return ret;
+    }
+
+    // Check if cipher is supported by TLSClient
+    switch(cipher_alg)
+    {
+    case SSL_AES_128:
+    case SSL_AES_256:
+    case SSL_3DES:
+    case SSL_RC4:
+    case SSL_AES_128_GCM:
+    case SSL_AES_256_GCM:
+    case SSL_ChaCha20_Poly1305:
+        break;
+    default:
+        op_err = OpStatus::ERR_OUT_OF_RANGE;
+        return NULL;
+    }
+
+    OpAutoPtr<SSL_GeneralCipher> key(OP_NEW(TLSClient_GeneralCipher, (cipher_alg)));
+
+    if(key.get() == NULL)
+    {
+        op_err = OpStatus::ERR_NO_MEMORY;
+        return NULL;
+    }
+
+    if(key->Error())
+    {
+        op_err = key->GetOPStatus();
+        return NULL;
+    }
+
+    return key.release();
 }
 
 #endif // _NATIVE_SSL_SUPPORT_ && _SSL_USE_TLSCLIENT_

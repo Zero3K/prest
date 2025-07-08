@@ -14,6 +14,7 @@
 #if defined _NATIVE_SSL_SUPPORT_ && defined _SSL_USE_TLSCLIENT_
 
 #include "modules/libssl/methods/sslpubkey.h"
+#include "modules/libssl/ssl_api.h"
 #include "modules/tlsclient/tlsclient.h"
 
 class TLSClient_PublicKey : public SSL_PublicKeyCipher
@@ -251,6 +252,46 @@ byte *TLSClient_PublicKey::FinishDecrypt(byte *target, uint32 &result_len, uint3
     // Finalize decryption
     result_len = 0;
     return target;
+}
+
+// SSL_API method implementation for TLSClient
+SSL_PublicKeyCipher *SSL_API::CreatePublicKeyCipher(SSL_BulkCipherType cipher, OP_STATUS &op_err)
+{
+    op_err = OpStatus::OK;
+
+    switch(cipher)
+    {
+    case SSL_RSA:
+#ifdef SSL_DSA_SUPPORT
+    case SSL_DSA:
+#endif
+#ifdef SSL_ELGAMAL_SUPPORT
+    case SSL_ElGamal:
+#endif
+#ifdef SSL_DH_SUPPORT
+    case SSL_DH:
+#endif
+        break;
+    default:
+        op_err = OpStatus::ERR_OUT_OF_RANGE;
+        return NULL;
+    }
+
+    OpAutoPtr<SSL_PublicKeyCipher> key(OP_NEW(TLSClient_PublicKey, (cipher)));
+
+    if(key.get() == NULL)
+    {
+        op_err = OpStatus::ERR_NO_MEMORY;
+        return NULL;
+    }
+
+    if(key->Error())
+    {
+        op_err = key->GetOPStatus();
+        return NULL;
+    }
+
+    return key.release();
 }
 
 #endif // _NATIVE_SSL_SUPPORT_ && _SSL_USE_TLSCLIENT_
