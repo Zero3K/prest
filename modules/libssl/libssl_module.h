@@ -146,10 +146,11 @@ public:
 #define g_cert_def1					g_opera->libssl_module.cert_def1
 #define g_browsing_certificates		g_opera->libssl_module.m_browsing_certificates
 #define g_store						g_opera->libssl_module.m_cert_store->cert_store
-#define g_SSL_RND_Initialized			g_opera->libssl_module.m_SSL_RND_Initialized
-#define g_SSL_RND_feeder_data			g_opera->libssl_module.m_SSL_RND_feeder_data
 #define g_revocation_context			g_opera->libssl_module.m_revocation_context
 #define g_revoked_certificates			g_opera->libssl_module.m_revoked_certificates
+#if defined(_SSL_USE_OPENSSL_)
+#define g_SSL_RND_Initialized			g_opera->libssl_module.m_SSL_RND_Initialized
+#define g_SSL_RND_feeder_data			g_opera->libssl_module.m_SSL_RND_feeder_data
 #ifdef _SSL_SEED_FROMMESSAGE_LOOP_
 #define g_SSL_RND_feeder_pos			g_opera->libssl_module.m_SSL_RND_feeder_pos
 #define g_SSL_RND_feeder_len			g_opera->libssl_module.m_SSL_RND_feeder_len
@@ -157,6 +158,8 @@ public:
 #define g_idle_feed_count			g_opera->libssl_module.m_idle_feed_count
 #define g_been_fed			g_opera->libssl_module.m_been_fed
 #define g_feed_count			g_opera->libssl_module.m_feed_count
+#endif
+#endif
 #endif
 #ifdef LIBSSL_ALWAYS_WARN_MD5
 #define g_SSL_warn_md5			TRUE
@@ -184,10 +187,12 @@ public:
 #endif
 
 #define securityManager				g_opera->libssl_module.m_securityManager
+#if defined(_SSL_USE_OPENSSL_)
 #define SSL_RND_feeder_data			g_opera->libssl_module.m_SSL_RND_feeder_data
 #ifdef _SSL_SEED_FROMMESSAGE_LOOP_
 #define SSL_RND_feeder_pos			g_opera->libssl_module.m_SSL_RND_feeder_pos
 #define SSL_RND_feeder_len			g_opera->libssl_module.m_SSL_RND_feeder_len
+#endif
 #endif
 
 #define g_SSL_X509_cert_flags_index	g_opera->libssl_module.m_x509_cert_flags_index

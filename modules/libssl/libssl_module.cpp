@@ -61,8 +61,8 @@ LibsslModule::LibsslModule()
 #endif
 	, cert_def1(NULL)
 	, m_browsing_certificates(FALSE)
-#if defined(_SSL_USE_OPENSSL_)
 	, m_cert_store(NULL)
+#if defined(_SSL_USE_OPENSSL_)
 	, m_SSL_RND_Initialized(FALSE)
 	, m_SSL_RND_feeder_data(NULL)
 #ifdef _SSL_SEED_FROMMESSAGE_LOOP_
