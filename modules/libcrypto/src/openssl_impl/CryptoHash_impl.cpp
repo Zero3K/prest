@@ -14,12 +14,16 @@
  */
 
 #include "core/pch.h"
+
+#if defined(_SSL_USE_OPENSSL_)
+// Only compile this OpenSSL implementation file when using OpenSSL, not TLSClient
+
 #include "modules/libcrypto/src/openssl_impl/CryptoHash_impl.h"
 #include "modules/libcrypto/src/openssl_impl/openssl_util.h"
 #include "modules/util/cleanse.h"
 
 // Only compile this file if OpenSSL is enabled AND TLSClient is NOT enabled
-#if defined(CRYPTO_API_SUPPORT) && defined(_SSL_USE_OPENSSL_) && !defined(_SSL_USE_TLSCLIENT_)
+#ifdef CRYPTO_API_SUPPORT
 
 /* static */ CryptoHash* CryptoHash::Create(CryptoHashAlgorithm algorithm)
 {
@@ -204,4 +208,6 @@ void CryptoHashSHA256::ExtractHash(UINT8 *result)
 	OP_ASSERT(ERR_peek_error() == 0);
 }
 
-#endif // defined(CRYPTO_API_SUPPORT) && defined(_SSL_USE_OPENSSL_) && !defined(_SSL_USE_TLSCLIENT_)
+#endif // CRYPTO_API_SUPPORT
+
+#endif // defined(_SSL_USE_OPENSSL_)

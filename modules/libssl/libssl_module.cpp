@@ -26,6 +26,9 @@ void DeactivateCrypto();
 #include "modules/libopeay/openssl/ossl_typ.h"
 #include "modules/libssl/external/openssl/cert_store.h"
 #endif
+#if defined(_SSL_USE_TLSCLIENT_)
+#include "modules/libssl/external/tlsclient/cert_store.h"
+#endif
 #include "modules/libssl/handshake/asn1certlist.h"
 
 #if defined EXTERNAL_DIGEST_API
