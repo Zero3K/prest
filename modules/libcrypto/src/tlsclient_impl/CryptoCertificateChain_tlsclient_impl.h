@@ -13,6 +13,7 @@
 #if defined(CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION) && defined(_SSL_USE_TLSCLIENT_)
 
 #include "modules/libcrypto/include/CryptoCertificateChain.h"
+#include "modules/libcrypto/include/CryptoCertificate.h"
 
 class CryptoCertificateChain_tlsclient_impl : public CryptoCertificateChain
 {
