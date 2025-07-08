@@ -99,6 +99,12 @@ typedef int INTPTR;
 typedef unsigned int UINTPTR;
 #endif
 
+#ifndef MIN
+#define MIN(a, b) ((a) < (b) ? (a) : (b))
+#endif
+#ifndef MAX
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
+#endif
 
 
 #ifndef OP_DELETE
