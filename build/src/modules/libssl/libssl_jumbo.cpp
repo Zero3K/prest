@@ -39,9 +39,16 @@
 #include "modules/libssl/data/updaters.cpp"
 #include "modules/libssl/debug/tstdump2.cpp"
 #include "modules/libssl/external/ext_digest/external_digest_man.cpp"
+#ifdef _SSL_USE_OPENSSL_
 #include "modules/libssl/external/ext_digest/external_digest_openssl.cpp"
 #include "modules/libssl/external/ext_digest/external_digest_openssl_api.cpp"
+#endif
+#ifdef _SSL_USE_TLSCLIENT_
+#include "modules/libssl/external/ext_digest/external_digest_tlsclient.cpp"
+#include "modules/libssl/external/ext_digest/external_digest_tlsclient_api.cpp"
+#endif
 #include "modules/libssl/external/ext_digest/external_test.cpp"
+#ifdef _SSL_USE_OPENSSL_
 #include "modules/libssl/external/openssl/asynchkeygenerator.cpp"
 #include "modules/libssl/external/openssl/certhand1.cpp"
 #include "modules/libssl/external/openssl/certinfo.cpp"
@@ -52,6 +59,15 @@
 #include "modules/libssl/external/openssl/sslhash.cpp"
 #include "modules/libssl/external/openssl/sslrand.cpp"
 #include "modules/libssl/external/openssl/vector_i2d.cpp"
+#endif
+#ifdef _SSL_USE_TLSCLIENT_
+#include "modules/libssl/external/tlsclient/tlsclient_hash.cpp"
+#include "modules/libssl/external/tlsclient/tlsclient_cipher.cpp"
+#include "modules/libssl/external/tlsclient/tlsclient_rand.cpp"
+#include "modules/libssl/external/tlsclient/tlsclient_cert.cpp"
+#include "modules/libssl/external/tlsclient/tlsclient_pubkey.cpp"
+#include "modules/libssl/external/tlsclient/tlsclient_api.cpp"
+#endif
 #include "modules/libssl/handshake/asn1certlist.cpp"
 #include "modules/libssl/handshake/cert_message.cpp"
 #include "modules/libssl/handshake/certreq.cpp"
