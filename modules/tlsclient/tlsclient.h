@@ -53,11 +53,14 @@ int gcm_finish(gcm_context *ctx, uchar *tag, size_t tag_len);
 #define POLY1305_TAGLEN           16
 
 // ChaCha20 context structure definition
+#ifndef CHACHA_CTX_DEFINED
+#define CHACHA_CTX_DEFINED
 typedef struct chacha_ctx {
     unsigned int input[16];
     uint8_t ks[CHACHA_BLOCKLEN];
     uint8_t unused;
 } chacha_ctx;
+#endif
 
 // ChaCha20 function declarations
 void chacha_keysetup(chacha_ctx *x, const unsigned char *k, unsigned int kbits);
