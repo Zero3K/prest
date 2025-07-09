@@ -13,4 +13,4 @@
 #include "core/pch.h"
 
 // Include generated selftest code
-#include "modules/selftest/generated/modules/tlsclient/selftest/ot_tlsclient_basic.cpp"
+#include "modules/selftest/generated/tlsclient/selftest/ot_tlsclient_selftest_tlsclient_basic.cpp"
