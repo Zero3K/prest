@@ -1127,7 +1127,7 @@ class tls_client
 		ECC_GROUP	eccgroup = ECC_NONE;
 		while(reader.readed < ext_start + ext_size)
 		{
-			SSL_EXTENTION type = (SSL_EXTENTION)ntohs(reader.read<short>());
+			SSL_EXTENSION type = (SSL_EXTENSION)ntohs(reader.read<short>());
 			if(type == EXT_SUPPORTED_VERSION)
 			{
 				reader.read<short>();
@@ -1365,7 +1365,8 @@ class tls_client
 				if(cur_index + 5 + packet_size > recv_buf.size)
 					break;
 				
-				const char *ret = on_packet(*(BYTE*)(recv_buf.buf+cur_index), *(WORD*)(recv_buf.buf+cur_index+1), tlsbuf_reader(recv_buf.buf+cur_index+5, packet_size));
+				tlsbuf_reader packet_reader(recv_buf.buf+cur_index+5, packet_size);
+				const char *ret = on_packet(*(BYTE*)(recv_buf.buf+cur_index), *(WORD*)(recv_buf.buf+cur_index+1), packet_reader);
 				if(ret)
 					throw ret;
 

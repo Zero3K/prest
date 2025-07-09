@@ -171,6 +171,9 @@ typedef enum {
 #define EXT_KEY_SHARE           0x0033  // RFC 8446 (TLS 1.3)
 #define EXT_SUPPORTED_VERSION   0x002b  // RFC 8446 (TLS 1.3)
 
+// SSL Extension type definition
+typedef int SSL_EXTENSION;
+
 // TLS Message types
 #define MSG_CHANGE_CIPHER_SPEC  0x01
 
