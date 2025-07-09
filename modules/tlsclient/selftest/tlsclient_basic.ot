@@ -15,38 +15,8 @@ include "core/pch.h";
 
 global
 {
-	// Provide minimal implementations for selftest since the actual TLSClient functions
-	// are not available during selftest compilation
-	
-	// Simple TLSContext structure for selftest
-	struct TLSContext {
-		int dummy;
-	};
-	
-	extern "C" {
-		// Minimal implementations for selftest
-		TLSContext* tls_create_context(int is_server) {
-			return (TLSContext*)malloc(sizeof(TLSContext));
-		}
-		
-		void tls_destroy_context(TLSContext* context) {
-			if (context) {
-				free(context);
-			}
-		}
-		
-		const char* tls_get_error_string(int error) {
-			return "No error";
-		}
-		
-		int tls_set_cipher_list(TLSContext* context, const char* cipher_list) {
-			return 1; // Return success
-		}
-		
-		int tls_set_verify_mode(TLSContext* context, int mode) {
-			return 1; // Return success
-		}
-	}
+	// The actual TLSClient functions are available through the jumbo file
+	// No stub implementations needed
 }
 
 html { "<html><body>TLSClient Test</body></html>" }
