@@ -1108,7 +1108,7 @@ class tls_client
 		int session_len = reader.read<char>();
 		reader.readed += session_len;
 		TLS_CIPHER	cur_cipher	= (TLS_CIPHER)ntohs(reader.read<short>());	//Ñ¡ÔñµÄÃÜÂëÌ×¼þ
-		int			compress	= reader.read<char>();		//Ñ¹Ëõ·½Ê½
+		reader.read<char>();		//Ñ¹Ëõ·½Ê½ (skip compression method)
 
 		const char *ret = crypto.update_server_info(cur_cipher, server_rand, is_tls13(cur_cipher));
 		if(ret)
