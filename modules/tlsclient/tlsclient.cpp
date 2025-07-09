@@ -633,7 +633,6 @@ public:
 				return "³õÊ¼»¯ecc keyÊ§°Ü";
 		}
 
-		int size = MAX_PUBKEY_SIZE;
 		out.check_size(MAX_PUBKEY_SIZE);
 
 		out.size  += ecc_export_public_key(pri_ecc_key[ecc_index], (u8*)out.buf+out.size, MAX_PUBKEY_SIZE);
