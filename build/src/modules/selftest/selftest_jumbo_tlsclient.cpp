@@ -12,4 +12,5 @@
 
 #include "core/pch.h"
 
-// Selftest links against the compiled TLSClient module - no source includes needed
+// Include generated selftest code
+#include "modules/selftest/generated/modules/tlsclient/selftest/ot_tlsclient_basic.cpp"
