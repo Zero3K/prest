@@ -14,33 +14,8 @@ include "modules/tlsclient/tlsclient.h";
 
 global
 {
-	// TLS context structure for selftest
-	struct TLSContext {
-		int dummy;
-	};
-	
-	// Stub implementations for selftest
-	extern "C" {
-		TLSContext* tls_create_context(int is_server) {
-			return (TLSContext*)1; // Return non-null pointer
-		}
-		
-		void tls_destroy_context(TLSContext* context) {
-			// Do nothing
-		}
-		
-		const char* tls_get_error_string(int error) {
-			return "No error";
-		}
-		
-		int tls_set_cipher_list(TLSContext* context, const char* cipher_list) {
-			return 1; // Return success
-		}
-		
-		int tls_set_verify_mode(TLSContext* context, int mode) {
-			return 1; // Return success
-		}
-	}
+	// Use the actual TLSClient implementations from tlsclient_wrapper.cpp
+	// No stub implementations needed
 }
 
 html { "<html><body>TLSClient Test</body></html>" }
