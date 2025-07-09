@@ -1157,7 +1157,6 @@ class tls_client
 	{
 
 		int server_certificates_size = ntohl(reader.read<char>()<<8 | reader.read<short>()<<16);
-		int end_index2				 = reader.readed + server_certificates_size;
 		//while(reader.readed < end_index2)
 		//{
 		//	int certificate_size = ntohl(reader.read<char>()<<8 | reader.read<short>()<<16);
