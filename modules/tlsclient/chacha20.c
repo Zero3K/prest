@@ -41,8 +41,6 @@ struct chacha_ctx {
     uint8_t unused;
 };
 
-typedef struct chacha_ctx chacha_ctx;
-
 static  void chacha_keysetup(struct chacha_ctx *x, const u_char *k, u_int kbits);
 static  void chacha_key(struct chacha_ctx *x, u_char *k);
 static  void chacha_nonce(struct chacha_ctx *x, u_char *nonce);
@@ -61,8 +59,6 @@ static  int poly1305_generate_key(unsigned char *key256, unsigned char *nonce, u
 
 typedef unsigned char u8;
 typedef unsigned int u32;
-
-
 
 #define U8C(v) (v##U)
 #define U32C(v) (v##U)
