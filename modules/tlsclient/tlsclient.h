@@ -68,6 +68,56 @@ void chacha20_poly1305_key(struct chacha_ctx *ctx, unsigned char *poly1305_key);
 int chacha20_poly1305_aead(struct chacha_ctx *ctx, unsigned char *pt, unsigned int len, unsigned char *aad, unsigned int aad_len, unsigned char *poly_key, unsigned char *out);
 int chacha20_poly1305_decode(struct chacha_ctx *remote_ctx, unsigned char *pt, unsigned int len, unsigned char *aad, unsigned int aad_len, unsigned char *poly_key, unsigned char *out);
 
+// SHA2 constants and types
+#define SHA224_DIGEST_SIZE ( 224 / 8)
+#define SHA256_DIGEST_SIZE ( 256 / 8)
+#define SHA384_DIGEST_SIZE ( 384 / 8)
+#define SHA512_DIGEST_SIZE ( 512 / 8)
+
+#define SHA256_BLOCK_SIZE  ( 512 / 8)
+#define SHA512_BLOCK_SIZE  (1024 / 8)
+#define SHA384_BLOCK_SIZE  SHA512_BLOCK_SIZE
+#define SHA224_BLOCK_SIZE  SHA256_BLOCK_SIZE
+
+// SHA2 context structures
+typedef struct {
+    uint64_t tot_len;
+    uint64_t len;
+    uchar block[2 * SHA256_BLOCK_SIZE];
+    uint32_t h[8];
+} sha256_ctx;
+
+typedef struct {
+    uint64_t tot_len;
+    uint64_t len;
+    uchar block[2 * SHA512_BLOCK_SIZE];
+    uint64_t h[8];
+} sha512_ctx;
+
+typedef sha512_ctx sha384_ctx;
+typedef sha256_ctx sha224_ctx;
+
+// SHA2 function declarations
+void sha224_init(sha224_ctx *ctx);
+void sha224_update(sha224_ctx *ctx, const uchar *message, uint64_t len);
+void sha224_final(sha224_ctx *ctx, uchar *digest);
+void sha224(const uchar *message, uint64_t len, uchar *digest);
+
+void sha256_init(sha256_ctx *ctx);
+void sha256_update(sha256_ctx *ctx, const uchar *message, uint64_t len);
+void sha256_final(sha256_ctx *ctx, uchar *digest);
+void sha256(const uchar *message, uint64_t len, uchar *digest);
+
+void sha384_init(sha384_ctx *ctx);
+void sha384_update(sha384_ctx *ctx, const uchar *message, uint64_t len);
+void sha384_final(sha384_ctx *ctx, uchar *digest);
+void sha384(const uchar *message, uint64_t len, uchar *digest);
+
+void sha512_init(sha512_ctx *ctx);
+void sha512_update(sha512_ctx *ctx, const uchar *message, uint64_t len);
+void sha512_final(sha512_ctx *ctx, uchar *digest);
+void sha512(const uchar *message, uint64_t len, uchar *digest);
+
 #ifdef __cplusplus
 }
 #endif
