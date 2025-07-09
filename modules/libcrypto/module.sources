@@ -23,6 +23,7 @@ src/tlsclient_impl/CryptoHash_tlsclient_impl.cpp # [forcecompileif=defined(_SSL_
 src/tlsclient_impl/CryptoSymmetricAlgorithm_tlsclient_impl.cpp # [forcecompileif=defined(_SSL_USE_TLSCLIENT_)]
 src/tlsclient_impl/CryptoSignature_tlsclient_impl.cpp # [forcecompileif=defined(_SSL_USE_TLSCLIENT_)]
 src/tlsclient_impl/CryptoCertificateChain_tlsclient_impl.cpp # [forcecompileif=defined(_SSL_USE_TLSCLIENT_)]
+src/tlsclient_impl/CryptoCertificateStorage_tlsclient_impl.cpp # [forcecompileif=defined(_SSL_USE_TLSCLIENT_)]
 src/openssl_impl/CryptoSignature_impl.cpp # [forcecompileif=defined(_SSL_USE_OPENSSL_)]
 src/openssl_impl/CryptoStreamEncryptionRC4_impl.cpp # [forcecompileif=defined(_SSL_USE_OPENSSL_)]
 src/openssl_impl/CryptoSymmetricAlgorithm3DES.cpp # [forcecompileif=defined(_SSL_USE_OPENSSL_)]
