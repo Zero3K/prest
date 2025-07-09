@@ -15,14 +15,19 @@ typedef unsigned char u8;
 #define DECRYPT         0       // or decrypting
 
 // Forward declaration of AES context for GCM
+#ifndef AES_CONTEXT_DEFINED
+#define AES_CONTEXT_DEFINED
 typedef struct {
     int mode;           // 1 for Encryption, 0 for Decryption
     int rounds;         // keysize-based rounds count
     uint32_t *rk;       // pointer to current round key
     uint32_t buf[68];   // key expansion buffer
 } aes_context;
+#endif
 
 // GCM context structure 
+#ifndef GCM_CONTEXT_DEFINED
+#define GCM_CONTEXT_DEFINED
 typedef struct {
     int mode;               // cipher direction: encrypt/decrypt
     uint64_t len;           // cipher data length processed so far
@@ -35,12 +40,17 @@ typedef struct {
     aes_context aes_ctx;    // cipher context used
     uchar table[16][256][16];
 } gcm_context;
+#endif
 
 // GCM function declarations
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+// AES initialization
+void aes_init_keygen_tables(void);
+
+// GCM functions
 int gcm_setkey(gcm_context *ctx, const uchar *key, const uint keysize);
 int gcm_start(gcm_context *ctx, int mode, const uchar *iv, size_t iv_len, const uchar *add, size_t add_len);
 int gcm_update(gcm_context *ctx, size_t length, const uchar *input, uchar *output);
@@ -410,6 +420,10 @@ static inline uint64_t htonll(uint64_t value) {
 // Forward declarations for TLSClient structures
 struct TLSContext;
 struct TLSCertificate;
+
+// Type definitions  
+typedef struct TLSContext TLSContext;
+typedef struct TLSCertificate TLSCertificate;
 
 // TLSClient API functions (will be implemented in tlsclient_wrapper.cpp)
 #ifdef __cplusplus

@@ -1,3 +1,6 @@
+#ifndef GCM_C_INCLUDED
+#define GCM_C_INCLUDED
+
 /******************************************************************************
 *
 * THIS SOURCE CODE IS HEREBY PLACED INTO THE PUBLIC DOMAIN FOR THE GOOD OF ALL
@@ -25,12 +28,15 @@
 #define DECRYPT         0       // or decrypting
 typedef unsigned char uchar;    // add some convienent shorter types
 typedef unsigned int uint;
+#ifndef AES_CONTEXT_DEFINED
+#define AES_CONTEXT_DEFINED
 typedef struct {
     int mode;           // 1 for Encryption, 0 for Decryption
     int rounds;         // keysize-based rounds count
     uint32_t *rk;       // pointer to current round key
     uint32_t buf[68];   // key expansion buffer
 } aes_context;
+#endif
 
 
 static int aes_tables_inited = 0;   // run-once flag for performing key
@@ -555,6 +561,9 @@ int aes_cipher( aes_context *ctx,
 *
 *******************************************************************************/
 #define GCM_AUTH_FAILURE    0x55555555  // authentication failure
+
+#ifndef GCM_CONTEXT_DEFINED
+#define GCM_CONTEXT_DEFINED
 typedef struct {
     int mode;               // cipher direction: encrypt/decrypt
     uint64_t len;           // cipher data length processed so far
@@ -569,6 +578,7 @@ typedef struct {
 	uchar table[16][256][16];
 
 } gcm_context;
+#endif
 
 /******************************************************************************
  *                      ==== IMPLEMENTATION WARNING ====

@@ -38,12 +38,9 @@ typedef struct
 
 typedef unsigned int uint;
 
-
-typedef struct EccPoint
-{
-    uint64_t x[MAX_NUM_ECC_DIGITS];
-    uint64_t y[MAX_NUM_ECC_DIGITS];
-} EccPoint;
+// Forward declarations
+static void vli_mult(EccState *s, uint64_t *p_result, uint64_t *p_left, uint64_t *p_right);
+static void vli_square(EccState *s, uint64_t *p_result, uint64_t *p_left);
 
 
 #define CONCAT1(a, b) a##b
@@ -71,17 +68,6 @@ const static EccPoint Curve_G_48 = {{0x3A545E3872760AB7, 0x5502F25DBF55296C, 0x5
 const static uint64_t Curve_N_48[] = {0xECEC196ACCC52973, 0x581A0DB248B0A77A, 0xC7634D81F4372DDF, 0xFFFFFFFFFFFFFFFF, 0xFFFFFFFFFFFFFFFF, 0xFFFFFFFFFFFFFFFF};
 
 
-typedef struct EccState
-{
-	uint32_t ECC_BYTES;
-	uint32_t NUM_ECC_DIGITS;
-	uint64_t curve_p[MAX_NUM_ECC_DIGITS];	//CONCAT(Curve_P_, ECC_CURVE);
-	uint64_t curve_b[MAX_NUM_ECC_DIGITS];	//CONCAT(Curve_B_, ECC_CURVE);
-	EccPoint curve_G;						//CONCAT(Curve_G_, ECC_CURVE);
-	uint64_t curve_n[MAX_NUM_ECC_DIGITS];	//CONCAT(Curve_N_, ECC_CURVE);
-	uint64_t privatekey[MAX_NUM_ECC_DIGITS];
-	EccPoint publickey;
-} EccState;
 
 
 
@@ -119,7 +105,7 @@ static int getRandomNumber(EccState *s, uint64_t *p_vli)
     #define O_CLOEXEC 0
 #endif
 
-static int getRandomNumber(uint64_t *p_vli)
+static int getRandomNumber(EccState *s, uint64_t *p_vli)
 {
     int l_fd = open("/dev/urandom", O_RDONLY | O_CLOEXEC);
     if(l_fd == -1)
@@ -132,7 +118,7 @@ static int getRandomNumber(uint64_t *p_vli)
     }
     
     char *l_ptr = (char *)p_vli;
-    size_t l_left = ECC_BYTES;
+    size_t l_left = s->ECC_BYTES;
     while(l_left > 0)
     {
         int l_read = read(l_fd, l_ptr, l_left);
@@ -309,59 +295,6 @@ static uint64_t vli_sub(EccState *s, uint64_t *p_result, uint64_t *p_left, uint6
 #if SUPPORTS_INT128
 
 /* Computes p_result = p_left * p_right. */
-static void vli_mult(uint64_t *p_result, uint64_t *p_left, uint64_t *p_right)
-{
-    uint128_t r01 = 0;
-    uint64_t r2 = 0;
-    
-    uint i, k;
-    
-    /* Compute each digit of p_result in sequence, maintaining the carries. */
-    for(k=0; k < NUM_ECC_DIGITS*2 - 1; ++k)
-    {
-        uint l_min = (k < NUM_ECC_DIGITS ? 0 : (k + 1) - NUM_ECC_DIGITS);
-        for(i=l_min; i<=k && i<NUM_ECC_DIGITS; ++i)
-        {
-            uint128_t l_product = (uint128_t)p_left[i] * p_right[k-i];
-            r01 += l_product;
-            r2 += (r01 < l_product);
-        }
-        p_result[k] = (uint64_t)r01;
-        r01 = (r01 >> 64) | (((uint128_t)r2) << 64);
-        r2 = 0;
-    }
-    
-    p_result[NUM_ECC_DIGITS*2 - 1] = (uint64_t)r01;
-}
-
-/* Computes p_result = p_left^2. */
-static void vli_square(uint64_t *p_result, uint64_t *p_left)
-{
-    uint128_t r01 = 0;
-    uint64_t r2 = 0;
-    
-    uint i, k;
-    for(k=0; k < NUM_ECC_DIGITS*2 - 1; ++k)
-    {
-        uint l_min = (k < NUM_ECC_DIGITS ? 0 : (k + 1) - NUM_ECC_DIGITS);
-        for(i=l_min; i<=k && i<=k-i; ++i)
-        {
-            uint128_t l_product = (uint128_t)p_left[i] * p_left[k-i];
-            if(i < k-i)
-            {
-                r2 += l_product >> 127;
-                l_product *= 2;
-            }
-            r01 += l_product;
-            r2 += (r01 < l_product);
-        }
-        p_result[k] = (uint64_t)r01;
-        r01 = (r01 >> 64) | (((uint128_t)r2) << 64);
-        r2 = 0;
-    }
-    
-    p_result[NUM_ECC_DIGITS*2 - 1] = (uint64_t)r01;
-}
 
 #else /* #if SUPPORTS_INT128 */
 

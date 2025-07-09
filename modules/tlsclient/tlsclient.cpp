@@ -1100,7 +1100,9 @@ class tls_client
 	{
 		char server_rand[RAND_SIZE];
 
-		int server_hello_size = ntohl(reader.read<char>()<<8 | reader.read<short>()<<16);
+		// Skip server hello size field
+		reader.read<char>();
+		reader.read<short>();
 		reader.read<short>(); // skip version
 		reader.read(server_rand, sizeof(server_rand));
 		int session_len = reader.read<char>();
