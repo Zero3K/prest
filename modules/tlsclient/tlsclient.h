@@ -9,6 +9,8 @@
 typedef unsigned char uchar;
 typedef unsigned int uint;
 typedef unsigned char u8;
+typedef unsigned char uint8;
+typedef unsigned long long uint64;
 
 // Forward declarations for GCM cryptography
 #define ENCRYPT         1       // specify whether we're encrypting
@@ -120,7 +122,13 @@ typedef sha256_ctx sha224_ctx;
 
 #endif /* SHA2_STRUCTS_DEFINED */
 
-// SHA2 function declarations are provided by sha2.c
+// SHA2 function declarations
+void sha256_init(sha256_ctx *ctx);
+void sha256_update(sha256_ctx *ctx, const uint8 *message, uint64 len);
+void sha256_final(sha256_ctx *ctx, uint8 *digest);
+void sha384_init(sha384_ctx *ctx);
+void sha384_update(sha384_ctx *ctx, const uint8 *message, uint64 len);
+void sha384_final(sha384_ctx *ctx, uint8 *digest);
 
 // HMAC context structures
 #ifndef HMAC_STRUCTS_DEFINED
@@ -164,7 +172,13 @@ typedef struct {
 
 #endif /* HMAC_STRUCTS_DEFINED */
 
-// HMAC function declarations are provided by sha2.c
+// HMAC function declarations
+void hmac_sha256_init(hmac_sha256_ctx *ctx, const unsigned char *key, unsigned int key_size);
+void hmac_sha256_update(hmac_sha256_ctx *ctx, const unsigned char *message, unsigned int message_len);
+void hmac_sha256_final(hmac_sha256_ctx *ctx, unsigned char *mac, unsigned int mac_size);
+void hmac_sha384_init(hmac_sha384_ctx *ctx, const unsigned char *key, unsigned int key_size);
+void hmac_sha384_update(hmac_sha384_ctx *ctx, const unsigned char *message, unsigned int message_len);
+void hmac_sha384_final(hmac_sha384_ctx *ctx, unsigned char *mac, unsigned int mac_size);
 
 #ifdef __cplusplus
 }
