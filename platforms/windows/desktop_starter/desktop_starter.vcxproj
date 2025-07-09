@@ -130,9 +130,6 @@
   <ImportGroup Label="ExtensionSettings" Condition="'$(Platform)'=='x64'">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
   </ImportGroup>
-  <ImportGroup Label="ExtensionSettings" Condition="'$(Platform)'=='Win32'">
-    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
-  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -252,7 +249,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Psapi.lib;Wintrust.lib;Crypt32.lib;kernel32.lib;../noencodepointer.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Psapi.lib;Wintrust.lib;Crypt32.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(TargetDir)$(ProjectName).pdb</ProgramDatabaseFile>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <MinimumRequiredVersion>5.0</MinimumRequiredVersion>
@@ -313,7 +310,7 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>Psapi.lib;Wintrust.lib;Crypt32.lib;kernel32.lib;../noencodepointer.obj;libctiny.lib;memfunc.obj;../nowatson.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Psapi.lib;Wintrust.lib;Crypt32.lib;kernel32.lib;libctiny.lib;memfunc.obj;../nowatson.obj;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>LIBC.lib</IgnoreSpecificDefaultLibraries>
       <ProgramDatabaseFile>$(TargetDir)$(ProjectName).pdb</ProgramDatabaseFile>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
@@ -601,6 +598,7 @@
     <ClCompile Include="WindowsAUFileUtils.cpp" />
     <ClCompile Include="WindowsAUInstaller.cpp" />
     <ClCompile Include="win_file_utils.cpp" />
+    <ClCompile Include="..\noencodepointer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ods.rc" />
@@ -618,16 +616,8 @@
   <ItemGroup Condition="'$(Platform)'=='x64'">
     <MASM Include="..\..\crashlog\src\crashlog_winx64.asm" />
   </ItemGroup>
-  <ItemGroup Condition="'$(Platform)'=='Win32'">
-    <MASM Include="..\noencodepointer.asm">
-      <ObjectFileName>..\noencodepointer.obj</ObjectFileName>
-    </MASM>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" Condition="'$(Platform)'=='x64'">
-    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
-  </ImportGroup>
-  <ImportGroup Label="ExtensionTargets" Condition="'$(Platform)'=='Win32'">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
   </ImportGroup>
 </Project>
