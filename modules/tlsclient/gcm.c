@@ -1108,3 +1108,5 @@ void gcm_zero_ctx( gcm_context *ctx )
     // zero the context originally provided to us
     memset( ctx, 0, sizeof( gcm_context ) );
 }
+
+#endif /* GCM_C_INCLUDED */

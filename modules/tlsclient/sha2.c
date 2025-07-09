@@ -1,3 +1,6 @@
+#ifndef SHA2_C_INCLUDED
+#define SHA2_C_INCLUDED
+
 /*
  * FIPS 180-2 SHA-224/256/384/512 implementation
  *
@@ -623,7 +626,7 @@ void sha256_final(sha256_ctx *ctx, uint8 *digest)
     memset(ctx->block + ctx->len, 0, (size_t)pm_len - (size_t)ctx->len);
     ctx->block[ctx->len] = 0x80;
     UNPACK64(len_b, ctx->block + pm_len - 8);
- //   *(ctx->block + pm_len - 9) = (uint8) ((tot_len >> 61) & 0x07);		//Õâ¾ä¼ÓÉÏÔÚbufÁã½çµã¼ÆËã²»¶Ô
+ //   *(ctx->block + pm_len - 9) = (uint8) ((tot_len >> 61) & 0x07);		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½bufï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ã²»ï¿½ï¿½
 
     sha256_transf(ctx, ctx->block, block_nb);
 
@@ -1252,3 +1255,5 @@ void hmac_sha512(const unsigned char *key, unsigned int key_size,
     hmac_sha512_update(&ctx, message, message_len);
     hmac_sha512_final(&ctx, mac, mac_size);
 }
+
+#endif /* SHA2_C_INCLUDED */

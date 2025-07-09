@@ -4,11 +4,7 @@
 #include <windows.h>
 #include <stdint.h>
 #include <fstream>
-#include "chacha20.c"
 #include "tlsclient.h"
-#include "ecc.c"
-#include "gcm.c"
-#include "sha2.c"
 #include "lock.h"
 
 
@@ -1105,7 +1101,7 @@ class tls_client
 		char server_rand[RAND_SIZE];
 
 		int server_hello_size = ntohl(reader.read<char>()<<8 | reader.read<short>()<<16);
-		int ver = ntohs(reader.read<short>());
+		reader.read<short>(); // skip version
 		reader.read(server_rand, sizeof(server_rand));
 		int session_len = reader.read<char>();
 		reader.readed += session_len;

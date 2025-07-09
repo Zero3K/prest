@@ -1,4 +1,7 @@
 
+#ifndef CHACHA20_C_INCLUDED
+#define CHACHA20_C_INCLUDED
+
 #include <string.h>  // for memset, memcmp
 #include <stdint.h>  // for uint64_t
 
@@ -682,3 +685,5 @@ int chacha20_poly1305_decode(struct chacha_ctx *remote_ctx,  unsigned char *pt, 
 	return len;
 }
 #endif
+
+#endif /* CHACHA20_C_INCLUDED */

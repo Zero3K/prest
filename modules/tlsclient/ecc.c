@@ -1,5 +1,8 @@
 
 
+#ifndef ECC_C_INCLUDED
+#define ECC_C_INCLUDED
+
 #include <stdint.h>
 #include <string.h>
 
@@ -1375,3 +1378,5 @@ int ecdsa_verify(EccState *s, const uint8_t *p_publicKey, const uint8_t *p_hash,
     /* Accept only if v == r. */
     return (vli_cmp(s, rx, l_r) == 0);
 }
+
+#endif /* ECC_C_INCLUDED */
