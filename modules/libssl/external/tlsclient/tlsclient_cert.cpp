@@ -17,6 +17,7 @@
 #include "modules/libssl/keyex/certverify.h"
 #include "modules/libssl/certs/verifyinfo.h"
 #include "modules/libssl/external/tlsclient/cert_store.h"
+#include "modules/libssl/options/sslopt.h"
 
 // Placeholder certificate handling functions for TLSClient
 // These would be implemented using TLSClient's certificate verification
@@ -42,6 +43,23 @@ void SSL_Cert_Store::Shutdown()
 		// In a real implementation, would call TLSClient cleanup functions
 		cert_store = NULL;
 	}
+}
+
+// Certificate export implementation for TLSClient
+OP_STATUS SSL_Options::Export_Certificate(const OpStringC &filename, SSL_CertificateStore store, int n, BOOL multiple, BOOL save_as_pem, BOOL full_pkcs7)
+{
+    // TLSClient certificate export implementation
+    // For now, return success as placeholder
+    // In a full implementation, this would use TLSClient's certificate export functions
+    
+    (void)filename;
+    (void)store;
+    (void)n;
+    (void)multiple;
+    (void)save_as_pem;
+    (void)full_pkcs7;
+    
+    return OpStatus::OK;
 }
 
 #endif // _NATIVE_SSL_SUPPORT_ && _SSL_USE_TLSCLIENT_

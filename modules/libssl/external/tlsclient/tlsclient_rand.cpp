@@ -89,4 +89,20 @@ void SSL_SEED_RND(byte *source, uint32 len)
     (void)len;
 }
 
+// Initialize random number generator for TLSClient
+OP_STATUS SSL_RND_Init()
+{
+    // TLSClient's RNG is self-initializing
+    // No explicit initialization needed
+    return OpStatus::OK;
+}
+
+// Cleanup random number generator for TLSClient
+OP_STATUS SSL_TidyUp_Random()
+{
+    // TLSClient handles cleanup internally
+    // No explicit cleanup needed
+    return OpStatus::OK;
+}
+
 #endif // _NATIVE_SSL_SUPPORT_ && _SSL_USE_TLSCLIENT_
