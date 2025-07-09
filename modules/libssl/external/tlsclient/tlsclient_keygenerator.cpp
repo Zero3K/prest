@@ -111,7 +111,7 @@ OP_STATUS TLSClient_KeyPairGenerator::CreatePKCS8PrivateKey(SSL_secure_varvector
 	// This is a simplified implementation for demonstration
 	// A real implementation would generate actual RSA key material
 	
-	const char dummy_pkcs8[] = {
+	const unsigned char dummy_pkcs8[] = {
 		0x30, 0x82, 0x01, 0x00,  // SEQUENCE, length
 		0x02, 0x01, 0x00,        // INTEGER 0 (version)
 		0x30, 0x0d,              // SEQUENCE (algorithm)
