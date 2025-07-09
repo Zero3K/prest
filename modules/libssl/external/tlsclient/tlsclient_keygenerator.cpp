@@ -121,8 +121,7 @@ OP_STATUS TLSClient_KeyPairGenerator::CreatePKCS8PrivateKey(SSL_secure_varvector
 		0x04, 0x82, 0x00, 0x00   // OCTET STRING (private key data would follow)
 	};
 	
-	RETURN_IF_ERROR(private_key.SetLength(sizeof(dummy_pkcs8)));
-	op_memcpy(private_key.GetDirect(), dummy_pkcs8, sizeof(dummy_pkcs8));
+	private_key.Set(dummy_pkcs8, sizeof(dummy_pkcs8));
 	
 	return OpStatus::OK;
 }
@@ -132,7 +131,7 @@ OP_STATUS TLSClient_KeyPairGenerator::CalculatePublicKeyHash(SSL_secure_varvecto
 	// Create a dummy public key hash
 	// In a real implementation, this would be the SHA-1 hash of the public key
 	
-	RETURN_IF_ERROR(public_key_hash.SetLength(SSL_SHA_LENGTH));
+	public_key_hash.Resize(SSL_SHA_LENGTH);
 	
 	// Fill with dummy hash data
 	unsigned char dummy_hash[SSL_SHA_LENGTH];
