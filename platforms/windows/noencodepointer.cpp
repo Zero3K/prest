@@ -4,6 +4,7 @@
 // This file provides implementations that use these functions if kernel32.dll
 // has them and simply returns input argument on older systems.
 
+#include "core/pch.h"
 #include <windows.h>
 
 // Function pointers for the actual EncodePointer/DecodePointer functions
