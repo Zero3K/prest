@@ -1156,7 +1156,8 @@ class tls_client
 	const char *on_server_certificate(tlsbuf_reader &reader)
 	{
 
-		int server_certificates_size = ntohl(reader.read<char>()<<8 | reader.read<short>()<<16);
+		// Skip server certificates size field
+		ntohl(reader.read<char>()<<8 | reader.read<short>()<<16);
 		//while(reader.readed < end_index2)
 		//{
 		//	int certificate_size = ntohl(reader.read<char>()<<8 | reader.read<short>()<<16);
