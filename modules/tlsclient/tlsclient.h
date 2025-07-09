@@ -118,6 +118,68 @@ void sha512_update(sha512_ctx *ctx, const uchar *message, uint64_t len);
 void sha512_final(sha512_ctx *ctx, uchar *digest);
 void sha512(const uchar *message, uint64_t len, uchar *digest);
 
+// HMAC context structures
+typedef struct {
+    sha224_ctx ctx_inside;
+    sha224_ctx ctx_outside;
+    sha224_ctx ctx_inside_reinit;
+    sha224_ctx ctx_outside_reinit;
+    unsigned char block_ipad[SHA224_BLOCK_SIZE];
+    unsigned char block_opad[SHA224_BLOCK_SIZE];
+} hmac_sha224_ctx;
+
+typedef struct {
+    sha256_ctx ctx_inside;
+    sha256_ctx ctx_outside;
+    sha256_ctx ctx_inside_reinit;
+    sha256_ctx ctx_outside_reinit;
+    unsigned char block_ipad[SHA256_BLOCK_SIZE];
+    unsigned char block_opad[SHA256_BLOCK_SIZE];
+} hmac_sha256_ctx;
+
+typedef struct {
+    sha384_ctx ctx_inside;
+    sha384_ctx ctx_outside;
+    sha384_ctx ctx_inside_reinit;
+    sha384_ctx ctx_outside_reinit;
+    unsigned char block_ipad[SHA384_BLOCK_SIZE];
+    unsigned char block_opad[SHA384_BLOCK_SIZE];
+} hmac_sha384_ctx;
+
+typedef struct {
+    sha512_ctx ctx_inside;
+    sha512_ctx ctx_outside;
+    sha512_ctx ctx_inside_reinit;
+    sha512_ctx ctx_outside_reinit;
+    unsigned char block_ipad[SHA512_BLOCK_SIZE];
+    unsigned char block_opad[SHA512_BLOCK_SIZE];
+} hmac_sha512_ctx;
+
+// HMAC function declarations
+void hmac_sha224_init(hmac_sha224_ctx *ctx, const unsigned char *key, unsigned int key_size);
+void hmac_sha224_reinit(hmac_sha224_ctx *ctx);
+void hmac_sha224_update(hmac_sha224_ctx *ctx, const unsigned char *message, unsigned int message_len);
+void hmac_sha224_final(hmac_sha224_ctx *ctx, unsigned char *mac, unsigned int mac_size);
+void hmac_sha224(const unsigned char *key, unsigned int key_size, const unsigned char *message, unsigned int message_len, unsigned char *mac, unsigned mac_size);
+
+void hmac_sha256_init(hmac_sha256_ctx *ctx, const unsigned char *key, unsigned int key_size);
+void hmac_sha256_reinit(hmac_sha256_ctx *ctx);
+void hmac_sha256_update(hmac_sha256_ctx *ctx, const unsigned char *message, unsigned int message_len);
+void hmac_sha256_final(hmac_sha256_ctx *ctx, unsigned char *mac, unsigned int mac_size);
+void hmac_sha256(const unsigned char *key, unsigned int key_size, const unsigned char *message, unsigned int message_len, unsigned char *mac, unsigned mac_size);
+
+void hmac_sha384_init(hmac_sha384_ctx *ctx, const unsigned char *key, unsigned int key_size);
+void hmac_sha384_reinit(hmac_sha384_ctx *ctx);
+void hmac_sha384_update(hmac_sha384_ctx *ctx, const unsigned char *message, unsigned int message_len);
+void hmac_sha384_final(hmac_sha384_ctx *ctx, unsigned char *mac, unsigned int mac_size);
+void hmac_sha384(const unsigned char *key, unsigned int key_size, const unsigned char *message, unsigned int message_len, unsigned char *mac, unsigned mac_size);
+
+void hmac_sha512_init(hmac_sha512_ctx *ctx, const unsigned char *key, unsigned int key_size);
+void hmac_sha512_reinit(hmac_sha512_ctx *ctx);
+void hmac_sha512_update(hmac_sha512_ctx *ctx, const unsigned char *message, unsigned int message_len);
+void hmac_sha512_final(hmac_sha512_ctx *ctx, unsigned char *mac, unsigned int mac_size);
+void hmac_sha512(const unsigned char *key, unsigned int key_size, const unsigned char *message, unsigned int message_len, unsigned char *mac, unsigned mac_size);
+
 #ifdef __cplusplus
 }
 #endif
@@ -128,6 +190,34 @@ typedef enum {
     ECC_secp256r1 = 23,  // IANA assigned number for secp256r1/prime256v1
     ECC_secp384r1 = 24   // IANA assigned number for secp384r1
 } ECC_GROUP;
+
+// ECC constants
+#define secp384r1 48
+#define MAX_NUM_ECC_DIGITS (secp384r1/8)
+
+// ECC structures  
+typedef struct EccPoint {
+    uint64_t x[MAX_NUM_ECC_DIGITS];
+    uint64_t y[MAX_NUM_ECC_DIGITS];
+} EccPoint;
+
+typedef struct EccState {
+    uint32_t ECC_BYTES;
+    uint32_t NUM_ECC_DIGITS;
+    uint64_t curve_p[MAX_NUM_ECC_DIGITS];
+    uint64_t curve_b[MAX_NUM_ECC_DIGITS];
+    EccPoint curve_G;
+    uint64_t curve_n[MAX_NUM_ECC_DIGITS];
+    uint64_t privatekey[MAX_NUM_ECC_DIGITS];
+    EccPoint publickey;
+} EccState;
+
+// ECC function declarations
+int ecc_init(EccState *s, int bytes);
+int ecc_export_public_key(EccState *s, uint8_t *p_publicKey, uint32_t publicKeySize);
+int ecdh_shared_secret(EccState *s, const uint8_t *p_publicKey, uint32_t publicKeySize, uint8_t *p_secret);
+int ecdsa_sign(EccState *s, const uint8_t *p_privateKey, const uint8_t *p_hash, uint8_t *p_signature);
+int ecdsa_verify(EccState *s, const uint8_t *p_publicKey, const uint8_t *p_hash, const uint8_t *p_signature);
 
 //Implement secure re-negotiation per RFC5746.
 
