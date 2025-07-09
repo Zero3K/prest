@@ -52,21 +52,25 @@ int gcm_finish(gcm_context *ctx, uchar *tag, size_t tag_len);
 #define POLY1305_KEYLEN           32
 #define POLY1305_TAGLEN           16
 
-// Forward declaration - actual definition is in chacha20.c
-struct chacha_ctx;
+// ChaCha20 context structure definition
+typedef struct chacha_ctx {
+    unsigned int input[16];
+    uint8_t ks[CHACHA_BLOCKLEN];
+    uint8_t unused;
+} chacha_ctx;
 
 // ChaCha20 function declarations
-void chacha_keysetup(struct chacha_ctx *x, const unsigned char *k, unsigned int kbits);
-void chacha_key(struct chacha_ctx *x, unsigned char *k);
-void chacha_nonce(struct chacha_ctx *x, unsigned char *nonce);
-void chacha_ivsetup(struct chacha_ctx *x, const unsigned char *iv, const unsigned char *ctr);
-void chacha_ivsetup_96bitnonce(struct chacha_ctx *x, const unsigned char *iv, const unsigned char *ctr);
-void chacha_ivupdate(struct chacha_ctx *x, const unsigned char *iv, const unsigned char *aad, const unsigned char *counter);
-void chacha_encrypt_bytes(struct chacha_ctx *x, const unsigned char *m, unsigned char *c, unsigned int bytes);
-void chacha20_block(struct chacha_ctx *x, unsigned char *c, unsigned int len);
-void chacha20_poly1305_key(struct chacha_ctx *ctx, unsigned char *poly1305_key);
-int chacha20_poly1305_aead(struct chacha_ctx *ctx, unsigned char *pt, unsigned int len, unsigned char *aad, unsigned int aad_len, unsigned char *poly_key, unsigned char *out);
-int chacha20_poly1305_decode(struct chacha_ctx *remote_ctx, unsigned char *pt, unsigned int len, unsigned char *aad, unsigned int aad_len, unsigned char *poly_key, unsigned char *out);
+void chacha_keysetup(chacha_ctx *x, const unsigned char *k, unsigned int kbits);
+void chacha_key(chacha_ctx *x, unsigned char *k);
+void chacha_nonce(chacha_ctx *x, unsigned char *nonce);
+void chacha_ivsetup(chacha_ctx *x, const unsigned char *iv, const unsigned char *ctr);
+void chacha_ivsetup_96bitnonce(chacha_ctx *x, const unsigned char *iv, const unsigned char *ctr);
+void chacha_ivupdate(chacha_ctx *x, const unsigned char *iv, const unsigned char *aad, const unsigned char *counter);
+void chacha_encrypt_bytes(chacha_ctx *x, const unsigned char *m, unsigned char *c, unsigned int bytes);
+void chacha20_block(chacha_ctx *x, unsigned char *c, unsigned int len);
+void chacha20_poly1305_key(chacha_ctx *ctx, unsigned char *poly1305_key);
+int chacha20_poly1305_aead(chacha_ctx *ctx, unsigned char *pt, unsigned int len, unsigned char *aad, unsigned int aad_len, unsigned char *poly_key, unsigned char *out);
+int chacha20_poly1305_decode(chacha_ctx *remote_ctx, unsigned char *pt, unsigned int len, unsigned char *aad, unsigned int aad_len, unsigned char *poly_key, unsigned char *out);
 
 // SHA2 constants and types
 #define SHA224_DIGEST_SIZE ( 224 / 8)
