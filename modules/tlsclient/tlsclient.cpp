@@ -1175,7 +1175,7 @@ class tls_client
 	const char *on_server_key_exchange(tlsbuf_reader &reader)
 	{
 
-		int server_keyexchange_size = ntohl(reader.read<char>()<<8 | reader.read<short>()<<16);
+		ntohl(reader.read<char>()<<8 | reader.read<short>()<<16); // skip server keyexchange size
 
 		if(reader.read<char>() != 3)
 			return "²»Ö§³ÖµÄÍÖÔ²Ä£Ê½";
@@ -1191,7 +1191,7 @@ class tls_client
 
 		int msg_size	= reader.readed-4;
 		int hash_type	= reader.read<unsigned char>();
-		int sign_type	= reader.read<unsigned char>();
+		reader.read<unsigned char>(); // skip sign type
 		int sign_size	= (int)ntohs(reader.read<short>());
 		sign.append_size(sign_size);
 		reader.read(sign.buf, sign.size);
