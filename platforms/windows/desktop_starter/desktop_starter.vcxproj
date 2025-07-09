@@ -619,7 +619,9 @@
     <MASM Include="..\..\crashlog\src\crashlog_winx64.asm" />
   </ItemGroup>
   <ItemGroup Condition="'$(Platform)'=='Win32'">
-    <MASM Include="..\noencodepointer.asm" />
+    <MASM Include="..\noencodepointer.asm">
+      <ObjectFileName>..\noencodepointer.obj</ObjectFileName>
+    </MASM>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" Condition="'$(Platform)'=='x64'">
