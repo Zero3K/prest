@@ -789,6 +789,12 @@
     <ClCompile Include="noencodepointer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\build\src\modules\tlsclient\tlsclient_jumbo.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\build\src\modules\selftest\selftest_jumbo_tlsclient.cpp" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="windows_ui\res\#BuildNr.rci" />
   </ItemGroup>
   <ItemGroup>
