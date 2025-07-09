@@ -18,6 +18,10 @@
  */
 class OperaCredits : public OpGeneratedDocument
 {
+private:
+	// Private default constructor to suppress C4510/C4610 warnings
+	OperaCredits();
+
 public:
 
 	/**

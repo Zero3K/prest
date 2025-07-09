@@ -116,7 +116,10 @@ namespace opera_update_checker
   , highprio_retries(0)
   , mediumprio_retries(0)
   , state_(EMPTY)
+#pragma warning(push)
+#pragma warning(disable: 4355) // 'this' used in base member initializer list
   , cmd_processor_(this)
+#pragma warning(pop)
   , try_again_server_time_(0)
 #ifdef _DEBUG
   , validated_pipe_id(false)

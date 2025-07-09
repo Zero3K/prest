@@ -4201,8 +4201,8 @@ OP_STATUS DocumentManager::HandleHeaderLoaded(URL_ID url_id, BOOL check_if_inlin
                         SetLoadStat(WAIT_FOR_USER);
                     else
                     	return finished;
-                    break;  // Note: cleaning up window/docman must wait until another
-                            // entity takes over the download, or not.
+                    // Note: cleaning up window/docman must wait until another
+                    // entity takes over the download, or not.
 #  else // !WIC_USE_DOWNLOAD_CALLBACK
 					window->GetWindowCommander()->GetDocumentListener()->OnDownloadRequest(
 						window->GetWindowCommander(),
