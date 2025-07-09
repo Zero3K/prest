@@ -5,7 +5,7 @@
 #include <stdint.h>
 #include <fstream>
 #include "chacha20.c"
-#include "tls.h"
+#include "tlsclient.h"
 #include "ecc.c"
 #include "gcm.c"
 #include "sha2.c"
