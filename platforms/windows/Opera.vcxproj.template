@@ -242,7 +242,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Oleacc.lib;Psapi.lib;UxTheme.lib;Msimg32.lib;Secur32.lib;Wintrust.lib;Crypt32.lib;rasapi32.lib;oldnames.lib;winmm.lib;advapi32.lib;version.lib;wsock32.lib;imm32.lib;strmiids.lib;Ws2_32.lib;noencodepointer.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Oleacc.lib;Psapi.lib;UxTheme.lib;Msimg32.lib;Secur32.lib;Wintrust.lib;Crypt32.lib;rasapi32.lib;oldnames.lib;winmm.lib;advapi32.lib;version.lib;wsock32.lib;imm32.lib;strmiids.lib;Ws2_32.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>false</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
@@ -342,7 +342,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>Oleacc.lib;Psapi.lib;UxTheme.lib;Msimg32.lib;Secur32.lib;Wintrust.lib;Crypt32.lib;rasapi32.lib;oldnames.lib;winmm.lib;advapi32.lib;version.lib;wsock32.lib;imm32.lib;strmiids.lib;Ws2_32.lib;noencodepointer.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Oleacc.lib;Psapi.lib;UxTheme.lib;Msimg32.lib;Secur32.lib;Wintrust.lib;Crypt32.lib;rasapi32.lib;oldnames.lib;winmm.lib;advapi32.lib;version.lib;wsock32.lib;imm32.lib;strmiids.lib;Ws2_32.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
@@ -449,7 +449,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>Oleacc.lib;Psapi.lib;UxTheme.lib;Msimg32.lib;Secur32.lib;Wintrust.lib;Crypt32.lib;rasapi32.lib;oldnames.lib;winmm.lib;advapi32.lib;version.lib;wsock32.lib;imm32.lib;strmiids.lib;Ws2_32.lib;noencodepointer.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Oleacc.lib;Psapi.lib;UxTheme.lib;Msimg32.lib;Secur32.lib;Wintrust.lib;Crypt32.lib;rasapi32.lib;oldnames.lib;winmm.lib;advapi32.lib;version.lib;wsock32.lib;imm32.lib;strmiids.lib;Ws2_32.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
@@ -558,7 +558,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>Oleacc.lib;Psapi.lib;UxTheme.lib;Msimg32.lib;Secur32.lib;Wintrust.lib;Crypt32.lib;rasapi32.lib;oldnames.lib;winmm.lib;advapi32.lib;version.lib;wsock32.lib;imm32.lib;strmiids.lib;Ws2_32.lib;noencodepointer.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Oleacc.lib;Psapi.lib;UxTheme.lib;Msimg32.lib;Secur32.lib;Wintrust.lib;Crypt32.lib;rasapi32.lib;oldnames.lib;winmm.lib;advapi32.lib;version.lib;wsock32.lib;imm32.lib;strmiids.lib;Ws2_32.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
@@ -668,7 +668,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>Oleacc.lib;Psapi.lib;UxTheme.lib;Msimg32.lib;Secur32.lib;Wintrust.lib;Crypt32.lib;rasapi32.lib;oldnames.lib;winmm.lib;advapi32.lib;version.lib;wsock32.lib;imm32.lib;strmiids.lib;Ws2_32.lib;noencodepointer.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Oleacc.lib;Psapi.lib;UxTheme.lib;Msimg32.lib;Secur32.lib;Wintrust.lib;Crypt32.lib;rasapi32.lib;oldnames.lib;winmm.lib;advapi32.lib;version.lib;wsock32.lib;imm32.lib;strmiids.lib;Ws2_32.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
@@ -784,6 +784,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='vTune|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='vTune|x64'">Create</PrecompiledHeader>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="noencodepointer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="windows_ui\res\#BuildNr.rci" />
