@@ -121,7 +121,7 @@ OP_STATUS TLSClient_KeyPairGenerator::CreatePKCS8PrivateKey(SSL_secure_varvector
 		0x04, 0x82, 0x00, 0x00   // OCTET STRING (private key data would follow)
 	};
 	
-	private_key.Set(dummy_pkcs8, sizeof(dummy_pkcs8));
+	private_key.Set((const byte*)dummy_pkcs8, sizeof(dummy_pkcs8));
 	
 	return OpStatus::OK;
 }
