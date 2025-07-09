@@ -8,6 +8,7 @@
 
 typedef unsigned char uchar;
 typedef unsigned int uint;
+typedef unsigned char u8;
 
 // Forward declarations for GCM cryptography
 #define ENCRYPT         1       // specify whether we're encrypting
@@ -44,6 +45,32 @@ int gcm_setkey(gcm_context *ctx, const uchar *key, const uint keysize);
 int gcm_start(gcm_context *ctx, int mode, const uchar *iv, size_t iv_len, const uchar *add, size_t add_len);
 int gcm_update(gcm_context *ctx, size_t length, const uchar *input, uchar *output);
 int gcm_finish(gcm_context *ctx, uchar *tag, size_t tag_len);
+
+// ChaCha20 constants and types
+#define TLS_CHACHA20_IV_LENGTH    12
+#define CHACHA_BLOCKLEN           64
+#define POLY1305_KEYLEN           32
+#define POLY1305_TAGLEN           16
+
+// ChaCha20 context structure
+struct chacha_ctx {
+    unsigned int input[16];
+    unsigned char ks[CHACHA_BLOCKLEN];
+    unsigned char unused;
+};
+
+// ChaCha20 function declarations
+void chacha_keysetup(struct chacha_ctx *x, const unsigned char *k, unsigned int kbits);
+void chacha_key(struct chacha_ctx *x, unsigned char *k);
+void chacha_nonce(struct chacha_ctx *x, unsigned char *nonce);
+void chacha_ivsetup(struct chacha_ctx *x, const unsigned char *iv, const unsigned char *ctr);
+void chacha_ivsetup_96bitnonce(struct chacha_ctx *x, const unsigned char *iv, const unsigned char *ctr);
+void chacha_ivupdate(struct chacha_ctx *x, const unsigned char *iv, const unsigned char *aad, const unsigned char *counter);
+void chacha_encrypt_bytes(struct chacha_ctx *x, const unsigned char *m, unsigned char *c, unsigned int bytes);
+void chacha20_block(struct chacha_ctx *x, unsigned char *c, unsigned int len);
+void chacha20_poly1305_key(struct chacha_ctx *ctx, unsigned char *poly1305_key);
+int chacha20_poly1305_aead(struct chacha_ctx *ctx, unsigned char *pt, unsigned int len, unsigned char *aad, unsigned int aad_len, unsigned char *poly_key, unsigned char *out);
+int chacha20_poly1305_decode(struct chacha_ctx *remote_ctx, unsigned char *pt, unsigned int len, unsigned char *aad, unsigned int aad_len, unsigned char *poly_key, unsigned char *out);
 
 #ifdef __cplusplus
 }
