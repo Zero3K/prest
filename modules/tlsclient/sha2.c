@@ -137,22 +137,29 @@
 
 typedef unsigned char uint8;
 typedef unsigned int  uint32;
-typedef unsigned long long uint64;
+#ifndef SHA2_STRUCTS_DEFINED
+#define SHA2_STRUCTS_DEFINED
+
 typedef struct {
-    uint64 tot_len;
-    uint64 len;
-    uint8 block[2 * SHA256_BLOCK_SIZE];
-    uint32 h[8];
+    uint64_t tot_len;
+    uint64_t len;
+    uchar block[2 * SHA256_BLOCK_SIZE];
+    uint32_t h[8];
 } sha256_ctx;
 
 typedef struct {
-    uint64 tot_len;
-    uint64 len;
-    uint8 block[2 * SHA512_BLOCK_SIZE];
-    uint64 h[8];
+    uint64_t tot_len;
+    uint64_t len;
+    uchar block[2 * SHA512_BLOCK_SIZE];
+    uint64_t h[8];
 } sha512_ctx;
 typedef sha512_ctx sha384_ctx;
 typedef sha256_ctx sha224_ctx;
+
+#endif /* SHA2_STRUCTS_DEFINED */
+
+// Internal type aliases for sha2.c compatibility
+typedef unsigned long long uint64;
 
 static const uint32 sha224_h0[8] =
             {0xc1059ed8, 0x367cd507, 0x3070dd17, 0xf70e5939,
@@ -865,6 +872,9 @@ void sha512(const uint8 *message, uint64 len, uint8 *digest)
 
 
 
+#ifndef HMAC_STRUCTS_DEFINED
+#define HMAC_STRUCTS_DEFINED
+
 typedef struct {
     sha224_ctx ctx_inside;
     sha224_ctx ctx_outside;
@@ -914,6 +924,8 @@ typedef struct {
     unsigned char block_ipad[SHA512_BLOCK_SIZE];
     unsigned char block_opad[SHA512_BLOCK_SIZE];
 } hmac_sha512_ctx;
+
+#endif /* HMAC_STRUCTS_DEFINED */
 
 
 

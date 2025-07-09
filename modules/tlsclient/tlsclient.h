@@ -97,6 +97,10 @@ int chacha20_poly1305_decode(chacha_ctx *remote_ctx, unsigned char *pt, unsigned
 #define SHA224_BLOCK_SIZE  SHA256_BLOCK_SIZE
 
 // SHA2 context structures
+// SHA2 context structures
+#ifndef SHA2_STRUCTS_DEFINED
+#define SHA2_STRUCTS_DEFINED
+
 typedef struct {
     uint64_t tot_len;
     uint64_t len;
@@ -114,28 +118,14 @@ typedef struct {
 typedef sha512_ctx sha384_ctx;
 typedef sha256_ctx sha224_ctx;
 
-// SHA2 function declarations
-void sha224_init(sha224_ctx *ctx);
-void sha224_update(sha224_ctx *ctx, const uchar *message, uint64_t len);
-void sha224_final(sha224_ctx *ctx, uchar *digest);
-void sha224(const uchar *message, uint64_t len, uchar *digest);
+#endif /* SHA2_STRUCTS_DEFINED */
 
-void sha256_init(sha256_ctx *ctx);
-void sha256_update(sha256_ctx *ctx, const uchar *message, uint64_t len);
-void sha256_final(sha256_ctx *ctx, uchar *digest);
-void sha256(const uchar *message, uint64_t len, uchar *digest);
-
-void sha384_init(sha384_ctx *ctx);
-void sha384_update(sha384_ctx *ctx, const uchar *message, uint64_t len);
-void sha384_final(sha384_ctx *ctx, uchar *digest);
-void sha384(const uchar *message, uint64_t len, uchar *digest);
-
-void sha512_init(sha512_ctx *ctx);
-void sha512_update(sha512_ctx *ctx, const uchar *message, uint64_t len);
-void sha512_final(sha512_ctx *ctx, uchar *digest);
-void sha512(const uchar *message, uint64_t len, uchar *digest);
+// SHA2 function declarations are provided by sha2.c
 
 // HMAC context structures
+#ifndef HMAC_STRUCTS_DEFINED
+#define HMAC_STRUCTS_DEFINED
+
 typedef struct {
     sha224_ctx ctx_inside;
     sha224_ctx ctx_outside;
@@ -172,30 +162,9 @@ typedef struct {
     unsigned char block_opad[SHA512_BLOCK_SIZE];
 } hmac_sha512_ctx;
 
-// HMAC function declarations
-void hmac_sha224_init(hmac_sha224_ctx *ctx, const unsigned char *key, unsigned int key_size);
-void hmac_sha224_reinit(hmac_sha224_ctx *ctx);
-void hmac_sha224_update(hmac_sha224_ctx *ctx, const unsigned char *message, unsigned int message_len);
-void hmac_sha224_final(hmac_sha224_ctx *ctx, unsigned char *mac, unsigned int mac_size);
-void hmac_sha224(const unsigned char *key, unsigned int key_size, const unsigned char *message, unsigned int message_len, unsigned char *mac, unsigned mac_size);
+#endif /* HMAC_STRUCTS_DEFINED */
 
-void hmac_sha256_init(hmac_sha256_ctx *ctx, const unsigned char *key, unsigned int key_size);
-void hmac_sha256_reinit(hmac_sha256_ctx *ctx);
-void hmac_sha256_update(hmac_sha256_ctx *ctx, const unsigned char *message, unsigned int message_len);
-void hmac_sha256_final(hmac_sha256_ctx *ctx, unsigned char *mac, unsigned int mac_size);
-void hmac_sha256(const unsigned char *key, unsigned int key_size, const unsigned char *message, unsigned int message_len, unsigned char *mac, unsigned mac_size);
-
-void hmac_sha384_init(hmac_sha384_ctx *ctx, const unsigned char *key, unsigned int key_size);
-void hmac_sha384_reinit(hmac_sha384_ctx *ctx);
-void hmac_sha384_update(hmac_sha384_ctx *ctx, const unsigned char *message, unsigned int message_len);
-void hmac_sha384_final(hmac_sha384_ctx *ctx, unsigned char *mac, unsigned int mac_size);
-void hmac_sha384(const unsigned char *key, unsigned int key_size, const unsigned char *message, unsigned int message_len, unsigned char *mac, unsigned mac_size);
-
-void hmac_sha512_init(hmac_sha512_ctx *ctx, const unsigned char *key, unsigned int key_size);
-void hmac_sha512_reinit(hmac_sha512_ctx *ctx);
-void hmac_sha512_update(hmac_sha512_ctx *ctx, const unsigned char *message, unsigned int message_len);
-void hmac_sha512_final(hmac_sha512_ctx *ctx, unsigned char *mac, unsigned int mac_size);
-void hmac_sha512(const unsigned char *key, unsigned int key_size, const unsigned char *message, unsigned int message_len, unsigned char *mac, unsigned mac_size);
+// HMAC function declarations are provided by sha2.c
 
 #ifdef __cplusplus
 }
