@@ -52,12 +52,8 @@ int gcm_finish(gcm_context *ctx, uchar *tag, size_t tag_len);
 #define POLY1305_KEYLEN           32
 #define POLY1305_TAGLEN           16
 
-// ChaCha20 context structure
-struct chacha_ctx {
-    unsigned int input[16];
-    unsigned char ks[CHACHA_BLOCKLEN];
-    unsigned char unused;
-};
+// Forward declaration - actual definition is in chacha20.c
+struct chacha_ctx;
 
 // ChaCha20 function declarations
 void chacha_keysetup(struct chacha_ctx *x, const unsigned char *k, unsigned int kbits);

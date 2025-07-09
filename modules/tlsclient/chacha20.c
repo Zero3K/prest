@@ -44,15 +44,15 @@ struct chacha_ctx {
     uint8_t unused;
 };
 
-static  void chacha_keysetup(struct chacha_ctx *x, const u_char *k, u_int kbits);
-static  void chacha_key(struct chacha_ctx *x, u_char *k);
-static  void chacha_nonce(struct chacha_ctx *x, u_char *nonce);
-static  void chacha_ivsetup(struct chacha_ctx *x, const u_char *iv, const u_char *ctr);
-static  void chacha_ivsetup_96bitnonce(struct chacha_ctx *x, const u_char *iv, const u_char *ctr);
-static  void chacha_ivupdate(struct chacha_ctx *x, const u_char *iv, const u_char *aad, const u_char *counter);
-static  void chacha_encrypt_bytes(struct chacha_ctx *x, const u_char *m, u_char *c, u_int bytes);
-static  void chacha20_block(struct chacha_ctx *x, unsigned char *c, u_int len);
-static  int poly1305_generate_key(unsigned char *key256, unsigned char *nonce, unsigned int noncelen, unsigned char *poly_key, unsigned int counter);
+void chacha_keysetup(struct chacha_ctx *x, const u_char *k, u_int kbits);
+void chacha_key(struct chacha_ctx *x, u_char *k);
+void chacha_nonce(struct chacha_ctx *x, u_char *nonce);
+void chacha_ivsetup(struct chacha_ctx *x, const u_char *iv, const u_char *ctr);
+void chacha_ivsetup_96bitnonce(struct chacha_ctx *x, const u_char *iv, const u_char *ctr);
+void chacha_ivupdate(struct chacha_ctx *x, const u_char *iv, const u_char *aad, const u_char *counter);
+void chacha_encrypt_bytes(struct chacha_ctx *x, const u_char *m, u_char *c, u_int bytes);
+void chacha20_block(struct chacha_ctx *x, unsigned char *c, u_int len);
+int poly1305_generate_key(unsigned char *key256, unsigned char *nonce, unsigned int noncelen, unsigned char *poly_key, unsigned int counter);
 
 #define poly1305_block_size 16
 #define poly1305_context poly1305_state_internal_t
@@ -100,7 +100,7 @@ typedef unsigned int u32;
 static const char sigma[] = "expand 32-byte k";
 static const char tau[] = "expand 16-byte k";
 
-static  void chacha_keysetup(struct chacha_ctx *x, const u_char *k, u_int kbits) {
+void chacha_keysetup(struct chacha_ctx *x, const u_char *k, u_int kbits) {
     const char *constants;
 
     x->input[4] = _private_tls_U8TO32_LITTLE(k + 0);
@@ -123,7 +123,7 @@ static  void chacha_keysetup(struct chacha_ctx *x, const u_char *k, u_int kbits)
     x->input[3] = _private_tls_U8TO32_LITTLE(constants + 12);
 }
 
-static  void chacha_key(struct chacha_ctx *x, u_char *k) {
+void chacha_key(struct chacha_ctx *x, u_char *k) {
     _private_tls_U32TO8_LITTLE(k, x->input[4]);
     _private_tls_U32TO8_LITTLE(k + 4, x->input[5]);
     _private_tls_U32TO8_LITTLE(k + 8, x->input[6]);
@@ -135,13 +135,13 @@ static  void chacha_key(struct chacha_ctx *x, u_char *k) {
     _private_tls_U32TO8_LITTLE(k + 28, x->input[11]);
 }
 
-static  void chacha_nonce(struct chacha_ctx *x, u_char *nonce) {
+void chacha_nonce(struct chacha_ctx *x, u_char *nonce) {
     _private_tls_U32TO8_LITTLE(nonce + 0, x->input[13]);
     _private_tls_U32TO8_LITTLE(nonce + 4, x->input[14]);
     _private_tls_U32TO8_LITTLE(nonce + 8, x->input[15]);
 }
 
-static  void chacha_ivsetup(struct chacha_ctx *x, const u_char *iv, const u_char *counter) {
+void chacha_ivsetup(struct chacha_ctx *x, const u_char *iv, const u_char *counter) {
     x->input[12] = counter == NULL ? 0 : _private_tls_U8TO32_LITTLE(counter + 0);
     x->input[13] = counter == NULL ? 0 : _private_tls_U8TO32_LITTLE(counter + 4);
     if (iv) {
@@ -150,7 +150,7 @@ static  void chacha_ivsetup(struct chacha_ctx *x, const u_char *iv, const u_char
     }
 }
 
-static  void chacha_ivsetup_96bitnonce(struct chacha_ctx *x, const u_char *iv, const u_char *counter) {
+void chacha_ivsetup_96bitnonce(struct chacha_ctx *x, const u_char *iv, const u_char *counter) {
     x->input[12] = counter == NULL ? 0 : _private_tls_U8TO32_LITTLE(counter + 0);
     if (iv) {
         x->input[13] = _private_tls_U8TO32_LITTLE(iv + 0);
@@ -159,14 +159,14 @@ static  void chacha_ivsetup_96bitnonce(struct chacha_ctx *x, const u_char *iv, c
     }
 }
 
-static  void chacha_ivupdate(struct chacha_ctx *x, const u_char *iv, const u_char *aad, const u_char *counter) {
+void chacha_ivupdate(struct chacha_ctx *x, const u_char *iv, const u_char *aad, const u_char *counter) {
     x->input[12] = counter == NULL ? 0 : _private_tls_U8TO32_LITTLE(counter + 0);
     x->input[13] = _private_tls_U8TO32_LITTLE(iv + 0);
     x->input[14] = _private_tls_U8TO32_LITTLE(iv + 4) ^ _private_tls_U8TO32_LITTLE(aad);
     x->input[15] = _private_tls_U8TO32_LITTLE(iv + 8) ^ _private_tls_U8TO32_LITTLE(aad + 4);
 }
 
-static  void chacha_encrypt_bytes(struct chacha_ctx *x, const u_char *m, u_char *c, u_int bytes) {
+void chacha_encrypt_bytes(struct chacha_ctx *x, const u_char *m, u_char *c, u_int bytes) {
     u32 x0, x1, x2, x3, x4, x5, x6, x7;
     u32 x8, x9, x10, x11, x12, x13, x14, x15;
     u32 j0, j1, j2, j3, j4, j5, j6, j7;
@@ -324,7 +324,7 @@ static  void chacha_encrypt_bytes(struct chacha_ctx *x, const u_char *m, u_char 
     }
 }
 
-static  void chacha20_block(struct chacha_ctx *x, unsigned char *c, u_int len) {
+void chacha20_block(struct chacha_ctx *x, unsigned char *c, u_int len) {
     u_int i;
 
     unsigned int state[16];
@@ -349,7 +349,7 @@ static  void chacha20_block(struct chacha_ctx *x, unsigned char *c, u_int len) {
     }
 }
 
-static  int poly1305_generate_key(unsigned char *key256, unsigned char *nonce, unsigned int noncelen, unsigned char *poly_key, unsigned int counter) {
+int poly1305_generate_key(unsigned char *key256, unsigned char *nonce, unsigned int noncelen, unsigned char *poly_key, unsigned int counter) {
     struct chacha_ctx ctx;
     uint64_t ctr;
     memset(&ctx, 0, sizeof(ctx));
