@@ -1,5 +1,7 @@
 
 
+#include "core/pch.h"
+
 #ifndef ECC_C_INCLUDED
 #define ECC_C_INCLUDED
 

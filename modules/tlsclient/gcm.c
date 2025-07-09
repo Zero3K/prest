@@ -1,3 +1,5 @@
+#include "core/pch.h"
+
 #ifndef GCM_C_INCLUDED
 #define GCM_C_INCLUDED
 

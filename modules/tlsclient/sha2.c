@@ -1,3 +1,5 @@
+#include "core/pch.h"
+
 #ifndef SHA2_C_INCLUDED
 #define SHA2_C_INCLUDED
 

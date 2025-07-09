@@ -1,4 +1,6 @@
 
+#include "core/pch.h"
+
 #ifndef CHACHA20_C_INCLUDED
 #define CHACHA20_C_INCLUDED
 

@@ -1,4 +1,6 @@
-﻿#pragma once
+#include "core/pch.h"
+
+#pragma once
 
 #include <WinSock2.h>
 #include <windows.h>
