@@ -62,7 +62,11 @@ extern "C" {
 // Provide the import table symbols that the linker expects
 // These are the symbols that the CRT will try to resolve
 extern "C" {
-    // These are function pointers that point to our implementations
-    PVOID (WINAPI *__imp__EncodePointer@4)(PVOID) = EncodePointer;
-    PVOID (WINAPI *__imp__DecodePointer@4)(PVOID) = DecodePointer;
+    // Create the import symbols using asm labels to avoid '@' in C++ identifiers
+    __declspec(dllexport) PVOID (WINAPI * const pEncodePointer)(PVOID) = EncodePointer;
+    __declspec(dllexport) PVOID (WINAPI * const pDecodePointer)(PVOID) = DecodePointer;
 }
+
+// Use linker pragmas to create aliases with the expected names
+#pragma comment(linker, "/ALTERNATENAME:__imp__EncodePointer@4=_pEncodePointer")
+#pragma comment(linker, "/ALTERNATENAME:__imp__DecodePointer@4=_pDecodePointer")
