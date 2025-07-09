@@ -14,6 +14,14 @@ include "modules/tlsclient/tlsclient.h";
 
 global
 {
+	extern "C" {
+		struct TLSContext;
+		TLSContext* tls_create_context(int is_server);
+		void tls_destroy_context(TLSContext* context);
+		const char* tls_get_error_string(int error);
+		int tls_set_cipher_list(TLSContext* context, const char* cipher_list);
+		int tls_set_verify_mode(TLSContext* context, int mode);
+	}
 }
 
 html { "<html><body>TLSClient Test</body></html>" }
