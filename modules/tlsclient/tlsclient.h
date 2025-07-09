@@ -4,9 +4,50 @@
 #pragma once
 
 #include <stdint.h>  // For uint64_t, uint32_t
+#include <stddef.h>  // For size_t
 
 typedef unsigned char uchar;
 typedef unsigned int uint;
+
+// Forward declarations for GCM cryptography
+#define ENCRYPT         1       // specify whether we're encrypting
+#define DECRYPT         0       // or decrypting
+
+// Forward declaration of AES context for GCM
+typedef struct {
+    int mode;           // 1 for Encryption, 0 for Decryption
+    int rounds;         // keysize-based rounds count
+    uint32_t *rk;       // pointer to current round key
+    uint32_t buf[68];   // key expansion buffer
+} aes_context;
+
+// GCM context structure 
+typedef struct {
+    int mode;               // cipher direction: encrypt/decrypt
+    uint64_t len;           // cipher data length processed so far
+    uint64_t add_len;       // total add data length
+    uint64_t HL[16];        // precalculated lo-half HTable
+    uint64_t HH[16];        // precalculated hi-half HTable
+    uchar base_ectr[16];    // first counter-mode cipher output for tag
+    uchar y[16];            // the current cipher-input IV|Counter value
+    uchar buf[16];          // buf working value
+    aes_context aes_ctx;    // cipher context used
+    uchar table[16][256][16];
+} gcm_context;
+
+// GCM function declarations
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+int gcm_setkey(gcm_context *ctx, const uchar *key, const uint keysize);
+int gcm_start(gcm_context *ctx, int mode, const uchar *iv, size_t iv_len, const uchar *add, size_t add_len);
+int gcm_update(gcm_context *ctx, size_t length, const uchar *input, uchar *output);
+int gcm_finish(gcm_context *ctx, uchar *tag, size_t tag_len);
+
+#ifdef __cplusplus
+}
+#endif
 
 // ECC Group definitions for elliptic curve cryptography
 typedef enum {
