@@ -68,7 +68,7 @@ const static EccPoint Curve_G_48 = {{0x3A545E3872760AB7, 0x5502F25DBF55296C, 0x5
 const static uint64_t Curve_N_48[] = {0xECEC196ACCC52973, 0x581A0DB248B0A77A, 0xC7634D81F4372DDF, 0xFFFFFFFFFFFFFFFF, 0xFFFFFFFFFFFFFFFF, 0xFFFFFFFFFFFFFFFF};
 
 
-struct EccState
+typedef struct EccState
 {
 	uint32_t ECC_BYTES;
 	uint32_t NUM_ECC_DIGITS;
@@ -78,7 +78,7 @@ struct EccState
 	uint64_t curve_n[MAX_NUM_ECC_DIGITS];	//CONCAT(Curve_N_, ECC_CURVE);
 	uint64_t privatekey[MAX_NUM_ECC_DIGITS];
 	EccPoint publickey;
-};
+} EccState;
 
 
 

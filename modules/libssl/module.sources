@@ -134,9 +134,5 @@ ui/askpasswd.cpp
 ui/certinst_ask.cpp
 ui/sslcctx.cpp
 ui/sslui.cpp
-../tlsclient/tlsclient_wrapper.cpp # [forcecompileif=defined(_SSL_USE_TLSCLIENT_)]
-../tlsclient/tlsclient.cpp # [forcecompileif=defined(_SSL_USE_TLSCLIENT_)]
-../tlsclient/chacha20.c # [forcecompileif=defined(_SSL_USE_TLSCLIENT_)]
-../tlsclient/ecc.c # [forcecompileif=defined(_SSL_USE_TLSCLIENT_)]
-../tlsclient/gcm.c # [forcecompileif=defined(_SSL_USE_TLSCLIENT_)]
-../tlsclient/sha2.c # [forcecompileif=defined(_SSL_USE_TLSCLIENT_)]
+# TLSClient source files are now handled by the tlsclient module
+# Removed to prevent duplicate compilation and symbol redefinition errors
