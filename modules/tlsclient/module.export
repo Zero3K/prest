@@ -18,3 +18,20 @@ API_TLSCLIENT
 	TLSContext		: struct
 	TLSCertificate	: struct
 	TLS_CIPHER		: enum
+
+TLSCLIENT_SYMBOL_EXPORTS
+
+	tls_create_context		: function
+	tls_destroy_context		: function
+	tls_connect				: function
+	tls_accept				: function
+	tls_write				: function
+	tls_read				: function
+	tls_shutdown			: function
+	tls_get_error			: function
+	tls_get_error_string	: function
+	tls_set_certificate		: function
+	tls_get_peer_certificate: function
+	tls_free_certificate	: function
+	tls_set_cipher_list		: function
+	tls_set_verify_mode		: function
