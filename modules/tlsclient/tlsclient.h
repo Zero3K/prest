@@ -6,6 +6,13 @@
 typedef unsigned char uchar;
 typedef unsigned int uint;
 
+// ECC Group definitions for elliptic curve cryptography
+typedef enum {
+    ECC_NONE = 0,
+    ECC_secp256r1 = 23,  // IANA assigned number for secp256r1/prime256v1
+    ECC_secp384r1 = 24   // IANA assigned number for secp384r1
+} ECC_GROUP;
+
 //Implement secure re-negotiation per RFC5746.
 
 
