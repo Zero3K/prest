@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include <stdint.h>  // For uint64_t, uint32_t
+
 typedef unsigned char uchar;
 typedef unsigned int uint;
 
@@ -150,6 +152,7 @@ typedef enum {
     TLS_AES_128_GCM_SHA256 = 0x1301,        // 0x13, 0x01 RFC8446 Appendix-B.4
     TLS_AES_256_GCM_SHA384 = 0x1302,        // 0x13, 0x02 RFC8446 Appendix-B.4
     TLS_CHACHA20_POLY1305_SHA256 = 0x1303,  // 0x13, 0x03 RFC8446 Appendix-B.4
+    TLS_AES_128_CCM_8_SHA256 = 0x1305,      // 0x13, 0x05 RFC8446 Appendix-B.4
     
     TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256 = 0xC02B, //0xC0,0x2B   Y[RFC5289]
     TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,//0xC0,0x2C   Y[RFC5289]
@@ -160,6 +163,35 @@ typedef enum {
     
     TLS_LAST=0xFFFF
 } TLS_CIPHER;
+
+// TLS Extension Types (RFC 5246, RFC 6066)
+#define EXT_SERVER_NAME          0x0000  // RFC 6066
+#define EXT_SUPPORTED_GROUPS     0x000a  // RFC 7919 (formerly known as EXT_ELLIPTIC_CURVES)
+#define EXT_SIGNATURE_ALGORITHMS 0x000d  // RFC 5246
+#define EXT_KEY_SHARE           0x0033  // RFC 8446 (TLS 1.3)
+#define EXT_SUPPORTED_VERSION   0x002b  // RFC 8446 (TLS 1.3)
+
+// TLS Message types
+#define MSG_CHANGE_CIPHER_SPEC  0x01
+
+// Portable network byte order conversion for 64-bit integers
+#ifndef htonll
+#ifdef _WIN32
+// Windows doesn't have htonll, provide implementation
+#include <winsock2.h>
+static inline uint64_t htonll(uint64_t value) {
+    return (((uint64_t)htonl((uint32_t)(value & 0xFFFFFFFF))) << 32) | htonl((uint32_t)(value >> 32));
+}
+#else
+// Unix-like systems may have it, but provide fallback
+#include <arpa/inet.h>
+#ifndef htonll
+static inline uint64_t htonll(uint64_t value) {
+    return (((uint64_t)htonl((uint32_t)(value & 0xFFFFFFFF))) << 32) | htonl((uint32_t)(value >> 32));
+}
+#endif
+#endif
+#endif
 
 // Forward declarations for TLSClient structures
 struct TLSContext;

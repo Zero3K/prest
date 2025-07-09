@@ -913,16 +913,16 @@ class tls_client
 		return get_states_count(is_tls13(crypto.get_chiper_type()));
 	}
 	tls_cipher			crypto;
-	SOCKET				s			= INVALID_SOCKET;
-	int					state_index	= 0;
+	SOCKET				s;
+	int					state_index;
 
 	tlsbuf				send_buf;
 	tlsbuf				recv_buf;
 	tlsbuf				recv_channel;
 	tlsbuf				err_msg;
-	int					recv_channel_readed	= 0;
-	int					time_out			= 0x7fffffff;
-	bool				received_close_notify = false;
+	int					recv_channel_readed;
+	int					time_out;
+	bool				received_close_notify;
 
 	bool is_tls13(TLS_CIPHER cipher)
 	{
@@ -1417,6 +1417,11 @@ class tls_client
 public:
 	tls_client()
 	{
+		s = INVALID_SOCKET;
+		state_index = 0;
+		recv_channel_readed = 0;
+		time_out = 0x7fffffff;
+		received_close_notify = false;
 	}
 	~tls_client()
 	{
