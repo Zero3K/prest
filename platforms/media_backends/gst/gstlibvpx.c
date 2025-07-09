@@ -42,6 +42,10 @@ gstlibvpx_function_table()
 {
 	gstlibvpx_ft t;
 
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable: 4054) /* 'type cast' : from function pointer to data pointer */
+#endif
 	t.vpx_codec_destroy = (void*)&vpx_codec_destroy;
 	t.vpx_img_free = (void*)&vpx_img_free;
 	t.vpx_codec_get_frame = (void*)&vpx_codec_get_frame;
@@ -51,6 +55,9 @@ gstlibvpx_function_table()
 	t.vpx_codec_peek_stream_info = (void*)&vpx_codec_peek_stream_info;
 	t.vpx_codec_control_ = (void*)&vpx_codec_control_;
 	t.vpx_codec_vp8_dx = (void*)&vpx_codec_vp8_dx;
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
 
 	return t;
 }
