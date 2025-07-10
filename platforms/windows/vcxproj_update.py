@@ -170,33 +170,49 @@ class ProjectDocument:
 							disable_warnings.appendChild(self.vcxdom.createTextNode("4653"))
 							clcompile.appendChild(disable_warnings)
 
-	def fixRuntimeLibraryForReleaseConfigurations(self):
+	def removeProblematicLibsForNonDebugConfigurations(self):
 		"""
-		Fixes RuntimeLibrary for Release configurations by changing from MultiThreaded (static CRT)
-		to MultiThreadedDLL (dynamic CRT) for DLL projects to resolve LIBCMT linker errors.
+		Removes libctiny.lib from AdditionalDependencies and LIBC.lib from IgnoreSpecificDefaultLibraries
+		for all non-Debug configurations to resolve LIBCMT linker errors.
 		"""
 		item_definition_groups = self.vcxdom.getElementsByTagName("ItemDefinitionGroup")
 		for item_group in item_definition_groups:
 			if item_group.hasAttribute("Condition"):
 				condition = item_group.getAttribute("Condition")
-				# Apply to all Release configurations (Release, PGO, Instrumented, vTune)
+				# Apply to all non-Debug configurations (Release, PGO, Instrumented, vTune)
 				if ("'$(Configuration)|$(Platform)'=='Release|" in condition or 
 					"'$(Configuration)|$(Platform)'=='PGO|" in condition or
 					"'$(Configuration)|$(Platform)'=='Instrumented|" in condition or
 					"'$(Configuration)|$(Platform)'=='vTune|" in condition):
 					
-					# Find the ClCompile element
-					clcompile_elements = item_group.getElementsByTagName("ClCompile")
-					if clcompile_elements:
-						clcompile = clcompile_elements[0]
+					# Find the Link element
+					link_elements = item_group.getElementsByTagName("Link")
+					if link_elements:
+						link = link_elements[0]
 						
-						# Find RuntimeLibrary element and change it
-						runtime_library_elements = clcompile.getElementsByTagName("RuntimeLibrary")
-						if runtime_library_elements:
-							runtime_library = runtime_library_elements[0]
-							# Change from MultiThreaded (static) to MultiThreadedDLL (dynamic)
-							if runtime_library.firstChild and runtime_library.firstChild.nodeValue == "MultiThreaded":
-								runtime_library.firstChild.nodeValue = "MultiThreadedDLL"
+						# Remove libctiny.lib from AdditionalDependencies
+						additional_deps_elements = link.getElementsByTagName("AdditionalDependencies")
+						for additional_deps in additional_deps_elements:
+							if additional_deps.firstChild:
+								current_deps = additional_deps.firstChild.nodeValue
+								if "libctiny.lib" in current_deps:
+									# Remove libctiny.lib from the dependencies
+									new_deps = current_deps.replace("libctiny.lib;", "").replace(";libctiny.lib", "")
+									additional_deps.firstChild.nodeValue = new_deps
+						
+						# Remove LIBC.lib from IgnoreSpecificDefaultLibraries
+						ignore_libs_elements = link.getElementsByTagName("IgnoreSpecificDefaultLibraries")
+						for ignore_libs in ignore_libs_elements:
+							if ignore_libs.firstChild:
+								current_libs = ignore_libs.firstChild.nodeValue
+								if "LIBC.lib" in current_libs:
+									# Remove LIBC.lib from the ignored libraries
+									new_libs = current_libs.replace("LIBC.lib;", "").replace(";LIBC.lib", "")
+									if new_libs == "":
+										# If the list is empty, remove the element entirely
+										ignore_libs.parentNode.removeChild(ignore_libs)
+									else:
+										ignore_libs.firstChild.nodeValue = new_libs
 
 	def addFile(self, src_node, filter_node, file_name, pch_name, exclude_from_build, optimize_speed):
 		OPTIMIZE_SPEED_CONDITION = "'$(Configuration)'=='Release'"
@@ -419,7 +435,7 @@ class ProjectTask:
 		# Fix C4653 warnings for Opera project Release configurations
 		if self.name == "Opera" and project is not None:
 			project.fixC4653WarningForReleaseConfigurations()
-			project.fixRuntimeLibraryForReleaseConfigurations()
+			project.removeProblematicLibsForNonDebugConfigurations()
 
 		if self.update_vcxproj_and_filters and project is not None:
 			self.updateProjectAndFilters(config, project, sources_collection)
