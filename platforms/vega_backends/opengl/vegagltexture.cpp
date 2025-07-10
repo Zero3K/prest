@@ -169,6 +169,7 @@ OP_STATUS VEGAGlTexture::createTexture()
 	/* Make sure any previous error does not get counted as a failure of the code below. */
 	OP_STATUS err = CheckGLError();
 	OP_ASSERT(OpStatus::IsSuccess(err));
+	(void)err;
 
 	if (is_cubemap)
 	{

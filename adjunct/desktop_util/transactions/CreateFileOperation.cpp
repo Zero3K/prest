@@ -29,6 +29,7 @@ CreateFileOperation::CreateFileOperation(const OpFile& file,
 {
 	const OP_STATUS copied = m_file.Copy(&file);
 	OP_ASSERT(OpStatus::IsSuccess(copied) || !"Could not create OpFile copy");
+	(void)copied;
 }
 
 

@@ -877,6 +877,7 @@ CertImportExportCallback::CertImportExportCallback(Mode mode, OpWindow* window, 
 
 			// If it returns an error (which I don't think it does) that should be handled somehow
 			OP_ASSERT(OpStatus::IsSuccess(status));
+			(void)status;
 
 			if (!m_exporter)
 			{

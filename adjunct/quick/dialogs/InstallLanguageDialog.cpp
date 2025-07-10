@@ -74,6 +74,7 @@ InstallLanguageDialog::InstallLanguageDialog()
 		OP_STATUS status = m_handler.GetAvailableDictionaries(m_languages_model, DICTIONARIES_FILENAME, OPFILE_INI_FOLDER);
 		// If this assert goes off, the file is probably missing from the Opera installer package, or not installed the right way.
 		OP_ASSERT(OpStatus::IsSuccess(status));
+		(void)status;
 	}
 
     // Make the first column (Language name)
