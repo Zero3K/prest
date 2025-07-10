@@ -141,6 +141,69 @@ class ProjectDocument:
 	def filtersToXml(self):
 		return "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" + self.filterdom.documentElement.toxml("utf-8")
 
+	def applyTLSClientSelftestIncludeFix(self):
+		"""
+		Applies TLSClient selftest include fix for Visual Studio 2010 compatibility.
+		This clears the PreBuildEvent and adds a Target with BeforeTargets="ClCompile".
+		"""
+		# Find and clear PreBuildEvent Command and Message for Debug configuration
+		property_groups = self.vcxdom.getElementsByTagName("PropertyGroup")
+		for prop_group in property_groups:
+			if prop_group.hasAttribute("Condition") and "'$(Configuration)|$(Platform)'=='Debug|Win32'" in prop_group.getAttribute("Condition"):
+				# Find PreBuildEvent
+				prebuild_events = prop_group.getElementsByTagName("PreBuildEvent")
+				if prebuild_events:
+					prebuild_event = prebuild_events[0]
+					# Clear Command and Message
+					commands = prebuild_event.getElementsByTagName("Command")
+					messages = prebuild_event.getElementsByTagName("Message")
+					
+					for command in commands:
+						# Clear the command content
+						while command.firstChild:
+							command.removeChild(command.firstChild)
+					
+					for message in messages:
+						# Clear the message content
+						while message.firstChild:
+							message.removeChild(message.firstChild)
+		
+		# Add the new Target element before the Import element
+		import_elements = self.vcxdom.getElementsByTagName("Import")
+		cpp_targets_import = None
+		for import_elem in import_elements:
+			if import_elem.hasAttribute("Project") and "Microsoft.Cpp.targets" in import_elem.getAttribute("Project"):
+				cpp_targets_import = import_elem
+				break
+		
+		if cpp_targets_import:
+			# Check if the target already exists
+			targets = self.vcxdom.getElementsByTagName("Target")
+			target_exists = False
+			for target in targets:
+				if target.hasAttribute("Name") and target.getAttribute("Name") == "FixTLSClientSelftestInclude":
+					target_exists = True
+					break
+			
+			if not target_exists:
+				# Create the new Target element
+				target = self.createElement("Target")
+				target.setAttribute("Name", "FixTLSClientSelftestInclude")
+				target.setAttribute("BeforeTargets", "ClCompile")
+				
+				# Add padding and Exec element
+				target.appendChild(self.createPadding(4))
+				exec_elem = self.createElement("Exec")
+				exec_elem.setAttribute("Command", "python \"$(ProjectDir)fix_tlsclient_selftest_include.py\"")
+				exec_elem.setAttribute("ContinueOnError", "false")
+				exec_elem.setAttribute("Condition", "'$(Configuration)'=='Debug'")
+				target.appendChild(exec_elem)
+				target.appendChild(self.createPadding(2))
+				
+				# Insert the target before the Import element
+				cpp_targets_import.parentNode.insertBefore(self.createPadding(2), cpp_targets_import)
+				cpp_targets_import.parentNode.insertBefore(target, cpp_targets_import)
+
 	def addFile(self, src_node, filter_node, file_name, pch_name, exclude_from_build, optimize_speed):
 		OPTIMIZE_SPEED_CONDITION = "'$(Configuration)'=='Release'"
 
@@ -358,6 +421,10 @@ class ProjectTask:
 
 		if self.preprocess_template:
 			project.preprocessTemplate(self.name)
+
+		# Apply TLSClient selftest include fix for Opera project
+		if self.name == "Opera" and project is not None:
+			project.applyTLSClientSelftestIncludeFix()
 
 		if self.update_vcxproj_and_filters and project is not None:
 			self.updateProjectAndFilters(config, project, sources_collection)
