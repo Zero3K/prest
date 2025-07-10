@@ -40,7 +40,7 @@ def fix_tlsclient_selftest_include():
         return 0
         
     except Exception as e:
-        print(f"Error fixing selftest_jumbo_tlsclient.cpp: {e}")
+        print("Error fixing selftest_jumbo_tlsclient.cpp: " + str(e))
         return 1
 
 if __name__ == "__main__":
