@@ -140,6 +140,35 @@ class ProjectDocument:
 
 	def filtersToXml(self):
 		return "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" + self.filterdom.documentElement.toxml("utf-8")
+	
+	def fixC4653WarningForReleaseConfigurations(self):
+		"""
+		Fixes C4653 warnings for Release configurations by adding DisableSpecificWarnings.
+		This warning occurs when jumbo files include pch_jumbo.h but the project uses pch.h.
+		"""
+		item_definition_groups = self.vcxdom.getElementsByTagName("ItemDefinitionGroup")
+		for item_group in item_definition_groups:
+			if item_group.hasAttribute("Condition"):
+				condition = item_group.getAttribute("Condition")
+				# Apply to all Release configurations (Release, PGO, Instrumented, vTune)
+				if ("'$(Configuration)|$(Platform)'=='Release|" in condition or 
+					"'$(Configuration)|$(Platform)'=='PGO|" in condition or
+					"'$(Configuration)|$(Platform)'=='Instrumented|" in condition or
+					"'$(Configuration)|$(Platform)'=='vTune|" in condition):
+					
+					# Find the ClCompile element
+					clcompile_elements = item_group.getElementsByTagName("ClCompile")
+					if clcompile_elements:
+						clcompile = clcompile_elements[0]
+						
+						# Check if DisableSpecificWarnings already exists
+						disable_warnings_elements = clcompile.getElementsByTagName("DisableSpecificWarnings")
+						if not disable_warnings_elements:
+							# Add DisableSpecificWarnings element
+							clcompile.appendChild(self.createPadding(6))
+							disable_warnings = self.createElement("DisableSpecificWarnings")
+							disable_warnings.appendChild(self.createTextNode("4653"))
+							clcompile.appendChild(disable_warnings)
 
 
 
@@ -360,6 +389,10 @@ class ProjectTask:
 
 		if self.preprocess_template:
 			project.preprocessTemplate(self.name)
+		
+		# Fix C4653 warnings for Opera project Release configurations
+		if self.name == "Opera" and project is not None:
+			project.fixC4653WarningForReleaseConfigurations()
 
 		if self.update_vcxproj_and_filters and project is not None:
 			self.updateProjectAndFilters(config, project, sources_collection)
