@@ -792,7 +792,7 @@
     <ClCompile Include="..\..\build\src\modules\tlsclient\tlsclient_jumbo.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\modules\selftest\generated\selftest_jumbo_tlsclient.cpp" />
+    <ClCompile Include="..\..\modules\selftest\generated\selftest_jumbo_tlsclient.cpp" Condition="'$(Configuration)'=='Debug'" />
   </ItemGroup>
 
   <ItemGroup>

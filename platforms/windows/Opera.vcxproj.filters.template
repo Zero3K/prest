@@ -41,7 +41,7 @@
     <ClCompile Include="..\..\build\src\modules\tlsclient\tlsclient_jumbo.cpp">
       <Filter>Source Files\modules</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\modules\selftest\generated\selftest_jumbo_tlsclient.cpp">
+    <ClCompile Include="..\..\modules\selftest\generated\selftest_jumbo_tlsclient.cpp" Condition="'$(Configuration)'=='Debug'">
       <Filter>Source Files\modules</Filter>
     </ClCompile>
 
