@@ -170,29 +170,32 @@ class ProjectDocument:
 							disable_warnings.appendChild(self.vcxdom.createTextNode("4653"))
 							clcompile.appendChild(disable_warnings)
 
-	def addTargetExtForReleaseConfigurations(self):
+	def fixRuntimeLibraryForReleaseConfigurations(self):
 		"""
-		Adds TargetExt to Release configurations to explicitly set the target extension to .dll.
-		This fixes linker errors that occur when Visual Studio doesn't properly infer the extension.
+		Fixes RuntimeLibrary setting for Release configurations to use MultiThreadedDLL
+		instead of MultiThreaded to avoid LIBCMT linker errors when building a DLL.
 		"""
-		property_groups = self.vcxdom.getElementsByTagName("PropertyGroup")
-		for property_group in property_groups:
-			if property_group.hasAttribute("Condition"):
-				condition = property_group.getAttribute("Condition")
+		item_definition_groups = self.vcxdom.getElementsByTagName("ItemDefinitionGroup")
+		for item_definition_group in item_definition_groups:
+			if item_definition_group.hasAttribute("Condition"):
+				condition = item_definition_group.getAttribute("Condition")
 				# Apply to all Release configurations (Release, PGO, Instrumented, vTune)
 				if ("'$(Configuration)|$(Platform)'=='Release|" in condition or 
 					"'$(Configuration)|$(Platform)'=='PGO|" in condition or
 					"'$(Configuration)|$(Platform)'=='Instrumented|" in condition or
 					"'$(Configuration)|$(Platform)'=='vTune|" in condition):
 					
-					# Check if TargetExt already exists
-					target_ext_elements = property_group.getElementsByTagName("TargetExt")
-					if not target_ext_elements:
-						# Add TargetExt element
-						property_group.appendChild(self.createPadding(4))
-						target_ext = self.createElement("TargetExt")
-						target_ext.appendChild(self.vcxdom.createTextNode(".dll"))
-						property_group.appendChild(target_ext)
+					# Find ClCompile elements within this group
+					clcompile_elements = item_definition_group.getElementsByTagName("ClCompile")
+					for clcompile in clcompile_elements:
+						# Find RuntimeLibrary elements
+						runtime_library_elements = clcompile.getElementsByTagName("RuntimeLibrary")
+						for runtime_library in runtime_library_elements:
+							# Change from MultiThreaded to MultiThreadedDLL
+							if runtime_library.firstChild and runtime_library.firstChild.nodeValue == "MultiThreaded":
+								runtime_library.firstChild.nodeValue = "MultiThreadedDLL"
+
+
 
 
 
@@ -417,7 +420,7 @@ class ProjectTask:
 		# Fix C4653 warnings for Opera project Release configurations
 		if self.name == "Opera" and project is not None:
 			project.fixC4653WarningForReleaseConfigurations()
-			project.addTargetExtForReleaseConfigurations()
+			project.fixRuntimeLibraryForReleaseConfigurations()
 
 		if self.update_vcxproj_and_filters and project is not None:
 			self.updateProjectAndFilters(config, project, sources_collection)
