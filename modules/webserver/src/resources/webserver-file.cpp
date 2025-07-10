@@ -46,7 +46,7 @@ WebserverResourceDescriptor_Static* WebserverResourceDescriptor_Static::Make(con
 	if (realPath[realPath.Length() - 1] != '/')
 	{
 		OpFile file;
-		BOOL found;
+		BOOL found = FALSE;
 		
 		if (OpStatus::IsMemoryError(file.Construct(realPath.CStr(), OPFILE_ABSOLUTE_FOLDER)) || OpStatus::IsMemoryError(file.Exists(found)))
 		{
