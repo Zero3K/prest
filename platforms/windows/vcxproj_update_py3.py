@@ -136,10 +136,10 @@ class ProjectDocument:
 		return self.filterdom.createElement(elementName)
 
 	def toXml(self):
-		return "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" + self.vcxdom.documentElement.toxml("utf-8")
+		return "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" + self.vcxdom.documentElement.toxml("utf-8").decode("utf-8")
 
 	def filtersToXml(self):
-		return "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" + self.filterdom.documentElement.toxml("utf-8")
+		return "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" + self.filterdom.documentElement.toxml("utf-8").decode("utf-8")
 	
 	def fixC4653WarningForReleaseConfigurations(self):
 		"""
@@ -170,41 +170,30 @@ class ProjectDocument:
 							disable_warnings.appendChild(self.vcxdom.createTextNode("4653"))
 							clcompile.appendChild(disable_warnings)
 
-	def fixLibcmtLinkerErrorForReleaseConfigurations(self):
+	def addStdafxHeaderForReleaseConfigurations(self):
 		"""
-		Fixes LIBCMT linker errors for Release configurations by adding LIBCMT to 
-		IgnoreSpecificDefaultLibraries to resolve conflicts with dynamic CRT usage.
+		Adds Stdafx.h file to Release configurations to resolve LIBCMT linker errors
+		by undefining _ATL_MIN_CRT which causes conflicts with dynamic CRT usage.
 		"""
-		item_definition_groups = self.vcxdom.getElementsByTagName("ItemDefinitionGroup")
-		for item_definition_group in item_definition_groups:
-			if item_definition_group.hasAttribute("Condition"):
-				condition = item_definition_group.getAttribute("Condition")
-				# Apply to all Release configurations (Release, PGO, Instrumented, vTune)
-				if ("'$(Configuration)|$(Platform)'=='Release|" in condition or 
-					"'$(Configuration)|$(Platform)'=='PGO|" in condition or
-					"'$(Configuration)|$(Platform)'=='Instrumented|" in condition or
-					"'$(Configuration)|$(Platform)'=='vTune|" in condition):
-					
-					# Find Link elements within this group
-					link_elements = item_definition_group.getElementsByTagName("Link")
-					for link in link_elements:
-						# Check if IgnoreSpecificDefaultLibraries already exists
-						ignore_libs_elements = link.getElementsByTagName("IgnoreSpecificDefaultLibraries")
-						if ignore_libs_elements:
-							# Add LIBCMT to existing list if not already present
-							ignore_libs = ignore_libs_elements[0]
-							if ignore_libs.firstChild:
-								current_libs = ignore_libs.firstChild.nodeValue
-								if "LIBCMT" not in current_libs:
-									ignore_libs.firstChild.nodeValue = current_libs + ";LIBCMT"
-							else:
-								ignore_libs.appendChild(self.vcxdom.createTextNode("LIBCMT"))
-						else:
-							# Add new IgnoreSpecificDefaultLibraries element
-							link.appendChild(self.createPadding(6))
-							ignore_libs = self.createElement("IgnoreSpecificDefaultLibraries")
-							ignore_libs.appendChild(self.vcxdom.createTextNode("LIBCMT"))
-							link.appendChild(ignore_libs)
+		item_groups = self.vcxdom.getElementsByTagName("ItemGroup")
+		for item_group in item_groups:
+			# Look for the ItemGroup that contains ClInclude elements (for header files)
+			clinclude_elements = item_group.getElementsByTagName("ClInclude")
+			if clinclude_elements:
+				# Check if Stdafx.h already exists
+				stdafx_exists = False
+				for clinclude in clinclude_elements:
+					if clinclude.hasAttribute("Include") and "Stdafx.h" in clinclude.getAttribute("Include"):
+						stdafx_exists = True
+						break
+				
+				if not stdafx_exists:
+					# Add Stdafx.h ClInclude element
+					item_group.appendChild(self.createPadding(4))
+					stdafx_node = self.createElement("ClInclude")
+					stdafx_node.setAttribute("Include", "Stdafx.h")
+					item_group.appendChild(stdafx_node)
+					break
 
 
 
@@ -429,7 +418,14 @@ class ProjectTask:
 		# Fix C4653 warnings for Opera project Release configurations
 		if self.name == "Opera" and project is not None:
 			project.fixC4653WarningForReleaseConfigurations()
-			project.fixLibcmtLinkerErrorForReleaseConfigurations()
+			project.addStdafxHeaderForReleaseConfigurations()
+			# Create Stdafx.h file if it doesn't exist
+			stdafx_path = os.path.join(config.project_dir, "Stdafx.h")
+			if not os.path.exists(stdafx_path):
+				with open(stdafx_path, "w") as f:
+					f.write("#pragma once\n")
+					f.write("#include <windows.h>\n")
+					f.write("#undef _ATL_MIN_CRT\n")
 
 		if self.update_vcxproj_and_filters and project is not None:
 			self.updateProjectAndFilters(config, project, sources_collection)
