@@ -170,59 +170,33 @@ class ProjectDocument:
 							disable_warnings.appendChild(self.vcxdom.createTextNode("4653"))
 							clcompile.appendChild(disable_warnings)
 
-	def addStdafxHeaderForReleaseConfigurations(self):
+	def fixRuntimeLibraryForReleaseConfigurations(self):
 		"""
-		Adds Stdafx.h file to Release configurations to resolve LIBCMT linker errors
-		by undefining _ATL_MIN_CRT which causes conflicts with dynamic CRT usage.
+		Fixes RuntimeLibrary for Release configurations by changing from MultiThreaded (static CRT)
+		to MultiThreadedDLL (dynamic CRT) for DLL projects to resolve LIBCMT linker errors.
 		"""
-		# First check if Stdafx.h already exists anywhere in the project
-		all_clincludes = self.vcxdom.getElementsByTagName("ClInclude")
-		for clinclude in all_clincludes:
-			if clinclude.hasAttribute("Include") and "Stdafx.h" in clinclude.getAttribute("Include"):
-				# Stdafx.h already exists, no need to add it
-				return
-		
-		item_groups = self.vcxdom.getElementsByTagName("ItemGroup")
-		stdafx_added = False
-		
-		# First, look for existing ItemGroup with ClInclude elements
-		for item_group in item_groups:
-			clinclude_elements = item_group.getElementsByTagName("ClInclude")
-			if clinclude_elements:
-				# Add Stdafx.h ClInclude element to existing ItemGroup
-				item_group.appendChild(self.createPadding(4))
-				stdafx_node = self.createElement("ClInclude")
-				stdafx_node.setAttribute("Include", "Stdafx.h")
-				item_group.appendChild(stdafx_node)
-				stdafx_added = True
-				break
-		
-		# If no existing ItemGroup with ClInclude elements found, create a new one
-		if not stdafx_added:
-			# Find the last ItemGroup to insert after it
-			last_item_group = None
-			for item_group in item_groups:
-				last_item_group = item_group
-			
-			if last_item_group is not None:
-				# Create new ItemGroup for ClInclude elements
-				new_item_group = self.createElement("ItemGroup")
-				new_item_group.appendChild(self.createPadding(4))
-				
-				# Add Stdafx.h ClInclude element
-				stdafx_node = self.createElement("ClInclude")
-				stdafx_node.setAttribute("Include", "Stdafx.h")
-				new_item_group.appendChild(stdafx_node)
-				new_item_group.appendChild(self.createPadding(2))
-				
-				# Insert the new ItemGroup after the last existing ItemGroup with proper indentation
-				parent = last_item_group.parentNode
-				parent.insertBefore(self.createPadding(2), last_item_group.nextSibling)
-				parent.insertBefore(new_item_group, last_item_group.nextSibling)
-
-
-
-
+		item_definition_groups = self.vcxdom.getElementsByTagName("ItemDefinitionGroup")
+		for item_group in item_definition_groups:
+			if item_group.hasAttribute("Condition"):
+				condition = item_group.getAttribute("Condition")
+				# Apply to all Release configurations (Release, PGO, Instrumented, vTune)
+				if ("'$(Configuration)|$(Platform)'=='Release|" in condition or 
+					"'$(Configuration)|$(Platform)'=='PGO|" in condition or
+					"'$(Configuration)|$(Platform)'=='Instrumented|" in condition or
+					"'$(Configuration)|$(Platform)'=='vTune|" in condition):
+					
+					# Find the ClCompile element
+					clcompile_elements = item_group.getElementsByTagName("ClCompile")
+					if clcompile_elements:
+						clcompile = clcompile_elements[0]
+						
+						# Find RuntimeLibrary element and change it
+						runtime_library_elements = clcompile.getElementsByTagName("RuntimeLibrary")
+						if runtime_library_elements:
+							runtime_library = runtime_library_elements[0]
+							# Change from MultiThreaded (static) to MultiThreadedDLL (dynamic)
+							if runtime_library.firstChild and runtime_library.firstChild.nodeValue == "MultiThreaded":
+								runtime_library.firstChild.nodeValue = "MultiThreadedDLL"
 
 	def addFile(self, src_node, filter_node, file_name, pch_name, exclude_from_build, optimize_speed):
 		OPTIMIZE_SPEED_CONDITION = "'$(Configuration)'=='Release'"
@@ -445,14 +419,7 @@ class ProjectTask:
 		# Fix C4653 warnings for Opera project Release configurations
 		if self.name == "Opera" and project is not None:
 			project.fixC4653WarningForReleaseConfigurations()
-			project.addStdafxHeaderForReleaseConfigurations()
-			# Create Stdafx.h file if it doesn't exist
-			stdafx_path = os.path.join(config.project_dir, "Stdafx.h")
-			if not os.path.exists(stdafx_path):
-				with open(stdafx_path, "w") as f:
-					f.write("#pragma once\n")
-					f.write("#include <windows.h>\n")
-					f.write("#undef _ATL_MIN_CRT\n")
+			project.fixRuntimeLibraryForReleaseConfigurations()
 
 		if self.update_vcxproj_and_filters and project is not None:
 			self.updateProjectAndFilters(config, project, sources_collection)
