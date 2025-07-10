@@ -248,6 +248,10 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <LargeAddressAware>true</LargeAddressAware>
     </Link>
+    <PreBuildEvent>
+      <Command>python "$(ProjectDir)fix_tlsclient_selftest_include.py"</Command>
+      <Message>Fixing TLSClient selftest include for Visual Studio 2010 compatibility</Message>
+    </PreBuildEvent>
     <PostBuildEvent>
       <Command>
       </Command>
