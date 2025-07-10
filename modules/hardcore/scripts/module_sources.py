@@ -249,7 +249,7 @@ class JumboCompileUnit:
                 if self.__jumbo_compile_unit.system_includes():
                     print >>output, "#include \"core/pch_system_includes.h\""
                 else:
-                    print >>output, "#include \"core/pch_jumbo.h\""
+                    print >>output, "#include \"core/pch.h\""
                 return True
 
             elif action == "include files":
