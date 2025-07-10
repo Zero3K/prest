@@ -249,8 +249,10 @@
       <LargeAddressAware>true</LargeAddressAware>
     </Link>
     <PreBuildEvent>
-      <Command>python "$(ProjectDir)fix_tlsclient_selftest_include.py"</Command>
-      <Message>Fixing TLSClient selftest include for Visual Studio 2010 compatibility</Message>
+      <Command>
+      </Command>
+      <Message>
+      </Message>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>
@@ -839,6 +841,11 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
   </ItemGroup>
+  <Target Name="FixTLSClientSelftestInclude" BeforeTargets="ClCompile">
+    <Exec Command="python &quot;$(ProjectDir)fix_tlsclient_selftest_include.py&quot;" 
+          ContinueOnError="false" 
+          Condition="'$(Configuration)'=='Debug'"/>
+  </Target>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
