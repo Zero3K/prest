@@ -1344,35 +1344,36 @@ class tls_client
 	{
 		if(s == INVALID_SOCKET)
 			return 0;
-		try
+		
+		recv_buf.check_size(recv_buf.size+4096*4);
+		int len = ::recv(s, recv_buf.buf+recv_buf.size, 4096*4, 0);
+		if(len <= 0)
 		{
-			recv_buf.check_size(recv_buf.size+4096*4);
-			int len = ::recv(s, recv_buf.buf+recv_buf.size, 4096*4, 0);
-			if(len <= 0)
-				throw "Á¬½Ó¶Ï¿ª";
-			recv_buf.size += len;
-
-			int cur_index = 0;
-			while(cur_index + 5 <= recv_buf.size)
-			{
-				int packet_size = ntohs(*(unsigned short*)(recv_buf.buf+cur_index+3));
-				if(cur_index + 5 + packet_size > recv_buf.size)
-					break;
-				
-				tlsbuf_reader packet_reader(recv_buf.buf+cur_index+5, packet_size);
-				const char *ret = on_packet(*(BYTE*)(recv_buf.buf+cur_index), *(WORD*)(recv_buf.buf+cur_index+1), packet_reader);
-				if(ret)
-					throw ret;
-
-				cur_index += 5+packet_size;
-			}
-			memcpy(recv_buf.buf, recv_buf.buf+cur_index, recv_buf.size - cur_index);
-			recv_buf.size -= cur_index;
-			
-		}catch(const char *err){
 			close();
-			return err;
+			return "Á¬½Ó¶Ï¿ª";
 		}
+		recv_buf.size += len;
+
+		int cur_index = 0;
+		while(cur_index + 5 <= recv_buf.size)
+		{
+			int packet_size = ntohs(*(unsigned short*)(recv_buf.buf+cur_index+3));
+			if(cur_index + 5 + packet_size > recv_buf.size)
+				break;
+			
+			tlsbuf_reader packet_reader(recv_buf.buf+cur_index+5, packet_size);
+			const char *ret = on_packet(*(BYTE*)(recv_buf.buf+cur_index), *(WORD*)(recv_buf.buf+cur_index+1), packet_reader);
+			if(ret)
+			{
+				close();
+				return ret;
+			}
+
+			cur_index += 5+packet_size;
+		}
+		memcpy(recv_buf.buf, recv_buf.buf+cur_index, recv_buf.size - cur_index);
+		recv_buf.size -= cur_index;
+		
 		return 0;
 	}
 	int read_channel(char *out, int size)
@@ -1485,21 +1486,25 @@ public:
 		addr.sin_family = AF_INET;
 		
 		const char *ret = 0;
-		try
+		if(connect(s, (sockaddr*)&addr, sizeof(addr)) != 0)
 		{
-			if(connect(s, (sockaddr*)&addr, sizeof(addr)) != 0)
-				throw "Á´½Ó·þÎñÆ÷Ê§°Ü";
-			if((ret = send_client_hello(s, host, version)))
-				throw ret;
-
-			while(state_index < get_states_count())
-			{
-				if(ret = process_recv())
-					throw ret;
-			}
-		}catch(const char *err){
 			close();
-			return set_err(err, -1);
+			return set_err("Á´½Ó·þÎñÆ÷Ê§°Ü", -1);
+		}
+		
+		if((ret = send_client_hello(s, host, version)))
+		{
+			close();
+			return set_err(ret, -1);
+		}
+
+		while(state_index < get_states_count())
+		{
+			if((ret = process_recv()))
+			{
+				close();
+				return set_err(ret, -1);
+			}
 		}
 
 		return 0;
