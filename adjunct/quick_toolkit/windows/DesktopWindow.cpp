@@ -2817,7 +2817,7 @@ OP_STATUS DesktopWindow::AddToSession(OpSession* session, INT32 parent_id, BOOL 
 		return OpStatus::ERR;
 
 	OpRect windowrect;
-	OpWindow::State windowstate;
+	OpWindow::State windowstate = OpWindow::RESTORED;
 	if (GetOpWindow())
 		GetOpWindow()->GetDesktopPlacement(windowrect, windowstate);
 
