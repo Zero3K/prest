@@ -41,9 +41,7 @@
     <ClCompile Include="..\..\build\src\modules\tlsclient\tlsclient_jumbo.cpp">
       <Filter>Source Files\modules</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\build\src\modules\selftest\selftest_jumbo_tlsclient.cpp">
-      <Filter>Source Files\modules</Filter>
-    </ClCompile>
+
   </ItemGroup>
   <ItemGroup>
     <None Include="windows_ui\res\#BuildNr.rci">

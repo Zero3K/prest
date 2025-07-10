@@ -22,4 +22,4 @@
 #include "modules/selftest/src/doc_st_utils.cpp"
 
 // Include TLSClient selftest to avoid separate jumbo file and LNK4042 warning
-#include "modules/selftest/generated/tlsclient/selftest/ot_tlsclient_selftest_tlsclient_basic.cpp"
+#include "generated/tlsclient/selftest/ot_tlsclient_selftest_tlsclient_basic.cpp"
