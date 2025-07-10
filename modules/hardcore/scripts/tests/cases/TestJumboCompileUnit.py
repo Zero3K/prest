@@ -124,7 +124,7 @@ class TestCaseJumboCompileUnit_generateSourceFile(unittest.TestCase):
         jumbo_content = f.read()
         f.close()
         os.remove(jumbo_file)
-        self.assertTrue("#include \"core/pch.h\"" in jumbo_content)
+        self.assertTrue("#include \"core/pch_jumbo.h\"" in jumbo_content)
         self.assertTrue("#include \"tests/foo/src/foo_bar.cpp\"" in jumbo_content)
         self.assertTrue("#include \"tests/foo/src/foo_baz.cpp\"" in jumbo_content)
 
@@ -150,7 +150,7 @@ class TestCaseJumboCompileUnit_generateSourceFile(unittest.TestCase):
         jumbo_content = f.read()
         f.close()
         os.remove(jumbo_file)
-        self.assertTrue("#include \"core/pch.h\"" in jumbo_content)
+        self.assertTrue("#include \"core/pch_jumbo.h\"" in jumbo_content)
         self.assertTrue("#include \"tests/foo/src/foo_bar.cpp\"" in jumbo_content)
         self.assertTrue("#include \"tests/foo/src/foo_baz.cpp\"" in jumbo_content)
 
