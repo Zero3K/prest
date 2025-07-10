@@ -249,7 +249,12 @@ class JumboCompileUnit:
                 if self.__jumbo_compile_unit.system_includes():
                     print >>output, "#include \"core/pch_system_includes.h\""
                 else:
-                    print >>output, "#include \"core/pch_jumbo.h\""
+                    # Special case for TLSClient selftest to use core/pch.h for VS2010 compatibility
+                    if (self.__jumbo_compile_unit.module() == "tlsclient" and 
+                        "selftest_jumbo_tlsclient" in self.__jumbo_compile_unit.name()):
+                        print >>output, "#include \"core/pch.h\""
+                    else:
+                        print >>output, "#include \"core/pch_jumbo.h\""
                 return True
 
             elif action == "include files":

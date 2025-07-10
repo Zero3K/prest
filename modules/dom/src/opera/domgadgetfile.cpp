@@ -751,7 +751,7 @@ DOM_GadgetFile::GetName(OpAtom property_name, ES_Value *value, ES_Runtime *origi
 		{
 			OpString path;
 			OpFile file;
-			OpFileLength len;
+			OpFileLength len = 0;
 
 			if (OpStatus::IsSuccess(GetPhysicalPath(path)) &&
 				OpStatus::IsSuccess(file.Construct(path.CStr(), OPFILE_ABSOLUTE_FOLDER)) &&

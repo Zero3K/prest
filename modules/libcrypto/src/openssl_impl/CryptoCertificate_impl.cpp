@@ -12,7 +12,8 @@
 
 #include "core/pch.h"
 
-#ifdef CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION
+// Only compile this file if OpenSSL is enabled AND TLSClient is NOT enabled
+#if defined(CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION) && defined(_SSL_USE_OPENSSL_) && !defined(_SSL_USE_TLSCLIENT_)
 
 #include "modules/libcrypto/src/openssl_impl/CryptoCertificate_impl.h"
 
@@ -310,4 +311,4 @@ OP_STATUS CryptoCertificate_impl::PrintASN1Time(ASN1_TIME *time, OpString8 &time
 	return status;
 }
 
-#endif // CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION
+#endif // CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION && defined(_SSL_USE_OPENSSL_)

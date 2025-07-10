@@ -5,31 +5,34 @@
 ; code that uses these functions if kernel32.dll has them and simply returns
 ; input argument on older systems.
 ;
-; compile with: yasm.exe -f win32 noencodepointer.asm
+; compile with: ml.exe /c noencodepointer.asm
 
-extern __imp__LoadLibraryA@4
-extern __imp__GetProcAddress@8
-extern __imp__FreeLibrary@4
+.MODEL FLAT, C
 
-global __imp__EncodePointer@4:data
-global __imp__DecodePointer@4:data
+EXTERN __imp__LoadLibraryA@4:DWORD
+EXTERN __imp__GetProcAddress@8:DWORD
+EXTERN __imp__FreeLibrary@4:DWORD
 
-section .data
+PUBLIC __imp__EncodePointer@4
+PUBLIC __imp__DecodePointer@4
+
+.DATA
 __imp__EncodePointer@4 DD EncpFirstrun
 __imp__DecodePointer@4 DD DecpFirstrun
 dll_name DB 'KERNEL32.DLL',0
 encp_name DB 'EncodePointer',0
 decp_name DB 'DecodePointer',0
 
-section .text
+.CODE
 ; EncodePointer/DecodePointer for older systems
-Dummy:
+Dummy PROC
     mov eax, [esp+4]
     retn 4
+Dummy ENDP
 
 ; check if kernel32.dll has EncodePointer and DecodePointer and
 ; setup __imp__EncodePointer and __imp__DecodePointer accordingly
-Init:
+Init PROC
     push eax
     push esi
     push ebx
@@ -38,22 +41,23 @@ Init:
     mov [__imp__EncodePointer@4], eax
     mov [__imp__DecodePointer@4], eax
 
-    push dll_name
+    push OFFSET dll_name
     call [__imp__LoadLibraryA@4]
     test eax, eax
     je Init_end
     mov esi, eax
 
-    push encp_name
+    push OFFSET encp_name
     push esi
     call [__imp__GetProcAddress@8]
     test eax, eax
     je Init_unload
     mov ebx, eax
 
-    push decp_name
+    push OFFSET decp_name
     push esi
     call [__imp__GetProcAddress@8]
+    test eax, eax
     je Init_unload
 
     mov [__imp__EncodePointer@4], ebx
@@ -68,19 +72,24 @@ Init_end:
     pop esi
     pop eax
     ret
+Init ENDP
 
 ; handles first call to EncodePointer
-EncpFirstrun:
+EncpFirstrun PROC
     push ebp
     mov ebp,esp
     call Init
     pop ebp
     jmp [__imp__EncodePointer@4]
+EncpFirstrun ENDP
 
 ; handles first call to DecodePointer (if called before EncodePointer)
-DecpFirstrun:
+DecpFirstrun PROC
     push ebp
     mov ebp,esp
     call Init
     pop ebp
     jmp [__imp__DecodePointer@4]
+DecpFirstrun ENDP
+
+END

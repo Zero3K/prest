@@ -7,9 +7,9 @@
 **
 */
 #include "adjunct/autoupdate/autoupdate_checker/platforms/universal_adaptation_layer/networkimpl.h"
-#ifndef NO_OPENSSL
+#if defined(_SSL_USE_OPENSSL_) && !defined(NO_OPENSSL)
 #include <openssl/ssl.h>
-#endif // NO_OPENSSL
+#endif // _SSL_USE_OPENSSL_ && !NO_OPENSSL
 
 namespace opera_update_checker { namespace network {
 
@@ -116,7 +116,7 @@ Status OAUCNetworkImpl::CURLManager::SendRequest()
   return StatusCode::FAILED;
 }
 
-#ifndef NO_OPENSSL
+#if defined(_SSL_USE_OPENSSL_) && !defined(NO_OPENSSL)
 class SSLCtxCleaner {
   BIO* bio_;
   X509* x509_;
@@ -159,14 +159,18 @@ CURLcode OAUCNetworkImpl::CURLManager::SslCtxFunction(CURL * curl, void * sslctx
 
   return CURLE_OK;
 }
-#endif // !NO_OPENSSL
+#endif // _SSL_USE_OPENSSL_ && !NO_OPENSSL
 
 Status OAUCNetworkImpl::SendHTTPRequest(const char* url, bool https, const CertificateInfo* cert, Method method, const RequestData& data, ResponseObserver* observer)
 {
-#ifdef NO_OPENSSL
+#if defined(_SSL_USE_TLSCLIENT_)
+  // TLSClient doesn't support in-memory certificate loading like OpenSSL
   if (cert && cert->location == CERTIFICATE_MEMORY)
     return StatusCode::NOT_SUPPORTED;
-#endif // NO_OPENSSL
+#elif !defined(_SSL_USE_OPENSSL_) || defined(NO_OPENSSL)
+  if (cert && cert->location == CERTIFICATE_MEMORY)
+    return StatusCode::NOT_SUPPORTED;
+#endif // _SSL_USE_TLSCLIENT_ || !_SSL_USE_OPENSSL_ || NO_OPENSSL
 
   if (!data.data)
     return StatusCode::INVALID_PARAM;
@@ -189,14 +193,14 @@ Status OAUCNetworkImpl::SendHTTPRequest(const char* url, bool https, const Certi
     {
       manager_.SetOption(CURLOPT_SSL_VERIFYPEER, 1L);
       manager_.SetOption(CURLOPT_SSLCERTTYPE, cert->certificate_format);
-#ifndef NO_OPENSSL
+#if defined(_SSL_USE_OPENSSL_) && !defined(NO_OPENSSL)
       if (cert->location == CERTIFICATE_MEMORY)
       {
         manager_.SetOption(CURLOPT_SSL_CTX_DATA, cert->certificate);
         manager_.SetOption(CURLOPT_SSL_CTX_FUNCTION,  OAUCNetworkImpl::CURLManager::SslCtxFunction);
       }
       else
-#endif // NO_OPENSSL
+#endif // _SSL_USE_OPENSSL_ && !NO_OPENSSL
         manager_.SetOption(cert->location == CERTIFICATE_FILE ? CURLOPT_CAINFO : CURLOPT_CAPATH, cert->certificate);
     }
     else

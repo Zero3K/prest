@@ -29,6 +29,7 @@
 #include "modules/libcrypto/src/OCSPCertificateChainVerifier.cpp"
 #include "modules/libcrypto/src/OpCryptoKeyManager.cpp"
 #include "modules/libcrypto/src/OpEncryptedFile.cpp"
+#ifdef _SSL_USE_OPENSSL_
 #include "modules/libcrypto/src/openssl_impl/CryptoCertificateChain_impl.cpp"
 #include "modules/libcrypto/src/openssl_impl/CryptoCertificate_impl.cpp"
 #include "modules/libcrypto/src/openssl_impl/CryptoCertificateStorage_impl.cpp"
@@ -42,5 +43,6 @@
 #include "modules/libcrypto/src/openssl_impl/OCSPResponseVerifier_impl.cpp"
 #include "modules/libcrypto/src/openssl_impl/openssl_util.cpp"
 #include "modules/libcrypto/src/openssl_impl/PEMX509Loader.cpp"
+#endif
 #include "modules/libcrypto/src/OpRandomGenerator.cpp"
 #include "modules/libcrypto/src/PEMLoader.cpp"

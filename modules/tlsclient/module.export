@@ -1,0 +1,37 @@
+API_TLSCLIENT
+
+	tls_create_context
+	tls_destroy_context
+	tls_connect
+	tls_accept
+	tls_write
+	tls_read
+	tls_shutdown
+	tls_get_error
+	tls_get_error_string
+	tls_set_certificate
+	tls_get_peer_certificate
+	tls_free_certificate
+	tls_set_cipher_list
+	tls_set_verify_mode
+
+	TLSContext		: struct
+	TLSCertificate	: struct
+	TLS_CIPHER		: enum
+
+TLSCLIENT_SYMBOL_EXPORTS
+
+	tls_create_context		: function
+	tls_destroy_context		: function
+	tls_connect				: function
+	tls_accept				: function
+	tls_write				: function
+	tls_read				: function
+	tls_shutdown			: function
+	tls_get_error			: function
+	tls_get_error_string	: function
+	tls_set_certificate		: function
+	tls_get_peer_certificate: function
+	tls_free_certificate	: function
+	tls_set_cipher_list		: function
+	tls_set_verify_mode		: function

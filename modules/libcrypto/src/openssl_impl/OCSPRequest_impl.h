@@ -18,7 +18,7 @@
 #ifndef OCSP_REQUEST_IMPL_H
 #define OCSP_REQUEST_IMPL_H
 
-#if defined(CRYPTO_OCSP_SUPPORT) && defined(CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION)
+#if defined(CRYPTO_OCSP_SUPPORT) && defined(CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION) && defined(_SSL_USE_OPENSSL_)
 
 #include "modules/libcrypto/include/OpOCSPRequest.h"
 #include "modules/libopeay/openssl/cryptlib.h"
@@ -47,5 +47,5 @@ private:
 	OCSP_REQUEST* m_ocsp_request;
 };
 
-#endif // defined(CRYPTO_OCSP_SUPPORT) && defined(CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION)
+#endif // defined(CRYPTO_OCSP_SUPPORT) && defined(CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION) && defined(_SSL_USE_OPENSSL_)
 #endif // OCSP_REQUEST_IMPL_H

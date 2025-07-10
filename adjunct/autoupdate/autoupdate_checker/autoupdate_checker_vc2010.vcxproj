@@ -46,6 +46,7 @@
     <ClCompile Include="autoupdatechecker.cpp" />
     <ClCompile Include="platforms\universal_adaptation_layer\networkimpl.cpp" />
     <ClCompile Include="platforms\universal_adaptation_layer\protocolimpl.cpp" />
+    <ClCompile Include="platforms\universal_adaptation_layer\network\curl\lib\curl_stub.c" />
     <ClCompile Include="platforms\windows\globalstorageimpl.cpp" />
     <ClCompile Include="platforms\windows\ipcimpl.cpp" />
     <ClCompile Include="platforms\windows\main_win.cpp" />
@@ -241,8 +242,8 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>OAUC_PLATFORM_INCLUDES="platforms/windows/includes/platform.h";CURL_STATICLIB;CURL_DISABLE_GOPHER;CURL_DISABLE_SMTP;CURL_DISABLE_IMAP;CURL_DISABLE_POP3;CURL_DISABLE_TFTP;CURL_DISABLE_TELNET;CURL_DISABLE_DICT;CURL_DISABLE_PROXY;CURL_DISABLE_LDAPS;CURL_DISABLE_LDAP;CURL_DISABLE_FILE;CURL_DISABLE_FTP;CURL_DISABLE_RTSP;USE_OPENSSL;USE_SSLEAY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;platforms/universal_adaptation_layer/network/openssl/include/;../../..</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>OAUC_PLATFORM_INCLUDES="platforms/windows/includes/platform.h";CURL_STATICLIB;CURL_DISABLE_GOPHER;CURL_DISABLE_SMTP;CURL_DISABLE_IMAP;CURL_DISABLE_POP3;CURL_DISABLE_TFTP;CURL_DISABLE_TELNET;CURL_DISABLE_DICT;CURL_DISABLE_PROXY;CURL_DISABLE_LDAPS;CURL_DISABLE_LDAP;CURL_DISABLE_FILE;CURL_DISABLE_FTP;CURL_DISABLE_RTSP;_SSL_USE_TLSCLIENT_;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;platforms/universal_adaptation_layer/network/curl/include/;../../..</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -250,7 +251,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>Output;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libeay32.lib;ssleay32.lib;tinyxml.lib;ws2_32.lib;libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>tinyxml.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
       <SubSystem>Windows</SubSystem>
     </Link>
@@ -263,8 +264,8 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>OAUC_PLATFORM_INCLUDES="platforms/windows/includes/platform.h";CURL_STATICLIB;CURL_DISABLE_GOPHER;CURL_DISABLE_SMTP;CURL_DISABLE_IMAP;CURL_DISABLE_POP3;CURL_DISABLE_TFTP;CURL_DISABLE_TELNET;CURL_DISABLE_DICT;CURL_DISABLE_PROXY;CURL_DISABLE_LDAPS;CURL_DISABLE_LDAP;CURL_DISABLE_FILE;CURL_DISABLE_FTP;CURL_DISABLE_RTSP;USE_OPENSSL;USE_SSLEAY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;platforms/universal_adaptation_layer/network/openssl/include/;../../..</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>OAUC_PLATFORM_INCLUDES="platforms/windows/includes/platform.h";CURL_STATICLIB;CURL_DISABLE_GOPHER;CURL_DISABLE_SMTP;CURL_DISABLE_IMAP;CURL_DISABLE_POP3;CURL_DISABLE_TFTP;CURL_DISABLE_TELNET;CURL_DISABLE_DICT;CURL_DISABLE_PROXY;CURL_DISABLE_LDAPS;CURL_DISABLE_LDAP;CURL_DISABLE_FILE;CURL_DISABLE_FTP;CURL_DISABLE_RTSP;_SSL_USE_TLSCLIENT_;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;platforms/universal_adaptation_layer/network/curl/include/;../../..</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -272,7 +273,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>Output;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libeay32_x64.lib;ssleay32_x64.lib;tinyxml.lib;ws2_32.lib;libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>tinyxml.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
       <SubSystem>Windows</SubSystem>
     </Link>
@@ -287,8 +288,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>OAUC_PLATFORM_INCLUDES="platforms/windows/includes/platform.h";NDEBUG;CURL_STATICLIB;CURL_DISABLE_GOPHER;CURL_DISABLE_SMTP;CURL_DISABLE_IMAP;CURL_DISABLE_POP3;CURL_DISABLE_TFTP;CURL_DISABLE_TELNET;CURL_DISABLE_DICT;CURL_DISABLE_PROXY;CURL_DISABLE_LDAPS;CURL_DISABLE_LDAP;CURL_DISABLE_FILE;CURL_DISABLE_FTP;CURL_DISABLE_RTSP;USE_OPENSSL;USE_SSLEAY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;platforms/universal_adaptation_layer/network/openssl/include/;../../..</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>OAUC_PLATFORM_INCLUDES="platforms/windows/includes/platform.h";NDEBUG;CURL_STATICLIB;CURL_DISABLE_GOPHER;CURL_DISABLE_SMTP;CURL_DISABLE_IMAP;CURL_DISABLE_POP3;CURL_DISABLE_TFTP;CURL_DISABLE_TELNET;CURL_DISABLE_DICT;CURL_DISABLE_PROXY;CURL_DISABLE_LDAPS;CURL_DISABLE_LDAP;CURL_DISABLE_FILE;CURL_DISABLE_FTP;CURL_DISABLE_RTSP;_SSL_USE_TLSCLIENT_;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;platforms/universal_adaptation_layer/network/curl/include/;../../..</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <ExceptionHandling>Sync</ExceptionHandling>
     </ClCompile>
@@ -296,7 +297,7 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>libeay32.lib;ssleay32.lib;tinyxml.lib;ws2_32.lib;libcurl.lib;nothrownew.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>tinyxml.lib;ws2_32.lib;nothrownew.obj;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>Output;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <SubSystem>Windows</SubSystem>
     </Link>
@@ -307,8 +308,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>OAUC_PLATFORM_INCLUDES="platforms/windows/includes/platform.h";NDEBUG;CURL_STATICLIB;CURL_DISABLE_GOPHER;CURL_DISABLE_SMTP;CURL_DISABLE_IMAP;CURL_DISABLE_POP3;CURL_DISABLE_TFTP;CURL_DISABLE_TELNET;CURL_DISABLE_DICT;CURL_DISABLE_PROXY;CURL_DISABLE_LDAPS;CURL_DISABLE_LDAP;CURL_DISABLE_FILE;CURL_DISABLE_FTP;CURL_DISABLE_RTSP;USE_OPENSSL;USE_SSLEAY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;platforms/universal_adaptation_layer/network/openssl/include/;../../..</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>OAUC_PLATFORM_INCLUDES="platforms/windows/includes/platform.h";NDEBUG;CURL_STATICLIB;CURL_DISABLE_GOPHER;CURL_DISABLE_SMTP;CURL_DISABLE_IMAP;CURL_DISABLE_POP3;CURL_DISABLE_TFTP;CURL_DISABLE_TELNET;CURL_DISABLE_DICT;CURL_DISABLE_PROXY;CURL_DISABLE_LDAPS;CURL_DISABLE_LDAP;CURL_DISABLE_FILE;CURL_DISABLE_FTP;CURL_DISABLE_RTSP;_SSL_USE_TLSCLIENT_;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;platforms/universal_adaptation_layer/network/curl/include/;../../..</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <ExceptionHandling>Sync</ExceptionHandling>
     </ClCompile>
@@ -316,7 +317,7 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>libeay32_x64.lib;ssleay32_x64.lib;tinyxml.lib;ws2_32.lib;libcurl.lib;nothrownew.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>tinyxml.lib;ws2_32.lib;nothrownew.obj;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>Output;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <SubSystem>Windows</SubSystem>
     </Link>
@@ -327,8 +328,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>OAUC_PLATFORM_INCLUDES="platforms/windows/includes/platform.h";NDEBUG;CURL_STATICLIB;CURL_DISABLE_GOPHER;CURL_DISABLE_SMTP;CURL_DISABLE_IMAP;CURL_DISABLE_POP3;CURL_DISABLE_TFTP;CURL_DISABLE_TELNET;CURL_DISABLE_DICT;CURL_DISABLE_PROXY;CURL_DISABLE_LDAPS;CURL_DISABLE_LDAP;CURL_DISABLE_FILE;CURL_DISABLE_FTP;CURL_DISABLE_RTSP;USE_OPENSSL;USE_SSLEAY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;platforms/universal_adaptation_layer/network/openssl/include/;../../..</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>OAUC_PLATFORM_INCLUDES="platforms/windows/includes/platform.h";NDEBUG;CURL_STATICLIB;CURL_DISABLE_GOPHER;CURL_DISABLE_SMTP;CURL_DISABLE_IMAP;CURL_DISABLE_POP3;CURL_DISABLE_TFTP;CURL_DISABLE_TELNET;CURL_DISABLE_DICT;CURL_DISABLE_PROXY;CURL_DISABLE_LDAPS;CURL_DISABLE_LDAP;CURL_DISABLE_FILE;CURL_DISABLE_FTP;CURL_DISABLE_RTSP;_SSL_USE_TLSCLIENT_;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;platforms/universal_adaptation_layer/network/curl/include/;../../..</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <ExceptionHandling>Sync</ExceptionHandling>
     </ClCompile>
@@ -336,7 +337,7 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>libeay32.lib;ssleay32.lib;tinyxml.lib;ws2_32.lib;libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>tinyxml.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>Output;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <SubSystem>Windows</SubSystem>
     </Link>
@@ -347,8 +348,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>OAUC_PLATFORM_INCLUDES="platforms/windows/includes/platform.h";NDEBUG;CURL_STATICLIB;CURL_DISABLE_GOPHER;CURL_DISABLE_SMTP;CURL_DISABLE_IMAP;CURL_DISABLE_POP3;CURL_DISABLE_TFTP;CURL_DISABLE_TELNET;CURL_DISABLE_DICT;CURL_DISABLE_PROXY;CURL_DISABLE_LDAPS;CURL_DISABLE_LDAP;CURL_DISABLE_FILE;CURL_DISABLE_FTP;CURL_DISABLE_RTSP;USE_OPENSSL;USE_SSLEAY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;platforms/universal_adaptation_layer/network/openssl/include/;../../..</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>OAUC_PLATFORM_INCLUDES="platforms/windows/includes/platform.h";NDEBUG;CURL_STATICLIB;CURL_DISABLE_GOPHER;CURL_DISABLE_SMTP;CURL_DISABLE_IMAP;CURL_DISABLE_POP3;CURL_DISABLE_TFTP;CURL_DISABLE_TELNET;CURL_DISABLE_DICT;CURL_DISABLE_PROXY;CURL_DISABLE_LDAPS;CURL_DISABLE_LDAP;CURL_DISABLE_FILE;CURL_DISABLE_FTP;CURL_DISABLE_RTSP;_SSL_USE_TLSCLIENT_;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;platforms/universal_adaptation_layer/network/curl/include/;../../..</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <ExceptionHandling>Sync</ExceptionHandling>
     </ClCompile>
@@ -356,7 +357,7 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>libeay32_x64.lib;ssleay32_x64.lib;tinyxml.lib;ws2_32.lib;libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>tinyxml.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>Output;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <SubSystem>Windows</SubSystem>
     </Link>
@@ -367,8 +368,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>OAUC_PLATFORM_INCLUDES="platforms/windows/includes/platform.h";NDEBUG;CURL_STATICLIB;CURL_DISABLE_GOPHER;CURL_DISABLE_SMTP;CURL_DISABLE_IMAP;CURL_DISABLE_POP3;CURL_DISABLE_TFTP;CURL_DISABLE_TELNET;CURL_DISABLE_DICT;CURL_DISABLE_PROXY;CURL_DISABLE_LDAPS;CURL_DISABLE_LDAP;CURL_DISABLE_FILE;CURL_DISABLE_FTP;CURL_DISABLE_RTSP;USE_OPENSSL;USE_SSLEAY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;platforms/universal_adaptation_layer/network/openssl/include/;../../..</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>OAUC_PLATFORM_INCLUDES="platforms/windows/includes/platform.h";NDEBUG;CURL_STATICLIB;CURL_DISABLE_GOPHER;CURL_DISABLE_SMTP;CURL_DISABLE_IMAP;CURL_DISABLE_POP3;CURL_DISABLE_TFTP;CURL_DISABLE_TELNET;CURL_DISABLE_DICT;CURL_DISABLE_PROXY;CURL_DISABLE_LDAPS;CURL_DISABLE_LDAP;CURL_DISABLE_FILE;CURL_DISABLE_FTP;CURL_DISABLE_RTSP;_SSL_USE_TLSCLIENT_;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;platforms/universal_adaptation_layer/network/curl/include/;../../..</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <ExceptionHandling>Sync</ExceptionHandling>
     </ClCompile>
@@ -376,7 +377,7 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>libeay32.lib;ssleay32.lib;tinyxml.lib;ws2_32.lib;libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>tinyxml.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>Output;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <SubSystem>Windows</SubSystem>
     </Link>
@@ -387,8 +388,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>OAUC_PLATFORM_INCLUDES="platforms/windows/includes/platform.h";NDEBUG;CURL_STATICLIB;CURL_DISABLE_GOPHER;CURL_DISABLE_SMTP;CURL_DISABLE_IMAP;CURL_DISABLE_POP3;CURL_DISABLE_TFTP;CURL_DISABLE_TELNET;CURL_DISABLE_DICT;CURL_DISABLE_PROXY;CURL_DISABLE_LDAPS;CURL_DISABLE_LDAP;CURL_DISABLE_FILE;CURL_DISABLE_FTP;CURL_DISABLE_RTSP;USE_OPENSSL;USE_SSLEAY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;platforms/universal_adaptation_layer/network/openssl/include/;../../..</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>OAUC_PLATFORM_INCLUDES="platforms/windows/includes/platform.h";NDEBUG;CURL_STATICLIB;CURL_DISABLE_GOPHER;CURL_DISABLE_SMTP;CURL_DISABLE_IMAP;CURL_DISABLE_POP3;CURL_DISABLE_TFTP;CURL_DISABLE_TELNET;CURL_DISABLE_DICT;CURL_DISABLE_PROXY;CURL_DISABLE_LDAPS;CURL_DISABLE_LDAP;CURL_DISABLE_FILE;CURL_DISABLE_FTP;CURL_DISABLE_RTSP;_SSL_USE_TLSCLIENT_;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;platforms/universal_adaptation_layer/network/curl/include/;../../..</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <ExceptionHandling>Sync</ExceptionHandling>
     </ClCompile>
@@ -396,7 +397,7 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>libeay32_x64.lib;ssleay32_x64.lib;tinyxml.lib;ws2_32.lib;libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>tinyxml.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>Output;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <SubSystem>Windows</SubSystem>
     </Link>
@@ -407,8 +408,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>OAUC_PLATFORM_INCLUDES="platforms/windows/includes/platform.h";NDEBUG;CURL_STATICLIB;CURL_DISABLE_GOPHER;CURL_DISABLE_SMTP;CURL_DISABLE_IMAP;CURL_DISABLE_POP3;CURL_DISABLE_TFTP;CURL_DISABLE_TELNET;CURL_DISABLE_DICT;CURL_DISABLE_PROXY;CURL_DISABLE_LDAPS;CURL_DISABLE_LDAP;CURL_DISABLE_FILE;CURL_DISABLE_FTP;CURL_DISABLE_RTSP;USE_OPENSSL;USE_SSLEAY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;platforms/universal_adaptation_layer/network/openssl/include/;../../..</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>OAUC_PLATFORM_INCLUDES="platforms/windows/includes/platform.h";NDEBUG;CURL_STATICLIB;CURL_DISABLE_GOPHER;CURL_DISABLE_SMTP;CURL_DISABLE_IMAP;CURL_DISABLE_POP3;CURL_DISABLE_TFTP;CURL_DISABLE_TELNET;CURL_DISABLE_DICT;CURL_DISABLE_PROXY;CURL_DISABLE_LDAPS;CURL_DISABLE_LDAP;CURL_DISABLE_FILE;CURL_DISABLE_FTP;CURL_DISABLE_RTSP;_SSL_USE_TLSCLIENT_;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;platforms/universal_adaptation_layer/network/curl/include/;../../..</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <ExceptionHandling>Sync</ExceptionHandling>
     </ClCompile>
@@ -416,7 +417,7 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>libeay32.lib;ssleay32.lib;tinyxml.lib;ws2_32.lib;libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>tinyxml.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>Output;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <SubSystem>Windows</SubSystem>
     </Link>
@@ -427,8 +428,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>OAUC_PLATFORM_INCLUDES="platforms/windows/includes/platform.h";NDEBUG;CURL_STATICLIB;CURL_DISABLE_GOPHER;CURL_DISABLE_SMTP;CURL_DISABLE_IMAP;CURL_DISABLE_POP3;CURL_DISABLE_TFTP;CURL_DISABLE_TELNET;CURL_DISABLE_DICT;CURL_DISABLE_PROXY;CURL_DISABLE_LDAPS;CURL_DISABLE_LDAP;CURL_DISABLE_FILE;CURL_DISABLE_FTP;CURL_DISABLE_RTSP;USE_OPENSSL;USE_SSLEAY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;platforms/universal_adaptation_layer/network/openssl/include/;../../..</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>OAUC_PLATFORM_INCLUDES="platforms/windows/includes/platform.h";NDEBUG;CURL_STATICLIB;CURL_DISABLE_GOPHER;CURL_DISABLE_SMTP;CURL_DISABLE_IMAP;CURL_DISABLE_POP3;CURL_DISABLE_TFTP;CURL_DISABLE_TELNET;CURL_DISABLE_DICT;CURL_DISABLE_PROXY;CURL_DISABLE_LDAPS;CURL_DISABLE_LDAP;CURL_DISABLE_FILE;CURL_DISABLE_FTP;CURL_DISABLE_RTSP;_SSL_USE_TLSCLIENT_;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;platforms/universal_adaptation_layer/network/curl/include/;../../..</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <ExceptionHandling>Sync</ExceptionHandling>
     </ClCompile>
@@ -436,7 +437,7 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>libeay32_x64.lib;ssleay32_x64.lib;tinyxml.lib;ws2_32.lib;libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>tinyxml.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>Output;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <SubSystem>Windows</SubSystem>
     </Link>

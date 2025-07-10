@@ -2184,7 +2184,7 @@ void VEGAGlDevice::updateQuirks(const OpStringHashTable<uni_char> &entries)
 {
 	struct QuirkEntry
 	{
-		const enum Quirk quirk;
+		enum Quirk quirk;
 		const uni_char* quirkString;
 	};
 

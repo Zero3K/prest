@@ -35,6 +35,16 @@
     <ClCompile Include="pch.cpp">
       <Filter>Source Files\pch</Filter>
     </ClCompile>
+    <ClCompile Include="noencodepointer.cpp">
+      <Filter>Source Files\platforms\windows_build</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\build\src\modules\tlsclient\tlsclient_jumbo.cpp">
+      <Filter>Source Files\modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\selftest\generated\selftest_jumbo_tlsclient.cpp" Condition="'$(Configuration)'=='Debug'">
+      <Filter>Source Files\modules</Filter>
+    </ClCompile>
+
   </ItemGroup>
   <ItemGroup>
     <None Include="windows_ui\res\#BuildNr.rci">

@@ -11,7 +11,7 @@
 
 #include "core/pch.h"
 
-#if defined(_NATIVE_SSL_SUPPORT_)
+#if defined(_NATIVE_SSL_SUPPORT_) && defined(_SSL_USE_OPENSSL_) && !defined(_SSL_USE_TLSCLIENT_)
 #include "modules/libssl/sslbase.h"
 
 BOOL i2d_Vector(int (*i2d)(void *, unsigned char **), void *source, SSL_varvector32 &target)
@@ -51,4 +51,4 @@ void *d2i_Vector(void *(*d2i)(void *, unsigned char **, long), void *target, SSL
 	return d2i(target, &data, source.GetLength());
 }
 
-#endif
+#endif // _NATIVE_SSL_SUPPORT_ && _SSL_USE_OPENSSL_ && !_SSL_USE_TLSCLIENT_

@@ -12,7 +12,7 @@
 #include "modules/libcrypto/include/CryptoHash.h"
 
 
-#ifdef CRYPTO_HASH_MD5_USE_CORE_IMPLEMENTATION
+#if defined(CRYPTO_HASH_MD5_USE_CORE_IMPLEMENTATION) && defined(_SSL_USE_OPENSSL_)
 
 #include "modules/libopeay/openssl/cryptlib.h"
 #include "modules/libopeay/openssl/md5.h"
@@ -35,10 +35,10 @@ private:
 	MD5_CTX	m_md5_state;
 };
 
-#endif // CRYPTO_HASH_MD5_USE_CORE_IMPLEMENTATION
+#endif // defined(CRYPTO_HASH_MD5_USE_CORE_IMPLEMENTATION) && defined(_SSL_USE_OPENSSL_)
 
 
-#ifdef CRYPTO_HASH_SHA1_USE_CORE_IMPLEMENTATION
+#if defined(CRYPTO_HASH_SHA1_USE_CORE_IMPLEMENTATION) && defined(_SSL_USE_OPENSSL_)
 
 #include "modules/libopeay/openssl/cryptlib.h"
 #include "modules/libopeay/openssl/sha.h"
@@ -61,10 +61,10 @@ private:
 	SHA_CTX	m_sha1_state;
 };
 
-#endif // CRYPTO_HASH_SHA1_USE_CORE_IMPLEMENTATION
+#endif // defined(CRYPTO_HASH_SHA1_USE_CORE_IMPLEMENTATION) && defined(_SSL_USE_OPENSSL_)
 
 
-#ifdef CRYPTO_HASH_SHA256_USE_CORE_IMPLEMENTATION
+#if defined(CRYPTO_HASH_SHA256_USE_CORE_IMPLEMENTATION) && defined(_SSL_USE_OPENSSL_)
 
 #include "modules/libopeay/openssl/cryptlib.h"
 #include "modules/libopeay/openssl/sha.h"
@@ -87,6 +87,6 @@ private:
 	SHA256_CTX	m_sha256_state;
 };
 
-#endif // CRYPTO_HASH_SHA256_USE_CORE_IMPLEMENTATION
+#endif // defined(CRYPTO_HASH_SHA256_USE_CORE_IMPLEMENTATION) && defined(_SSL_USE_OPENSSL_)
 
 #endif /* CRYPTO_HASH_IMPL_H */

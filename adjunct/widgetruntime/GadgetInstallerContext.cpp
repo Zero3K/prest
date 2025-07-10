@@ -67,11 +67,13 @@ OpString GadgetInstallerContext::GetDeclaredName() const
 	{
 		const OP_STATUS status = m_gadget_class->GetGadgetName(name);
 		OP_ASSERT(OpStatus::IsSuccess(status));
+		(void)status;
 
 		if (name.IsEmpty() && m_gadget_class->SupportsNamespace(GADGETNS_W3C_1_0))
 		{
 			const OP_STATUS status = g_languageManager->GetString(Str::S_UNTITLED_WIDGET_NAME, name);
 			OP_ASSERT(OpStatus::IsSuccess(status));
+			(void)status;
 		}
 	}
 	return name;
@@ -85,6 +87,7 @@ OpString GadgetInstallerContext::GetAuthorName() const
 	{
 		const OP_STATUS status = m_gadget_class->GetGadgetAuthor(author_name);
 		OP_ASSERT(OpStatus::IsSuccess(status));
+		(void)status;
 	}
 	return author_name;
 }
@@ -98,6 +101,7 @@ OpString GadgetInstallerContext::GetDescription() const
 		const OP_STATUS status = m_gadget_class->GetGadgetDescription(
 				description);
 		OP_ASSERT(OpStatus::IsSuccess(status));
+		(void)status;
 	}
 	return description;
 }
@@ -113,6 +117,7 @@ OpString GadgetInstallerContext::GetIconFilePath() const
 		const OP_STATUS status = m_gadget_class->GetGadgetIcon(0, path,
 				unused_width, unused_height, FALSE);
 		OP_ASSERT(path.HasContent() || OpStatus::IsError(status));
+		(void)status;
 	}
 	return path;
 }

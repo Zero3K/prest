@@ -165,6 +165,7 @@ void GadgetsTreeModel::RefreshModel()
 		const OP_STATUS status = m_sources.Get(i)->Refresh();
 		OP_ASSERT(OpStatus::IsSuccess(status)
 				|| !"Failed to refresh gadget source");
+		(void)status;
 	}
 	
 	m_platform_timestamp = op_time(NULL);

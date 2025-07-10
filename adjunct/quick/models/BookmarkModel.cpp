@@ -196,6 +196,7 @@ void BookmarkModel::OnBookmarksLoaded(OP_STATUS ret, UINT32 count)
 	{
 		OP_STATUS status = g_bookmark_manager->SetStorageProvider(NULL);
 		OP_ASSERT(OpStatus::IsSuccess(status));
+		(void)status;
 		OP_DELETE(m_provider);
 		OP_DELETE(m_ini_provider);
 		m_provider = NULL;

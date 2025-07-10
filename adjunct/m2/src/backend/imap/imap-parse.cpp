@@ -1952,7 +1952,7 @@ yyparse (yyscanner, processor)
 int yychar;
 
 /* The semantic value of the lookahead symbol.  */
-YYSTYPE yylval;
+YYSTYPE yylval = {0};
 
     /* Number of syntax errors so far.  */
     int yynerrs;

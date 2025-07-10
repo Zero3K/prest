@@ -9,7 +9,7 @@
 #ifndef CRYPTO_STREAM_ENCRYPTION_RC4_IMPL_H
 #define CRYPTO_STREAM_ENCRYPTION_RC4_IMPL_H
 
-#ifdef CRYPTO_STREAM_ENCRYPTION_RC4_USE_CORE_IMPLEMENTATION
+#if defined(CRYPTO_STREAM_ENCRYPTION_RC4_USE_CORE_IMPLEMENTATION) && defined(_SSL_USE_OPENSSL_)
 
 #include "modules/libcrypto/include/CryptoStreamEncryptionRC4.h"
 #include "modules/libopeay/openssl/cryptlib.h"

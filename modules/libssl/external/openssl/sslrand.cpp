@@ -11,7 +11,7 @@
 
 #include "core/pch.h"
 
-#if defined(_NATIVE_SSL_SUPPORT_)
+#if defined(_NATIVE_SSL_SUPPORT_) && defined(_SSL_USE_OPENSSL_) && !defined(_SSL_USE_TLSCLIENT_)
 
 #include "modules/libssl/sslbase.h"
 
@@ -36,7 +36,7 @@ Requirement for SSL seeder: It must add data about the timestamp or the time bet
 The delta must be at least millisecond accuracy, but microsecond may be better.
 
 //	___________________________________________________________________________
-//	¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //	_SSLSeedFromMessageLoop
 //	___________________________________________________________________________
 //
@@ -320,4 +320,4 @@ void SSL_SEED_RND(byte *source,uint32 len)
 	RAND_seed(source,(size_t) len); 
 }
 
-#endif // _NATIVE_SSL_SUPPORT_
+#endif // _NATIVE_SSL_SUPPORT_ && _SSL_USE_OPENSSL_ && !_SSL_USE_TLSCLIENT_

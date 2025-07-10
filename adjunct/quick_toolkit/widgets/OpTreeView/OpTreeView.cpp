@@ -6028,6 +6028,7 @@ void OpTreeView::OnCustomWidgetItemRemoving(TreeViewModelItem *item, OpWidget* w
 	OP_STATUS status = m_custom_widgets.RemoveByItem(widget);
 
 	OP_ASSERT(OpStatus::IsSuccess(status));
+	(void)status;
 }
 
 /***********************************************************************************

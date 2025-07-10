@@ -1208,8 +1208,10 @@ OP_STATUS SearchEngineManager::AddItem(SearchTemplate* search)
 	}
 
 	// Should never add item that's already in the list
+#ifdef _DEBUG
 	SearchTemplate* temp = g_searchEngineManager->GetByUniqueGUID(search->GetUniqueGUID());
 	OP_ASSERT(!temp);
+#endif
 
 	OP_STATUS status = m_search_engines_list.Add(search);
 

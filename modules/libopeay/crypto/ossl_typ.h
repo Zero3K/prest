@@ -169,7 +169,7 @@ typedef struct st_ERR_FNS ERR_FNS;
 typedef struct engine_st ENGINE;
 
 // Opera also contains a class with name "SSL".
-#ifndef _SSL_USE_OPENSSL_
+#ifdef _SSL_USE_OPENSSL_
 typedef struct ssl_st SSL;
 #endif
 

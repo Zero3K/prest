@@ -16,7 +16,7 @@
  * openssl crypto library(modules/libopeay)
  */
 
-#ifdef CRYPTO_STREAM_ENCRYPTION_RC4_USE_CORE_IMPLEMENTATION
+#if defined(CRYPTO_STREAM_ENCRYPTION_RC4_USE_CORE_IMPLEMENTATION) && defined(_SSL_USE_OPENSSL_)
 
 #include "modules/libcrypto/src/openssl_impl/CryptoStreamEncryptionRC4_impl.h"
 #include "modules/libcrypto/src/openssl_impl/openssl_util.h"
@@ -65,4 +65,4 @@ CryptoStreamEncryptionRC4_impl::CryptoStreamEncryptionRC4_impl(int key_len)
 {
 }
 
-#endif // CRYPTO_STREAM_ENCRYPTION_RC4_USE_CORE_IMPLEMENTATION
+#endif // defined(CRYPTO_STREAM_ENCRYPTION_RC4_USE_CORE_IMPLEMENTATION) && defined(_SSL_USE_OPENSSL_)

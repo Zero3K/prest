@@ -16,6 +16,7 @@
 #include "modules/externalssl/externalssl_displaycontext.cpp"
 #include "modules/externalssl/externalssl_module.cpp"
 #include "modules/externalssl/externalssl.cpp"
+#ifdef _SSL_USE_OPENSSL_
 #include "modules/externalssl/src/openssl_impl/CryptoExternalApiManager.cpp"
 #include "modules/externalssl/src/openssl_impl/ExternalSSLLibrary.cpp"
 #include "modules/externalssl/src/openssl_impl/ExternalSSLStubs.cpp"
@@ -23,3 +24,8 @@
 #include "modules/externalssl/src/openssl_impl/OpenSSLLibrary.cpp"
 #include "modules/externalssl/src/openssl_impl/OpenSSLSocket.cpp"
 #include "modules/externalssl/src/openssl_impl/OpSSLSocket.cpp"
+#endif
+#ifdef _SSL_USE_TLSCLIENT_
+#include "modules/externalssl/src/tlsclient_impl/ExternalSSLLibrary.cpp"
+#include "modules/externalssl/src/tlsclient_impl/TLSClientLibrary.cpp"
+#endif

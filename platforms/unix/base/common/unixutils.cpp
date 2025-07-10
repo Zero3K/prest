@@ -513,6 +513,7 @@ namespace UnixUtils
 	 */
 	bool BreakfastSSLRandomEntropy()
 	{
+#if defined(_SSL_USE_OPENSSL_)
 		// Ensure the random animal is up and about:
 		if (!g_opera || // No chance if the day hasn't started yet.
 			!g_ssl_api->CheckSecurityManager() || // That should do it, but just make sure:
@@ -556,6 +557,13 @@ namespace UnixUtils
 		// Wash up:
 		OP_DELETEA(porridge);
 		return got > 0;
+#elif defined(_SSL_USE_TLSCLIENT_)
+		// TLSClient uses internal random number generation and doesn't require
+		// external entropy feeding like OpenSSL
+		return true; // Always report success for TLSClient
+#else
+		return false;
+#endif
 	}
 
 	/* Throw the random animal some scraps generated from noisy words from X and
@@ -563,6 +571,9 @@ namespace UnixUtils
 	 */
 	void FeedSSLRandomEntropy(UINT32 noise)
 	{
+#if defined(_SSL_USE_OPENSSL_)
+		extern void SSL_Process_Feeder();
+		
 		if (!SSL_RND_feeder_data)
 			return;
 
@@ -581,6 +592,11 @@ namespace UnixUtils
 			if (SSL_RND_feeder_pos <= SSL_RND_feeder_len)
 				SSL_RND_feeder_data[SSL_RND_feeder_pos++] = noise;
 		}
+#elif defined(_SSL_USE_TLSCLIENT_)
+		// TLSClient uses internal random number generation and doesn't require
+		// external entropy feeding like OpenSSL
+		// This function is a no-op for TLSClient
+#endif
 	}
 
 	int CalculateScaledSize(int src, double scale)

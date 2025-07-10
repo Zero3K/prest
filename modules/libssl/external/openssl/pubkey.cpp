@@ -11,7 +11,7 @@
 
 #include "core/pch.h"
 
-#if defined(_NATIVE_SSL_SUPPORT_)
+#if defined(_NATIVE_SSL_SUPPORT_) && defined(_SSL_USE_OPENSSL_)
 
 #ifdef _SSL_USE_OPENSSL_
 #include "modules/libssl/sslbase.h"

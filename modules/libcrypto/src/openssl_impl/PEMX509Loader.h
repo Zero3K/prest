@@ -18,7 +18,7 @@
 #ifndef PEM_X509_LOADER_H
 #define PEM_X509_LOADER_H
 
-#if defined(EXTERNAL_SSL_OPENSSL_IMPLEMENTATION) && defined(DIRECTORY_SEARCH_SUPPORT)
+#if defined(EXTERNAL_SSL_OPENSSL_IMPLEMENTATION) && defined(DIRECTORY_SEARCH_SUPPORT) && defined(_SSL_USE_OPENSSL_)
 
 #include "modules/libcrypto/include/PEMCertificateAbstractLoader.h"
 #include "modules/libopeay/openssl/cryptlib.h"
@@ -95,5 +95,5 @@ inline void PEMX509Loader::ProcessL()
 	PEMLoader::ProcessL();
 }
 
-#endif // EXTERNAL_SSL_OPENSSL_IMPLEMENTATION && DIRECTORY_SEARCH_SUPPORT
+#endif // defined(EXTERNAL_SSL_OPENSSL_IMPLEMENTATION) && defined(DIRECTORY_SEARCH_SUPPORT) && defined(_SSL_USE_OPENSSL_)
 #endif // PEM_X509_LOADER_H

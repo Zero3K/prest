@@ -1,0 +1,5 @@
+EXPORTS
+EncodePointer
+DecodePointer
+__imp__EncodePointer@4
+__imp__DecodePointer@4

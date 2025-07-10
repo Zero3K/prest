@@ -169,17 +169,17 @@ Libopeay_ImplementModuleData::~Libopeay_ImplementModuleData()
 {
 	if (g_opera->libopeay_module.m_data)
 	{
+#if defined(_SSL_USE_OPENSSL_) || defined(USE_OPENSSL_CERTIFICATE_VERIFICATION)
 #ifdef LIBOPEAY_PKCS12_SUPPORT
 		EVP_PBE_cleanup();
 #endif
 #ifndef OPENSSL_NO_ENGINE 
 		ENGINE_cleanup();
 #endif
-#if defined(_SSL_USE_OPENSSL_) || defined(USE_OPENSSL_CERTIFICATE_VERIFICATION)
 		CRYPTO_cleanup_all_ex_data();
-#endif
 
 		ERR_remove_thread_state(NULL);
+#endif // defined(_SSL_USE_OPENSSL_) || defined(USE_OPENSSL_CERTIFICATE_VERIFICATION)
 	}	
 
 	ERR_STATE *err_fallback = &OPENSSL_IMPLEMENT_GLOBAL_OPERA_NAME(err__fallback);

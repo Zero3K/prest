@@ -140,6 +140,81 @@ class ProjectDocument:
 
 	def filtersToXml(self):
 		return "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" + self.filterdom.documentElement.toxml("utf-8")
+	
+	def fixC4653WarningForReleaseConfigurations(self):
+		"""
+		Fixes C4653 warnings for Release configurations by adding DisableSpecificWarnings.
+		This warning occurs when jumbo files include pch_jumbo.h but the project uses pch.h.
+		"""
+		item_definition_groups = self.vcxdom.getElementsByTagName("ItemDefinitionGroup")
+		for item_group in item_definition_groups:
+			if item_group.hasAttribute("Condition"):
+				condition = item_group.getAttribute("Condition")
+				# Apply to all Release configurations (Release, PGO, Instrumented, vTune)
+				if ("'$(Configuration)|$(Platform)'=='Release|" in condition or 
+					"'$(Configuration)|$(Platform)'=='PGO|" in condition or
+					"'$(Configuration)|$(Platform)'=='Instrumented|" in condition or
+					"'$(Configuration)|$(Platform)'=='vTune|" in condition):
+					
+					# Find the ClCompile element
+					clcompile_elements = item_group.getElementsByTagName("ClCompile")
+					if clcompile_elements:
+						clcompile = clcompile_elements[0]
+						
+						# Check if DisableSpecificWarnings already exists
+						disable_warnings_elements = clcompile.getElementsByTagName("DisableSpecificWarnings")
+						if not disable_warnings_elements:
+							# Add DisableSpecificWarnings element
+							clcompile.appendChild(self.createPadding(6))
+							disable_warnings = self.createElement("DisableSpecificWarnings")
+							disable_warnings.appendChild(self.vcxdom.createTextNode("4653"))
+							clcompile.appendChild(disable_warnings)
+
+	def removeProblematicLibsForNonDebugConfigurations(self):
+		"""
+		Removes libctiny.lib from AdditionalDependencies and LIBC.lib from IgnoreSpecificDefaultLibraries
+		for all non-Debug configurations to resolve LIBCMT linker errors.
+		"""
+		item_definition_groups = self.vcxdom.getElementsByTagName("ItemDefinitionGroup")
+		for item_group in item_definition_groups:
+			if item_group.hasAttribute("Condition"):
+				condition = item_group.getAttribute("Condition")
+				# Apply to all non-Debug configurations (Release, PGO, Instrumented, vTune)
+				if ("'$(Configuration)|$(Platform)'=='Release|" in condition or 
+					"'$(Configuration)|$(Platform)'=='PGO|" in condition or
+					"'$(Configuration)|$(Platform)'=='Instrumented|" in condition or
+					"'$(Configuration)|$(Platform)'=='vTune|" in condition):
+					
+					# Find the Link element
+					link_elements = item_group.getElementsByTagName("Link")
+					if link_elements:
+						link = link_elements[0]
+						
+						# Remove libctiny.lib from AdditionalDependencies
+						additional_deps_elements = link.getElementsByTagName("AdditionalDependencies")
+						for additional_deps in additional_deps_elements:
+							if additional_deps.firstChild:
+								current_deps = additional_deps.firstChild.nodeValue
+								if "libctiny.lib" in current_deps:
+									# Remove libctiny.lib from the dependencies
+									new_deps = current_deps.replace("libctiny.lib;", "").replace(";libctiny.lib", "").replace("libctiny.lib", "")
+									new_deps = new_deps.strip().strip(";")  # Clean up any extra semicolons or whitespace
+									additional_deps.firstChild.nodeValue = new_deps
+						
+						# Remove LIBC.lib from IgnoreSpecificDefaultLibraries
+						ignore_libs_elements = link.getElementsByTagName("IgnoreSpecificDefaultLibraries")
+						for ignore_libs in ignore_libs_elements:
+							if ignore_libs.firstChild:
+								current_libs = ignore_libs.firstChild.nodeValue
+								if "LIBC.lib" in current_libs:
+									# Remove LIBC.lib from the ignored libraries
+									new_libs = current_libs.replace("LIBC.lib;", "").replace(";LIBC.lib", "").replace("LIBC.lib", "")
+									new_libs = new_libs.strip().strip(";")  # Clean up any extra semicolons or whitespace
+									if new_libs == "":
+										# If the list is empty, remove the element entirely
+										ignore_libs.parentNode.removeChild(ignore_libs)
+									else:
+										ignore_libs.firstChild.nodeValue = new_libs
 
 	def addFile(self, src_node, filter_node, file_name, pch_name, exclude_from_build, optimize_speed):
 		OPTIMIZE_SPEED_CONDITION = "'$(Configuration)'=='Release'"
@@ -309,6 +384,9 @@ class ProjectTask:
 		filteritems[0].appendChild(project.createPadding(2))
 		filteritems[1].appendChild(project.createPadding(2))
 
+		# Remove problematic libraries for all projects
+		project.removeProblematicLibsForNonDebugConfigurations()
+
 		changed = False
 		projfile_data = project.toXml()
 		with open(project.project_file, "r") as projfile:
@@ -358,9 +436,28 @@ class ProjectTask:
 
 		if self.preprocess_template:
 			project.preprocessTemplate(self.name)
+		
+		# Fix C4653 warnings for Opera project Release configurations
+		if self.name == "Opera" and project is not None:
+			project.fixC4653WarningForReleaseConfigurations()
 
 		if self.update_vcxproj_and_filters and project is not None:
 			self.updateProjectAndFilters(config, project, sources_collection)
+		else:
+			# For projects that don't update source files, still apply library fixes
+			if project is not None:
+				project.removeProblematicLibsForNonDebugConfigurations()
+				# Write the updated project file if we made changes
+				changed = False
+				projfile_data = project.toXml()
+				with open(project.project_file, "r") as projfile:
+					if projfile.read() != projfile_data:
+						changed = True
+				
+				if changed:
+					with open(project.project_file, "w") as projfile:
+						print "Writing %s with library fixes..." % project.project_file
+						projfile.write(projfile_data)
 
 class Config:
 	"""Relative path used for generated projects."""

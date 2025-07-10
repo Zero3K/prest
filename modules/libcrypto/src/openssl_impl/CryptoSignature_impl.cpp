@@ -12,7 +12,7 @@
 
 #include "core/pch.h"
 
-#ifdef CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION
+#if defined(CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION) && defined(_SSL_USE_OPENSSL_)
 
 #include "modules/libcrypto/src/openssl_impl/CryptoSignature_impl.h"
 
@@ -174,4 +174,4 @@ OP_STATUS CryptoSignature_impl::Verify(const UINT8 *hash_reference, int referenc
 	return OpStatus::OK;
 }
 
-#endif // CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION
+#endif // CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION && defined(_SSL_USE_OPENSSL_)

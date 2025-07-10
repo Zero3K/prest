@@ -10,7 +10,7 @@
 #ifndef CRYPTO_CERTIFICATE_IMPL_H
 #define CRYPTO_CERTIFICATE_IMPL_H
 
-#ifdef  CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION
+#if defined(CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION) && defined(_SSL_USE_OPENSSL_)
 
 #include "modules/libcrypto/include/CryptoCertificate.h"
 #include "modules/libopeay/openssl/cryptlib.h"
@@ -83,5 +83,5 @@ private:
 	friend class CryptoCertificate;
 };
 
-#endif // CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION
+#endif // defined(CRYPTO_CERTIFICATE_VERIFICATION_USE_CORE_IMPLEMENTATION) && defined(_SSL_USE_OPENSSL_)
 #endif /* CRYPTO_CERTIFICATE_IMPL_H */

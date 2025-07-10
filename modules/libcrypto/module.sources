@@ -15,18 +15,23 @@ src/libcrypto_module.cpp
 src/OCSPCertificateChainVerifier.cpp
 src/OpCryptoKeyManager.cpp
 src/OpEncryptedFile.cpp
-src/openssl_impl/CryptoCertificateChain_impl.cpp
-src/openssl_impl/CryptoCertificate_impl.cpp
-src/openssl_impl/CryptoCertificateStorage_impl.cpp
-src/openssl_impl/CryptoHash_impl.cpp
-src/openssl_impl/CryptoSignature_impl.cpp
-src/openssl_impl/CryptoStreamEncryptionRC4_impl.cpp
-src/openssl_impl/CryptoSymmetricAlgorithm3DES.cpp
-src/openssl_impl/CryptoSymmetricAlgorithmAES.cpp
-src/openssl_impl/OCSPRequest_impl.cpp
-src/openssl_impl/OCSPRequestProducer_impl.cpp
-src/openssl_impl/OCSPResponseVerifier_impl.cpp
-src/openssl_impl/openssl_util.cpp
-src/openssl_impl/PEMX509Loader.cpp
+src/openssl_impl/CryptoCertificateChain_impl.cpp # [forcecompileif=defined(_SSL_USE_OPENSSL_)]
+src/openssl_impl/CryptoCertificate_impl.cpp # [forcecompileif=defined(_SSL_USE_OPENSSL_)]
+src/openssl_impl/CryptoCertificateStorage_impl.cpp # [forcecompileif=defined(_SSL_USE_OPENSSL_)]
+src/openssl_impl/CryptoHash_impl.cpp # [forcecompileif=defined(_SSL_USE_OPENSSL_)]
+src/tlsclient_impl/CryptoHash_tlsclient_impl.cpp # [forcecompileif=defined(_SSL_USE_TLSCLIENT_)]
+src/tlsclient_impl/CryptoSymmetricAlgorithm_tlsclient_impl.cpp # [forcecompileif=defined(_SSL_USE_TLSCLIENT_)]
+src/tlsclient_impl/CryptoSignature_tlsclient_impl.cpp # [forcecompileif=defined(_SSL_USE_TLSCLIENT_)]
+src/tlsclient_impl/CryptoCertificateChain_tlsclient_impl.cpp # [forcecompileif=defined(_SSL_USE_TLSCLIENT_)]
+src/tlsclient_impl/CryptoCertificateStorage_tlsclient_impl.cpp # [forcecompileif=defined(_SSL_USE_TLSCLIENT_)]
+src/openssl_impl/CryptoSignature_impl.cpp # [forcecompileif=defined(_SSL_USE_OPENSSL_)]
+src/openssl_impl/CryptoStreamEncryptionRC4_impl.cpp # [forcecompileif=defined(_SSL_USE_OPENSSL_)]
+src/openssl_impl/CryptoSymmetricAlgorithm3DES.cpp # [forcecompileif=defined(_SSL_USE_OPENSSL_)]
+src/openssl_impl/CryptoSymmetricAlgorithmAES.cpp # [forcecompileif=defined(_SSL_USE_OPENSSL_)]
+src/openssl_impl/OCSPRequest_impl.cpp # [forcecompileif=defined(_SSL_USE_OPENSSL_)]
+src/openssl_impl/OCSPRequestProducer_impl.cpp # [forcecompileif=defined(_SSL_USE_OPENSSL_)]
+src/openssl_impl/OCSPResponseVerifier_impl.cpp # [forcecompileif=defined(_SSL_USE_OPENSSL_)]
+src/openssl_impl/openssl_util.cpp # [forcecompileif=defined(_SSL_USE_OPENSSL_)]
+src/openssl_impl/PEMX509Loader.cpp # [forcecompileif=defined(_SSL_USE_OPENSSL_)]
 src/OpRandomGenerator.cpp
 src/PEMLoader.cpp

@@ -17,6 +17,7 @@
 
 group "libopeay.names";
 require _SSL_SUPPORT_;
+require _SSL_USE_OPENSSL_;
 
 language c++;
 

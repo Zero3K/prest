@@ -7,6 +7,18 @@ TWEAK_ABSTRACT_CERTIFICATES                         haavardm
         Depends on      : _EXTERNAL_SSL_SUPPORT_
         Enabled for    : desktop, smartphone, minimal, tv
 
+TWEAK_EXTERNAL_SSL_TLSCLIENT_IMPLEMENTATION		zero3k
+
+	Use TLSClient implementation instead of OpenSSL for external SSL support.
+	This replaces OpenSSL with the @Zero3K/tlsclient library providing TLS 1.2/1.3 support.
+
+	Category        : setting
+	Define          : EXTERNAL_SSL_TLSCLIENT_IMPLEMENTATION
+	Depends on      : _EXTERNAL_SSL_SUPPORT_
+	Conflicts with  : EXTERNAL_SSL_OPENSSL_IMPLEMENTATION
+	Enabled for     : desktop, smartphone, minimal, tv
+	Disabled for    : none
+
 TWEAK_EXTSSL_CERT_MANAGER                                   lukaszm
 
 	Enable support for external certificates manager.

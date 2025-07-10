@@ -26,6 +26,9 @@ void DeactivateCrypto();
 #include "modules/libopeay/openssl/ossl_typ.h"
 #include "modules/libssl/external/openssl/cert_store.h"
 #endif
+#if defined(_SSL_USE_TLSCLIENT_)
+#include "modules/libssl/external/tlsclient/cert_store.h"
+#endif
 #include "modules/libssl/handshake/asn1certlist.h"
 
 #if defined EXTERNAL_DIGEST_API
@@ -58,8 +61,8 @@ LibsslModule::LibsslModule()
 #endif
 	, cert_def1(NULL)
 	, m_browsing_certificates(FALSE)
-#if defined(_SSL_USE_OPENSSL_)
 	, m_cert_store(NULL)
+#if defined(_SSL_USE_OPENSSL_)
 	, m_SSL_RND_Initialized(FALSE)
 	, m_SSL_RND_feeder_data(NULL)
 #ifdef _SSL_SEED_FROMMESSAGE_LOOP_
@@ -71,6 +74,9 @@ LibsslModule::LibsslModule()
 	, m_feed_count(0)
 #endif
 #endif
+#endif
+#if defined(_SSL_USE_TLSCLIENT_)
+	// TLSClient specific initialization
 #endif
 #if defined EXTERNAL_DIGEST_API
 	, m_ext_digest_method_counter(EXTERNAL_DIGEST_ID_START)
@@ -204,10 +210,8 @@ void LibsslModule::Destroy()
 	OP_DELETE(m_ssl_api);
 	m_ssl_api = NULL;
 
-#if defined(_SSL_USE_OPENSSL_)
 	OP_DELETE(m_cert_store);
 	m_cert_store = NULL;
-#endif
 
 #ifdef LIBSSL_ENABLE_SSL_FALSE_START
 	OP_DELETE(m_ssl_false_start_manager);

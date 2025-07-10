@@ -19,6 +19,10 @@
 #error "For security reasons FEATURE_CLEAR_PASSWORDS *MUST* be YES when libssl with libopeay is used"
 #endif
 #endif
+
+#if defined(_SSL_USE_TLSCLIENT_)
+// TLSClient specific requirements can be added here if needed
+#endif
 #include "modules/url/tools/arrays_decl.h"
 #include "modules/libssl/base/sslenum2.h"
 #include "modules/url/url_id.h"
@@ -59,7 +63,6 @@ public:
 	BOOL m_browsing_certificates;
 	SSL_Revoke_List m_revoked_certificates;
 #if defined(_SSL_USE_OPENSSL_)
-	SSL_Cert_Store *m_cert_store;
 	BOOL  m_SSL_RND_Initialized;
 	DWORD *m_SSL_RND_feeder_data;
 #ifdef _SSL_SEED_FROMMESSAGE_LOOP_
@@ -71,6 +74,12 @@ public:
 #endif
 #endif
 #endif
+#if defined(_SSL_USE_TLSCLIENT_)
+	// TLSClient specific data structures can be added here
+	// For now, TLSClient doesn't require global state like OpenSSL
+#endif
+	// Common SSL members regardless of implementation
+	SSL_Cert_Store *m_cert_store;
 	DECLARE_MODULE_CONST_ARRAY(SSL_Cipher_and_NID, SSL_Cipher_map);
 	DECLARE_MODULE_CONST_ARRAY(SSL_Digest_and_NID, SSL_Digest_map);
 	DECLARE_MODULE_CONST_ARRAY(struct Cipher_spec, Cipher_ciphers);
@@ -137,10 +146,11 @@ public:
 #define g_cert_def1					g_opera->libssl_module.cert_def1
 #define g_browsing_certificates		g_opera->libssl_module.m_browsing_certificates
 #define g_store						g_opera->libssl_module.m_cert_store->cert_store
-#define g_SSL_RND_Initialized			g_opera->libssl_module.m_SSL_RND_Initialized
-#define g_SSL_RND_feeder_data			g_opera->libssl_module.m_SSL_RND_feeder_data
 #define g_revocation_context			g_opera->libssl_module.m_revocation_context
 #define g_revoked_certificates			g_opera->libssl_module.m_revoked_certificates
+#if defined(_SSL_USE_OPENSSL_)
+#define g_SSL_RND_Initialized			g_opera->libssl_module.m_SSL_RND_Initialized
+#define g_SSL_RND_feeder_data			g_opera->libssl_module.m_SSL_RND_feeder_data
 #ifdef _SSL_SEED_FROMMESSAGE_LOOP_
 #define g_SSL_RND_feeder_pos			g_opera->libssl_module.m_SSL_RND_feeder_pos
 #define g_SSL_RND_feeder_len			g_opera->libssl_module.m_SSL_RND_feeder_len
@@ -148,6 +158,8 @@ public:
 #define g_idle_feed_count			g_opera->libssl_module.m_idle_feed_count
 #define g_been_fed			g_opera->libssl_module.m_been_fed
 #define g_feed_count			g_opera->libssl_module.m_feed_count
+#endif
+#endif
 #endif
 #ifdef LIBSSL_ALWAYS_WARN_MD5
 #define g_SSL_warn_md5			TRUE
@@ -164,7 +176,6 @@ public:
 #define g_ssl_oprand_buffer_pos g_opera->libssl_module.op_rand_buffer_pos
 #define g_ssl_oprand_last_refresh g_opera->libssl_module.rand_last_refresh
 #endif
-#endif
 #ifndef HAS_COMPLEX_GLOBALS
 # define g_SSL_Cipher_map	CONST_ARRAY_GLOBAL_NAME(libssl, SSL_Cipher_map)
 # define g_SSL_Digest_map	CONST_ARRAY_GLOBAL_NAME(libssl, SSL_Digest_map)
@@ -175,10 +186,12 @@ public:
 #endif
 
 #define securityManager				g_opera->libssl_module.m_securityManager
+#if defined(_SSL_USE_OPENSSL_)
 #define SSL_RND_feeder_data			g_opera->libssl_module.m_SSL_RND_feeder_data
 #ifdef _SSL_SEED_FROMMESSAGE_LOOP_
 #define SSL_RND_feeder_pos			g_opera->libssl_module.m_SSL_RND_feeder_pos
 #define SSL_RND_feeder_len			g_opera->libssl_module.m_SSL_RND_feeder_len
+#endif
 #endif
 
 #define g_SSL_X509_cert_flags_index	g_opera->libssl_module.m_x509_cert_flags_index

@@ -21,6 +21,7 @@ ExtractZipOperation::ExtractZipOperation(const OpZip& archive,
 {
 	const OP_STATUS status = m_extract_to_path.Set(extract_to_path);
 	OP_ASSERT(OpStatus::IsSuccess(status));
+	(void)status;
 }
 
 

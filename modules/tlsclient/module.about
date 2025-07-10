@@ -1,0 +1,18 @@
+TLSClient
+
+	TLSClient is a lightweight TLS 1.2/1.3 implementation that replaces OpenSSL
+	in the Presto rendering engine. It provides modern cryptographic support
+	with support for the following cipher suites:
+	
+	- TLS_AES_128_GCM_SHA256
+	- TLS_AES_256_GCM_SHA384  
+	- TLS_CHACHA20_POLY1305_SHA256
+	- TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+	- TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+	- TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256
+	- TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	- TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+
+	This module is based on the @Zero3K/tlsclient library and provides
+	a C API for integration with Opera's SSL infrastructure.

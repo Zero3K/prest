@@ -23,9 +23,9 @@ class OAUCNetworkImpl : public opera_update_checker::network::Network
     unsigned last_request_response_code_;
     static size_t WriteDataCallback(char *ptr, size_t size, size_t nmemb, void *userdata);
     static size_t WriteHeaderCallback(char *ptr, size_t size, size_t nmemb, void *userdata);
-#ifndef NO_OPENSSL
+#if defined(_SSL_USE_OPENSSL_) && !defined(NO_OPENSSL)
     static CURLcode SslCtxFunction(CURL* curl, void* sslctx, void* parm);
-#endif // NO_OPENSSL
+#endif // _SSL_USE_OPENSSL_ && !NO_OPENSSL
   public:
     CURLManager();
     ~CURLManager();

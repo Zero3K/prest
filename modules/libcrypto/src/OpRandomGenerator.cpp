@@ -127,7 +127,7 @@ void OpRandomGenerator::AddEntropyAllGenerators(const void *data, int length, in
 	
 	
 // In addition, we feed the ssl generator
-#if defined(_SSL_SEED_FROMMESSAGE_LOOP_) && defined(_NATIVE_SSL_SUPPORT_)
+#if defined(_SSL_SEED_FROMMESSAGE_LOOP_) && defined(_NATIVE_SSL_SUPPORT_) && defined(_SSL_USE_OPENSSL_)
 	if (generator && !(generator->m_number_of_feedings & 3))
 	{
 		extern void SSL_Process_Feeder();
@@ -141,7 +141,7 @@ void OpRandomGenerator::AddEntropyAllGenerators(const void *data, int length, in
 			SSL_RND_feeder_data[SSL_RND_feeder_pos++] = (DWORD)generator->m_random_source->ClockCipher();
 		}
 	}	
-#endif	// _SSL_SEED_FROMMESSAGE_LOOP_ && _NATIVE_SSL_SUPPORT_
+#endif	// _SSL_SEED_FROMMESSAGE_LOOP_ && _NATIVE_SSL_SUPPORT_ && _SSL_USE_OPENSSL_
 }
 
 void OpRandomGenerator::AddEntropyFromTimeAllGenerators()

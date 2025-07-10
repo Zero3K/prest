@@ -1,0 +1,51 @@
+/* -*- Mode: c++; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*-
+**
+** Copyright (C) 2024 Presto Project.  All rights reserved.
+**
+** This file is part of the Presto web browser.  It may not be distributed
+** under any circumstances.
+*/
+
+group "tlsclient";
+
+require _SSL_USE_TLSCLIENT_;
+
+include "modules/tlsclient/tlsclient.h";
+include "core/pch.h";
+
+global
+{
+	// The actual TLSClient functions are available through the jumbo file
+	// No stub implementations needed
+}
+
+html { "<html><body>TLSClient Test</body></html>" }
+
+test("TLS Context Creation")
+{
+	TLSContext* ctx = tls_create_context(ISCLIENT);
+	verify(ctx != NULL);
+	
+	tls_destroy_context(ctx);
+}
+
+test("TLS Error Handling")
+{
+	const char* error_str = tls_get_error_string(0);
+	verify(error_str != NULL);
+	verify(strcmp(error_str, "No error") == 0);
+}
+
+test("TLS Configuration")
+{
+	TLSContext* ctx = tls_create_context(ISCLIENT);
+	verify(ctx != NULL);
+	
+	int result = tls_set_cipher_list(ctx, "TLS_AES_256_GCM_SHA384");
+	verify(result == 1);
+	
+	result = tls_set_verify_mode(ctx, 0);
+	verify(result == 1);
+	
+	tls_destroy_context(ctx);
+}

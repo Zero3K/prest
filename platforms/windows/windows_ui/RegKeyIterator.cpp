@@ -113,6 +113,7 @@ void RegKeyIterator::Next()
 		const OP_STATUS status = m_subkey_name.SetConcat(
 				m_key_name, UNI_L("\\"), name_buffer);
 		OP_ASSERT(OpStatus::IsSuccess(status));
+		(void)status;
 	}
 	else
 	{
