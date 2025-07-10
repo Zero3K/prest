@@ -170,10 +170,10 @@ class ProjectDocument:
 							disable_warnings.appendChild(self.vcxdom.createTextNode("4653"))
 							clcompile.appendChild(disable_warnings)
 
-	def fixRuntimeLibraryForReleaseConfigurations(self):
+	def fixLibcmtLinkerErrorForReleaseConfigurations(self):
 		"""
-		Fixes RuntimeLibrary setting for Release configurations to use MultiThreadedDLL
-		instead of MultiThreaded to avoid LIBCMT linker errors when building a DLL.
+		Fixes LIBCMT linker errors for Release configurations by adding LIBCMT to 
+		IgnoreSpecificDefaultLibraries to resolve conflicts with dynamic CRT usage.
 		"""
 		item_definition_groups = self.vcxdom.getElementsByTagName("ItemDefinitionGroup")
 		for item_definition_group in item_definition_groups:
@@ -185,15 +185,26 @@ class ProjectDocument:
 					"'$(Configuration)|$(Platform)'=='Instrumented|" in condition or
 					"'$(Configuration)|$(Platform)'=='vTune|" in condition):
 					
-					# Find ClCompile elements within this group
-					clcompile_elements = item_definition_group.getElementsByTagName("ClCompile")
-					for clcompile in clcompile_elements:
-						# Find RuntimeLibrary elements
-						runtime_library_elements = clcompile.getElementsByTagName("RuntimeLibrary")
-						for runtime_library in runtime_library_elements:
-							# Change from MultiThreaded to MultiThreadedDLL
-							if runtime_library.firstChild and runtime_library.firstChild.nodeValue == "MultiThreaded":
-								runtime_library.firstChild.nodeValue = "MultiThreadedDLL"
+					# Find Link elements within this group
+					link_elements = item_definition_group.getElementsByTagName("Link")
+					for link in link_elements:
+						# Check if IgnoreSpecificDefaultLibraries already exists
+						ignore_libs_elements = link.getElementsByTagName("IgnoreSpecificDefaultLibraries")
+						if ignore_libs_elements:
+							# Add LIBCMT to existing list if not already present
+							ignore_libs = ignore_libs_elements[0]
+							if ignore_libs.firstChild:
+								current_libs = ignore_libs.firstChild.nodeValue
+								if "LIBCMT" not in current_libs:
+									ignore_libs.firstChild.nodeValue = current_libs + ";LIBCMT"
+							else:
+								ignore_libs.appendChild(self.vcxdom.createTextNode("LIBCMT"))
+						else:
+							# Add new IgnoreSpecificDefaultLibraries element
+							link.appendChild(self.createPadding(6))
+							ignore_libs = self.createElement("IgnoreSpecificDefaultLibraries")
+							ignore_libs.appendChild(self.vcxdom.createTextNode("LIBCMT"))
+							link.appendChild(ignore_libs)
 
 
 
@@ -418,7 +429,7 @@ class ProjectTask:
 		# Fix C4653 warnings for Opera project Release configurations
 		if self.name == "Opera" and project is not None:
 			project.fixC4653WarningForReleaseConfigurations()
-			project.fixRuntimeLibraryForReleaseConfigurations()
+			project.fixLibcmtLinkerErrorForReleaseConfigurations()
 
 		if self.update_vcxproj_and_filters and project is not None:
 			self.updateProjectAndFilters(config, project, sources_collection)
