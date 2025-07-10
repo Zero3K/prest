@@ -159,7 +159,7 @@ test("Setting multiple text styles at once")
 	verify(info->styles[4]->position == 67);
 	verify(info->styles[4]->style == OP_TC_STYLE_ITALIC);
 	verify(info->styles[5]->position == 80);
-	verify(info->styles[5]->style == OP_TC_STYLE_ITALIC | OP_TC_STYLE_LINK);
+	verify(info->styles[5]->style == (OP_TC_STYLE_ITALIC | OP_TC_STYLE_LINK));
 	verify(info->styles[6]->position == 86);
 	verify(info->styles[6]->style == OP_TC_STYLE_ITALIC);
 	verify(info->styles[7]->position == 93);
