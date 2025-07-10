@@ -68,16 +68,8 @@ static GstVideoFrame *gst_base_video_decoder_new_frame (GstBaseVideoDecoder *
     base_video_decoder);
 static void gst_base_video_decoder_free_frame (GstVideoFrame * frame);
 
-GST_BOILERPLATE (GstBaseVideoDecoder, gst_base_video_decoder,
-    GstBaseVideoCodec, GST_TYPE_BASE_VIDEO_CODEC);
-
-static void
-gst_base_video_decoder_base_init (gpointer g_class)
-{
-  GST_DEBUG_CATEGORY_INIT (basevideodecoder_debug, "basevideodecoder", 0,
-      "Base Video Decoder");
-
-}
+G_DEFINE_TYPE (GstBaseVideoDecoder, gst_base_video_decoder,
+    GST_TYPE_BASE_VIDEO_CODEC);
 
 static void
 gst_base_video_decoder_class_init (GstBaseVideoDecoderClass * klass)
@@ -93,11 +85,13 @@ gst_base_video_decoder_class_init (GstBaseVideoDecoderClass * klass)
   gstelement_class->change_state = gst_base_video_decoder_change_state;
 
   parent_class = g_type_class_peek_parent (klass);
+
+  GST_DEBUG_CATEGORY_INIT (basevideodecoder_debug, "basevideodecoder", 0,
+      "Base Video Decoder");
 }
 
 static void
-gst_base_video_decoder_init (GstBaseVideoDecoder * base_video_decoder,
-    GstBaseVideoDecoderClass * klass)
+gst_base_video_decoder_init (GstBaseVideoDecoder * base_video_decoder)
 {
   GstPad *pad;
 
@@ -1480,11 +1474,13 @@ gst_base_video_decoder_alloc_src_frame (GstBaseVideoDecoder *
 
   num_bytes = gst_video_format_get_size (base_video_decoder->state.format,
       base_video_decoder->state.width, base_video_decoder->state.height);
-  flow_ret =
-      gst_pad_alloc_buffer_and_set_caps (GST_BASE_VIDEO_CODEC_SRC_PAD
-      (base_video_decoder), GST_BUFFER_OFFSET_NONE, num_bytes,
-      GST_PAD_CAPS (GST_BASE_VIDEO_CODEC_SRC_PAD (base_video_decoder)),
-      &frame->src_buffer);
+  /* In GStreamer 1.x, use gst_buffer_new_allocate instead */
+  frame->src_buffer = gst_buffer_new_allocate (NULL, num_bytes, NULL);
+  if (frame->src_buffer) {
+    flow_ret = GST_FLOW_OK;
+  } else {
+    flow_ret = GST_FLOW_ERROR;
+  }
 
   if (flow_ret != GST_FLOW_OK) {
     GST_WARNING ("failed to get buffer");

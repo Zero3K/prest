@@ -166,24 +166,7 @@ GST_STATIC_PAD_TEMPLATE ("src",
     GST_STATIC_CAPS (GST_VIDEO_CAPS_YUV ("I420"))
     );
 
-GST_BOILERPLATE (GstVP8Dec, gst_vp8_dec, GstBaseVideoDecoder,
-    GST_TYPE_BASE_VIDEO_DECODER);
-
-static void
-gst_vp8_dec_base_init (gpointer g_class)
-{
-  GstElementClass *element_class = GST_ELEMENT_CLASS (g_class);
-
-  gst_element_class_add_pad_template (element_class,
-      gst_static_pad_template_get (&gst_vp8_dec_src_template));
-  gst_element_class_add_pad_template (element_class,
-      gst_static_pad_template_get (&gst_vp8_dec_sink_template));
-
-  gst_element_class_set_details_simple (element_class,
-      "On2 VP8 Decoder",
-      "Codec/Decoder/Video",
-      "Decode VP8 video streams", "David Schleef <ds@entropywave.com>");
-}
+G_DEFINE_TYPE (GstVP8Dec, gst_vp8_dec, GST_TYPE_BASE_VIDEO_DECODER);
 
 static void
 gst_vp8_dec_class_init (GstVP8DecClass * klass)
@@ -233,11 +216,23 @@ gst_vp8_dec_class_init (GstVP8DecClass * klass)
   base_video_decoder_class->parse_data = gst_vp8_dec_parse_data;
   base_video_decoder_class->handle_frame = gst_vp8_dec_handle_frame;
 
+  /* Add pad templates */
+  gst_element_class_add_pad_template (element_class,
+      gst_static_pad_template_get (&gst_vp8_dec_src_template));
+  gst_element_class_add_pad_template (element_class,
+      gst_static_pad_template_get (&gst_vp8_dec_sink_template));
+
+  /* Set element metadata */
+  gst_element_class_set_static_metadata (element_class,
+      "On2 VP8 Decoder",
+      "Codec/Decoder/Video",
+      "Decode VP8 video streams", "David Schleef <ds@entropywave.com>");
+
   GST_DEBUG_CATEGORY_INIT (gst_vp8dec_debug, "vp8dec", 0, "VP8 Decoder");
 }
 
 static void
-gst_vp8_dec_init (GstVP8Dec * gst_vp8_dec, GstVP8DecClass * klass)
+gst_vp8_dec_init (GstVP8Dec * gst_vp8_dec)
 {
   GstBaseVideoDecoder *decoder = (GstBaseVideoDecoder *) gst_vp8_dec;
 
@@ -518,7 +513,8 @@ gst_vp8_dec_handle_frame (GstBaseVideoDecoder * decoder, GstVideoFrame * frame,
     gst_base_video_decoder_set_sync_point (decoder);
 
 #if 0
-  if (GST_PAD_CAPS (GST_BASE_VIDEO_CODEC_SRC_PAD (decoder)) == NULL) {
+  /* In GStreamer 1.x, caps are handled differently */
+  {
     GstCaps *caps;
 
     caps = gst_video_format_new_caps (decoder->state.format,

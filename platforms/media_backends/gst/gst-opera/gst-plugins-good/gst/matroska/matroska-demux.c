@@ -323,29 +323,7 @@ static void gst_matroska_demux_reset (GstElement * element);
 static gboolean perform_seek_to_offset (GstMatroskaDemux * demux,
     guint64 offset);
 
-GType gst_matroska_demux_get_type (void);
-GST_BOILERPLATE (GstMatroskaDemux, gst_matroska_demux, GstEbmlRead,
-    GST_TYPE_EBML_READ);
-
-static void
-gst_matroska_demux_base_init (gpointer klass)
-{
-  GstElementClass *element_class = GST_ELEMENT_CLASS (klass);
-
-  gst_element_class_add_pad_template (element_class,
-      gst_static_pad_template_get (&video_src_templ));
-  gst_element_class_add_pad_template (element_class,
-      gst_static_pad_template_get (&audio_src_templ));
-  gst_element_class_add_pad_template (element_class,
-      gst_static_pad_template_get (&subtitle_src_templ));
-  gst_element_class_add_pad_template (element_class,
-      gst_static_pad_template_get (&sink_templ));
-
-  gst_element_class_set_details_simple (element_class, "Matroska demuxer",
-      "Codec/Demuxer",
-      "Demuxes Matroska/WebM streams into video/audio/subtitles",
-      "GStreamer maintainers <gstreamer-devel@lists.sourceforge.net>");
-}
+G_DEFINE_TYPE (GstMatroskaDemux, gst_matroska_demux, GST_TYPE_EBML_READ);
 
 static void
 gst_matroska_demux_finalize (GObject * object)
@@ -390,11 +368,26 @@ gst_matroska_demux_class_init (GstMatroskaDemuxClass * klass)
       GST_DEBUG_FUNCPTR (gst_matroska_demux_set_index);
   gstelement_class->get_index =
       GST_DEBUG_FUNCPTR (gst_matroska_demux_get_index);
+
+  /* Add pad templates */
+  gst_element_class_add_pad_template (gstelement_class,
+      gst_static_pad_template_get (&video_src_templ));
+  gst_element_class_add_pad_template (gstelement_class,
+      gst_static_pad_template_get (&audio_src_templ));
+  gst_element_class_add_pad_template (gstelement_class,
+      gst_static_pad_template_get (&subtitle_src_templ));
+  gst_element_class_add_pad_template (gstelement_class,
+      gst_static_pad_template_get (&sink_templ));
+
+  /* Set element metadata */
+  gst_element_class_set_static_metadata (gstelement_class, "Matroska demuxer",
+      "Codec/Demuxer",
+      "Demuxes Matroska/WebM streams into video/audio/subtitles",
+      "GStreamer maintainers <gstreamer-devel@lists.sourceforge.net>");
 }
 
 static void
-gst_matroska_demux_init (GstMatroskaDemux * demux,
-    GstMatroskaDemuxClass * klass)
+gst_matroska_demux_init (GstMatroskaDemux * demux)
 {
   demux->sinkpad = gst_pad_new_from_static_template (&sink_templ, "sink");
   gst_pad_set_activate_function (demux->sinkpad,
@@ -2456,7 +2449,7 @@ gst_matroska_demux_handle_seek_event (GstMatroskaDemux * demux,
 
   if (event) {
     GST_DEBUG_OBJECT (demux, "configuring seek");
-    gst_segment_set_seek (&seeksegment, rate, format, flags,
+    gst_segment_do_seek (&seeksegment, rate, format, flags,
         cur_type, cur, stop_type, stop, &update);
   }
 
@@ -3754,12 +3747,12 @@ gst_matroska_demux_parse_attached_file (GstMatroskaDemux * demux,
       caps = gst_type_find_helper_for_buffer (NULL, tagbuffer, NULL);
       if (caps == NULL)
         caps = gst_caps_new_simple (mimetype, NULL);
-      gst_buffer_set_caps (tagbuffer, caps);
+      /* In GStreamer 1.x, caps are handled at pad level, not buffer level */
       gst_caps_unref (caps);
     }
 
     /* Set filename and description on the caps */
-    caps = GST_BUFFER_CAPS (tagbuffer);
+    caps = gst_caps_new_simple (mimetype, NULL);
     gst_caps_set_simple (caps, "filename", G_TYPE_STRING, filename, NULL);
     if (description)
       gst_caps_set_simple (caps, "description", G_TYPE_STRING, description,
@@ -4398,7 +4391,7 @@ gst_matroska_demux_add_wvpk_header (GstElement * element,
 
       if (newbuf == NULL) {
         newbuf = gst_buffer_new_and_alloc (sizeof (Wavpack4Header) + blocksize);
-        gst_buffer_set_caps (newbuf, stream->caps);
+        /* In GStreamer 1.x, caps are handled at pad level, not buffer level */
 
         gst_buffer_copy_metadata (newbuf, *buf,
             GST_BUFFER_COPY_TIMESTAMPS | GST_BUFFER_COPY_FLAGS);
@@ -4822,7 +4815,7 @@ gst_matroska_demux_parse_blockgroup_or_simpleblock (GstMatroskaDemux * demux,
           "generating segment starting at %" GST_TIME_FORMAT,
           GST_TIME_ARGS (lace_time));
       /* pretend we seeked here */
-      gst_segment_set_seek (&demux->segment, demux->segment.rate,
+      gst_segment_do_seek (&demux->segment, demux->segment.rate,
           GST_FORMAT_TIME, 0, GST_SEEK_TYPE_SET, lace_time,
           GST_SEEK_TYPE_SET, GST_CLOCK_TIME_NONE, NULL);
       /* now convey our segment notion downstream */
@@ -5052,7 +5045,7 @@ gst_matroska_demux_parse_blockgroup_or_simpleblock (GstMatroskaDemux * demux,
             cluster_offset, NULL);
       }
 
-      gst_buffer_set_caps (sub, GST_PAD_CAPS (stream->pad));
+      /* In GStreamer 1.x, caps are handled at pad level, not buffer level */
 
       /* Postprocess the buffers depending on the codec used */
       if (stream->postprocess_frame) {

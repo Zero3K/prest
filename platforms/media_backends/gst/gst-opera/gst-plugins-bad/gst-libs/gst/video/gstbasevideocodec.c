@@ -53,16 +53,7 @@ static GstStateChangeReturn gst_base_video_codec_change_state (GstElement *
 //    gboolean at_eos);
 
 
-GST_BOILERPLATE (GstBaseVideoCodec, gst_base_video_codec, GstElement,
-    GST_TYPE_ELEMENT);
-
-static void
-gst_base_video_codec_base_init (gpointer g_class)
-{
-  GST_DEBUG_CATEGORY_INIT (basevideocodec_debug, "basevideocodec", 0,
-      "Base Video Codec");
-
-}
+G_DEFINE_TYPE (GstBaseVideoCodec, gst_base_video_codec, GST_TYPE_ELEMENT);
 
 static void
 gst_base_video_codec_class_init (GstBaseVideoCodecClass * klass)
@@ -76,11 +67,13 @@ gst_base_video_codec_class_init (GstBaseVideoCodecClass * klass)
   gobject_class->finalize = gst_base_video_codec_finalize;
 
   element_class->change_state = gst_base_video_codec_change_state;
+
+  GST_DEBUG_CATEGORY_INIT (basevideocodec_debug, "basevideocodec", 0,
+      "Base Video Codec");
 }
 
 static void
-gst_base_video_codec_init (GstBaseVideoCodec * base_video_codec,
-    GstBaseVideoCodecClass * klass)
+gst_base_video_codec_init (GstBaseVideoCodec * base_video_codec)
 {
   GstPadTemplate *pad_template;
 

@@ -14,7 +14,7 @@ LibvpxSourceDir = $(abspath ../../../libvpx)
 all: plugins
 
 GST_CFLAGS  = $(GStreamerIncludes:%=-I%)
-GST_CFLAGS += $(shell pkg-config --cflags gstreamer-video-0.10)
+GST_CFLAGS += $(shell pkg-config --cflags gstreamer-video-1.0)
 GST_CFLAGS += -fPIC
 ifeq ($(findstring GST_DISABLE_GST_DEBUG,$(OPERA_BUILD_DEFINES)),)
 GST_CFLAGS += -g3
@@ -22,11 +22,11 @@ else
 GST_CFLAGS += -O3
 endif
 
-GST_LIBS  = $(shell pkg-config --libs gstreamer-video-0.10)
+GST_LIBS  = $(shell pkg-config --libs gstreamer-video-1.0)
 GST_LIBS += -lm
 
 GST_OPERA_CFLAGS  = -DOPERA_MINIMAL_GST
-GST_OPERA_CFLAGS += -DVERSION=\"0.10\"
+GST_OPERA_CFLAGS += -DVERSION=\"1.24\"
 GST_OPERA_CFLAGS += -DPACKAGE=\"gst-opera\"
 GST_OPERA_CFLAGS += -DGST_PACKAGE_NAME=\"GStreamer\ Opera\ Plug-ins\"
 GST_OPERA_CFLAGS += -DGST_PACKAGE_ORIGIN=\"http://sourcecode.opera.com/gstreamer/\"
