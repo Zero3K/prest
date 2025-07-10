@@ -197,7 +197,8 @@ class ProjectDocument:
 								current_deps = additional_deps.firstChild.nodeValue
 								if "libctiny.lib" in current_deps:
 									# Remove libctiny.lib from the dependencies
-									new_deps = current_deps.replace("libctiny.lib;", "").replace(";libctiny.lib", "")
+									new_deps = current_deps.replace("libctiny.lib;", "").replace(";libctiny.lib", "").replace("libctiny.lib", "")
+									new_deps = new_deps.strip().strip(";")  # Clean up any extra semicolons or whitespace
 									additional_deps.firstChild.nodeValue = new_deps
 						
 						# Remove LIBC.lib from IgnoreSpecificDefaultLibraries
@@ -207,7 +208,8 @@ class ProjectDocument:
 								current_libs = ignore_libs.firstChild.nodeValue
 								if "LIBC.lib" in current_libs:
 									# Remove LIBC.lib from the ignored libraries
-									new_libs = current_libs.replace("LIBC.lib;", "").replace(";LIBC.lib", "")
+									new_libs = current_libs.replace("LIBC.lib;", "").replace(";LIBC.lib", "").replace("LIBC.lib", "")
+									new_libs = new_libs.strip().strip(";")  # Clean up any extra semicolons or whitespace
 									if new_libs == "":
 										# If the list is empty, remove the element entirely
 										ignore_libs.parentNode.removeChild(ignore_libs)
@@ -382,6 +384,9 @@ class ProjectTask:
 		filteritems[0].appendChild(project.createPadding(2))
 		filteritems[1].appendChild(project.createPadding(2))
 
+		# Remove problematic libraries for all projects
+		project.removeProblematicLibsForNonDebugConfigurations()
+
 		changed = False
 		projfile_data = project.toXml()
 		with open(project.project_file, "r") as projfile:
@@ -435,10 +440,24 @@ class ProjectTask:
 		# Fix C4653 warnings for Opera project Release configurations
 		if self.name == "Opera" and project is not None:
 			project.fixC4653WarningForReleaseConfigurations()
-			project.removeProblematicLibsForNonDebugConfigurations()
 
 		if self.update_vcxproj_and_filters and project is not None:
 			self.updateProjectAndFilters(config, project, sources_collection)
+		else:
+			# For projects that don't update source files, still apply library fixes
+			if project is not None:
+				project.removeProblematicLibsForNonDebugConfigurations()
+				# Write the updated project file if we made changes
+				changed = False
+				projfile_data = project.toXml()
+				with open(project.project_file, "r") as projfile:
+					if projfile.read() != projfile_data:
+						changed = True
+				
+				if changed:
+					with open(project.project_file, "w") as projfile:
+						print("Writing %s with library fixes..." % project.project_file)
+						projfile.write(projfile_data)
 
 class Config:
 	"""Relative path used for generated projects."""
