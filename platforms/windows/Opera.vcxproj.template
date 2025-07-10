@@ -163,6 +163,7 @@
     <CustomBuildAfterTargets>Build</CustomBuildAfterTargets>
     <IncludePath>$(SolutionDir)directx-10\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)directx-10\x86\;$(LibraryPath)</LibraryPath>
+    <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -171,6 +172,7 @@
     <CustomBuildAfterTargets>Build</CustomBuildAfterTargets>
     <IncludePath>$(SolutionDir)directx-10\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)directx-10\x64\;$(LibraryPath)</LibraryPath>
+    <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='PGO|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -179,6 +181,7 @@
     <CustomBuildAfterTargets>Build</CustomBuildAfterTargets>
     <IncludePath>$(SolutionDir)directx-10\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)directx-10\x86\;$(LibraryPath)</LibraryPath>
+    <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='PGO|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -187,6 +190,7 @@
     <CustomBuildAfterTargets>Build</CustomBuildAfterTargets>
     <IncludePath>$(SolutionDir)directx-10\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)directx-10\x64\;$(LibraryPath)</LibraryPath>
+    <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Instrumented|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -195,6 +199,7 @@
     <CustomBuildAfterTargets>Build</CustomBuildAfterTargets>
     <IncludePath>$(SolutionDir)directx-10\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)directx-10\x86\;$(LibraryPath)</LibraryPath>
+    <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Instrumented|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -203,6 +208,7 @@
     <CustomBuildAfterTargets>Build</CustomBuildAfterTargets>
     <IncludePath>$(SolutionDir)directx-10\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)directx-10\x64\;$(LibraryPath)</LibraryPath>
+    <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='vTune|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -211,6 +217,7 @@
     <CustomBuildAfterTargets>Build</CustomBuildAfterTargets>
     <IncludePath>$(SolutionDir)directx-10\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)directx-10\x86\;$(LibraryPath)</LibraryPath>
+    <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='vTune|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -219,6 +226,7 @@
     <CustomBuildAfterTargets>Build</CustomBuildAfterTargets>
     <IncludePath>$(SolutionDir)directx-10\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)directx-10\x64\;$(LibraryPath)</LibraryPath>
+    <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
