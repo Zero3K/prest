@@ -798,7 +798,9 @@
     <ClCompile Include="..\..\build\src\modules\tlsclient\tlsclient_jumbo.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\modules\selftest\generated\selftest_jumbo_tlsclient.cpp" Condition="'$(Configuration)'=='Debug'" />
+    <ClCompile Include="..\..\modules\selftest\generated\selftest_jumbo_tlsclient.cpp" Condition="'$(Configuration)'=='Debug'">
+      <PrecompiledHeaderFile>core/pch_jumbo.h</PrecompiledHeaderFile>
+    </ClCompile>
   </ItemGroup>
 
   <ItemGroup>
@@ -841,11 +843,6 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
   </ItemGroup>
-  <Target Name="FixTLSClientSelftestInclude" BeforeTargets="ClCompile">
-    <Exec Command="python &quot;$(ProjectDir)fix_tlsclient_selftest_include.py&quot;" 
-          ContinueOnError="false" 
-          Condition="'$(Configuration)'=='Debug'"/>
-  </Target>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
