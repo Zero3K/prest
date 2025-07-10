@@ -106,11 +106,6 @@ public:
 void DumpData(const char* tag, const char* p, size_t cbSize)
 {
 	return;
-    printf("%s:", tag);
-    for (int i = 0; i < (int)cbSize; i++) {
-        printf("%s%02X", (i&15)? " " : "\n    ", (unsigned char)p[i]);
-    }
-    printf("\n");
 }
 
 
