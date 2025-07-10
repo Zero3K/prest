@@ -19,7 +19,7 @@ def fix_tlsclient_selftest_include():
     
     try:
         # Read the file
-        with open(selftest_file, 'r', encoding='utf-8') as f:
+        with open(selftest_file, 'r') as f:
             content = f.read()
         
         # Replace the include
@@ -30,7 +30,7 @@ def fix_tlsclient_selftest_include():
             content = content.replace(old_include, new_include)
             
             # Write back the file
-            with open(selftest_file, 'w', encoding='utf-8') as f:
+            with open(selftest_file, 'w') as f:
                 f.write(content)
             
             print("Fixed include in selftest_jumbo_tlsclient.cpp: pch_jumbo.h -> pch.h")
