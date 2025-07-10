@@ -3719,6 +3719,11 @@ void output( string x )
 						   "__YEAR__":(string)(localtime(time())["year"]+1900)
 					   ]) );
 
+		// Special case for TLSClient: replace pch_jumbo.h with pch.h for VS2010 compatibility
+		if (inf->module == "tlsclient" && res) {
+			res = replace(res, "#include \"core/pch_jumbo.h\"", "#include \"core/pch.h\"");
+		}
+
 		inf->tests = Array.sum(gg->numtests);
 		if( !quiet )
 			werror("t");
