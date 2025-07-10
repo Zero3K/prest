@@ -4,4 +4,4 @@ A copy of the license can be found in LGPL.txt in this directory.
 
 This directory contains binaries of GStreamer libraries and plugins
 for platforms that do not natively include them. The source code can
-be downloaded from http://sourcecode.opera.com/gstreamer/
+be downloaded from https://github.com/GStreamer/gstreamer

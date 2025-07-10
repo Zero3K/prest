@@ -812,7 +812,11 @@ GstMediaPlayer::GetFrame(OpBitmap** bitmap)
 				if (m_frame != buf)
 				{
 					GST_LOG("new video frame with caps %" GST_PTR_FORMAT,
+#if !GST_CHECK_VERSION(1, 0, 0)
 							GST_BUFFER_CAPS (buf));
+#else
+							NULL); /* Caps are at pad level in GStreamer 1.x */
+#endif
 					gst_buffer_replace(&m_frame, buf);
 					have_new_frame = TRUE;
 				}
@@ -830,7 +834,23 @@ GstMediaPlayer::GetFrame(OpBitmap** bitmap)
 	}
 
 	// Copy the buffer data into a (possibly new) OpBitmap.
+#if !GST_CHECK_VERSION(1, 0, 0)
 	GstStructure *info = gst_caps_get_structure(GST_BUFFER_CAPS(m_frame), 0);
+#else
+	/* In GStreamer 1.x, we need to get caps from the pad, not the buffer.
+	   For now, we'll attempt to get it from the video sink pad. */
+	GstCaps *frame_caps = NULL;
+	GstElement *video_sink = gst_bin_get_by_name(GST_BIN(m_pipeline), GST_OP_VIDEO_SINK_NAME);
+	if (video_sink) {
+		GstPad *sink_pad = gst_element_get_static_pad(video_sink, "sink");
+		if (sink_pad) {
+			frame_caps = gst_pad_get_current_caps(sink_pad);
+			gst_object_unref(sink_pad);
+		}
+		gst_object_unref(video_sink);
+	}
+	GstStructure *info = frame_caps ? gst_caps_get_structure(frame_caps, 0) : NULL;
+#endif
 	gint width, height, bpp;
 	if (gst_structure_get_int(info, "width", &width) &&
 		gst_structure_get_int(info, "height", &height) &&
@@ -867,6 +887,12 @@ GstMediaPlayer::GetFrame(OpBitmap** bitmap)
 				RETURN_IF_ERROR(m_bitmap->AddLine(GST_BUFFER_DATA(m_frame)+i*line_size, i));
 		}
 	}
+
+#if GST_CHECK_VERSION(1, 0, 0)
+	// Clean up caps in GStreamer 1.x case
+	if (frame_caps)
+		gst_caps_unref(frame_caps);
+#endif
 
 	*bitmap = m_bitmap;
 	return OpStatus::OK;
@@ -1121,7 +1147,11 @@ GstMediaPlayer::NewDecodedPad(GstElement *decodebin, GstPad *pad,
 	if (pipeline == NULL)
 		return;
 
+#if !GST_CHECK_VERSION(1, 0, 0)
 	caps = gst_pad_get_caps(pad);
+#else
+	caps = gst_pad_get_current_caps(pad);
+#endif
 	str = gst_caps_get_structure(caps, 0);
 	if (g_str_has_prefix(gst_structure_get_name(str), "audio"))
 	{

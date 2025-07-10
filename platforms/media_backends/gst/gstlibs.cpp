@@ -239,7 +239,9 @@ BOOL LibGStreamer::Load(OpDLL* dll)
 	sym_gst_bin_remove = (gst_bin_remove_t)dll->GetSymbolAddress("gst_bin_remove");
 	sym_gst_buffer_get_type = (gst_buffer_get_type_t)dll->GetSymbolAddress("gst_buffer_get_type");
 	sym_gst_buffer_new_and_alloc = (gst_buffer_new_and_alloc_t)dll->GetSymbolAddress("gst_buffer_new_and_alloc");
+#if !GST_CHECK_VERSION(1, 0, 0)
 	sym_gst_buffer_set_caps = (gst_buffer_set_caps_t)dll->GetSymbolAddress("gst_buffer_set_caps");
+#endif
 	sym_gst_bus_create_watch = (gst_bus_create_watch_t)dll->GetSymbolAddress("gst_bus_create_watch");
 	sym_gst_bus_have_pending = (gst_bus_have_pending_t)dll->GetSymbolAddress("gst_bus_have_pending");
 	sym_gst_bus_new = (gst_bus_new_t)dll->GetSymbolAddress("gst_bus_new");
@@ -302,7 +304,9 @@ BOOL LibGStreamer::Load(OpDLL* dll)
 	sym_gst_object_ref = (gst_object_ref_t)dll->GetSymbolAddress("gst_object_ref");
 	sym_gst_object_replace = (gst_object_replace_t)dll->GetSymbolAddress("gst_object_replace");
 	sym_gst_object_unref = (gst_object_unref_t)dll->GetSymbolAddress("gst_object_unref");
+#if !GST_CHECK_VERSION(1, 0, 0)
 	sym_gst_pad_get_caps = (gst_pad_get_caps_t)dll->GetSymbolAddress("gst_pad_get_caps");
+#endif
 	sym_gst_pad_get_pad_template_caps = (gst_pad_get_pad_template_caps_t)dll->GetSymbolAddress("gst_pad_get_pad_template_caps");
 	sym_gst_pad_is_linked = (gst_pad_is_linked_t)dll->GetSymbolAddress("gst_pad_is_linked");
 	sym_gst_pad_link = (gst_pad_link_t)dll->GetSymbolAddress("gst_pad_link");
@@ -342,7 +346,9 @@ BOOL LibGStreamer::Load(OpDLL* dll)
 		sym_gst_bin_remove != NULL &&
 		sym_gst_buffer_get_type != NULL &&
 		sym_gst_buffer_new_and_alloc != NULL &&
+#if !GST_CHECK_VERSION(1, 0, 0)
 		sym_gst_buffer_set_caps != NULL &&
+#endif
 		sym_gst_bus_create_watch != NULL &&
 		sym_gst_bus_have_pending != NULL &&
 		sym_gst_bus_new != NULL &&
@@ -405,7 +411,9 @@ BOOL LibGStreamer::Load(OpDLL* dll)
 		sym_gst_object_ref != NULL &&
 		sym_gst_object_replace != NULL &&
 		sym_gst_object_unref != NULL &&
+#if !GST_CHECK_VERSION(1, 0, 0)
 		sym_gst_pad_get_caps != NULL &&
+#endif
 		sym_gst_pad_get_pad_template_caps != NULL &&
 		sym_gst_pad_is_linked != NULL &&
 		sym_gst_pad_link != NULL &&

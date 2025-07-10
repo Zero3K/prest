@@ -262,7 +262,9 @@ public:
 	typedef gboolean (*gst_bin_remove_t) (GstBin * bin, GstElement * element);
 	typedef GType (*gst_buffer_get_type_t) (void);
 	typedef GstBuffer * (*gst_buffer_new_and_alloc_t) (guint size);
+#if !GST_CHECK_VERSION(1, 0, 0)
 	typedef void (*gst_buffer_set_caps_t) (GstBuffer * buffer, GstCaps * caps);
+#endif
 	typedef GSource * (*gst_bus_create_watch_t) (GstBus * bus);
 	typedef gboolean (*gst_bus_have_pending_t) (GstBus * bus);
 	typedef GstBus * (*gst_bus_new_t) (void);
@@ -325,7 +327,9 @@ public:
 	typedef gpointer (*gst_object_ref_t) (gpointer object);
 	typedef void (*gst_object_replace_t) (GstObject * * oldobj, GstObject * newobj);
 	typedef void (*gst_object_unref_t) (gpointer object);
+#if !GST_CHECK_VERSION(1, 0, 0)
 	typedef GstCaps * (*gst_pad_get_caps_t) (GstPad * pad);
+#endif
 	typedef G_CONST_RETURN GstCaps * (*gst_pad_get_pad_template_caps_t) (GstPad * pad);
 	typedef gboolean (*gst_pad_is_linked_t) (GstPad * pad);
 	typedef GstPadLinkReturn (*gst_pad_link_t) (GstPad * srcpad, GstPad * sinkpad);
@@ -364,7 +368,9 @@ public:
 	gst_bin_remove_t sym_gst_bin_remove;
 	gst_buffer_get_type_t sym_gst_buffer_get_type;
 	gst_buffer_new_and_alloc_t sym_gst_buffer_new_and_alloc;
+#if !GST_CHECK_VERSION(1, 0, 0)
 	gst_buffer_set_caps_t sym_gst_buffer_set_caps;
+#endif
 	gst_bus_create_watch_t sym_gst_bus_create_watch;
 	gst_bus_have_pending_t sym_gst_bus_have_pending;
 	gst_bus_new_t sym_gst_bus_new;
@@ -427,7 +433,9 @@ public:
 	gst_object_ref_t sym_gst_object_ref;
 	gst_object_replace_t sym_gst_object_replace;
 	gst_object_unref_t sym_gst_object_unref;
+#if !GST_CHECK_VERSION(1, 0, 0)
 	gst_pad_get_caps_t sym_gst_pad_get_caps;
+#endif
 	gst_pad_get_pad_template_caps_t sym_gst_pad_get_pad_template_caps;
 	gst_pad_is_linked_t sym_gst_pad_is_linked;
 	gst_pad_link_t sym_gst_pad_link;
@@ -470,7 +478,9 @@ extern LibGStreamer g_LibGStreamer;
 #define gst_bin_remove (*g_LibGStreamer.sym_gst_bin_remove)
 #define gst_buffer_get_type (*g_LibGStreamer.sym_gst_buffer_get_type)
 #define gst_buffer_new_and_alloc (*g_LibGStreamer.sym_gst_buffer_new_and_alloc)
+#if !GST_CHECK_VERSION(1, 0, 0)
 #define gst_buffer_set_caps (*g_LibGStreamer.sym_gst_buffer_set_caps)
+#endif
 #define gst_bus_create_watch (*g_LibGStreamer.sym_gst_bus_create_watch)
 #define gst_bus_have_pending (*g_LibGStreamer.sym_gst_bus_have_pending)
 #define gst_bus_new (*g_LibGStreamer.sym_gst_bus_new)
@@ -533,7 +543,9 @@ extern LibGStreamer g_LibGStreamer;
 #define gst_object_ref (*g_LibGStreamer.sym_gst_object_ref)
 #define gst_object_replace (*g_LibGStreamer.sym_gst_object_replace)
 #define gst_object_unref (*g_LibGStreamer.sym_gst_object_unref)
+#if !GST_CHECK_VERSION(1, 0, 0)
 #define gst_pad_get_caps (*g_LibGStreamer.sym_gst_pad_get_caps)
+#endif
 #define gst_pad_get_pad_template_caps (*g_LibGStreamer.sym_gst_pad_get_pad_template_caps)
 #define gst_pad_is_linked (*g_LibGStreamer.sym_gst_pad_is_linked)
 #define gst_pad_link (*g_LibGStreamer.sym_gst_pad_link)

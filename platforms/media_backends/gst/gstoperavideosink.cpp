@@ -182,10 +182,17 @@ gst_operavideosink_buffer_alloc(GstBaseSink *bsink,
     GST_BUFFER_SIZE (opbuf) = size;
   }
 
+#if !GST_CHECK_VERSION(1, 0, 0)
   gst_buffer_set_caps (GST_BUFFER (opbuf), caps);
+#endif
+  /* Note: In GStreamer 1.x, caps are handled at the pad level, not buffer level */
 
   GST_LOG_OBJECT (opsink, "returning buffer with caps %" GST_PTR_FORMAT,
+#if !GST_CHECK_VERSION(1, 0, 0)
                   GST_BUFFER_CAPS (opbuf));
+#else
+                  caps);
+#endif
 
   *buf = GST_BUFFER (opbuf);
 
@@ -242,7 +249,11 @@ gst_operavideosink_have_frame (GstBaseSink *bsink, GstBuffer *buf)
   GstMessage *msg;
 
   GST_LOG_OBJECT (opsink, "have video frame with caps %" GST_PTR_FORMAT,
+#if !GST_CHECK_VERSION(1, 0, 0)
                   GST_BUFFER_CAPS (buf));
+#else
+                  gst_pad_get_current_caps(GST_BASE_SINK_PAD(bsink)));
+#endif
 
   gst_buffer_replace (&opsink->last_frame, buf);
 

@@ -40,7 +40,7 @@
 #define  TWEAK_DOCUMENTEDIT_SPATIAL_FRAMES_FOCUS                           NO
 #define  TWEAK_ESUTILS_TIMESLICE_LENGTH                                    NO
 #define  TWEAK_GSTREAMER_SRC_CODE_URL                                      YES
-#define  GSTREAMER_SRC_CODE_URL                                            "http://sourcecode.opera.com/gstreamer/"
+#define  GSTREAMER_SRC_CODE_URL                                            "https://github.com/GStreamer/gstreamer"
 #define  TWEAK_HC_AGGRESSIVE_ECMASCRIPT_GC                                 NO
 #define  TWEAK_HC_DEBUG_MESSAGEHANDLER                                     NO
 #define  TWEAK_HC_INIT_BLACKLIST                                           NO
