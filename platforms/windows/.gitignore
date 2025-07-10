@@ -26,3 +26,4 @@
 /desktop_starter/desktop_starter.vcxproj.user
 /OperaMAPI*.vcxproj
 /OperaMAPI*.vcxproj.filters
+__pycache__/

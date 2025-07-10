@@ -167,8 +167,32 @@ class ProjectDocument:
 							# Add DisableSpecificWarnings element
 							clcompile.appendChild(self.createPadding(6))
 							disable_warnings = self.createElement("DisableSpecificWarnings")
-							disable_warnings.appendChild(self.createTextNode("4653"))
+							disable_warnings.appendChild(self.vcxdom.createTextNode("4653"))
 							clcompile.appendChild(disable_warnings)
+
+	def addTargetExtForReleaseConfigurations(self):
+		"""
+		Adds TargetExt to Release configurations to explicitly set the target extension to .dll.
+		This fixes linker errors that occur when Visual Studio doesn't properly infer the extension.
+		"""
+		property_groups = self.vcxdom.getElementsByTagName("PropertyGroup")
+		for property_group in property_groups:
+			if property_group.hasAttribute("Condition"):
+				condition = property_group.getAttribute("Condition")
+				# Apply to all Release configurations (Release, PGO, Instrumented, vTune)
+				if ("'$(Configuration)|$(Platform)'=='Release|" in condition or 
+					"'$(Configuration)|$(Platform)'=='PGO|" in condition or
+					"'$(Configuration)|$(Platform)'=='Instrumented|" in condition or
+					"'$(Configuration)|$(Platform)'=='vTune|" in condition):
+					
+					# Check if TargetExt already exists
+					target_ext_elements = property_group.getElementsByTagName("TargetExt")
+					if not target_ext_elements:
+						# Add TargetExt element
+						property_group.appendChild(self.createPadding(4))
+						target_ext = self.createElement("TargetExt")
+						target_ext.appendChild(self.vcxdom.createTextNode(".dll"))
+						property_group.appendChild(target_ext)
 
 	def addFile(self, src_node, filter_node, file_name, pch_name, exclude_from_build, optimize_speed):
 		OPTIMIZE_SPEED_CONDITION = "'$(Configuration)'=='Release'"
@@ -391,6 +415,7 @@ class ProjectTask:
 		# Fix C4653 warnings for Opera project Release configurations
 		if self.name == "Opera" and project is not None:
 			project.fixC4653WarningForReleaseConfigurations()
+			project.addTargetExtForReleaseConfigurations()
 
 		if self.update_vcxproj_and_filters and project is not None:
 			self.updateProjectAndFilters(config, project, sources_collection)
