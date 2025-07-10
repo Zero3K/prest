@@ -175,25 +175,50 @@ class ProjectDocument:
 		Adds Stdafx.h file to Release configurations to resolve LIBCMT linker errors
 		by undefining _ATL_MIN_CRT which causes conflicts with dynamic CRT usage.
 		"""
+		# First check if Stdafx.h already exists anywhere in the project
+		all_clincludes = self.vcxdom.getElementsByTagName("ClInclude")
+		for clinclude in all_clincludes:
+			if clinclude.hasAttribute("Include") and "Stdafx.h" in clinclude.getAttribute("Include"):
+				# Stdafx.h already exists, no need to add it
+				return
+		
 		item_groups = self.vcxdom.getElementsByTagName("ItemGroup")
+		stdafx_added = False
+		
+		# First, look for existing ItemGroup with ClInclude elements
 		for item_group in item_groups:
-			# Look for the ItemGroup that contains ClInclude elements (for header files)
 			clinclude_elements = item_group.getElementsByTagName("ClInclude")
 			if clinclude_elements:
-				# Check if Stdafx.h already exists
-				stdafx_exists = False
-				for clinclude in clinclude_elements:
-					if clinclude.hasAttribute("Include") and "Stdafx.h" in clinclude.getAttribute("Include"):
-						stdafx_exists = True
-						break
+				# Add Stdafx.h ClInclude element to existing ItemGroup
+				item_group.appendChild(self.createPadding(4))
+				stdafx_node = self.createElement("ClInclude")
+				stdafx_node.setAttribute("Include", "Stdafx.h")
+				item_group.appendChild(stdafx_node)
+				stdafx_added = True
+				break
+		
+		# If no existing ItemGroup with ClInclude elements found, create a new one
+		if not stdafx_added:
+			# Find the last ItemGroup to insert after it
+			last_item_group = None
+			for item_group in item_groups:
+				last_item_group = item_group
+			
+			if last_item_group is not None:
+				# Create new ItemGroup for ClInclude elements
+				new_item_group = self.createElement("ItemGroup")
+				new_item_group.appendChild(self.createPadding(4))
 				
-				if not stdafx_exists:
-					# Add Stdafx.h ClInclude element
-					item_group.appendChild(self.createPadding(4))
-					stdafx_node = self.createElement("ClInclude")
-					stdafx_node.setAttribute("Include", "Stdafx.h")
-					item_group.appendChild(stdafx_node)
-					break
+				# Add Stdafx.h ClInclude element
+				stdafx_node = self.createElement("ClInclude")
+				stdafx_node.setAttribute("Include", "Stdafx.h")
+				new_item_group.appendChild(stdafx_node)
+				new_item_group.appendChild(self.createPadding(2))
+				
+				# Insert the new ItemGroup after the last existing ItemGroup with proper indentation
+				parent = last_item_group.parentNode
+				parent.insertBefore(self.createPadding(2), last_item_group.nextSibling)
+				parent.insertBefore(new_item_group, last_item_group.nextSibling)
 
 
 
