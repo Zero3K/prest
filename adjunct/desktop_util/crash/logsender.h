@@ -13,6 +13,11 @@
 class Upload_OpString8;
 
 /** @brief Class for setting up and sending crash logs to Opera
+ * 
+ * @note As of Opera's CrashRpt.CPP integration, this class is primarily 
+ * maintained for compatibility. The main crash reporting is now handled 
+ * by CrashRpt.CPP which provides its own crash dialog and submission system.
+ * @see OperaCrashRptIntegration for the new crash reporting system.
  */
 class LogSender : private MessageObject
 {
