@@ -48,7 +48,7 @@ namespace CrashCatch {
         std::string dumpFileName = "crash";          // Base name (timestamp added optionally)
         bool enableTextLog = true;                   // Output .txt human-readable crash report
         bool autoTimestamp = true;                   // Auto-append timestamp to filenames
-        bool showCrashDialog = false;                // (Windows only) Show MessageBox on crash
+        bool showCrashDialog = true;                // (Windows only) Show MessageBox on crash
         std::function<void(const CrashContext&)> onCrash = nullptr;        // Called on crash (log before exit)
         std::function<void(const CrashContext&)> onCrashUpload = nullptr;  // Optional hook to upload crash report
         std::string appVersion = "unknown";          // Application version string

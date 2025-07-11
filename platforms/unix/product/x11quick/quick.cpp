@@ -30,7 +30,8 @@
 #include "adjunct/quick/managers/CommandLineManager.h"
 #include "adjunct/widgetruntime/GadgetStartup.h"
 
-#include "platforms/crashlog/crashlog.h" // InstallCrashSignalHandler()
+#define CRASHCATCH_AUTO_INIT
+#include "platforms/crashcatch/CrashCatch.hpp"
 #include "platforms/crashlog/gpu_info.h"
 #include "platforms/posix/posix_file_util.h"
 #include "platforms/posix/posix_native_util.h"
@@ -623,9 +624,10 @@ int main_contentL(int argc, char **argv)
 			return 0;
 		}
 
-		/* We have shown the dialog. Now enable crash logging */
-
-		InstallCrashSignalHandler();
+		/* We have shown the dialog. Now configure CrashCatch */
+		CrashCatch::globalConfig.showCrashDialog = true;
+		CrashCatch::globalConfig.appVersion = "Opera X11 Quick";
+		CrashCatch::globalConfig.additionalNotes = "X11 Quick Process";
 	}
 #endif // CRASHLOG_CRASHLOGGER
 	g_is_crashdialog_active = FALSE;

@@ -11,7 +11,8 @@
 
 #ifdef PLUGIN_WRAPPER
 
-#include "platforms/crashlog/crashlog.h"
+#define CRASHCATCH_AUTO_INIT
+#include "platforms/crashcatch/CrashCatch.hpp"
 #include "platforms/windows/IPC/WindowsOpComponentPlatform.h"
 #include "platforms/windows_common/pi_impl/WindowsOpPluginTranslator.h"
 #include "platforms/windows/pluginwrapperhooks.h"
@@ -75,7 +76,10 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 		return 0;
 	}
 
-	SetUnhandledExceptionFilter(ExceptionFilter);
+	// Configure CrashCatch for crash reporting
+	CrashCatch::globalConfig.showCrashDialog = true;
+	CrashCatch::globalConfig.appVersion = "Opera Plugin Wrapper";
+	CrashCatch::globalConfig.additionalNotes = "Plugin Wrapper Process";
 
 
 	LPWSTR command_line = GetCommandLineW();
