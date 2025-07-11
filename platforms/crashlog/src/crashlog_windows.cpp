@@ -173,11 +173,14 @@ BOOL InitializeCrashRpt(const wchar_t* app_name, const wchar_t* company)
 		crash_wrapper.AddUserInfo(L"OperaBuild", L"Build " UNI_L(VER_BUILD_NUMBER_STR));
 		
 		// Add GPU information if available
-		if (g_gpu_info.vendor_id != 0)
+		if (g_gpu_info.initialized == GpuInfo::INITIALIZED && g_gpu_info.device_info_size > 0)
 		{
-			wchar_t gpu_info[256];
-			swprintf_s(gpu_info, L"VendorID: 0x%04X, DeviceID: 0x%04X", 
-				g_gpu_info.vendor_id, g_gpu_info.device_id);
+			// Convert device_info (char*) to wide string for CrashRpt
+			size_t converted;
+			wchar_t gpu_info[512];
+			size_t max_size = (g_gpu_info.device_info_size < 511) ? g_gpu_info.device_info_size : 511;
+			mbstowcs_s(&converted, gpu_info, 512, g_gpu_info.device_info, max_size);
+			gpu_info[(converted < 511) ? converted : 511] = L'\0';
 			crash_wrapper.AddUserInfo(L"GPU", gpu_info);
 		}
 		
