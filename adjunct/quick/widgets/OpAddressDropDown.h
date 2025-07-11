@@ -579,6 +579,8 @@ public:
 
 	static OP_STATUS Construct(OpAddressDropDown** obj);
 
+	virtual ~OpAddressDropDown();
+
 #ifdef QUICK_TOOLKIT_CAP_HAS_PAGE_VIEW
 	OP_STATUS SetPage(OpPage& page);
 #endif // QUICK_TOOLKIT_CAP_HAS_PAGE_VIEW
@@ -835,8 +837,6 @@ public:
 
 private:
 	OpAddressDropDown();
-
-	virtual ~OpAddressDropDown();
 
 	void OnShowFavoritesDialog();
 
