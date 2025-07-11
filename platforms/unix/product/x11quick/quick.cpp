@@ -588,11 +588,22 @@ int main_contentL(int argc, char **argv)
 		OpStringC filename(CommandLineManager::GetInstance()->GetArgument(CommandLineManager::CrashLog)->m_string_value);
 
 		g_is_crashdialog_active = TRUE;
-		CrashLoggingDialog* dialog = new CrashLoggingDialog(filename, restart, minimal_restart);
-		if (dialog)
-		{
-			dialog->Init(0);
-		}
+		
+		// Use CrashCatch instead of CrashLoggingDialog for consistent crash reporting
+		CrashCatch::globalConfig.showCrashDialog = true;
+		CrashCatch::globalConfig.appVersion = "Opera Desktop";
+		
+		// Convert filename to char* for CrashCatch
+		OpString8 filename8;
+		filename8.SetUTF8FromUTF16(filename.CStr());
+		
+		// Show CrashCatch dialog with existing crash log file
+		int result = CrashCatch::showCrashDialogForExistingLog(filename8.CStr());
+		
+		// CrashCatch dialog returns 0 for restart, 1 for no restart
+		restart = (result == 0);
+		minimal_restart = FALSE; // CrashCatch handles this internally
+		
 		if (!restart)
 		{
 			g_desktop_bootstrap->ShutDown();

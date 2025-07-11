@@ -276,6 +276,32 @@ namespace CrashCatch {
     // Shorthand: use default configuration
     inline bool enable() { return initialize(Config()); }
 
+    // Show crash dialog for existing crash log file (post-crash reporting)
+    // Returns 0 for restart, 1 for no restart  
+    inline int showCrashDialogForExistingLog(const std::string& crashLogPath) {
+#ifdef CRASHCATCH_PLATFORM_WINDOWS
+        if (globalConfig.showCrashDialog) {
+            std::string msg = "A problem has occurred, forcing Opera to close.\n";
+            msg += "To help us avoid similar problems in the future, please send an error report.\n\n";
+            msg += "Crash log: " + crashLogPath + "\n\n";
+            msg += "Do you want to restart Opera?";
+            
+            int result = MessageBoxA(NULL, msg.c_str(), "Opera Needs to Restart", 
+                                   MB_YESNO | MB_ICONEXCLAMATION);
+            return (result == IDYES) ? 0 : 1; // 0 = restart, 1 = no restart
+        }
+#elif defined(CRASHCATCH_PLATFORM_LINUX)
+        // For Linux, we could show a simple console message or GUI dialog
+        // For now, default to restart
+        if (globalConfig.showCrashDialog) {
+            std::cout << "Opera crashed. Crash log: " << crashLogPath << std::endl;
+            std::cout << "Restarting Opera..." << std::endl;
+        }
+        return 0; // Always restart on Linux for now
+#endif
+        return 0; // Default to restart
+    }
+
     // Helper function to convert int to string (C++98 compatible)
     inline std::string toString(int value) {
         std::stringstream ss;
