@@ -1,9 +1,15 @@
 # [system_includes]
 media_backends_module.cpp # [winnopch]
+media_manager_factory.cpp # [winnopch]
 gst/gstlibs.cpp # [winnopch]
 gst/gstlibvpx.c # [no-pch;no-jumbo]
 gst/gstmediamanager.cpp # [winnopch]
 gst/gstmediaplayer.cpp # [winnopch]
+
+# FFmpeg backend
+ffmpeg/ffmpeglibs.cpp # [winnopch]
+ffmpeg/ffmpegmediamanager.cpp # [winnopch]
+ffmpeg/ffmpegmediaplayer.cpp # [winnopch]
 
 # [no-jumbo;system_includes]
 gst/gstoperasrc.cpp # [winnopch]

@@ -8,13 +8,20 @@
 
 #include "core/pch_system_includes.h"
 
-#ifdef MEDIA_BACKEND_GSTREAMER
-
+#if defined(MEDIA_BACKEND_GSTREAMER) || defined(MEDIA_BACKEND_FFMPEG)
 
 #include "modules/pi/OpDLL.h"
+
+#ifdef MEDIA_BACKEND_GSTREAMER
 #include "platforms/media_backends/gst/gstmediamanager.h"
+#endif
+
+#ifdef MEDIA_BACKEND_FFMPEG
+#include "platforms/media_backends/ffmpeg/ffmpegmediamanager.h"
+#endif
 
 MediaBackendsModule::MediaBackendsModule() :
+#ifdef MEDIA_BACKEND_GSTREAMER
 	  thread_manager(NULL)
 #ifdef MEDIA_BACKEND_GSTREAMER_USE_OPDLL
 #ifdef MEDIA_BACKEND_GSTREAMER_BUNDLE_LIBS
@@ -29,15 +36,37 @@ MediaBackendsModule::MediaBackendsModule() :
 	, dll_LibGstRiff(NULL)
 #endif // MEDIA_BACKEND_GSTREAMER_BUNDLE_LIBS
 #endif // MEDIA_BACKEND_GSTREAMER_USE_OPDLL
+#endif // MEDIA_BACKEND_GSTREAMER
+#ifdef MEDIA_BACKEND_FFMPEG
+#ifdef MEDIA_BACKEND_GSTREAMER
+	,
+#endif
+	ffmpeg_thread_manager(NULL)
+#endif // MEDIA_BACKEND_FFMPEG
 {
 }
 
 void MediaBackendsModule::InitL(const OperaInitInfo& info)
 {
+#ifdef MEDIA_BACKEND_GSTREAMER
+    // GStreamer initialization would go here
+#endif
+
+#ifdef MEDIA_BACKEND_FFMPEG
+    // Initialize FFmpeg libraries
+    FFmpegLibs::Init();
+    
+    // Initialize FFmpeg thread manager
+    if (OpStatus::IsSuccess(FFmpegThreadManager::Init()))
+    {
+        ffmpeg_thread_manager = OP_NEW(FFmpegThreadManager, ());
+    }
+#endif
 }
 
 void MediaBackendsModule::Destroy()
 {
+#ifdef MEDIA_BACKEND_GSTREAMER
 #ifdef MEDIA_BACKEND_GSTREAMER_USE_OPDLL
 #ifdef MEDIA_BACKEND_GSTREAMER_BUNDLE_LIBS
 	OP_DELETE(dll_LibGStreamer);
@@ -53,7 +82,13 @@ void MediaBackendsModule::Destroy()
 #endif // MEDIA_BACKEND_GSTREAMER_USE_OPDLL
 
 	OP_DELETE(thread_manager);
+#endif // MEDIA_BACKEND_GSTREAMER
+
+#ifdef MEDIA_BACKEND_FFMPEG
+	OP_DELETE(ffmpeg_thread_manager);
+	FFmpegLibs::Destroy();
+#endif // MEDIA_BACKEND_FFMPEG
 }
 
 
-#endif // MEDIA_BACKEND_GSTREAMER
+#endif // defined(MEDIA_BACKEND_GSTREAMER) || defined(MEDIA_BACKEND_FFMPEG)
