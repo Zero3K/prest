@@ -410,6 +410,7 @@ public:
 	void Clear();
 	/** Calls OnChange when enter is pressed instead of every char (for UI). */
 	void SetOnChangeOnEnter(BOOL status) { m_packed.onchange_on_enter = !!status; }
+	BOOL GetOnChangeOnEnter() const { return m_packed.onchange_on_enter; }
 
 	// State
 	/**
