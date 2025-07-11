@@ -39,7 +39,7 @@ The integration is handled automatically through:
 ## Configuration
 
 The crash reporting is configured with Opera-specific settings:
-- Application GUID: `4A8B9C0D-1234-4567-8901-23456789ABCD`
+- Application GUID: `af5a2149-d748-492b-a2ee-a16e7298d18b`
 - Application Name: "Opera" or "Opera Plugin Wrapper"
 - Company: "Opera Software ASA"
 - Automatic crash information collection including Opera version, build number, and GPU info

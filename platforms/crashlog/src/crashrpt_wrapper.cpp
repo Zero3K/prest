@@ -15,7 +15,7 @@
 #include "platforms/crashlog/gpu_info.h"
 
 // Opera-specific GUID and prefix for crash reports
-const char* OperaCrashRptWrapper::OPERA_APP_GUID = "4A8B9C0D-1234-4567-8901-23456789ABCD";
+const char* OperaCrashRptWrapper::OPERA_APP_GUID = "af5a2149-d748-492b-a2ee-a16e7298d18b";
 const char* OperaCrashRptWrapper::OPERA_PREFIX = "Opera";
 
 OperaCrashRptWrapper::OperaCrashRptWrapper()
