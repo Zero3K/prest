@@ -80,31 +80,31 @@ void FFmpegMediaPlayer::Cleanup()
 {
     if (m_frame)
     {
-        FFmpegLibs::av_frame_free(&m_frame);
+        FFmpegLibs::frame_free(&m_frame);
         m_frame = NULL;
     }
     
     if (m_packet)
     {
-        FFmpegLibs::av_packet_free(&m_packet);
+        FFmpegLibs::packet_free(&m_packet);
         m_packet = NULL;
     }
     
     if (m_video_codec_context)
     {
-        FFmpegLibs::avcodec_close(m_video_codec_context);
+        FFmpegLibs::codec_close(m_video_codec_context);
         m_video_codec_context = NULL;
     }
     
     if (m_audio_codec_context)
     {
-        FFmpegLibs::avcodec_close(m_audio_codec_context);
+        FFmpegLibs::codec_close(m_audio_codec_context);
         m_audio_codec_context = NULL;
     }
     
     if (m_format_context)
     {
-        FFmpegLibs::avformat_close_input(&m_format_context);
+        FFmpegLibs::close_input(&m_format_context);
         m_format_context = NULL;
     }
     
@@ -125,7 +125,7 @@ OP_STATUS FFmpegMediaPlayer::InitializeDecoder()
         OpString8 url8;
         RETURN_IF_ERROR(url8.Set(m_url.CStr()));
         
-        int result = FFmpegLibs::avformat_open_input(&m_format_context, url8.CStr(), NULL, NULL);
+        int result = FFmpegLibs::open_input(&m_format_context, url8.CStr(), NULL, NULL);
         if (result < 0)
             return OpStatus::ERR;
     }
@@ -137,7 +137,7 @@ OP_STATUS FFmpegMediaPlayer::InitializeDecoder()
     }
 
     // Find stream information
-    if (FFmpegLibs::avformat_find_stream_info(m_format_context, NULL) < 0)
+    if (FFmpegLibs::find_stream_info(m_format_context, NULL) < 0)
     {
         Cleanup();
         return OpStatus::ERR;
@@ -161,12 +161,12 @@ OP_STATUS FFmpegMediaPlayer::InitializeDecoder()
     if (m_video_stream_index >= 0)
     {
         AVStream* video_stream = m_format_context->streams[m_video_stream_index];
-        struct AVCodec* video_codec = FFmpegLibs::avcodec_find_decoder(video_stream->codecpar->codec_id);
+        struct AVCodec* video_codec = FFmpegLibs::find_decoder(video_stream->codecpar->codec_id);
         
         if (video_codec)
         {
             m_video_codec_context = video_stream->codec; // Simplified - normally would allocate new context
-            if (FFmpegLibs::avcodec_open2(m_video_codec_context, video_codec, NULL) >= 0)
+            if (FFmpegLibs::codec_open2(m_video_codec_context, video_codec, NULL) >= 0)
             {
                 m_video_width = m_video_codec_context->width;
                 m_video_height = m_video_codec_context->height;
@@ -178,18 +178,18 @@ OP_STATUS FFmpegMediaPlayer::InitializeDecoder()
     if (m_audio_stream_index >= 0)
     {
         AVStream* audio_stream = m_format_context->streams[m_audio_stream_index];
-        struct AVCodec* audio_codec = FFmpegLibs::avcodec_find_decoder(audio_stream->codecpar->codec_id);
+        struct AVCodec* audio_codec = FFmpegLibs::find_decoder(audio_stream->codecpar->codec_id);
         
         if (audio_codec)
         {
             m_audio_codec_context = audio_stream->codec; // Simplified
-            FFmpegLibs::avcodec_open2(m_audio_codec_context, audio_codec, NULL);
+            FFmpegLibs::codec_open2(m_audio_codec_context, audio_codec, NULL);
         }
     }
 
     // Allocate frame and packet
-    m_frame = FFmpegLibs::av_frame_alloc();
-    m_packet = FFmpegLibs::av_packet_alloc();
+    m_frame = FFmpegLibs::frame_alloc();
+    m_packet = FFmpegLibs::packet_alloc();
 
     if (!m_frame || !m_packet)
     {
@@ -242,7 +242,7 @@ OP_STATUS FFmpegMediaPlayer::DecodeFrame()
         return OpStatus::ERR;
 
     // Read packet from format context
-    int result = FFmpegLibs::av_read_frame(m_format_context, m_packet);
+    int result = FFmpegLibs::read_frame(m_format_context, m_packet);
     if (result < 0)
     {
         // End of stream or error
@@ -255,11 +255,11 @@ OP_STATUS FFmpegMediaPlayer::DecodeFrame()
     if (m_packet->stream_index == m_video_stream_index && m_video_codec_context)
     {
         // Send packet to video decoder
-        result = FFmpegLibs::avcodec_send_packet(m_video_codec_context, m_packet);
+        result = FFmpegLibs::send_packet(m_video_codec_context, m_packet);
         if (result >= 0)
         {
             // Receive decoded frame
-            result = FFmpegLibs::avcodec_receive_frame(m_video_codec_context, m_frame);
+            result = FFmpegLibs::receive_frame(m_video_codec_context, m_frame);
             if (result >= 0)
             {
                 // Frame decoded successfully
@@ -274,11 +274,11 @@ OP_STATUS FFmpegMediaPlayer::DecodeFrame()
     else if (m_packet->stream_index == m_audio_stream_index && m_audio_codec_context)
     {
         // Process audio packet (similar to video)
-        FFmpegLibs::avcodec_send_packet(m_audio_codec_context, m_packet);
-        FFmpegLibs::avcodec_receive_frame(m_audio_codec_context, m_frame);
+        FFmpegLibs::send_packet(m_audio_codec_context, m_packet);
+        FFmpegLibs::receive_frame(m_audio_codec_context, m_frame);
     }
 
-    FFmpegLibs::av_packet_unref(m_packet);
+    FFmpegLibs::packet_unref(m_packet);
     return OpStatus::OK;
 }
 

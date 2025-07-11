@@ -12,6 +12,33 @@
 
 #include "platforms/media_backends/ffmpeg/ffmpeglibs.h"
 
+#ifdef MEDIA_BACKEND_FFMPEG_EMBEDDED
+
+/* Embedded FFmpeg implementation */
+BOOL FFmpegLibs::loaded = FALSE;
+
+OP_STATUS FFmpegLibs::Init()
+{
+    /* For embedded FFmpeg, always available */
+    loaded = TRUE;
+    return OpStatus::OK;
+}
+
+void FFmpegLibs::Destroy()
+{
+    /* Nothing to cleanup for embedded version */
+    loaded = FALSE;
+}
+
+BOOL FFmpegLibs::IsLoaded()
+{
+    return loaded;
+}
+
+#else
+
+/* Dynamic loading implementation */
+
 // Static member definitions
 OpDLL* FFmpegLibs::dll_libavformat = NULL;
 OpDLL* FFmpegLibs::dll_libavcodec = NULL;
@@ -176,5 +203,7 @@ BOOL FFmpegLibs::IsLoaded()
 {
     return loaded;
 }
+
+#endif /* MEDIA_BACKEND_FFMPEG_EMBEDDED */
 
 #endif // MEDIA_BACKEND_FFMPEG

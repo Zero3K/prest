@@ -11,6 +11,10 @@ SOURCES += platforms/media_backends/ffmpeg/ffmpegmediaplayer.cpp
 
 INCLUDES += platforms/media_backends/ffmpeg
 
+# Include embedded FFmpeg if enabled
+ifdef MEDIA_BACKEND_FFMPEG_EMBEDDED
+include platforms/media_backends/ffmpeg-embedded/module.mk
+else
 # FFmpeg library linking (when using system libraries)
 ifndef MEDIA_BACKEND_FFMPEG_BUNDLE_LIBS
 LDFLAGS += -lavformat -lavcodec -lavutil -lswscale -lswresample
@@ -29,5 +33,7 @@ ifndef MEDIA_BACKEND_FFMPEG_BUNDLE_LIBS
 LDFLAGS += -L/usr/lib/x86_64-linux-gnu -L/usr/local/lib
 endif
 endif
+
+endif # MEDIA_BACKEND_FFMPEG_EMBEDDED
 
 endif # MEDIA_BACKEND_FFMPEG
