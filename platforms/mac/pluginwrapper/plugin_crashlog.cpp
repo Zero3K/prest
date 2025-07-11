@@ -12,7 +12,8 @@
 #ifdef NO_CORE_COMPONENTS
 
 #include "platforms/mac/pluginwrapper/plugin_crashlog.h"
-#include "platforms/crashlog/crashlog.h"
+#define CRASHCATCH_AUTO_INIT
+#include "platforms/crashcatch/CrashCatch.hpp"
 
 extern const char* g_plugin_crashlogfolder;
 
@@ -25,7 +26,10 @@ void PluginCrashlog::InstallHandler(const char* logfolder)
 {
 	g_plugin_crashlogfolder = logfolder;
 
-	InstallCrashSignalHandler();
+	// Configure CrashCatch for Mac plugin wrapper
+	CrashCatch::globalConfig.showCrashDialog = true;
+	CrashCatch::globalConfig.appVersion = "Opera Mac Plugin Wrapper";
+	CrashCatch::globalConfig.additionalNotes = "Mac Plugin Wrapper Process";
 }
 
 OP_STATUS PluginCrashlog::HandleCrash(pid_t pid, const char* log_location)

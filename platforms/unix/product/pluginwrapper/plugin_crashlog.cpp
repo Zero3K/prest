@@ -12,7 +12,8 @@
 #ifdef NO_CORE_COMPONENTS
 
 #include "platforms/unix/product/pluginwrapper/plugin_crashlog.h"
-#include "platforms/crashlog/crashlog.h"
+#define CRASHCATCH_AUTO_INIT
+#include "platforms/crashcatch/CrashCatch.hpp"
 
 namespace PluginCrashlog
 {
@@ -38,7 +39,10 @@ void PluginCrashlog::InstallHandler(const char* pathname, const char* logfolder)
 
 	g_crash_recovery_parameters = const_cast<char**>(crashlog_parameters);
 
-	InstallCrashSignalHandler();
+	// Configure CrashCatch for plugin wrapper
+	CrashCatch::globalConfig.showCrashDialog = true;
+	CrashCatch::globalConfig.appVersion = "Opera Plugin Wrapper";
+	CrashCatch::globalConfig.additionalNotes = "Unix Plugin Wrapper Process";
 }
 
 OP_STATUS PluginCrashlog::HandleCrash(pid_t pid, const char* log_location)

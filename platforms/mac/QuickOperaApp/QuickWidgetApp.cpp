@@ -17,7 +17,8 @@ void BuildStandardMenu();
 extern QuickWidgetMenu * gAppleQuickMenu;
 extern const char* g_crashaction;
 
-#include "platforms/crashlog/crashlog.h"
+#define CRASHCATCH_AUTO_INIT
+#include "platforms/crashcatch/CrashCatch.hpp"
 #include "platforms/mac/util/systemcapabilities.h"
 
 int main(int argc, const char** argv)
@@ -79,8 +80,12 @@ int main(int argc, const char** argv)
 		BOOL skip = FALSE;
 		for (int i = 1; i < argc && !skip; i++)
 			skip = !strncmp(argv[i], "-nocrashhandler", 16);
-		if (!skip)
-			InstallCrashSignalHandler();
+		if (!skip) {
+			// Configure CrashCatch for Mac Quick Widget App
+			CrashCatch::globalConfig.showCrashDialog = true;
+			CrashCatch::globalConfig.appVersion = "Opera Mac Quick Widget";
+			CrashCatch::globalConfig.additionalNotes = "Mac Quick Widget Process";
+		}
 	}
 
 	if (argc >= 3 && !strncmp(argv[1], "-multiproc", 10))
