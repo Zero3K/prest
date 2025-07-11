@@ -453,7 +453,17 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 		return 0;
 	}
 
-	SetUnhandledExceptionFilter(ExceptionFilter);
+	// Initialize CrashRpt.CPP crash handling
+	if (!InitializeCrashRpt(L"Opera", L"Opera Software ASA"))
+	{
+		// Fall back to original crash handling if CrashRpt fails
+		SetUnhandledExceptionFilter(ExceptionFilter);
+	}
+	else
+	{
+		// CrashRpt handles exceptions automatically, but set fallback filter
+		SetUnhandledExceptionFilter(CrashRptExceptionFilter);
+	}
 
 	hInst = hInstance;
 

@@ -75,7 +75,17 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 		return 0;
 	}
 
-	SetUnhandledExceptionFilter(ExceptionFilter);
+	// Initialize CrashRpt.CPP crash handling
+	if (!InitializeCrashRpt(L"Opera Plugin Wrapper", L"Opera Software ASA"))
+	{
+		// Fall back to original crash handling if CrashRpt fails
+		SetUnhandledExceptionFilter(ExceptionFilter);
+	}
+	else
+	{
+		// CrashRpt handles exceptions automatically, but set fallback filter
+		SetUnhandledExceptionFilter(CrashRptExceptionFilter);
+	}
 
 
 	LPWSTR command_line = GetCommandLineW();

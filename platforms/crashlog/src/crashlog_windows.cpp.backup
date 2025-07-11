@@ -13,7 +13,6 @@
 
 #include "platforms/crashlog/crashlog.h"
 #include "platforms/windows_common/utils/OpAutoHandle.h"
-#include "platforms/crashlog/src/crashrpt_wrapper.h"
 
 extern "C"
 {
@@ -160,45 +159,6 @@ LONG WINAPI ExceptionFilter(struct _EXCEPTION_POINTERS *exc)
 
 	// log writing failed, pass exception to standard handler/debugger
 	return EXCEPTION_CONTINUE_SEARCH;
-}
-
-// New CrashRpt.CPP-based crash handling initialization
-BOOL InitializeCrashRpt(const wchar_t* app_name, const wchar_t* company)
-{
-	OperaCrashRptWrapper& crash_wrapper = OperaCrashRptWrapper::GetInstance();
-	
-	if (crash_wrapper.Initialize(app_name, company, TRUE))
-	{
-		// Add Opera-specific crash information
-		crash_wrapper.AddUserInfo(L"OperaBuild", L"Build " PRODUCT_VERSION_FILE_STR_UNI);
-		
-		// Add GPU information if available
-		if (g_gpu_info.vendor_id != 0)
-		{
-			wchar_t gpu_info[256];
-			swprintf_s(gpu_info, L"VendorID: 0x%04X, DeviceID: 0x%04X", 
-				g_gpu_info.vendor_id, g_gpu_info.device_id);
-			crash_wrapper.AddUserInfo(L"GPU", gpu_info);
-		}
-		
-		return TRUE;
-	}
-	
-	return FALSE;
-}
-
-// CrashRpt.CPP-based exception filter for fallback scenarios
-LONG WINAPI CrashRptExceptionFilter(struct _EXCEPTION_POINTERS *exc)
-{
-	OperaCrashRptWrapper& crash_wrapper = OperaCrashRptWrapper::GetInstance();
-	
-	if (crash_wrapper.IsCrashHandlingEnabled())
-	{
-		return crash_wrapper.SendReport(exc);
-	}
-	
-	// Fall back to original exception filter if CrashRpt is not available
-	return ExceptionFilter(exc);
 }
 
 

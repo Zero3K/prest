@@ -22,6 +22,8 @@ extern "C"
 
 	UINT __stdcall WriteCrashlog(DWORD process_id, GpuInfo* gpu_info, char* log_folder, char* log_file, const char* location = NULL);
 	LONG WINAPI ExceptionFilter(struct _EXCEPTION_POINTERS *);
+	LONG WINAPI CrashRptExceptionFilter(struct _EXCEPTION_POINTERS *);
+	BOOL InitializeCrashRpt(const wchar_t* app_name, const wchar_t* company);
 	char * __stdcall str_begins_with(char *str1, char *str2);
 
 	BOOL __stdcall InstallMemGuardHooks(HINSTANCE opera_dll);
