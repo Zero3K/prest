@@ -28,7 +28,8 @@ SSL_CertificateVerifier::VerifyStatus SSL_CertificateVerifier::VerifyCertificate
 	g_securityManager->Init(SSL_LOAD_UNTRUSTED_STORE);
 
 	// Check site certificate, to see if it is known to have been revoked; other certs checked after validated certs have been retrieved.
-	if (g_revoked_certificates.CheckForRevokedCert(0, cert_handler,  Certificate))
+	if (cert_handler && cert_handler->CertificateCount() > 0 && Certificate.Count() > 0 &&
+		g_revoked_certificates.CheckForRevokedCert(0, cert_handler,  Certificate))
 	{
 		if(msg != NULL)
 			msg->Set(SSL_Fatal, SSL_Certificate_Revoked);
