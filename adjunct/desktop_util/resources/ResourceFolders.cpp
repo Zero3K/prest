@@ -407,15 +407,15 @@ OP_STATUS ResourceFolders::SetFolders(OperaInitInfo *info, OpDesktopResources* d
 	RETURN_IF_ERROR(info->default_folders[OPFILE_SKIN_CUSTOM_FOLDER].Set("skin"));
 #endif // SKIN_USE_CUSTOM_FOLDERS
 
-	// GStreamer library/plugins folder
-#ifdef MEDIA_BACKEND_GSTREAMER
-	info->default_folder_parents[OPFILE_GSTREAMER_FOLDER] = OPFILE_BINARY_RESOURCES_FOLDER;
-	RETURN_IF_ERROR(info->default_folders[OPFILE_GSTREAMER_FOLDER].Set("gstreamer"));
-#endif // MEDIA_BACKEND_GSTREAMER
+	// FFmpeg library/plugins folder
+#ifdef MEDIA_BACKEND_FFMPEG
+	info->default_folder_parents[OPFILE_FFMPEG_FOLDER] = OPFILE_BINARY_RESOURCES_FOLDER;
+	RETURN_IF_ERROR(info->default_folders[OPFILE_FFMPEG_FOLDER].Set("ffmpeg"));
+#endif // MEDIA_BACKEND_FFMPEG
 
-	// not used in core yet, so just reusing the gstreamer folder
+	// Video codec folder - now using FFmpeg folder
 	info->default_folder_parents[OPFILE_VIDEO_FOLDER] = OPFILE_BINARY_RESOURCES_FOLDER;
-	RETURN_IF_ERROR(info->default_folders[OPFILE_VIDEO_FOLDER].Set("gstreamer"));
+	RETURN_IF_ERROR(info->default_folders[OPFILE_VIDEO_FOLDER].Set("ffmpeg"));
 
 	// Read-Write: Location of the protocol handlers white or black list.
 	info->default_folder_parents[OPFILE_HANDLERS_FOLDER] = OPFILE_INI_FOLDER;

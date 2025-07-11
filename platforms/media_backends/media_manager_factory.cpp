@@ -8,29 +8,20 @@
 
 #include "core/pch_system_includes.h"
 
-#if defined(MEDIA_BACKEND_GSTREAMER) || defined(MEDIA_BACKEND_FFMPEG)
+#ifdef MEDIA_BACKEND_FFMPEG
 
 #include "modules/pi/OpMediaPlayer.h"
 
-#ifdef MEDIA_BACKEND_GSTREAMER
-#include "platforms/media_backends/gst/gstmediamanager.h"
-#include "platforms/media_backends/gst/gstlibs.h"
-#endif
-
-#ifdef MEDIA_BACKEND_FFMPEG
 #include "platforms/media_backends/ffmpeg/ffmpegmediamanager.h"
 #include "platforms/media_backends/ffmpeg/ffmpeglibs.h"
-#endif
 
-/** Create the best available media manager.
- *  Tries FFmpeg first (if available), falls back to GStreamer.
+/** Create FFmpeg media manager.
  */
 OP_STATUS OpMediaManager::Create(OpMediaManager** manager)
 {
     *manager = NULL;
 
-#ifdef MEDIA_BACKEND_FFMPEG
-    // Try FFmpeg first
+    // Use FFmpeg backend
     if (OpStatus::IsSuccess(FFmpegLibs::Init()))
     {
         FFmpegMediaManager* ffmpeg_manager = OP_NEW(FFmpegMediaManager, ());
@@ -41,23 +32,8 @@ OP_STATUS OpMediaManager::Create(OpMediaManager** manager)
         }
         FFmpegLibs::Destroy();
     }
-#endif
-
-#ifdef MEDIA_BACKEND_GSTREAMER
-    // Fall back to GStreamer
-    if (OpStatus::IsSuccess(GstLibs::Init()))
-    {
-        GstMediaManager* gst_manager = OP_NEW(GstMediaManager, ());
-        if (gst_manager)
-        {
-            *manager = gst_manager;
-            return OpStatus::OK;
-        }
-        GstLibs::Destroy();
-    }
-#endif
 
     return OpStatus::ERR_NOT_SUPPORTED;
 }
 
-#endif // defined(MEDIA_BACKEND_GSTREAMER) || defined(MEDIA_BACKEND_FFMPEG)
+#endif // MEDIA_BACKEND_FFMPEG
