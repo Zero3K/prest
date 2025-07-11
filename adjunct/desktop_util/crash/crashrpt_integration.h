@@ -10,7 +10,7 @@
 #ifndef _CRASHRPT_INTEGRATION_H_
 #define _CRASHRPT_INTEGRATION_H_
 
-#ifdef MSWIN
+#if defined(MSWIN) && (defined(DESKTOP_STARTER) || defined(PLUGIN_WRAPPER))
 
 #include "platforms/crashlog/src/crashrpt_wrapper.h"
 
@@ -87,6 +87,6 @@ crash_rpt::CrashProcessingCallbackResult CALLBACK OperaCrashProcessingCallback(
 	LPVOID userData
 );
 
-#endif // MSWIN
+#endif // MSWIN && (DESKTOP_STARTER || PLUGIN_WRAPPER)
 
 #endif // _CRASHRPT_INTEGRATION_H_

@@ -9,7 +9,7 @@
 
 #include "core/pch.h"
 
-#ifdef MSWIN
+#if defined(MSWIN) && (defined(DESKTOP_STARTER) || defined(PLUGIN_WRAPPER))
 
 #include "adjunct/desktop_util/crash/crashrpt_integration.h"
 #include "adjunct/desktop_util/file_utils/FileUtils.h"
@@ -41,7 +41,7 @@ bool OperaCrashRptIntegration::Initialize(const wchar_t* app_name, const wchar_t
 		if (GetVersionEx((OSVERSIONINFO*)&osvi))
 		{
 			wchar_t os_info[256];
-			swprintf_s(os_info, L"%d.%d.%d SP%d.%d", 
+			swprintf_s(os_info, 256, L"%d.%d.%d SP%d.%d", 
 				osvi.dwMajorVersion, osvi.dwMinorVersion, osvi.dwBuildNumber,
 				osvi.wServicePackMajor, osvi.wServicePackMinor);
 			wrapper.AddUserInfo(L"OSVersion", os_info);
@@ -121,13 +121,13 @@ crash_rpt::custom_data_collection::Result CALLBACK OperaCrashDataCollectionCallb
 	SYSTEMTIME st;
 	GetSystemTime(&st);
 	wchar_t timestamp[256];
-	swprintf_s(timestamp, L"%04d-%02d-%02d %02d:%02d:%02d UTC",
+	swprintf_s(timestamp, 256, L"%04d-%02d-%02d %02d:%02d:%02d UTC",
 		st.wYear, st.wMonth, st.wDay, st.wHour, st.wMinute, st.wSecond);
 	dataBag->AddUserInfoToReport(L"CrashTime", timestamp);
 
 	// Add process information
 	wchar_t process_info[256];
-	swprintf_s(process_info, L"PID: %d", exceptionInfo.ProcessId);
+	swprintf_s(process_info, 256, L"PID: %d", exceptionInfo.ProcessId);
 	dataBag->AddUserInfoToReport(L"ProcessInfo", process_info);
 
 	// Add Opera-specific log files if they exist
@@ -173,4 +173,4 @@ crash_rpt::CrashProcessingCallbackResult CALLBACK OperaCrashProcessingCallback(
 	return crash_rpt::DoDefaultActions;
 }
 
-#endif // MSWIN
+#endif // MSWIN && (DESKTOP_STARTER || PLUGIN_WRAPPER)
