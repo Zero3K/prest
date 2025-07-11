@@ -11,6 +11,8 @@
 
 #if defined(MSWIN)
 
+#if defined(DESKTOP_STARTER) || defined(PLUGIN_WRAPPER)
+
 #include "platforms/crashlog/src/crashrpt_wrapper.h"
 #include "platforms/crashlog/gpu_info.h"
 
@@ -150,5 +152,27 @@ OperaCrashRptWrapper& OperaCrashRptWrapper::GetInstance()
 	static OperaCrashRptWrapper instance;
 	return instance;
 }
+
+#else // !(DESKTOP_STARTER || PLUGIN_WRAPPER)
+
+// Stub implementations for framework builds that don't have DESKTOP_STARTER/PLUGIN_WRAPPER
+// These provide the symbols needed for linking but with no-op functionality
+
+OperaCrashRptWrapper::OperaCrashRptWrapper() {}
+OperaCrashRptWrapper::~OperaCrashRptWrapper() {}
+
+bool OperaCrashRptWrapper::Initialize(const wchar_t*, const wchar_t*, bool) { return false; }
+bool OperaCrashRptWrapper::IsCrashHandlingEnabled() const { return false; }
+bool OperaCrashRptWrapper::AddFileToReport(const wchar_t*, const wchar_t*) { return false; }
+bool OperaCrashRptWrapper::AddUserInfo(const wchar_t*, const wchar_t*) { return false; }
+LONG OperaCrashRptWrapper::SendReport(EXCEPTION_POINTERS*) { return EXCEPTION_CONTINUE_SEARCH; }
+
+OperaCrashRptWrapper& OperaCrashRptWrapper::GetInstance()
+{
+	static OperaCrashRptWrapper instance;
+	return instance;
+}
+
+#endif // MSWIN
 
 #endif // MSWIN

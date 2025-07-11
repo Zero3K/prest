@@ -91,6 +91,23 @@ private:
 	OperaCrashRptWrapper& operator=(const OperaCrashRptWrapper&);
 };
 
+#elif defined(MSWIN)
+
+// Stub implementation for framework builds that don't have DESKTOP_STARTER/PLUGIN_WRAPPER
+class OperaCrashRptWrapper
+{
+public:
+	OperaCrashRptWrapper() {}
+	~OperaCrashRptWrapper() {}
+	
+	bool Initialize(const wchar_t*, const wchar_t*, bool = true) { return false; }
+	bool IsCrashHandlingEnabled() const { return false; }
+	bool AddFileToReport(const wchar_t*, const wchar_t* = NULL) { return false; }
+	bool AddUserInfo(const wchar_t*, const wchar_t*) { return false; }
+	LONG SendReport(EXCEPTION_POINTERS*) { return EXCEPTION_CONTINUE_SEARCH; }
+	static OperaCrashRptWrapper& GetInstance() { static OperaCrashRptWrapper instance; return instance; }
+};
+
 #endif // MSWIN
 
 #endif // _CRASHRPT_WRAPPER_H_
