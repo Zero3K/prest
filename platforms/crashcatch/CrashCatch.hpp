@@ -13,9 +13,9 @@ License: MIT
 #include <fstream>
 #include <iostream>
 #include <iomanip>
-#include <chrono>
-#include <filesystem>
+#include <ctime>
 #include <functional>
+#include <cstdlib>
 
 #if defined(_WIN32)
 #define CRASHCATCH_PLATFORM_WINDOWS
@@ -30,53 +30,79 @@ License: MIT
 #include <limits.h>
 #include <cxxabi.h>
 #include <string.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 #endif
 
 namespace CrashCatch {
 
     // Context data passed to crash callback (onCrash, onCrashUpload)
     struct CrashContext {
-        std::string dumpFilePath = "";  // .dmp (Windows) or blank (Linux)
-        std::string logFilePath = "";   // .txt summary log
-        std::string timestamp = "";     // Crash timestamp
-        int signalOrCode = 0;           // Signal or exception code
+        std::string dumpFilePath;  // .dmp (Windows) or blank (Linux)
+        std::string logFilePath;   // .txt summary log
+        std::string timestamp;     // Crash timestamp
+        int signalOrCode;          // Signal or exception code
+
+        // Constructor
+        CrashContext() : signalOrCode(0) {}
+        
+        // Constructor with parameters
+        CrashContext(const std::string& dumpPath, const std::string& logPath, 
+                    const std::string& ts, int code) 
+            : dumpFilePath(dumpPath), logFilePath(logPath), timestamp(ts), signalOrCode(code) {}
     };
 
     // Configuration structure for CrashCatch behavior
     struct Config {
-        std::string dumpFolder = "./crash_dumps/";   // Where to save crash files
-        std::string dumpFileName = "crash";          // Base name (timestamp added optionally)
-        bool enableTextLog = true;                   // Output .txt human-readable crash report
-        bool autoTimestamp = true;                   // Auto-append timestamp to filenames
-        bool showCrashDialog = true;                // (Windows only) Show MessageBox on crash
-        std::function<void(const CrashContext&)> onCrash = nullptr;        // Called on crash (log before exit)
-        std::function<void(const CrashContext&)> onCrashUpload = nullptr;  // Optional hook to upload crash report
-        std::string appVersion = "unknown";          // Application version string
-        std::string buildConfig =
+        std::string dumpFolder;       // Where to save crash files
+        std::string dumpFileName;     // Base name (timestamp added optionally)
+        bool enableTextLog;           // Output .txt human-readable crash report
+        bool autoTimestamp;           // Auto-append timestamp to filenames
+        bool showCrashDialog;         // (Windows only) Show MessageBox on crash
+        std::string appVersion;       // Application version string
+        std::string buildConfig;      // Debug/Release configuration
+        std::string additionalNotes; // Extra info for crash reports
+
+        // Constructor with default values
+        Config() {
+            dumpFolder = "./crash_dumps/";
+            dumpFileName = "crash";
+            enableTextLog = true;
+            autoTimestamp = true;
+            showCrashDialog = true;
+            appVersion = "unknown";
 #ifdef _DEBUG
-            "Debug";
+            buildConfig = "Debug";
 #else
-            "Release";
+            buildConfig = "Release";
 #endif
-        std::string additionalNotes = "";            // Optional notes in crash log
+            additionalNotes = "";
+        }
     };
 
-    inline Config globalConfig; // Global configuration
+    // Global configuration - use function to ensure proper initialization
+    inline Config& getGlobalConfig() {
+        static Config config;
+        return config;
+    }
+
+    // Convenience reference to global config
+    #define globalConfig getGlobalConfig()
 
     // Generate timestamp string (YYYY-MM-DD_HH-MM-SS)
     inline std::string getTimestamp() {
-        auto now = std::chrono::system_clock::now();
-        auto time = std::chrono::system_clock::to_time_t(now);
-        std::stringstream ss;
-        ss << std::put_time(std::localtime(&time), "%Y-%m-%d_%H-%M-%S");
-        return ss.str();
+        time_t now = time(0);
+        struct tm* timeinfo = localtime(&now);
+        char buffer[80];
+        strftime(buffer, sizeof(buffer), "%Y-%m-%d_%H-%M-%S", timeinfo);
+        return std::string(buffer);
     }
 
     // Return full path to current executable
     inline std::string getExecutablePath() {
 #ifdef CRASHCATCH_PLATFORM_WINDOWS
         char buffer[MAX_PATH];
-        GetModuleFileNameA(nullptr, buffer, MAX_PATH);
+        GetModuleFileNameA(NULL, buffer, MAX_PATH);
         return std::string(buffer);
 #elif defined(CRASHCATCH_PLATFORM_LINUX)
         char path[PATH_MAX];
@@ -89,12 +115,41 @@ namespace CrashCatch {
 #endif
     }
 
+    // Create directories recursively (replacement for std::filesystem::create_directories)
+    inline bool createDirectories(const std::string& path) {
+#ifdef CRASHCATCH_PLATFORM_WINDOWS
+        // Use SHCreateDirectoryEx or CreateDirectory with recursive logic
+        size_t pos = 0;
+        std::string dir;
+        while ((pos = path.find('\\', pos)) != std::string::npos) {
+            dir = path.substr(0, pos++);
+            if (!dir.empty() && dir != "." && dir != ".." && dir.find(':') == std::string::npos) {
+                CreateDirectoryA(dir.c_str(), NULL);
+            }
+        }
+        CreateDirectoryA(path.c_str(), NULL);
+        return true;
+#else
+        // Use mkdir -p equivalent
+        size_t pos = 0;
+        std::string dir;
+        while ((pos = path.find('/', pos)) != std::string::npos) {
+            dir = path.substr(0, pos++);
+            if (!dir.empty() && dir != "." && dir != "..") {
+                mkdir(dir.c_str(), 0755);
+            }
+        }
+        mkdir(path.c_str(), 0755);
+        return true;
+#endif
+    }
+
 #ifdef CRASHCATCH_PLATFORM_LINUX
     // Demangle C++ symbol names from backtrace
     inline std::string demangle(const char* symbol) {
         size_t size;
         int status;
-        char* demangled = abi::__cxa_demangle(symbol, nullptr, &size, &status);
+        char* demangled = abi::__cxa_demangle(symbol, NULL, &size, &status);
         std::string result = (status == 0) ? demangled : symbol;
         free(demangled);
         return result;
@@ -120,7 +175,7 @@ namespace CrashCatch {
 
     // Write human-readable crash report to .txt file
     inline void writeCrashLog(const std::string& logPath, const std::string& timestamp, int signal = 0) {
-        std::ofstream log(logPath);
+        std::ofstream log(logPath.c_str());
         if (!log.is_open()) return;
 
         log << "Crash Report\n============\n";
@@ -160,17 +215,12 @@ namespace CrashCatch {
         std::string dumpPath = globalConfig.dumpFolder + base + ".dmp";
         std::string logPath = globalConfig.dumpFolder + base + ".txt";
 
-        std::filesystem::create_directories(globalConfig.dumpFolder);
+        createDirectories(globalConfig.dumpFolder);
 
-        if (globalConfig.onCrash) {
-            CrashContext context{ dumpPath, logPath, timestamp, static_cast<int>(code) };
-            globalConfig.onCrash(context);
-        }
-
-        HANDLE hFile = CreateFileA(dumpPath.c_str(), GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
+        HANDLE hFile = CreateFileA(dumpPath.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
         if (hFile != INVALID_HANDLE_VALUE) {
             MINIDUMP_EXCEPTION_INFORMATION dumpInfo = { GetCurrentThreadId(), ep, FALSE };
-            MiniDumpWriteDump(GetCurrentProcess(), GetCurrentProcessId(), hFile, MiniDumpWithDataSegs, &dumpInfo, nullptr, nullptr);
+            MiniDumpWriteDump(GetCurrentProcess(), GetCurrentProcessId(), hFile, MiniDumpWithDataSegs, &dumpInfo, NULL, NULL);
             CloseHandle(hFile);
 
             if (globalConfig.enableTextLog) {
@@ -179,13 +229,8 @@ namespace CrashCatch {
 
             if (globalConfig.showCrashDialog) {
                 std::string msg = "Crash occurred. Dump written to:\n" + dumpPath;
-                MessageBoxA(nullptr, msg.c_str(), "Crash Detected", MB_OK | MB_ICONERROR);
+                MessageBoxA(NULL, msg.c_str(), "Crash Detected", MB_OK | MB_ICONERROR);
             }
-        }
-
-        if (globalConfig.onCrashUpload) {
-            CrashContext context{ dumpPath, logPath, timestamp, static_cast<int>(code) };
-            globalConfig.onCrashUpload(context);
         }
 
         return EXCEPTION_EXECUTE_HANDLER;
@@ -199,19 +244,9 @@ namespace CrashCatch {
         std::string base = globalConfig.dumpFileName + (timestamp.empty() ? "" : ("_" + timestamp));
         std::string logPath = globalConfig.dumpFolder + base + ".txt";
 
-        std::filesystem::create_directories(globalConfig.dumpFolder);
-
-        if (globalConfig.onCrash) {
-            CrashContext context{ "", logPath, timestamp, signum };
-            globalConfig.onCrash(context);
-        }
+        createDirectories(globalConfig.dumpFolder);
 
         writeCrashLog(logPath, timestamp, signum);
-
-        if (globalConfig.onCrashUpload) {
-            CrashContext context{ "", logPath, timestamp, signum };
-            globalConfig.onCrashUpload(context);
-        }
 
         _exit(1);
     }
@@ -233,7 +268,7 @@ namespace CrashCatch {
     }
 
     // Shorthand: use default configuration
-    inline bool enable() { return initialize(Config{}); }
+    inline bool enable() { return initialize(Config()); }
 
     // Auto-initialize when included (optional)
 #ifdef CRASHCATCH_AUTO_INIT
