@@ -1,0 +1,78 @@
+/* -*- Mode: c++; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*-
+ *
+ * Copyright (C) 1995-2024 Opera Software AS.  All rights reserved.
+ *
+ * This file is part of the Opera web browser.	It may not be distributed
+ * under any circumstances.
+ *
+ * Test for address dropdown navigation functionality
+ */
+
+group "quick.address_dropdown_navigation";
+
+include "adjunct/quick/widgets/OpAddressDropDown.h";
+include "modules/widgets/OpEdit.h";
+include "modules/inputmanager/inputaction.h";
+
+test("Address dropdown has edit field after construction")
+{
+	OpAddressDropDown* dropdown = NULL;
+	
+	verify(OpStatus::IsSuccess(OpAddressDropDown::Construct(&dropdown)));
+	verify(dropdown);
+	verify(dropdown->edit); // Edit field should exist
+	
+	OP_DELETE(dropdown);
+}
+
+test("Address dropdown edit field has correct action")
+{
+	OpAddressDropDown* dropdown = NULL;
+	
+	verify(OpStatus::IsSuccess(OpAddressDropDown::Construct(&dropdown)));
+	verify(dropdown);
+	verify(dropdown->edit);
+	
+	OpInputAction* action = dropdown->edit->GetAction();
+	verify(action); // Action should be set
+	verify(action->GetAction() == OpInputAction::ACTION_GO_TO_TYPED_ADDRESS);
+	
+	OP_DELETE(dropdown);
+}
+
+test("Address dropdown can invoke action with URL")
+{
+	OpAddressDropDown* dropdown = NULL;
+	
+	verify(OpStatus::IsSuccess(OpAddressDropDown::Construct(&dropdown)));
+	verify(dropdown);
+	verify(dropdown->edit);
+	
+	// Set a test URL
+	verify(OpStatus::IsSuccess(dropdown->edit->SetText(UNI_L("http://example.com"))));
+	
+	// The edit field should be able to invoke its action
+	OpInputAction* action = dropdown->edit->GetAction();
+	verify(action);
+	verify(action->GetAction() == OpInputAction::ACTION_GO_TO_TYPED_ADDRESS);
+	
+	// Test that InvokeAction doesn't crash
+	BOOL result = dropdown->edit->InvokeAction();
+	verify(result == TRUE); // Should return TRUE indicating action was invoked
+	
+	OP_DELETE(dropdown);
+}
+
+test("Address dropdown edit field initialization")
+{
+	OpAddressDropDown* dropdown = NULL;
+	
+	verify(OpStatus::IsSuccess(OpAddressDropDown::Construct(&dropdown)));
+	verify(dropdown);
+	verify(dropdown->edit);
+	
+	// Edit field should have proper initialization
+	verify(dropdown->edit->GetOnChangeOnEnter()); // Should be set to TRUE
+	
+	OP_DELETE(dropdown);
+}

@@ -775,6 +775,10 @@ OpAddressDropDown::OpAddressDropDown() :
 
 	OpString button_text;
 
+	// Create edit field first
+	status = SetEditableText(TRUE);
+	CHECK_STATUS(status);
+
 	// Edit field
 	status = InitializeEditField();
 	CHECK_STATUS(status);
