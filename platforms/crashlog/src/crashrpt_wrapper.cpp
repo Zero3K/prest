@@ -9,7 +9,7 @@
 
 #include "core/pch.h"
 
-#if defined(MSWIN) && (defined(DESKTOP_STARTER) || defined(PLUGIN_WRAPPER))
+#if defined(MSWIN)
 
 #include "platforms/crashlog/src/crashrpt_wrapper.h"
 #include "platforms/crashlog/gpu_info.h"
@@ -151,4 +151,4 @@ OperaCrashRptWrapper& OperaCrashRptWrapper::GetInstance()
 	return instance;
 }
 
-#endif // MSWIN && (DESKTOP_STARTER || PLUGIN_WRAPPER)
+#endif // MSWIN

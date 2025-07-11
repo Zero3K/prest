@@ -166,6 +166,7 @@ LONG WINAPI ExceptionFilter(struct _EXCEPTION_POINTERS *exc)
 // New CrashRpt.CPP-based crash handling initialization
 BOOL InitializeCrashRpt(const wchar_t* app_name, const wchar_t* company)
 {
+#if defined(DESKTOP_STARTER) || defined(PLUGIN_WRAPPER)
 	OperaCrashRptWrapper& crash_wrapper = OperaCrashRptWrapper::GetInstance();
 	
 	if (crash_wrapper.Initialize(app_name, company, TRUE))
@@ -187,6 +188,7 @@ BOOL InitializeCrashRpt(const wchar_t* app_name, const wchar_t* company)
 		
 		return TRUE;
 	}
+#endif // DESKTOP_STARTER || PLUGIN_WRAPPER
 	
 	return FALSE;
 }
@@ -194,12 +196,14 @@ BOOL InitializeCrashRpt(const wchar_t* app_name, const wchar_t* company)
 // CrashRpt.CPP-based exception filter for fallback scenarios
 LONG WINAPI CrashRptExceptionFilter(struct _EXCEPTION_POINTERS *exc)
 {
+#if defined(DESKTOP_STARTER) || defined(PLUGIN_WRAPPER)
 	OperaCrashRptWrapper& crash_wrapper = OperaCrashRptWrapper::GetInstance();
 	
 	if (crash_wrapper.IsCrashHandlingEnabled())
 	{
 		return crash_wrapper.SendReport(exc);
 	}
+#endif // DESKTOP_STARTER || PLUGIN_WRAPPER
 	
 	// Fall back to original exception filter if CrashRpt is not available
 	return ExceptionFilter(exc);
