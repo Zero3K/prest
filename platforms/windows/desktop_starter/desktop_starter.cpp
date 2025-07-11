@@ -20,6 +20,7 @@
 #include "adjunct/autoupdate/updater/pi/aufileutils.h"
 #endif
 #include "adjunct/quick/managers/LaunchManager.h"
+#include "platforms/crashlog/crashlog.h"
 #define CRASHCATCH_AUTO_INIT
 #include "platforms/crashcatch/CrashCatch.hpp"
 #include "platforms/windows/utils/shared.h"

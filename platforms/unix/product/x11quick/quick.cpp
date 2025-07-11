@@ -30,6 +30,7 @@
 #include "adjunct/quick/managers/CommandLineManager.h"
 #include "adjunct/widgetruntime/GadgetStartup.h"
 
+#include "platforms/crashlog/crashlog.h" // InstallCrashSignalHandler()
 #define CRASHCATCH_AUTO_INIT
 #include "platforms/crashcatch/CrashCatch.hpp"
 #include "platforms/crashlog/gpu_info.h"

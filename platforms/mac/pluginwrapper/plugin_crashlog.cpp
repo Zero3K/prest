@@ -12,6 +12,7 @@
 #ifdef NO_CORE_COMPONENTS
 
 #include "platforms/mac/pluginwrapper/plugin_crashlog.h"
+#include "platforms/crashlog/crashlog.h"
 #define CRASHCATCH_AUTO_INIT
 #include "platforms/crashcatch/CrashCatch.hpp"
 

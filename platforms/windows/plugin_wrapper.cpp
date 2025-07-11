@@ -11,6 +11,7 @@
 
 #ifdef PLUGIN_WRAPPER
 
+#include "platforms/crashlog/crashlog.h"
 #define CRASHCATCH_AUTO_INIT
 #include "platforms/crashcatch/CrashCatch.hpp"
 #include "platforms/windows/IPC/WindowsOpComponentPlatform.h"

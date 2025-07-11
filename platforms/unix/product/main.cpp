@@ -33,6 +33,7 @@ extern "C" void __cxa_finalize(void *dso);
 #endif
 
 #ifdef CRASHLOG_CRASHLOGGER
+#include "platforms/crashlog/crashlog.h"
 #define CRASHCATCH_AUTO_INIT
 #include "platforms/crashcatch/CrashCatch.hpp"
 #endif

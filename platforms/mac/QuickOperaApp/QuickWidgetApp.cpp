@@ -17,6 +17,7 @@ void BuildStandardMenu();
 extern QuickWidgetMenu * gAppleQuickMenu;
 extern const char* g_crashaction;
 
+#include "platforms/crashlog/crashlog.h"
 #define CRASHCATCH_AUTO_INIT
 #include "platforms/crashcatch/CrashCatch.hpp"
 #include "platforms/mac/util/systemcapabilities.h"
