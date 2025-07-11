@@ -10,7 +10,7 @@
 #ifndef _CRASHRPT_WRAPPER_H_
 #define _CRASHRPT_WRAPPER_H_
 
-#if defined(MSWIN)
+#if defined(MSWIN) && (defined(DESKTOP_STARTER) || defined(PLUGIN_WRAPPER))
 
 #include "third_party/crashrpt/include/CrashRpt.h"
 
@@ -91,6 +91,6 @@ private:
 	OperaCrashRptWrapper& operator=(const OperaCrashRptWrapper&);
 };
 
-#endif // MSWIN
+#endif // MSWIN && (DESKTOP_STARTER || PLUGIN_WRAPPER)
 
 #endif // _CRASHRPT_WRAPPER_H_
