@@ -174,11 +174,17 @@ namespace CrashCatch {
     }
 
     // Write human-readable crash report to .txt file
-    inline void writeCrashLog(const std::string& logPath, const std::string& timestamp, int signal = 0) {
+    inline void writeCrashLog(const std::string& logPath, const std::string& timestamp, int signal = 0, 
+                             const std::string& assertionInfo = "") {
         std::ofstream log(logPath.c_str());
         if (!log.is_open()) return;
 
-        log << "Crash Report\n============\n";
+        if (!assertionInfo.empty()) {
+            log << "Assertion Failure Report\n========================\n";
+            log << assertionInfo << "\n";
+        } else {
+            log << "Crash Report\n============\n";
+        }
 
 #ifdef CRASHCATCH_PLATFORM_LINUX
         // Stack trace for Linux
@@ -269,6 +275,49 @@ namespace CrashCatch {
 
     // Shorthand: use default configuration
     inline bool enable() { return initialize(Config()); }
+
+    // Helper function to convert int to string (C++98 compatible)
+    inline std::string toString(int value) {
+        std::stringstream ss;
+        ss << value;
+        return ss.str();
+    }
+
+    // Handle assertion failures with CrashCatch (Windows specific)
+    inline void handleAssertion(const char* expression, const char* file, int line) {
+#ifdef CRASHCATCH_PLATFORM_WINDOWS
+        std::string timestamp = globalConfig.autoTimestamp ? getTimestamp() : "";
+        std::string base = globalConfig.dumpFileName + (timestamp.empty() ? "" : ("_assertion_" + timestamp));
+        std::string logPath = globalConfig.dumpFolder + base + ".txt";
+
+        createDirectories(globalConfig.dumpFolder);
+
+        // Create assertion info string
+        std::stringstream assertionInfo;
+        assertionInfo << "Assertion failed!\n";
+        assertionInfo << "Expression: " << (expression ? expression : "unknown") << "\n";
+        assertionInfo << "File: " << (file ? file : "unknown") << "\n";
+        assertionInfo << "Line: " << line << "\n";
+
+        if (globalConfig.enableTextLog) {
+            writeCrashLog(logPath, timestamp, 0, assertionInfo.str());
+        }
+
+        if (globalConfig.showCrashDialog) {
+            std::string msg = "Assertion failed!\n\n";
+            msg += "Expression: " + std::string(expression ? expression : "unknown") + "\n";
+            msg += "File: " + std::string(file ? file : "unknown") + "\n";
+            msg += "Line: " + toString(line) + "\n\n";
+            if (globalConfig.enableTextLog) {
+                msg += "Log written to: " + logPath;
+            }
+            MessageBoxA(NULL, msg.c_str(), "Assertion Failure", MB_OK | MB_ICONERROR);
+        }
+
+        // Terminate the program
+        TerminateProcess(GetCurrentProcess(), 1);
+#endif
+    }
 
     // Auto-initialize when included (optional)
 #ifdef CRASHCATCH_AUTO_INIT
