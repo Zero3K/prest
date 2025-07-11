@@ -38,9 +38,9 @@ public:
 	 * @param user_email User's email for follow-up (optional)
 	 * @param user_comments User's comments about the crash (optional)
 	 */
-	static void SetUserCrashInfo(const wchar_t* user_url = nullptr, 
-								 const wchar_t* user_email = nullptr, 
-								 const wchar_t* user_comments = nullptr);
+	static void SetUserCrashInfo(const wchar_t* user_url = NULL, 
+								 const wchar_t* user_email = NULL, 
+								 const wchar_t* user_comments = NULL);
 
 	/**
 	 * @brief Add Opera-specific files to the crash report

@@ -19,7 +19,7 @@ const char* OperaCrashRptWrapper::OPERA_APP_GUID = "4A8B9C0D-1234-4567-8901-2345
 const char* OperaCrashRptWrapper::OPERA_PREFIX = "Opera";
 
 OperaCrashRptWrapper::OperaCrashRptWrapper()
-	: m_crash_rpt(nullptr)
+	: m_crash_rpt(NULL)
 	, m_initialized(false)
 {
 }
@@ -27,7 +27,7 @@ OperaCrashRptWrapper::OperaCrashRptWrapper()
 OperaCrashRptWrapper::~OperaCrashRptWrapper()
 {
 	delete m_crash_rpt;
-	m_crash_rpt = nullptr;
+	m_crash_rpt = NULL;
 }
 
 bool OperaCrashRptWrapper::Initialize(const wchar_t* app_name, const wchar_t* company, bool own_process)
@@ -37,14 +37,23 @@ bool OperaCrashRptWrapper::Initialize(const wchar_t* app_name, const wchar_t* co
 
 	try
 	{
-		// Create CrashRpt instance with Opera-specific settings
+		// Create CrashRpt instance with Opera-specific settings and library path
+		// Try the current directory first, then specific path
 		m_crash_rpt = new crash_rpt::CrashRpt();
+		
+		// If that didn't work, try with explicit path to our third-party location
+		if (!m_crash_rpt->IsCrashHandlingEnabled())
+		{
+			delete m_crash_rpt;
+			const wchar_t* crashrpt_path = L"third_party\\crashrpt\\bin\\crashrpt.dll";
+			m_crash_rpt = new crash_rpt::CrashRpt(crashrpt_path);
+		}
 
 		if (!m_crash_rpt->IsCrashHandlingEnabled())
 		{
 			// CrashRpt DLL is not available, fall back to original system
 			delete m_crash_rpt;
-			m_crash_rpt = nullptr;
+			m_crash_rpt = NULL;
 			return false;
 		}
 
@@ -79,15 +88,15 @@ bool OperaCrashRptWrapper::Initialize(const wchar_t* app_name, const wchar_t* co
 		handler_settings.SubmitterID = 0; // Anonymous user
 		handler_settings.SendAdditionalDataWithoutApproval = TRUE; // Send without asking
 		
-		// Set paths to CrashRpt binaries
-		handler_settings.SendRptPath = L"third_party\\crashrpt\\bin\\sendrpt.exe";
-		handler_settings.DbgHelpPath = L"third_party\\crashrpt\\bin\\dbghelp.dll";
+		// Set paths to CrashRpt binaries (relative to executable)
+		handler_settings.SendRptPath = L"sendrpt.exe";
+		handler_settings.DbgHelpPath = L"dbghelp.dll";
 
 		// Initialize CrashRpt
 		if (!m_crash_rpt->InitCrashRpt(&app_info, &handler_settings, own_process))
 		{
 			delete m_crash_rpt;
-			m_crash_rpt = nullptr;
+			m_crash_rpt = NULL;
 			return false;
 		}
 
@@ -102,7 +111,7 @@ bool OperaCrashRptWrapper::Initialize(const wchar_t* app_name, const wchar_t* co
 	{
 		// Something went wrong during initialization
 		delete m_crash_rpt;
-		m_crash_rpt = nullptr;
+		m_crash_rpt = NULL;
 		return false;
 	}
 }

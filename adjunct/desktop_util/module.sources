@@ -7,6 +7,7 @@ algorithms/opunique.cpp
 async_queue/AsyncQueue.cpp
 boot/DesktopBootstrap.cpp
 crash/logsender.cpp
+crash/crashrpt_integration.cpp # [system=mswin]
 datastructures/StreamBuffer.cpp
 datastructures/ZlibStream.cpp
 file_chooser/file_chooser_fun.cpp

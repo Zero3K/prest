@@ -15,6 +15,7 @@
 #include "adjunct/desktop_util/file_utils/FileUtils.h"
 #include "modules/prefs/prefsmanager/prefsmanager.h"
 #include "adjunct/quick/quick-version.h"
+#include "platforms/windows/windows_ui/res/#BuildNr.rci"
 
 bool OperaCrashRptIntegration::s_initialized = false;
 
@@ -29,8 +30,8 @@ bool OperaCrashRptIntegration::Initialize(const wchar_t* app_name, const wchar_t
 	if (wrapper.Initialize(app_name, company, true))
 	{
 		// Add Opera version information
-		wrapper.AddUserInfo(L"OperaVersion", L"Opera " PRODUCT_VERSION_FILE_STR_UNI);
-		wrapper.AddUserInfo(L"BuildNumber", L"Build " BUILD_NUMBER_STR_UNI);
+		wrapper.AddUserInfo(L"OperaVersion", L"Opera " VER_NUM_STR_UNI);
+		wrapper.AddUserInfo(L"BuildNumber", L"Build " UNI_L(VER_BUILD_NUMBER_STR));
 		
 		// Add basic system information
 		OSVERSIONINFOEX osvi;

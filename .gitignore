@@ -1,0 +1,20 @@
+# Ignore CrashRpt binary files (they're large and should be downloaded separately)
+third_party/crashrpt/bin/*.dll
+third_party/crashrpt/bin/*.exe
+third_party/crashrpt/bin/x64/*.dll
+third_party/crashrpt/bin/x64/*.exe
+
+# Build artifacts
+*.obj
+*.o
+*.pdb
+*.lib
+*.exp
+*.ilk
+*.pch
+*.tmp
+*.log
+*.tlog
+
+# Backup files
+*.backup

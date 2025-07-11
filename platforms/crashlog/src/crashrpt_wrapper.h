@@ -55,7 +55,7 @@ public:
 	 * @param report_name Name to use in report (optional)
 	 * @return true if file was added successfully
 	 */
-	bool AddFileToReport(const wchar_t* file_path, const wchar_t* report_name = nullptr);
+	bool AddFileToReport(const wchar_t* file_path, const wchar_t* report_name = NULL);
 
 	/**
 	 * @brief Add custom user information to crash report

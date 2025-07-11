@@ -4,4 +4,5 @@ src/crashlog_freebsd32.cpp # [component=framework]
 src/crashlog_freebsd64.cpp # [component=framework]
 src/crashlog_mac32.cpp # [component=macquickoperaapp;component=plugin]
 src/crashlog_windows.cpp # [component=framework]
+src/crashrpt_wrapper.cpp # [component=framework;system=mswin]
 src/gpu_info.cpp

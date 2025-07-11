@@ -170,7 +170,7 @@ BOOL InitializeCrashRpt(const wchar_t* app_name, const wchar_t* company)
 	if (crash_wrapper.Initialize(app_name, company, TRUE))
 	{
 		// Add Opera-specific crash information
-		crash_wrapper.AddUserInfo(L"OperaBuild", L"Build " PRODUCT_VERSION_FILE_STR_UNI);
+		crash_wrapper.AddUserInfo(L"OperaBuild", L"Build " UNI_L(VER_BUILD_NUMBER_STR));
 		
 		// Add GPU information if available
 		if (g_gpu_info.vendor_id != 0)
