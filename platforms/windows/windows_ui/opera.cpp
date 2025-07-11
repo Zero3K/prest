@@ -11,6 +11,8 @@
 #include "adjunct/autoupdate/version_checker.h"
 #include "adjunct/desktop_util/sound/SoundUtils.h"
 #include "adjunct/quick/dialogs/crashloggingdialog.h"
+#define CRASHCATCH_AUTO_INIT
+#include "platforms/crashcatch/CrashCatch.hpp"
 #include "adjunct/quick/dialogs/SimpleDialog.h"
 #include "adjunct/quick/managers/KioskManager.h"
 #include "adjunct/quick/managers/CommandLineManager.h"
@@ -1268,12 +1270,20 @@ LRESULT BLD_CALLBACK BLDMainWndProc(HWND hWnd,UINT message,WPARAM wParam,LPARAM 
 			{
 				if (g_pcui->GetIntegerPref(PrefsCollectionUI::ShowCrashLogUploadDlg))
 				{
-					// show crash report dialog
-					CrashLoggingDialog* dialog = OP_NEW(CrashLoggingDialog, (crash_log->m_string_value, go_on, minimal));
-					int show_main = DefShowWindow;	
-					DefShowWindow = 0;
-					dialog->Init(NULL);
-					DefShowWindow = show_main;
+					// Use CrashCatch instead of CrashLoggingDialog for consistent crash reporting
+					CrashCatch::globalConfig.showCrashDialog = true;
+					CrashCatch::globalConfig.appVersion = "Opera Desktop";
+					
+					// Convert OpString to std::string for CrashCatch
+					OpString8 filename8;
+					filename8.SetUTF8FromUTF16(crash_log->m_string_value.CStr());
+					
+					// Show CrashCatch dialog with existing crash log file
+					int result = CrashCatch::showCrashDialogForExistingLog(filename8.CStr());
+					
+					// CrashCatch dialog returns 0 for restart, 1 for no restart
+					go_on = (result == 0);
+					minimal = FALSE; // CrashCatch handles this internally
 				}
 
 				g_desktop_global_application->Exit();

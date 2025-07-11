@@ -11,6 +11,7 @@
 #ifdef _DEBUG
 
 #include <sys/timeb.h>
+#include "platforms/crashcatch/CrashCatch.hpp"
 
 
 /**
@@ -47,16 +48,8 @@ Debug::OpAssert
 #endif
 (const char* expression, const char* file, int line)
 {
-#if _MSC_VER < 1300
-	_assert ((void*)expression, (void*)file, line);
-#else
-	OpString e;
-	OpString f;
-
-	e.Set(expression);
-	f.Set(file);
-	_wassert (e.CStr(), f.CStr(), line);
-#endif
+	// Use CrashCatch to handle assertion failures instead of _wassert
+	CrashCatch::handleAssertion(expression, file, line);
 }
 
 void Debug::GetTime(DebugTime& time)

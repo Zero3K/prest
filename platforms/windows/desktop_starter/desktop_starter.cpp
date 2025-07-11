@@ -21,6 +21,8 @@
 #endif
 #include "adjunct/quick/managers/LaunchManager.h"
 #include "platforms/crashlog/crashlog.h"
+#define CRASHCATCH_AUTO_INIT
+#include "platforms/crashcatch/CrashCatch.hpp"
 #include "platforms/windows/utils/shared.h"
 #include "platforms/windows/desktop_starter/dep.h"
 #include "platforms/windows/desktop_starter/win_file_utils.h"
@@ -453,7 +455,10 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 		return 0;
 	}
 
-	SetUnhandledExceptionFilter(ExceptionFilter);
+	// Configure CrashCatch for crash reporting
+	CrashCatch::globalConfig.showCrashDialog = true;
+	CrashCatch::globalConfig.appVersion = "Opera Desktop";
+	CrashCatch::globalConfig.additionalNotes = "Desktop Starter Process";
 
 	hInst = hInstance;
 

@@ -34,6 +34,8 @@ extern "C" void __cxa_finalize(void *dso);
 
 #ifdef CRASHLOG_CRASHLOGGER
 #include "platforms/crashlog/crashlog.h"
+#define CRASHCATCH_AUTO_INIT
+#include "platforms/crashcatch/CrashCatch.hpp"
 #endif
 
 extern int main_contentL(int argc, char *argv[]);
@@ -138,9 +140,10 @@ main(int argc, char* argv[])
 	}
 	else
 	{
-		/* We install the signal handlers after recovery to avoid multiple dialogs if
-		 * we are in crashlog mode. See quick.cpp */
-		InstallCrashSignalHandler();
+		/* We configure CrashCatch instead of using the legacy signal handlers */
+		CrashCatch::globalConfig.showCrashDialog = true;
+		CrashCatch::globalConfig.appVersion = "Opera Browser";
+		CrashCatch::globalConfig.additionalNotes = "Unix Main Process";
 	}
 #endif
 
