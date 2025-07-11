@@ -7,7 +7,7 @@
 #ifndef AVCODEC_H
 #define AVCODEC_H
 
-#include "libavutil/avutil.h"
+#include "../libavutil/avutil.h"
 
 #ifdef __cplusplus
 extern "C" {

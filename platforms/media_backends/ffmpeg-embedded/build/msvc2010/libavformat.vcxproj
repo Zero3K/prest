@@ -35,84 +35,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\libavformat\allformats.c" />
     <ClCompile Include="..\..\libavformat\avformat.c" />
-    <ClCompile Include="..\..\libavformat\avio.c" />
-    <ClCompile Include="..\..\libavformat\aviobuf.c" />
-    <ClCompile Include="..\..\libavformat\demux.c" />
-    <ClCompile Include="..\..\libavformat\format.c" />
-    <ClCompile Include="..\..\libavformat\id3v1.c" />
-    <ClCompile Include="..\..\libavformat\id3v2.c" />
-    <ClCompile Include="..\..\libavformat\metadata.c" />
-    <ClCompile Include="..\..\libavformat\mux.c" />
-    <ClCompile Include="..\..\libavformat\options.c" />
-    <ClCompile Include="..\..\libavformat\os_support.c" />
-    <ClCompile Include="..\..\libavformat\protocols.c" />
-    <ClCompile Include="..\..\libavformat\seek.c" />
-    <ClCompile Include="..\..\libavformat\url.c" />
-    <ClCompile Include="..\..\libavformat\utils.c" />
-    <ClCompile Include="..\..\libavformat\version.c" />
-    <ClCompile Include="..\..\libavformat\aac.c" />
-    <ClCompile Include="..\..\libavformat\ac3dec.c" />
-    <ClCompile Include="..\..\libavformat\adtsenc.c" />
-    <ClCompile Include="..\..\libavformat\asfdec.c" />
-    <ClCompile Include="..\..\libavformat\asfenc.c" />
-    <ClCompile Include="..\..\libavformat\avienc.c" />
-    <ClCompile Include="..\..\libavformat\avidec.c" />
-    <ClCompile Include="..\..\libavformat\flac_picture.c" />
-    <ClCompile Include="..\..\libavformat\flacdec.c" />
-    <ClCompile Include="..\..\libavformat\flacenc.c" />
-    <ClCompile Include="..\..\libavformat\flvdec.c" />
-    <ClCompile Include="..\..\libavformat\flvenc.c" />
-    <ClCompile Include="..\..\libavformat\hlsenc.c" />
-    <ClCompile Include="..\..\libavformat\hlsproto.c" />
-    <ClCompile Include="..\..\libavformat\http.c" />
-    <ClCompile Include="..\..\libavformat\isom.c" />
-    <ClCompile Include="..\..\libavformat\matroska.c" />
-    <ClCompile Include="..\..\libavformat\matroskadec.c" />
-    <ClCompile Include="..\..\libavformat\matroskaenc.c" />
-    <ClCompile Include="..\..\libavformat\mov.c" />
-    <ClCompile Include="..\..\libavformat\movenc.c" />
-    <ClCompile Include="..\..\libavformat\mp3dec.c" />
-    <ClCompile Include="..\..\libavformat\mp3enc.c" />
-    <ClCompile Include="..\..\libavformat\mpegts.c" />
-    <ClCompile Include="..\..\libavformat\mpegtsenc.c" />
-    <ClCompile Include="..\..\libavformat\nutdec.c" />
-    <ClCompile Include="..\..\libavformat\nutenc.c" />
-    <ClCompile Include="..\..\libavformat\oggdec.c" />
-    <ClCompile Include="..\..\libavformat\oggenc.c" />
-    <ClCompile Include="..\..\libavformat\oggparsecelt.c" />
-    <ClCompile Include="..\..\libavformat\oggparsedirac.c" />
-    <ClCompile Include="..\..\libavformat\oggparseflac.c" />
-    <ClCompile Include="..\..\libavformat\oggparseogm.c" />
-    <ClCompile Include="..\..\libavformat\oggparseopus.c" />
-    <ClCompile Include="..\..\libavformat\oggparseskeleton.c" />
-    <ClCompile Include="..\..\libavformat\oggparsespeex.c" />
-    <ClCompile Include="..\..\libavformat\oggparsetheora.c" />
-    <ClCompile Include="..\..\libavformat\oggparsevorbis.c" />
-    <ClCompile Include="..\..\libavformat\oggparsevp8.c" />
-    <ClCompile Include="..\..\libavformat\riff.c" />
-    <ClCompile Include="..\..\libavformat\riffdec.c" />
-    <ClCompile Include="..\..\libavformat\riffenc.c" />
-    <ClCompile Include="..\..\libavformat\rmenc.c" />
-    <ClCompile Include="..\..\libavformat\rtmp.c" />
-    <ClCompile Include="..\..\libavformat\rtmpproto.c" />
-    <ClCompile Include="..\..\libavformat\rtpenc.c" />
-    <ClCompile Include="..\..\libavformat\rtpproto.c" />
-    <ClCompile Include="..\..\libavformat\rtsp.c" />
-    <ClCompile Include="..\..\libavformat\rtspdec.c" />
-    <ClCompile Include="..\..\libavformat\rtspenc.c" />
-    <ClCompile Include="..\..\libavformat\sapenc.c" />
-    <ClCompile Include="..\..\libavformat\sdp.c" />
-    <ClCompile Include="..\..\libavformat\tcp.c" />
-    <ClCompile Include="..\..\libavformat\udp.c" />
-    <ClCompile Include="..\..\libavformat\webmdashenc.c" />
-    <ClCompile Include="..\..\libavformat\webm_chunk.c" />
-    <ClCompile Include="..\..\libavformat\webvttdec.c" />
-    <ClCompile Include="..\..\libavformat\webvttenc.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\libavformat\*.h" />
+    <ClInclude Include="..\..\libavformat\avformat.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="libavutil.vcxproj">

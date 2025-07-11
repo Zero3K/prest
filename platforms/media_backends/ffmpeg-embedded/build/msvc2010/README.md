@@ -22,6 +22,15 @@ platforms/media_backends/ffmpeg-embedded/build/msvc2010/ffmpeg.sln
 3. **libavformat** - Format/container library (avformat-60.dll or avformat.lib)
 4. **ffmpeg-combined** - All libraries combined for static Opera build
 
+## Simple Architecture
+
+The embedded FFmpeg uses a simplified stub implementation with single source files:
+- `libavutil/avutil.c` - Contains all utility functions
+- `libavcodec/avcodec.c` - Contains all codec functions  
+- `libavformat/avformat.c` - Contains all format/demuxing functions
+
+This provides essential FFmpeg functionality while maintaining a minimal footprint for Opera integration.
+
 ## Build Configurations
 
 ### DLL Build (Default)

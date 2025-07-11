@@ -7,7 +7,7 @@
 #ifndef AVFORMAT_H
 #define AVFORMAT_H
 
-#include "libavcodec/avcodec.h"
+#include "../libavcodec/avcodec.h"
 
 #ifdef __cplusplus
 extern "C" {

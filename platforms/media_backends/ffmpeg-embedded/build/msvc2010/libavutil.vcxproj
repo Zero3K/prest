@@ -35,40 +35,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\libavutil\adler32.c" />
-    <ClCompile Include="..\..\libavutil\aes.c" />
-    <ClCompile Include="..\..\libavutil\audio_fifo.c" />
-    <ClCompile Include="..\..\libavutil\avstring.c" />
-    <ClCompile Include="..\..\libavutil\base64.c" />
-    <ClCompile Include="..\..\libavutil\buffer.c" />
-    <ClCompile Include="..\..\libavutil\channel_layout.c" />
-    <ClCompile Include="..\..\libavutil\cpu.c" />
-    <ClCompile Include="..\..\libavutil\crc.c" />
-    <ClCompile Include="..\..\libavutil\dict.c" />
-    <ClCompile Include="..\..\libavutil\error.c" />
-    <ClCompile Include="..\..\libavutil\eval.c" />
-    <ClCompile Include="..\..\libavutil\fifo.c" />
-    <ClCompile Include="..\..\libavutil\file.c" />
-    <ClCompile Include="..\..\libavutil\frame.c" />
-    <ClCompile Include="..\..\libavutil\imgutils.c" />
-    <ClCompile Include="..\..\libavutil\log.c" />
-    <ClCompile Include="..\..\libavutil\mathematics.c" />
-    <ClCompile Include="..\..\libavutil\md5.c" />
-    <ClCompile Include="..\..\libavutil\mem.c" />
-    <ClCompile Include="..\..\libavutil\opt.c" />
-    <ClCompile Include="..\..\libavutil\parseutils.c" />
-    <ClCompile Include="..\..\libavutil\pixdesc.c" />
-    <ClCompile Include="..\..\libavutil\random_seed.c" />
-    <ClCompile Include="..\..\libavutil\rational.c" />
-    <ClCompile Include="..\..\libavutil\samplefmt.c" />
-    <ClCompile Include="..\..\libavutil\sha.c" />
-    <ClCompile Include="..\..\libavutil\time.c" />
-    <ClCompile Include="..\..\libavutil\timecode.c" />
-    <ClCompile Include="..\..\libavutil\tree.c" />
-    <ClCompile Include="..\..\libavutil\utils.c" />
+    <ClCompile Include="..\..\libavutil\avutil.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\libavutil\*.h" />
+    <ClInclude Include="..\..\libavutil\avutil.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A8B1A5F2-3C5D-4F3E-8B2A-1D4E5F6A7B8C}</ProjectGuid>

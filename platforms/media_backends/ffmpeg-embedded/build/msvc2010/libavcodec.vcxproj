@@ -36,53 +36,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\libavcodec\avcodec.c" />
-    <ClCompile Include="..\..\libavcodec\codec.c" />
-    <ClCompile Include="..\..\libavcodec\decode.c" />
-    <ClCompile Include="..\..\libavcodec\encode.c" />
-    <ClCompile Include="..\..\libavcodec\h264_decoder.c" />
-    <ClCompile Include="..\..\libavcodec\h264_parser.c" />
-    <ClCompile Include="..\..\libavcodec\vp8.c" />
-    <ClCompile Include="..\..\libavcodec\vp9.c" />
-    <ClCompile Include="..\..\libavcodec\av1_decoder.c" />
-    <ClCompile Include="..\..\libavcodec\aac_decoder.c" />
-    <ClCompile Include="..\..\libavcodec\mp3_decoder.c" />
-    <ClCompile Include="..\..\libavcodec\vorbis_decoder.c" />
-    <ClCompile Include="..\..\libavcodec\opus_decoder.c" />
-    <ClCompile Include="..\..\libavcodec\parser.c" />
-    <ClCompile Include="..\..\libavcodec\utils.c" />
-    <ClCompile Include="..\..\libavcodec\bitstream.c" />
-    <ClCompile Include="..\..\libavcodec\cabac.c" />
-    <ClCompile Include="..\..\libavcodec\codec_desc.c" />
-    <ClCompile Include="..\..\libavcodec\dsputil.c" />
-    <ClCompile Include="..\..\libavcodec\error_resilience.c" />
-    <ClCompile Include="..\..\libavcodec\frame_thread_encoder.c" />
-    <ClCompile Include="..\..\libavcodec\get_bits.c" />
-    <ClCompile Include="..\..\libavcodec\golomb.c" />
-    <ClCompile Include="..\..\libavcodec\imgconvert.c" />
-    <ClCompile Include="..\..\libavcodec\internal.c" />
-    <ClCompile Include="..\..\libavcodec\mathtables.c" />
-    <ClCompile Include="..\..\libavcodec\motion_est.c" />
-    <ClCompile Include="..\..\libavcodec\mpegaudiodsp.c" />
-    <ClCompile Include="..\..\libavcodec\mpegvideo.c" />
-    <ClCompile Include="..\..\libavcodec\options.c" />
-    <ClCompile Include="..\..\libavcodec\profiles.c" />
-    <ClCompile Include="..\..\libavcodec\pthread.c" />
-    <ClCompile Include="..\..\libavcodec\pthread_frame.c" />
-    <ClCompile Include="..\..\libavcodec\pthread_slice.c" />
-    <ClCompile Include="..\..\libavcodec\qsv_api.c" />
-    <ClCompile Include="..\..\libavcodec\raw.c" />
-    <ClCompile Include="..\..\libavcodec\resample.c" />
-    <ClCompile Include="..\..\libavcodec\resample2.c" />
-    <ClCompile Include="..\..\libavcodec\reverse.c" />
-    <ClCompile Include="..\..\libavcodec\simple_idct.c" />
-    <ClCompile Include="..\..\libavcodec\tableprint.c" />
-    <ClCompile Include="..\..\libavcodec\thread.c" />
-    <ClCompile Include="..\..\libavcodec\version.c" />
-    <ClCompile Include="..\..\libavcodec\vlc.c" />
-    <ClCompile Include="..\..\libavcodec\xiph.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\libavcodec\*.h" />
+    <ClInclude Include="..\..\libavcodec\avcodec.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="libavutil.vcxproj">
