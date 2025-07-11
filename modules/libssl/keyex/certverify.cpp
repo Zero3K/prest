@@ -471,7 +471,10 @@ SSL_CertificateVerifier::VerifyStatus SSL_CertificateVerifier::VerifyCertificate
 	{
 		for(uint24 i = 1; i< val_certificate_count; i++)
 		{
-			if (g_revoked_certificates.CheckForRevokedCert(i, cert_handler_validated.get(),  Validated_Certificate))
+			if (cert_handler_validated.get() && 
+				cert_handler_validated->CertificateCount() > i && 
+				Validated_Certificate.Count() > i &&
+				g_revoked_certificates.CheckForRevokedCert(i, cert_handler_validated.get(),  Validated_Certificate))
 			{
 				if(msg != NULL)
 					msg->Set(SSL_Fatal, SSL_Certificate_Revoked);
