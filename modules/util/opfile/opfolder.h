@@ -148,9 +148,9 @@ enum OpFileFolder
 #endif // UTIL_HAVE_SKIN_CUSTOM_FOLDERS
 
 
-#ifdef MEDIA_BACKEND_GSTREAMER
-	OPFILE_GSTREAMER_FOLDER, ///< Read-Only: Location of GStreamer library/plugins.
-#endif // MEDIA_BACKEND_GSTREAMER
+#ifdef MEDIA_BACKEND_FFMPEG
+	OPFILE_FFMPEG_FOLDER, ///< Read-Only: Location of FFmpeg library/plugins.
+#endif // MEDIA_BACKEND_FFMPEG
 
 #ifdef NS4P_COMPONENT_PLUGINS
 	OPFILE_PLUGINWRAPPER_FOLDER, ///< Read-Only: Location of Plugin Wrapper binaries.

@@ -36,8 +36,8 @@
 #define  TWEAK_LOC_EXTRASECTION_NAME                                       YES
 #define  LOCALE_EXTRASECTION                                               L"Windows"
 
-#undef   TWEAK_MEDIA_BACKEND_GSTREAMER_BUNDLE_LIBS
-#define  TWEAK_MEDIA_BACKEND_GSTREAMER_BUNDLE_LIBS                         YES
+#undef   TWEAK_MEDIA_BACKEND_FFMPEG_DYNAMIC_LOADING
+#define  TWEAK_MEDIA_BACKEND_FFMPEG_DYNAMIC_LOADING                        YES
 
 #if defined(_DEBUG) && !defined(DESKTOP_STARTER) && !defined(OPERA_MAPI) && !defined(PLUGIN_WRAPPER)
 # undef   TWEAK_MEMORY_ASSERT_ON_ERROR

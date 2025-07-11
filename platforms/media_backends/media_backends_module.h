@@ -9,13 +9,11 @@
 #ifndef MEDIA_BACKENDS_MODULE_H
 #define MEDIA_BACKENDS_MODULE_H
 
-#ifdef MEDIA_BACKEND_GSTREAMER
+#ifdef MEDIA_BACKEND_FFMPEG
 
 #include "modules/hardcore/opera/module.h"
 
-class OpDLL;
-class GstThreadManager;
-class GstPluginManager;
+class FFmpegThreadManager;
 
 class MediaBackendsModule : public OperaModule
 {
@@ -25,31 +23,13 @@ public:
     void InitL(const OperaInitInfo& info);
     void Destroy();
 
-	GstThreadManager *thread_manager;
-
-#ifdef MEDIA_BACKEND_GSTREAMER_USE_OPDLL
-
-	// created by GstMediaManager, held here for cleanup
-#ifdef MEDIA_BACKEND_GSTREAMER_BUNDLE_LIBS
-	// Single GStreamer DLL
-	OpDLL *dll_LibGStreamer;
-#else // ! MEDIA_BACKEND_GSTREAMER_BUNDLE_LIBS
-	// Use system GStreamer (UNIX)
-	OpDLL *dll_LibGLib;
-	OpDLL *dll_LibGObject;
-	OpDLL *dll_LibGModule;
-	OpDLL *dll_LibGStreamer;
-	OpDLL *dll_LibGstBase;
-	OpDLL *dll_LibGstVideo;
-	OpDLL *dll_LibGstRiff;
-#endif //  MEDIA_BACKEND_GSTREAMER_BUNDLE_LIBS
-#endif // MEDIA_BACKEND_GSTREAMER_USE_OPDLL
+	FFmpegThreadManager *ffmpeg_thread_manager;
 };
 
-#define g_gst_thread_manager (g_opera->media_backends_module.thread_manager)
+#define g_ffmpeg_thread_manager (g_opera->media_backends_module.ffmpeg_thread_manager)
 
 #define MEDIA_BACKENDS_MODULE_REQUIRED
 
-#endif // MEDIA_BACKEND_GSTREAMER
+#endif // MEDIA_BACKEND_FFMPEG
 
 #endif // MEDIA_BACKENDS_MODULE_H

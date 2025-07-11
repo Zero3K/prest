@@ -1,0 +1,27 @@
+LIBRARY "avutil-58"
+EXPORTS
+av_malloc
+av_free
+av_realloc
+av_strdup
+av_log
+av_log_set_level
+av_get_cpu_flags
+av_frame_alloc
+av_frame_free
+av_frame_ref
+av_frame_unref
+av_sample_fmt_is_planar
+av_get_bytes_per_sample
+av_samples_get_buffer_size
+av_dict_set
+av_dict_get
+av_dict_free
+av_buffer_alloc
+av_buffer_ref
+av_buffer_unref
+av_get_channel_layout_nb_channels
+av_channel_layout_extract_channel
+av_crc_init
+av_adler32_update
+av_version_info

@@ -31,7 +31,7 @@
 #define  FEATURE_3P_GLIBC                                                  NO
 #define  FEATURE_3P_GOOGLE_ANALYTICS_SDK_FOR_ANDROID                       NO
 #define  FEATURE_3P_GROWL                                                  NO
-#define  FEATURE_3P_GSTREAMER                                              YES
+#define  FEATURE_3P_FFMPEG                                                 YES
 #define  FEATURE_3P_HKSCS                                                  YES
 #define  FEATURE_3P_HUNSPELL                                               YES
 #define  FEATURE_3P_IANA                                                   YES

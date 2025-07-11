@@ -70,12 +70,12 @@
 #undef   TWEAK_M2_CHAT_SUPPORT
 #define  TWEAK_M2_CHAT_SUPPORT                                             NO
 
-#undef   TWEAK_MEDIA_BACKEND_GSTREAMER_AUDIOSINK
-#define  TWEAK_MEDIA_BACKEND_GSTREAMER_AUDIOSINK                           YES
-#define  MEDIA_BACKEND_GSTREAMER_AUDIOSINK                                 "osxaudiosink"
+#undef   TWEAK_MEDIA_BACKEND_FFMPEG_AUDIO_OUTPUT
+#define  TWEAK_MEDIA_BACKEND_FFMPEG_AUDIO_OUTPUT                           YES
+#define  MEDIA_BACKEND_FFMPEG_AUDIO_OUTPUT                                 "coreaudio"
 
-#undef   TWEAK_MEDIA_BACKEND_GSTREAMER_USE_OPDLL
-#define  TWEAK_MEDIA_BACKEND_GSTREAMER_USE_OPDLL                           NO
+#undef   TWEAK_MEDIA_BACKEND_FFMPEG_USE_DYNAMIC_LOADING
+#define  TWEAK_MEDIA_BACKEND_FFMPEG_USE_DYNAMIC_LOADING                    YES
 
 #undef   TWEAK_QUICK_MOUSE_GESTURE_ON_WORKSPACE
 #define  TWEAK_QUICK_MOUSE_GESTURE_ON_WORKSPACE                            NO

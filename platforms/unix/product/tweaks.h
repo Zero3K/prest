@@ -43,8 +43,8 @@
 #define  TWEAK_LOC_EXTRASECTION_NAME                                       YES
 #define  LOCALE_EXTRASECTION                                               UNI_L("Unix")
 
-#undef   TWEAK_MEDIA_BACKEND_GSTREAMER_PULSESINK_WORKAROUND
-#define  TWEAK_MEDIA_BACKEND_GSTREAMER_PULSESINK_WORKAROUND                YES
+#undef   TWEAK_MEDIA_BACKEND_FFMPEG_PULSE_AUDIO
+#define  TWEAK_MEDIA_BACKEND_FFMPEG_PULSE_AUDIO                            YES
 
 #undef   TWEAK_MDEFONT_APPLY_KERNING
 #define  TWEAK_MDEFONT_APPLY_KERNING                                       YES
